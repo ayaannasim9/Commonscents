@@ -1,0 +1,25 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "margaret-current",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Credit",
+    "Amount": {
+     "Amount": "2650.00",
+     "Currency": "GBP"
+    },
+    "CreditLine": [
+     {
+      "Included": false,
+      "Type": "Pre-Agreed",
+      "Amount": {
+       "Amount": "0.00",
+       "Currency": "GBP"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

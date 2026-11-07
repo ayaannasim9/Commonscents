@@ -1,0 +1,93 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "margaret-savings",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Credit",
+    "Amount": {
+     "Amount": "14250.00",
+     "Currency": "GBP"
+    }
+   }
+  ]
+ },
+ "History": [
+  {
+   "month": "2025-05",
+   "balance": 11550
+  },
+  {
+   "month": "2025-06",
+   "balance": 11700
+  },
+  {
+   "month": "2025-07",
+   "balance": 11850
+  },
+  {
+   "month": "2025-08",
+   "balance": 12000
+  },
+  {
+   "month": "2025-09",
+   "balance": 12150
+  },
+  {
+   "month": "2025-10",
+   "balance": 12300
+  },
+  {
+   "month": "2025-11",
+   "balance": 12450
+  },
+  {
+   "month": "2025-12",
+   "balance": 12600
+  },
+  {
+   "month": "2026-01",
+   "balance": 12750
+  },
+  {
+   "month": "2026-02",
+   "balance": 12900
+  },
+  {
+   "month": "2026-03",
+   "balance": 13050
+  },
+  {
+   "month": "2026-04",
+   "balance": 13200
+  },
+  {
+   "month": "2026-05",
+   "balance": 13350
+  },
+  {
+   "month": "2026-06",
+   "balance": 13500
+  },
+  {
+   "month": "2026-07",
+   "balance": 13650
+  },
+  {
+   "month": "2026-08",
+   "balance": 13800
+  },
+  {
+   "month": "2026-09",
+   "balance": 13950
+  },
+  {
+   "month": "2026-10",
+   "balance": 14100
+  },
+  {
+   "month": "2026-11",
+   "balance": 14250
+  }
+ ]
+}

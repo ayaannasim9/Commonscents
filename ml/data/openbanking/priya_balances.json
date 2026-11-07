@@ -1,0 +1,25 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "priya-current",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Credit",
+    "Amount": {
+     "Amount": "420.00",
+     "Currency": "GBP"
+    },
+    "CreditLine": [
+     {
+      "Included": false,
+      "Type": "Pre-Agreed",
+      "Amount": {
+       "Amount": "1500.00",
+       "Currency": "GBP"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

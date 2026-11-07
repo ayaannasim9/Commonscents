@@ -1,0 +1,299 @@
+[
+  {
+    "id": "priya",
+    "name": "Priya",
+    "persona": "Second-year student on a maintenance loan",
+    "profile": {
+      "age_range": "18-24",
+      "student": true,
+      "retired": false,
+      "dependants": 0,
+      "home_owner": false,
+      "vehicle": false,
+      "region": "North West"
+    },
+    "account": {
+      "current_balance": 420.0,
+      "overdraft_limit": 1500,
+      "savings_balance": 150,
+      "savings_product": "Easy Saver",
+      "savings_rate": 0.015
+    },
+    "savings_history": [
+      {
+        "month": "2025-05",
+        "balance": 150
+      },
+      {
+        "month": "2025-06",
+        "balance": 150
+      },
+      {
+        "month": "2025-07",
+        "balance": 150
+      },
+      {
+        "month": "2025-08",
+        "balance": 150
+      },
+      {
+        "month": "2025-09",
+        "balance": 150
+      },
+      {
+        "month": "2025-10",
+        "balance": 150
+      },
+      {
+        "month": "2025-11",
+        "balance": 150
+      },
+      {
+        "month": "2025-12",
+        "balance": 150
+      },
+      {
+        "month": "2026-01",
+        "balance": 150
+      },
+      {
+        "month": "2026-02",
+        "balance": 150
+      },
+      {
+        "month": "2026-03",
+        "balance": 150
+      },
+      {
+        "month": "2026-04",
+        "balance": 150
+      },
+      {
+        "month": "2026-05",
+        "balance": 150
+      },
+      {
+        "month": "2026-06",
+        "balance": 150
+      },
+      {
+        "month": "2026-07",
+        "balance": 150
+      },
+      {
+        "month": "2026-08",
+        "balance": 150
+      },
+      {
+        "month": "2026-09",
+        "balance": 150
+      },
+      {
+        "month": "2026-10",
+        "balance": 150
+      },
+      {
+        "month": "2026-11",
+        "balance": 150
+      }
+    ]
+  },
+  {
+    "id": "jordan",
+    "name": "Jordan",
+    "persona": "Warehouse supervisor, hours recently cut",
+    "profile": {
+      "age_range": "25-34",
+      "student": false,
+      "retired": false,
+      "dependants": 1,
+      "home_owner": false,
+      "vehicle": true,
+      "region": "North West"
+    },
+    "account": {
+      "current_balance": -160.0,
+      "overdraft_limit": 500,
+      "savings_balance": 300,
+      "savings_product": "Easy Saver",
+      "savings_rate": 0.015
+    },
+    "savings_history": [
+      {
+        "month": "2025-05",
+        "balance": 850
+      },
+      {
+        "month": "2025-06",
+        "balance": 950
+      },
+      {
+        "month": "2025-07",
+        "balance": 1050
+      },
+      {
+        "month": "2025-08",
+        "balance": 1150
+      },
+      {
+        "month": "2025-09",
+        "balance": 1250
+      },
+      {
+        "month": "2025-10",
+        "balance": 1350
+      },
+      {
+        "month": "2025-11",
+        "balance": 1450
+      },
+      {
+        "month": "2025-12",
+        "balance": 1550
+      },
+      {
+        "month": "2026-01",
+        "balance": 1650
+      },
+      {
+        "month": "2026-02",
+        "balance": 1500
+      },
+      {
+        "month": "2026-03",
+        "balance": 1350
+      },
+      {
+        "month": "2026-04",
+        "balance": 1200
+      },
+      {
+        "month": "2026-05",
+        "balance": 1050
+      },
+      {
+        "month": "2026-06",
+        "balance": 900
+      },
+      {
+        "month": "2026-07",
+        "balance": 750
+      },
+      {
+        "month": "2026-08",
+        "balance": 600
+      },
+      {
+        "month": "2026-09",
+        "balance": 450
+      },
+      {
+        "month": "2026-10",
+        "balance": 300
+      },
+      {
+        "month": "2026-11",
+        "balance": 300
+      }
+    ]
+  },
+  {
+    "id": "margaret",
+    "name": "Margaret",
+    "persona": "Retired, living on state and private pension",
+    "profile": {
+      "age_range": "65+",
+      "student": false,
+      "retired": true,
+      "dependants": 0,
+      "home_owner": true,
+      "vehicle": true,
+      "region": "North West"
+    },
+    "account": {
+      "current_balance": 2650.0,
+      "overdraft_limit": 0,
+      "savings_balance": 14250,
+      "savings_product": "Instant Access Saver",
+      "savings_rate": 0.005
+    },
+    "savings_history": [
+      {
+        "month": "2025-05",
+        "balance": 11550
+      },
+      {
+        "month": "2025-06",
+        "balance": 11700
+      },
+      {
+        "month": "2025-07",
+        "balance": 11850
+      },
+      {
+        "month": "2025-08",
+        "balance": 12000
+      },
+      {
+        "month": "2025-09",
+        "balance": 12150
+      },
+      {
+        "month": "2025-10",
+        "balance": 12300
+      },
+      {
+        "month": "2025-11",
+        "balance": 12450
+      },
+      {
+        "month": "2025-12",
+        "balance": 12600
+      },
+      {
+        "month": "2026-01",
+        "balance": 12750
+      },
+      {
+        "month": "2026-02",
+        "balance": 12900
+      },
+      {
+        "month": "2026-03",
+        "balance": 13050
+      },
+      {
+        "month": "2026-04",
+        "balance": 13200
+      },
+      {
+        "month": "2026-05",
+        "balance": 13350
+      },
+      {
+        "month": "2026-06",
+        "balance": 13500
+      },
+      {
+        "month": "2026-07",
+        "balance": 13650
+      },
+      {
+        "month": "2026-08",
+        "balance": 13800
+      },
+      {
+        "month": "2026-09",
+        "balance": 13950
+      },
+      {
+        "month": "2026-10",
+        "balance": 14100
+      },
+      {
+        "month": "2026-11",
+        "balance": 14250
+      }
+    ]
+  }
+]

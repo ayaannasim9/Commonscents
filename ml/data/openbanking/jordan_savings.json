@@ -1,0 +1,93 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "jordan-savings",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Credit",
+    "Amount": {
+     "Amount": "300.00",
+     "Currency": "GBP"
+    }
+   }
+  ]
+ },
+ "History": [
+  {
+   "month": "2025-05",
+   "balance": 850
+  },
+  {
+   "month": "2025-06",
+   "balance": 950
+  },
+  {
+   "month": "2025-07",
+   "balance": 1050
+  },
+  {
+   "month": "2025-08",
+   "balance": 1150
+  },
+  {
+   "month": "2025-09",
+   "balance": 1250
+  },
+  {
+   "month": "2025-10",
+   "balance": 1350
+  },
+  {
+   "month": "2025-11",
+   "balance": 1450
+  },
+  {
+   "month": "2025-12",
+   "balance": 1550
+  },
+  {
+   "month": "2026-01",
+   "balance": 1650
+  },
+  {
+   "month": "2026-02",
+   "balance": 1500
+  },
+  {
+   "month": "2026-03",
+   "balance": 1350
+  },
+  {
+   "month": "2026-04",
+   "balance": 1200
+  },
+  {
+   "month": "2026-05",
+   "balance": 1050
+  },
+  {
+   "month": "2026-06",
+   "balance": 900
+  },
+  {
+   "month": "2026-07",
+   "balance": 750
+  },
+  {
+   "month": "2026-08",
+   "balance": 600
+  },
+  {
+   "month": "2026-09",
+   "balance": 450
+  },
+  {
+   "month": "2026-10",
+   "balance": 300
+  },
+  {
+   "month": "2026-11",
+   "balance": 300
+  }
+ ]
+}

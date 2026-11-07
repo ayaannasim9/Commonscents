@@ -1,0 +1,547 @@
+id,date,amount,merchant,category,kind
+jordan-00000,2025-05-01,-850.0,Northside Lettings,rent,fixed
+jordan-00001,2025-05-02,-19.04,Just Eat,eating_out,optional
+jordan-00002,2025-05-02,-48.81,The Crown,going_out,optional
+jordan-00003,2025-05-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00004,2025-05-03,-28.84,Just Eat,eating_out,optional
+jordan-00005,2025-05-03,-21.42,The Crown,going_out,optional
+jordan-00006,2025-05-04,-30.3,Tesco,groceries,variable
+jordan-00007,2025-05-05,-41.38,Shell,fuel,variable
+jordan-00008,2025-05-07,-24.88,Tesco,groceries,variable
+jordan-00009,2025-05-08,-10.99,Netflix,subscriptions,fixed
+jordan-00010,2025-05-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00011,2025-05-11,-20.08,Tesco,groceries,variable
+jordan-00012,2025-05-12,-92.0,Octopus Energy,utilities,fixed
+jordan-00013,2025-05-12,-49.37,Shell,fuel,variable
+jordan-00014,2025-05-14,-32.04,Tesco,groceries,variable
+jordan-00015,2025-05-15,-11.99,Spotify,subscriptions,fixed
+jordan-00016,2025-05-18,-31.32,Tesco,groceries,variable
+jordan-00017,2025-05-18,-28.0,EE,phone,fixed
+jordan-00018,2025-05-19,-49.75,Shell,fuel,variable
+jordan-00019,2025-05-21,-52.03,Tesco,groceries,variable
+jordan-00020,2025-05-24,-27.6,Just Eat,eating_out,optional
+jordan-00021,2025-05-24,-24.42,The Crown,going_out,optional
+jordan-00022,2025-05-24,-51.69,Amazon,shopping,optional
+jordan-00023,2025-05-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00024,2025-05-25,-19.9,Tesco,groceries,variable
+jordan-00025,2025-05-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00026,2025-05-26,-42.47,Shell,fuel,variable
+jordan-00027,2025-05-28,-40.19,Tesco,groceries,variable
+jordan-00028,2025-05-30,-40.83,Just Eat,eating_out,optional
+jordan-00029,2025-05-30,-29.65,Amazon,shopping,optional
+jordan-00030,2025-05-31,-22.2,Amazon,shopping,optional
+jordan-00031,2025-06-01,-850.0,Northside Lettings,rent,fixed
+jordan-00032,2025-06-01,-24.76,Tesco,groceries,variable
+jordan-00033,2025-06-02,-49.75,Shell,fuel,variable
+jordan-00034,2025-06-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00035,2025-06-04,-35.88,Tesco,groceries,variable
+jordan-00036,2025-06-06,-18.9,Just Eat,eating_out,optional
+jordan-00037,2025-06-06,-20.51,The Crown,going_out,optional
+jordan-00038,2025-06-07,-29.92,The Crown,going_out,optional
+jordan-00039,2025-06-08,-10.99,Netflix,subscriptions,fixed
+jordan-00040,2025-06-08,-80.35,Tesco,groceries,variable
+jordan-00041,2025-06-09,-455.0,Kwik Fit,vehicle,variable
+jordan-00042,2025-06-09,-55.61,Shell,fuel,variable
+jordan-00043,2025-06-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00044,2025-06-11,-38.49,Tesco,groceries,variable
+jordan-00045,2025-06-12,-93.38,Octopus Energy,utilities,fixed
+jordan-00046,2025-06-13,-15.68,Just Eat,eating_out,optional
+jordan-00047,2025-06-14,-16.95,Just Eat,eating_out,optional
+jordan-00048,2025-06-15,-11.99,Spotify,subscriptions,fixed
+jordan-00049,2025-06-15,-44.96,Tesco,groceries,variable
+jordan-00050,2025-06-16,-38.78,Shell,fuel,variable
+jordan-00051,2025-06-18,-28.0,EE,phone,fixed
+jordan-00052,2025-06-18,-33.11,Amazon,shopping,optional
+jordan-00053,2025-06-20,-31.53,The Crown,going_out,optional
+jordan-00054,2025-06-21,-21.63,Just Eat,eating_out,optional
+jordan-00055,2025-06-22,-36.49,Tesco,groceries,variable
+jordan-00056,2025-06-23,-33.23,Shell,fuel,variable
+jordan-00057,2025-06-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00058,2025-06-25,-30.73,Tesco,groceries,variable
+jordan-00059,2025-06-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00060,2025-06-27,-16.12,Just Eat,eating_out,optional
+jordan-00061,2025-06-29,-32.97,Tesco,groceries,variable
+jordan-00062,2025-07-01,-850.0,Northside Lettings,rent,fixed
+jordan-00063,2025-07-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00064,2025-07-04,-28.09,The Crown,going_out,optional
+jordan-00065,2025-07-05,-24.83,Just Eat,eating_out,optional
+jordan-00066,2025-07-06,-17.06,Tesco,groceries,variable
+jordan-00067,2025-07-07,-49.81,Shell,fuel,variable
+jordan-00068,2025-07-08,-10.99,Netflix,subscriptions,fixed
+jordan-00069,2025-07-09,-30.33,Amazon,shopping,optional
+jordan-00070,2025-07-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00071,2025-07-11,-31.82,The Crown,going_out,optional
+jordan-00072,2025-07-12,-94.78,Octopus Energy,utilities,fixed
+jordan-00073,2025-07-12,-29.79,Just Eat,eating_out,optional
+jordan-00074,2025-07-12,-20.28,The Crown,going_out,optional
+jordan-00075,2025-07-13,-36.53,Tesco,groceries,variable
+jordan-00076,2025-07-14,-31.69,Shell,fuel,variable
+jordan-00077,2025-07-15,-11.99,Spotify,subscriptions,fixed
+jordan-00078,2025-07-16,-25.26,Tesco,groceries,variable
+jordan-00079,2025-07-18,-28.0,EE,phone,fixed
+jordan-00080,2025-07-19,-26.62,The Crown,going_out,optional
+jordan-00081,2025-07-21,-36.23,Shell,fuel,variable
+jordan-00082,2025-07-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00083,2025-07-26,-17.86,Just Eat,eating_out,optional
+jordan-00084,2025-07-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00085,2025-07-27,-28.83,Tesco,groceries,variable
+jordan-00086,2025-07-28,-48.46,Shell,fuel,variable
+jordan-00087,2025-07-30,-35.29,Tesco,groceries,variable
+jordan-00088,2025-08-01,-850.0,Northside Lettings,rent,fixed
+jordan-00089,2025-08-01,-26.83,The Crown,going_out,optional
+jordan-00090,2025-08-02,-16.36,Just Eat,eating_out,optional
+jordan-00091,2025-08-03,-44.36,Tesco,groceries,variable
+jordan-00092,2025-08-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00093,2025-08-04,-35.18,Shell,fuel,variable
+jordan-00094,2025-08-06,-65.18,Tesco,groceries,variable
+jordan-00095,2025-08-08,-10.99,Netflix,subscriptions,fixed
+jordan-00096,2025-08-08,-21.56,Just Eat,eating_out,optional
+jordan-00097,2025-08-09,-19.32,Just Eat,eating_out,optional
+jordan-00098,2025-08-10,-19.61,Tesco,groceries,variable
+jordan-00099,2025-08-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00100,2025-08-11,-40.18,Shell,fuel,variable
+jordan-00101,2025-08-12,-96.2,Octopus Energy,utilities,fixed
+jordan-00102,2025-08-13,-31.12,Tesco,groceries,variable
+jordan-00103,2025-08-15,-11.99,Spotify,subscriptions,fixed
+jordan-00104,2025-08-15,-26.67,Just Eat,eating_out,optional
+jordan-00105,2025-08-16,-8.59,Just Eat,eating_out,optional
+jordan-00106,2025-08-16,-22.03,The Crown,going_out,optional
+jordan-00107,2025-08-17,-24.4,Tesco,groceries,variable
+jordan-00108,2025-08-18,-28.0,EE,phone,fixed
+jordan-00109,2025-08-18,-62.28,Shell,fuel,variable
+jordan-00110,2025-08-20,-37.38,Tesco,groceries,variable
+jordan-00111,2025-08-24,-54.42,Tesco,groceries,variable
+jordan-00112,2025-08-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00113,2025-08-25,-36.17,Shell,fuel,variable
+jordan-00114,2025-08-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00115,2025-08-27,-39.2,Tesco,groceries,variable
+jordan-00116,2025-08-29,-14.04,Just Eat,eating_out,optional
+jordan-00117,2025-08-29,-30.56,The Crown,going_out,optional
+jordan-00118,2025-08-31,-36.52,Tesco,groceries,variable
+jordan-00119,2025-09-01,-850.0,Northside Lettings,rent,fixed
+jordan-00120,2025-09-01,-38.42,Shell,fuel,variable
+jordan-00121,2025-09-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00122,2025-09-03,-18.16,Tesco,groceries,variable
+jordan-00123,2025-09-07,-31.62,Tesco,groceries,variable
+jordan-00124,2025-09-08,-10.99,Netflix,subscriptions,fixed
+jordan-00125,2025-09-08,-49.92,Shell,fuel,variable
+jordan-00126,2025-09-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00127,2025-09-10,-60.05,Tesco,groceries,variable
+jordan-00128,2025-09-12,-97.65,Octopus Energy,utilities,fixed
+jordan-00129,2025-09-13,-39.74,The Crown,going_out,optional
+jordan-00130,2025-09-14,-37.79,Tesco,groceries,variable
+jordan-00131,2025-09-15,-11.99,Spotify,subscriptions,fixed
+jordan-00132,2025-09-15,-38.46,Shell,fuel,variable
+jordan-00133,2025-09-17,-51.37,Tesco,groceries,variable
+jordan-00134,2025-09-18,-28.0,EE,phone,fixed
+jordan-00135,2025-09-21,-35.54,Tesco,groceries,variable
+jordan-00136,2025-09-22,-45.47,Shell,fuel,variable
+jordan-00137,2025-09-24,-43.49,Tesco,groceries,variable
+jordan-00138,2025-09-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00139,2025-09-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00140,2025-09-26,-29.73,The Crown,going_out,optional
+jordan-00141,2025-09-28,-41.07,Tesco,groceries,variable
+jordan-00142,2025-09-29,-36.43,Shell,fuel,variable
+jordan-00143,2025-10-01,-850.0,Northside Lettings,rent,fixed
+jordan-00144,2025-10-01,-52.91,Tesco,groceries,variable
+jordan-00145,2025-10-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00146,2025-10-03,-18.6,The Crown,going_out,optional
+jordan-00147,2025-10-05,-37.66,Tesco,groceries,variable
+jordan-00148,2025-10-06,-46.08,Shell,fuel,variable
+jordan-00149,2025-10-08,-10.99,Netflix,subscriptions,fixed
+jordan-00150,2025-10-08,-25.37,Tesco,groceries,variable
+jordan-00151,2025-10-10,-27.73,The Crown,going_out,optional
+jordan-00152,2025-10-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00153,2025-10-12,-99.11,Octopus Energy,utilities,fixed
+jordan-00154,2025-10-12,-38.12,Tesco,groceries,variable
+jordan-00155,2025-10-13,-38.56,Shell,fuel,variable
+jordan-00156,2025-10-13,-30.48,Amazon,shopping,optional
+jordan-00157,2025-10-14,-76.4,Amazon,shopping,optional
+jordan-00158,2025-10-15,-11.99,Spotify,subscriptions,fixed
+jordan-00159,2025-10-15,-54.24,Tesco,groceries,variable
+jordan-00160,2025-10-17,-17.52,Just Eat,eating_out,optional
+jordan-00161,2025-10-17,-19.9,Amazon,shopping,optional
+jordan-00162,2025-10-18,-28.0,EE,phone,fixed
+jordan-00163,2025-10-19,-22.12,Tesco,groceries,variable
+jordan-00164,2025-10-20,-52.2,Shell,fuel,variable
+jordan-00165,2025-10-22,-20.01,Tesco,groceries,variable
+jordan-00166,2025-10-24,-20.56,Just Eat,eating_out,optional
+jordan-00167,2025-10-24,-41.42,Amazon,shopping,optional
+jordan-00168,2025-10-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00169,2025-10-26,-40.04,Tesco,groceries,variable
+jordan-00170,2025-10-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00171,2025-10-27,-52.76,Shell,fuel,variable
+jordan-00172,2025-10-29,-45.83,Tesco,groceries,variable
+jordan-00173,2025-10-31,-38.55,Amazon,shopping,optional
+jordan-00174,2025-11-01,-850.0,Northside Lettings,rent,fixed
+jordan-00175,2025-11-01,-27.11,Just Eat,eating_out,optional
+jordan-00176,2025-11-01,-34.81,The Crown,going_out,optional
+jordan-00177,2025-11-02,-22.9,Tesco,groceries,variable
+jordan-00178,2025-11-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00179,2025-11-03,-46.53,Shell,fuel,variable
+jordan-00180,2025-11-05,-25.67,Tesco,groceries,variable
+jordan-00181,2025-11-08,-10.99,Netflix,subscriptions,fixed
+jordan-00182,2025-11-08,-19.37,Just Eat,eating_out,optional
+jordan-00183,2025-11-09,-28.99,Tesco,groceries,variable
+jordan-00184,2025-11-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00185,2025-11-10,-39.26,Shell,fuel,variable
+jordan-00186,2025-11-12,-22.93,Tesco,groceries,variable
+jordan-00187,2025-11-12,-130.78,Octopus Energy,utilities,fixed
+jordan-00188,2025-11-13,-25.13,Amazon,shopping,optional
+jordan-00189,2025-11-15,-11.99,Spotify,subscriptions,fixed
+jordan-00190,2025-11-15,-15.22,The Crown,going_out,optional
+jordan-00191,2025-11-16,-20.77,Tesco,groceries,variable
+jordan-00192,2025-11-17,-36.36,Shell,fuel,variable
+jordan-00193,2025-11-18,-28.0,EE,phone,fixed
+jordan-00194,2025-11-19,-32.31,Tesco,groceries,variable
+jordan-00195,2025-11-21,-40.34,The Crown,going_out,optional
+jordan-00196,2025-11-22,-28.47,Just Eat,eating_out,optional
+jordan-00197,2025-11-23,-34.42,Tesco,groceries,variable
+jordan-00198,2025-11-24,-30.97,Shell,fuel,variable
+jordan-00199,2025-11-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00200,2025-11-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00201,2025-11-26,-33.38,Tesco,groceries,variable
+jordan-00202,2025-11-28,-13.42,Just Eat,eating_out,optional
+jordan-00203,2025-11-30,-27.3,Tesco,groceries,variable
+jordan-00204,2025-12-01,-850.0,Northside Lettings,rent,fixed
+jordan-00205,2025-12-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00206,2025-12-03,-73.92,Tesco,groceries,variable
+jordan-00207,2025-12-05,-18.63,Just Eat,eating_out,optional
+jordan-00208,2025-12-06,-20.41,Just Eat,eating_out,optional
+jordan-00209,2025-12-07,-66.35,Tesco,groceries,variable
+jordan-00210,2025-12-08,-10.99,Netflix,subscriptions,fixed
+jordan-00211,2025-12-08,-51.95,Shell,fuel,variable
+jordan-00212,2025-12-08,-20.98,Argos,gifts,optional
+jordan-00213,2025-12-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00214,2025-12-10,-42.43,Tesco,groceries,variable
+jordan-00215,2025-12-12,-132.74,Octopus Energy,utilities,fixed
+jordan-00216,2025-12-12,-25.62,Argos,gifts,optional
+jordan-00217,2025-12-14,-66.1,Tesco,groceries,variable
+jordan-00218,2025-12-15,-44.62,Shell,fuel,variable
+jordan-00219,2025-12-15,-11.99,Spotify,subscriptions,fixed
+jordan-00220,2025-12-17,-32.33,Tesco,groceries,variable
+jordan-00221,2025-12-18,-28.0,EE,phone,fixed
+jordan-00222,2025-12-20,-15.32,Just Eat,eating_out,optional
+jordan-00223,2025-12-20,-22.35,Argos,gifts,optional
+jordan-00224,2025-12-21,-40.82,Tesco,groceries,variable
+jordan-00225,2025-12-22,-45.97,Shell,fuel,variable
+jordan-00226,2025-12-24,-48.81,Tesco,groceries,variable
+jordan-00227,2025-12-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00228,2025-12-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00229,2025-12-26,-25.76,The Crown,going_out,optional
+jordan-00230,2025-12-27,-17.18,Just Eat,eating_out,optional
+jordan-00231,2025-12-27,-26.4,The Crown,going_out,optional
+jordan-00232,2025-12-28,-41.02,Tesco,groceries,variable
+jordan-00233,2025-12-29,-37.38,Shell,fuel,variable
+jordan-00234,2025-12-31,-25.33,Tesco,groceries,variable
+jordan-00235,2026-01-01,-850.0,Northside Lettings,rent,fixed
+jordan-00236,2026-01-03,-28.51,Just Eat,eating_out,optional
+jordan-00237,2026-01-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00238,2026-01-04,-50.52,Tesco,groceries,variable
+jordan-00239,2026-01-05,-53.4,Shell,fuel,variable
+jordan-00240,2026-01-07,-29.63,Tesco,groceries,variable
+jordan-00241,2026-01-08,-10.99,Netflix,subscriptions,fixed
+jordan-00242,2026-01-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00243,2026-01-10,-27.87,Just Eat,eating_out,optional
+jordan-00244,2026-01-10,-27.62,The Crown,going_out,optional
+jordan-00245,2026-01-11,-20.69,Tesco,groceries,variable
+jordan-00246,2026-01-12,-134.73,Octopus Energy,utilities,fixed
+jordan-00247,2026-01-12,-40.9,Shell,fuel,variable
+jordan-00248,2026-01-14,-58.83,Tesco,groceries,variable
+jordan-00249,2026-01-15,-11.99,Spotify,subscriptions,fixed
+jordan-00250,2026-01-16,-8.84,Just Eat,eating_out,optional
+jordan-00251,2026-01-18,-28.0,EE,phone,fixed
+jordan-00252,2026-01-18,-37.46,Tesco,groceries,variable
+jordan-00253,2026-01-19,-42.89,Shell,fuel,variable
+jordan-00254,2026-01-21,-38.74,Tesco,groceries,variable
+jordan-00255,2026-01-24,-34.12,Just Eat,eating_out,optional
+jordan-00256,2026-01-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00257,2026-01-25,-34.63,Tesco,groceries,variable
+jordan-00258,2026-01-26,-100.0,Transfer to Savings,savings_transfer,transfer
+jordan-00259,2026-01-26,-40.43,Shell,fuel,variable
+jordan-00260,2026-01-28,-30.57,Tesco,groceries,variable
+jordan-00261,2026-01-30,-10.28,Just Eat,eating_out,optional
+jordan-00262,2026-02-01,-850.0,Northside Lettings,rent,fixed
+jordan-00263,2026-02-01,-36.03,Tesco,groceries,variable
+jordan-00264,2026-02-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00265,2026-02-04,-27.13,Tesco,groceries,variable
+jordan-00266,2026-02-07,-31.14,Just Eat,eating_out,optional
+jordan-00267,2026-02-08,-10.99,Netflix,subscriptions,fixed
+jordan-00268,2026-02-08,-18.78,Tesco,groceries,variable
+jordan-00269,2026-02-09,-58.06,Shell,fuel,variable
+jordan-00270,2026-02-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00271,2026-02-11,-49.35,Tesco,groceries,variable
+jordan-00272,2026-02-12,-136.75,Octopus Energy,utilities,fixed
+jordan-00273,2026-02-15,-11.99,Spotify,subscriptions,fixed
+jordan-00274,2026-02-15,-46.8,Tesco,groceries,variable
+jordan-00275,2026-02-16,-36.13,Shell,fuel,variable
+jordan-00276,2026-02-18,-28.0,EE,phone,fixed
+jordan-00277,2026-02-18,-26.57,Tesco,groceries,variable
+jordan-00278,2026-02-20,-32.38,The Crown,going_out,optional
+jordan-00279,2026-02-21,-18.77,Just Eat,eating_out,optional
+jordan-00280,2026-02-22,-36.06,Tesco,groceries,variable
+jordan-00281,2026-02-23,-41.92,Shell,fuel,variable
+jordan-00282,2026-02-25,1950.0,ACME Logistics Ltd,salary,income
+jordan-00283,2026-02-25,-49.09,Tesco,groceries,variable
+jordan-00284,2026-02-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00285,2026-03-01,-850.0,Northside Lettings,rent,fixed
+jordan-00286,2026-03-01,-34.14,Tesco,groceries,variable
+jordan-00287,2026-03-02,-47.88,Shell,fuel,variable
+jordan-00288,2026-03-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00289,2026-03-04,-32.52,Tesco,groceries,variable
+jordan-00290,2026-03-06,-74.13,The Crown,going_out,optional
+jordan-00291,2026-03-08,-10.99,Netflix,subscriptions,fixed
+jordan-00292,2026-03-08,-41.39,Tesco,groceries,variable
+jordan-00293,2026-03-09,-33.48,Shell,fuel,variable
+jordan-00294,2026-03-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00295,2026-03-10,-79.02,Amazon,shopping,optional
+jordan-00296,2026-03-11,-38.13,Tesco,groceries,variable
+jordan-00297,2026-03-12,-138.8,Octopus Energy,utilities,fixed
+jordan-00298,2026-03-14,-640.0,Admiral Car Insurance,insurance,fixed
+jordan-00299,2026-03-15,-11.99,Spotify,subscriptions,fixed
+jordan-00300,2026-03-15,-47.84,Tesco,groceries,variable
+jordan-00301,2026-03-16,-48.32,Shell,fuel,variable
+jordan-00302,2026-03-18,-28.0,EE,phone,fixed
+jordan-00303,2026-03-18,-36.48,Tesco,groceries,variable
+jordan-00304,2026-03-20,-37.96,The Crown,going_out,optional
+jordan-00305,2026-03-21,-30.41,The Crown,going_out,optional
+jordan-00306,2026-03-25,-36.08,Tesco,groceries,variable
+jordan-00307,2026-03-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00308,2026-03-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00309,2026-03-28,-22.76,Just Eat,eating_out,optional
+jordan-00310,2026-03-29,-23.84,Tesco,groceries,variable
+jordan-00311,2026-03-30,-38.05,Shell,fuel,variable
+jordan-00312,2026-04-01,-850.0,Northside Lettings,rent,fixed
+jordan-00313,2026-04-01,-34.71,Tesco,groceries,variable
+jordan-00314,2026-04-03,-25.58,The Crown,going_out,optional
+jordan-00315,2026-04-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00316,2026-04-04,-41.57,The Crown,going_out,optional
+jordan-00317,2026-04-05,-38.7,Tesco,groceries,variable
+jordan-00318,2026-04-08,-10.99,Netflix,subscriptions,fixed
+jordan-00319,2026-04-08,-37.01,Tesco,groceries,variable
+jordan-00320,2026-04-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00321,2026-04-10,-21.54,Just Eat,eating_out,optional
+jordan-00322,2026-04-11,-17.76,Just Eat,eating_out,optional
+jordan-00323,2026-04-12,-29.78,Tesco,groceries,variable
+jordan-00324,2026-04-12,-108.37,Octopus Energy,utilities,fixed
+jordan-00325,2026-04-13,-39.34,Shell,fuel,variable
+jordan-00326,2026-04-15,-11.99,Spotify,subscriptions,fixed
+jordan-00327,2026-04-15,-39.71,Tesco,groceries,variable
+jordan-00328,2026-04-18,-28.0,EE,phone,fixed
+jordan-00329,2026-04-18,-11.61,The Crown,going_out,optional
+jordan-00330,2026-04-18,-37.34,Amazon,shopping,optional
+jordan-00331,2026-04-19,-54.71,Tesco,groceries,variable
+jordan-00332,2026-04-20,-32.77,Shell,fuel,variable
+jordan-00333,2026-04-22,-26.59,Tesco,groceries,variable
+jordan-00334,2026-04-24,-38.03,Just Eat,eating_out,optional
+jordan-00335,2026-04-24,-19.13,The Crown,going_out,optional
+jordan-00336,2026-04-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00337,2026-04-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00338,2026-04-27,-33.28,Shell,fuel,variable
+jordan-00339,2026-04-27,-38.86,Amazon,shopping,optional
+jordan-00340,2026-04-29,-43.68,Tesco,groceries,variable
+jordan-00341,2026-05-01,-28.48,The Crown,going_out,optional
+jordan-00342,2026-05-01,-850.0,Northside Lettings,rent,fixed
+jordan-00343,2026-05-01,-34.14,Just Eat,eating_out,optional
+jordan-00344,2026-05-02,-7.06,Bet365,gambling,optional
+jordan-00345,2026-05-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00346,2026-05-03,-46.95,Tesco,groceries,variable
+jordan-00347,2026-05-04,-38.03,Shell,fuel,variable
+jordan-00348,2026-05-06,-33.99,Tesco,groceries,variable
+jordan-00349,2026-05-08,-10.99,Netflix,subscriptions,fixed
+jordan-00350,2026-05-08,-27.86,Amazon,shopping,optional
+jordan-00351,2026-05-09,-11.32,Bet365,gambling,optional
+jordan-00352,2026-05-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00353,2026-05-10,-40.74,Tesco,groceries,variable
+jordan-00354,2026-05-11,-39.62,Shell,fuel,variable
+jordan-00355,2026-05-12,-110.0,Octopus Energy,utilities,fixed
+jordan-00356,2026-05-13,-32.75,Tesco,groceries,variable
+jordan-00357,2026-05-15,-11.99,Spotify,subscriptions,fixed
+jordan-00358,2026-05-15,-13.51,Just Eat,eating_out,optional
+jordan-00359,2026-05-16,-25.48,The Crown,going_out,optional
+jordan-00360,2026-05-16,-24.95,Bet365,gambling,optional
+jordan-00361,2026-05-16,-24.41,Just Eat,eating_out,optional
+jordan-00362,2026-05-17,-44.62,Tesco,groceries,variable
+jordan-00363,2026-05-18,-28.0,EE,phone,fixed
+jordan-00364,2026-05-18,-35.75,Shell,fuel,variable
+jordan-00365,2026-05-20,-31.19,Tesco,groceries,variable
+jordan-00366,2026-05-21,-54.13,Amazon,shopping,optional
+jordan-00367,2026-05-22,-33.26,The Crown,going_out,optional
+jordan-00368,2026-05-23,-12.17,Bet365,gambling,optional
+jordan-00369,2026-05-23,-28.82,Just Eat,eating_out,optional
+jordan-00370,2026-05-23,-22.26,The Crown,going_out,optional
+jordan-00371,2026-05-24,-31.5,Tesco,groceries,variable
+jordan-00372,2026-05-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00373,2026-05-25,-58.91,Shell,fuel,variable
+jordan-00374,2026-05-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00375,2026-05-26,-18.2,Amazon,shopping,optional
+jordan-00376,2026-05-30,-54.66,Amazon,shopping,optional
+jordan-00377,2026-05-30,-13.65,Just Eat,eating_out,optional
+jordan-00378,2026-05-30,-27.06,The Crown,going_out,optional
+jordan-00379,2026-05-31,-54.17,Tesco,groceries,variable
+jordan-00380,2026-06-01,-850.0,Northside Lettings,rent,fixed
+jordan-00381,2026-06-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00382,2026-06-03,-21.46,Tesco,groceries,variable
+jordan-00383,2026-06-05,-25.99,The Crown,going_out,optional
+jordan-00384,2026-06-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00385,2026-06-06,-16.63,Bet365,gambling,optional
+jordan-00386,2026-06-07,-18.15,Tesco,groceries,variable
+jordan-00387,2026-06-08,-10.99,Netflix,subscriptions,fixed
+jordan-00388,2026-06-08,-44.51,Shell,fuel,variable
+jordan-00389,2026-06-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00390,2026-06-10,-29.94,Tesco,groceries,variable
+jordan-00391,2026-06-12,-18.62,Just Eat,eating_out,optional
+jordan-00392,2026-06-12,-111.65,Octopus Energy,utilities,fixed
+jordan-00393,2026-06-13,-11.21,Bet365,gambling,optional
+jordan-00394,2026-06-14,-52.72,Tesco,groceries,variable
+jordan-00395,2026-06-15,-11.99,Spotify,subscriptions,fixed
+jordan-00396,2026-06-15,-44.45,Shell,fuel,variable
+jordan-00397,2026-06-18,-28.0,EE,phone,fixed
+jordan-00398,2026-06-19,-13.16,The Crown,going_out,optional
+jordan-00399,2026-06-20,-24.99,Klarna,debt_repayment,fixed
+jordan-00400,2026-06-20,-14.64,Bet365,gambling,optional
+jordan-00401,2026-06-20,-20.96,The Crown,going_out,optional
+jordan-00402,2026-06-21,-27.49,Tesco,groceries,variable
+jordan-00403,2026-06-24,-44.03,Tesco,groceries,variable
+jordan-00404,2026-06-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00405,2026-06-26,-17.81,Just Eat,eating_out,optional
+jordan-00406,2026-06-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00407,2026-06-28,-42.55,Tesco,groceries,variable
+jordan-00408,2026-06-29,-46.61,Shell,fuel,variable
+jordan-00409,2026-07-01,-20.3,Tesco,groceries,variable
+jordan-00410,2026-07-01,-850.0,Northside Lettings,rent,fixed
+jordan-00411,2026-07-02,-38.03,Amazon,shopping,optional
+jordan-00412,2026-07-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00413,2026-07-03,-32.89,The Crown,going_out,optional
+jordan-00414,2026-07-04,-11.44,Bet365,gambling,optional
+jordan-00415,2026-07-05,-45.22,Tesco,groceries,variable
+jordan-00416,2026-07-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00417,2026-07-06,-29.95,Shell,fuel,variable
+jordan-00418,2026-07-08,-10.99,Netflix,subscriptions,fixed
+jordan-00419,2026-07-08,-23.99,Tesco,groceries,variable
+jordan-00420,2026-07-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00421,2026-07-10,-19.75,Just Eat,eating_out,optional
+jordan-00422,2026-07-10,-20.71,The Crown,going_out,optional
+jordan-00423,2026-07-11,-25.7,The Crown,going_out,optional
+jordan-00424,2026-07-12,-113.32,Octopus Energy,utilities,fixed
+jordan-00425,2026-07-12,-34.39,Tesco,groceries,variable
+jordan-00426,2026-07-15,-35.49,Tesco,groceries,variable
+jordan-00427,2026-07-15,-11.99,Spotify,subscriptions,fixed
+jordan-00428,2026-07-17,-29.64,Just Eat,eating_out,optional
+jordan-00429,2026-07-18,-28.0,EE,phone,fixed
+jordan-00430,2026-07-18,-12.2,Bet365,gambling,optional
+jordan-00431,2026-07-18,-24.53,The Crown,going_out,optional
+jordan-00432,2026-07-19,-69.66,Tesco,groceries,variable
+jordan-00433,2026-07-20,-24.99,Klarna,debt_repayment,fixed
+jordan-00434,2026-07-20,-48.76,Shell,fuel,variable
+jordan-00435,2026-07-22,-26.11,Tesco,groceries,variable
+jordan-00436,2026-07-24,-22.0,Amazon,shopping,optional
+jordan-00437,2026-07-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00438,2026-07-25,-33.4,The Crown,going_out,optional
+jordan-00439,2026-07-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00440,2026-07-26,-46.02,Tesco,groceries,variable
+jordan-00441,2026-07-29,-17.71,Tesco,groceries,variable
+jordan-00442,2026-07-30,-36.59,Amazon,shopping,optional
+jordan-00443,2026-08-01,-11.38,Just Eat,eating_out,optional
+jordan-00444,2026-08-01,-7.44,Bet365,gambling,optional
+jordan-00445,2026-08-01,-850.0,Northside Lettings,rent,fixed
+jordan-00446,2026-08-02,-31.97,Tesco,groceries,variable
+jordan-00447,2026-08-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00448,2026-08-03,-38.37,Shell,fuel,variable
+jordan-00449,2026-08-05,-33.98,Tesco,groceries,variable
+jordan-00450,2026-08-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00451,2026-08-07,-27.61,Just Eat,eating_out,optional
+jordan-00452,2026-08-08,-10.99,Netflix,subscriptions,fixed
+jordan-00453,2026-08-09,-61.9,Tesco,groceries,variable
+jordan-00454,2026-08-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00455,2026-08-10,-41.32,Shell,fuel,variable
+jordan-00456,2026-08-12,-115.02,Octopus Energy,utilities,fixed
+jordan-00457,2026-08-12,-25.64,Tesco,groceries,variable
+jordan-00458,2026-08-14,-14.0,The Crown,going_out,optional
+jordan-00459,2026-08-15,-11.99,Spotify,subscriptions,fixed
+jordan-00460,2026-08-15,-29.13,Bet365,gambling,optional
+jordan-00461,2026-08-16,-53.44,Tesco,groceries,variable
+jordan-00462,2026-08-17,-39.03,Shell,fuel,variable
+jordan-00463,2026-08-18,-28.0,EE,phone,fixed
+jordan-00464,2026-08-19,-42.58,Tesco,groceries,variable
+jordan-00465,2026-08-20,-24.99,Klarna,debt_repayment,fixed
+jordan-00466,2026-08-21,-17.86,The Crown,going_out,optional
+jordan-00467,2026-08-22,-19.54,Bet365,gambling,optional
+jordan-00468,2026-08-23,-31.65,Tesco,groceries,variable
+jordan-00469,2026-08-24,-81.26,Amazon,shopping,optional
+jordan-00470,2026-08-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00471,2026-08-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00472,2026-08-28,-24.03,The Crown,going_out,optional
+jordan-00473,2026-08-29,-22.58,Bet365,gambling,optional
+jordan-00474,2026-08-30,-66.55,Tesco,groceries,variable
+jordan-00475,2026-08-31,-38.08,Shell,fuel,variable
+jordan-00476,2026-09-01,-850.0,Northside Lettings,rent,fixed
+jordan-00477,2026-09-02,-29.19,Tesco,groceries,variable
+jordan-00478,2026-09-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00479,2026-09-04,-38.99,Just Eat,eating_out,optional
+jordan-00480,2026-09-05,-34.79,The Crown,going_out,optional
+jordan-00481,2026-09-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00482,2026-09-06,-38.73,Tesco,groceries,variable
+jordan-00483,2026-09-07,-39.43,Shell,fuel,variable
+jordan-00484,2026-09-08,-10.99,Netflix,subscriptions,fixed
+jordan-00485,2026-09-09,-29.37,Tesco,groceries,variable
+jordan-00486,2026-09-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00487,2026-09-11,-28.99,The Crown,going_out,optional
+jordan-00488,2026-09-12,-116.75,Octopus Energy,utilities,fixed
+jordan-00489,2026-09-12,-13.88,Just Eat,eating_out,optional
+jordan-00490,2026-09-13,-45.52,Tesco,groceries,variable
+jordan-00491,2026-09-14,-54.94,Shell,fuel,variable
+jordan-00492,2026-09-15,-11.99,Spotify,subscriptions,fixed
+jordan-00493,2026-09-16,-18.93,Tesco,groceries,variable
+jordan-00494,2026-09-18,-28.0,EE,phone,fixed
+jordan-00495,2026-09-20,-35.44,Tesco,groceries,variable
+jordan-00496,2026-09-20,-24.99,Klarna,debt_repayment,fixed
+jordan-00497,2026-09-21,-42.55,Shell,fuel,variable
+jordan-00498,2026-09-23,-51.7,Tesco,groceries,variable
+jordan-00499,2026-09-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00500,2026-09-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00501,2026-09-26,-25.07,Just Eat,eating_out,optional
+jordan-00502,2026-09-27,-46.37,Tesco,groceries,variable
+jordan-00503,2026-09-28,-46.13,Shell,fuel,variable
+jordan-00504,2026-10-01,-850.0,Northside Lettings,rent,fixed
+jordan-00505,2026-10-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00506,2026-10-03,-12.67,Bet365,gambling,optional
+jordan-00507,2026-10-03,-41.16,The Crown,going_out,optional
+jordan-00508,2026-10-05,-39.38,Shell,fuel,variable
+jordan-00509,2026-10-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00510,2026-10-07,-30.98,Tesco,groceries,variable
+jordan-00511,2026-10-08,-10.99,Netflix,subscriptions,fixed
+jordan-00512,2026-10-09,-11.59,The Crown,going_out,optional
+jordan-00513,2026-10-09,-23.86,Just Eat,eating_out,optional
+jordan-00514,2026-10-10,-128.0,Manchester City Council,council_tax,fixed
+jordan-00515,2026-10-10,-20.59,The Crown,going_out,optional
+jordan-00516,2026-10-11,-30.48,Tesco,groceries,variable
+jordan-00517,2026-10-12,-118.5,Octopus Energy,utilities,fixed
+jordan-00518,2026-10-12,-56.09,Shell,fuel,variable
+jordan-00519,2026-10-13,-75.69,Amazon,shopping,optional
+jordan-00520,2026-10-14,-27.29,Tesco,groceries,variable
+jordan-00521,2026-10-15,-11.99,Spotify,subscriptions,fixed
+jordan-00522,2026-10-16,-19.14,The Crown,going_out,optional
+jordan-00523,2026-10-18,-28.0,EE,phone,fixed
+jordan-00524,2026-10-18,-60.57,Tesco,groceries,variable
+jordan-00525,2026-10-19,-37.69,Shell,fuel,variable
+jordan-00526,2026-10-20,-24.99,Klarna,debt_repayment,fixed
+jordan-00527,2026-10-21,-23.41,Tesco,groceries,variable
+jordan-00528,2026-10-24,-10.28,Bet365,gambling,optional
+jordan-00529,2026-10-25,-39.63,Tesco,groceries,variable
+jordan-00530,2026-10-25,1720.0,ACME Logistics Ltd,salary,income
+jordan-00531,2026-10-26,150.0,Transfer from Savings,savings_transfer,transfer
+jordan-00532,2026-10-26,-38.17,Shell,fuel,variable
+jordan-00533,2026-10-28,-42.07,Tesco,groceries,variable
+jordan-00534,2026-10-28,-26.91,Amazon,shopping,optional
+jordan-00535,2026-10-31,-5.81,Bet365,gambling,optional
+jordan-00536,2026-10-31,-28.12,The Crown,going_out,optional
+jordan-00537,2026-11-01,-850.0,Northside Lettings,rent,fixed
+jordan-00538,2026-11-01,-32.18,Tesco,groceries,variable
+jordan-00539,2026-11-02,-43.57,Shell,fuel,variable
+jordan-00540,2026-11-03,-189.0,Black Horse Finance,debt_repayment,fixed
+jordan-00541,2026-11-04,-33.17,Tesco,groceries,variable
+jordan-00542,2026-11-06,-24.99,Klarna,debt_repayment,fixed
+jordan-00543,2026-11-06,-14.45,Just Eat,eating_out,optional
+jordan-00544,2026-11-06,-23.66,The Crown,going_out,optional
+jordan-00545,2026-11-07,-33.87,Amazon,shopping,optional

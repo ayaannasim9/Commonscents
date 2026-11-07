@@ -1,0 +1,93 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "priya-savings",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Credit",
+    "Amount": {
+     "Amount": "150.00",
+     "Currency": "GBP"
+    }
+   }
+  ]
+ },
+ "History": [
+  {
+   "month": "2025-05",
+   "balance": 150
+  },
+  {
+   "month": "2025-06",
+   "balance": 150
+  },
+  {
+   "month": "2025-07",
+   "balance": 150
+  },
+  {
+   "month": "2025-08",
+   "balance": 150
+  },
+  {
+   "month": "2025-09",
+   "balance": 150
+  },
+  {
+   "month": "2025-10",
+   "balance": 150
+  },
+  {
+   "month": "2025-11",
+   "balance": 150
+  },
+  {
+   "month": "2025-12",
+   "balance": 150
+  },
+  {
+   "month": "2026-01",
+   "balance": 150
+  },
+  {
+   "month": "2026-02",
+   "balance": 150
+  },
+  {
+   "month": "2026-03",
+   "balance": 150
+  },
+  {
+   "month": "2026-04",
+   "balance": 150
+  },
+  {
+   "month": "2026-05",
+   "balance": 150
+  },
+  {
+   "month": "2026-06",
+   "balance": 150
+  },
+  {
+   "month": "2026-07",
+   "balance": 150
+  },
+  {
+   "month": "2026-08",
+   "balance": 150
+  },
+  {
+   "month": "2026-09",
+   "balance": 150
+  },
+  {
+   "month": "2026-10",
+   "balance": 150
+  },
+  {
+   "month": "2026-11",
+   "balance": 150
+  }
+ ]
+}

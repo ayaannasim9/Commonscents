@@ -1,0 +1,25 @@
+{
+ "Data": {
+  "Balance": [
+   {
+    "AccountId": "jordan-current",
+    "Type": "ClosingBooked",
+    "CreditDebitIndicator": "Debit",
+    "Amount": {
+     "Amount": "160.00",
+     "Currency": "GBP"
+    },
+    "CreditLine": [
+     {
+      "Included": false,
+      "Type": "Pre-Agreed",
+      "Amount": {
+       "Amount": "500.00",
+       "Currency": "GBP"
+      }
+     }
+    ]
+   }
+  ]
+ }
+}
