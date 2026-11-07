@@ -1,7 +1,7 @@
 [project]
 name = "counterpart"
 version = "0.1.0"
-description = "Counterpart backend: deterministic maths, guardrailed writing, human approval."
+description = "Common Cents backend: deterministic maths, guardrailed writing, human approval."
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.115",

@@ -19,7 +19,7 @@ Frontend: React + Vite + TypeScript, plain CSS (tokens as custom properties). Ba
 
 ## Product Purpose
 
-Counterpart keeps offline customers connected to their money, through paper and people, with AI working behind the scenes. A plain-English monthly letter and a shared dashboard show the same facts. Any question, through any channel, becomes one case; AI prepares and drafts, a human approves. Success: Margaret and her helper look at one clear picture together, and the loop visibly closes (question, answer, confirmation in the next letter and dashboard).
+Common Cents keeps offline customers connected to their money, through paper and people, with AI working behind the scenes. A plain-English monthly letter and a shared dashboard show the same facts. Any question, through any channel, becomes one case; AI prepares and drafts, a human approves. Success: Margaret and her helper look at one clear picture together, and the loop visibly closes (question, answer, confirmation in the next letter and dashboard).
 
 ## Positioning
 

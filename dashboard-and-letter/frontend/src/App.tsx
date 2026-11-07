@@ -4,7 +4,10 @@ import type { Role } from './api/types'
 import DashboardPage from './pages/DashboardPage'
 import DemoPage from './pages/DemoPage'
 import PersonasPage from './pages/PersonasPage'
-import Stub from './pages/Stub'
+import CasePage from './pages/CasePage'
+import LetterPage from './pages/LetterPage'
+import QueuePage from './pages/QueuePage'
+import WhatWeKnowPage from './pages/WhatWeKnowPage'
 import { HELPER, useApp } from './state'
 
 
@@ -26,7 +29,7 @@ function AppBar() {
     <header>
      <div className="appbar">
       <div className="appbar-inner">
-        <NavLink to="/" className="brand">Counterpart</NavLink>
+        <NavLink to="/" className="brand">Common Cents</NavLink>
         <nav className="mainnav" aria-label="Main">
           <ul>{links.map((l) => <li key={l.to}><NavLink to={l.to}>{l.label}</NavLink></li>)}</ul>
         </nav>
@@ -61,8 +64,8 @@ function Layout() {
   const main = useRef<HTMLElement>(null)
   const prev = useRef(pathname)
   useEffect(() => {
-    const t = TITLES[pathname.replace(/^\/cases\/.+/, '/cases')] ?? 'Counterpart'
-    document.title = t === 'Counterpart' ? t : `${t} - Counterpart`
+    const t = TITLES[pathname.replace(/^\/cases\/.+/, '/cases')] ?? 'Common Cents'
+    document.title = t === 'Common Cents' ? t : `${t} - Common Cents`
   }, [pathname])
   useEffect(() => {
     if (prev.current === pathname) return
@@ -97,12 +100,12 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="/dashboard" element={<Guard allow={['customer', 'helper']}><DashboardPage /></Guard>} />
-          <Route path="/queue" element={<Guard allow={['helper']}><Stub title="Questions" milestone="F5" /></Guard>} />
-          <Route path="/cases/:id" element={<Guard allow={['helper']}><Stub title="Question" milestone="F4" /></Guard>} />
+          <Route path="/queue" element={<Guard allow={['helper']}><QueuePage /></Guard>} />
+          <Route path="/cases/:id" element={<Guard allow={['helper']}><CasePage /></Guard>} />
           <Route path="/demo" element={<Guard allow={['helper']}><DemoPage /></Guard>} />
           <Route path="/personas" element={<Guard allow={['helper']}><PersonasPage /></Guard>} />
-          <Route path="/what-we-know" element={<Stub title="What we know about you" milestone="F8" />} />
-          <Route path="/letter" element={<Stub title="Your letter" milestone="F9" />} />
+          <Route path="/what-we-know" element={<WhatWeKnowPage />} />
+          <Route path="/letter" element={<LetterPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

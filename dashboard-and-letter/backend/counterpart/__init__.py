@@ -1,1 +1,1 @@
-"""Counterpart backend."""
+"""Common Cents backend."""

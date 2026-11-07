@@ -1,6 +1,6 @@
 # Personas
 
-Counterpart serves people who are not well served by a banking app. We show six of them. **The product, the UI components, the letter template and the guardrails are identical for all six. The only thing that differs is the data: each persona's transaction history, and therefore the facts object, the forecast, the flags and the words that come from them.** If a feature needs a per-persona code path, it is out of scope.
+Common Cents serves people who are not well served by a banking app. We show six of them. **The product, the UI components, the letter template and the guardrails are identical for all six. The only thing that differs is the data: each persona's transaction history, and therefore the facts object, the forecast, the flags and the words that come from them.** If a feature needs a per-persona code path, it is out of scope.
 
 Margaret is the hero of the 3-minute demo (`plan.md` section D). The others are shown from the demo page persona picker (`plan.md` F6.6) to prove the idea generalises: same dashboard, different story.
 

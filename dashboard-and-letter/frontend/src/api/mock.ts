@@ -63,7 +63,7 @@ function boiler(): Case {
 
 const summary = (c: Case): CaseSummary => {
   const { id, source, status, urgency, category, summary: sm, created_at, due, route } = c
-  return { id, source, status, urgency, category, summary: sm, created_at, due, route }
+  return { id, customer: MARGARET, source, status, urgency, category, summary: sm, created_at, due, route }
 }
 
 const allCases = (cid = MARGARET): Case[] => {

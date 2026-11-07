@@ -1,4 +1,4 @@
-# Counterpart: dashboard-and-letter build plan
+# Common Cents: dashboard-and-letter build plan
 
 Status: **plan only, no code written yet.** Read `CLAUDE.md` (product rules, principles P1–P10) and `PRODUCT.md` (users, constraints) first. This file turns them into two parallel workstreams.
 
@@ -291,7 +291,7 @@ Accent pink/teal from NatWest's wider palette may appear **only** on the demo pa
 
 **Layout rules.** Max content width 960px centred; helper panel adds a fixed 360px right column (page does not reflow, content column stays the same width; below 1100px the panel becomes a bottom drawer). Spacing scale 8/16/24/40/64. Sections separated by 64px and a 1px `--line` rule; each section is a `<section aria-labelledby>`. Nothing animates except focus and a 150ms colour change; honour `prefers-reduced-motion`. Zero layout shift: reserve heights, skeletons match final sizes.
 
-**Components** (build once, reuse): `AppBar` (brand mark text "Counterpart", role switcher, large-print toggle, helper role badge), `Section` (title, read-aloud button, content), `StatusBadge` (icon + word + colour), `MoneyBar` (CSS-only horizontal bar, label left, £ right), `MonthCard`, `FlagCard`, `ReadAloudButton`, `GuardrailBadge`, `CaseRow`, `HelperPanel`, `QuestionForm`, `PersonaCard`, `Disclaimer` footer ("Prototype, not an official NatWest product").
+**Components** (build once, reuse): `AppBar` (brand mark text "Common Cents", role switcher, large-print toggle, helper role badge), `Section` (title, read-aloud button, content), `StatusBadge` (icon + word + colour), `MoneyBar` (CSS-only horizontal bar, label left, £ right), `MonthCard`, `FlagCard`, `ReadAloudButton`, `GuardrailBadge`, `CaseRow`, `HelperPanel`, `QuestionForm`, `PersonaCard`, `Disclaimer` footer ("Prototype, not an official NatWest product").
 
 **Read aloud.** `speechSynthesis`, `en-GB`, 0.9 rate. Button label "Read this out loud" with a speaker icon, toggles to "Stop". Reads the section's `text` string, not the DOM, so it is exactly the letter words. If unsupported, hide the button and keep nothing broken.
 
@@ -421,7 +421,7 @@ Also show: the guardrail badge once (force a bad number in stub mode with a hidd
 
 0. **Persona details (`personas.md`).** Confirm names, ages and the six stories, and whether Jayden, Amira, Daniel, Sam and Ravi each need a seeded boiler-style case or just a short slip question (current plan: one short question each).
 
-1. **NatWest brand specifics.** Confirm exact purple hex and whether to display the NatWest name/mark in the app bar. Recommendation: text "Counterpart" only, no logo, plus the disclaimer.
+1. **NatWest brand specifics.** Confirm exact purple hex and whether to display the NatWest name/mark in the app bar. Recommendation: text "Common Cents" only, no logo, plus the disclaimer.
 2. **Disclaimer wording** in the footer: confirm.
 3. **Margaret solo case source** when she asks a question herself on a home tablet: use `hub_visit`? or add a new `self_service` source? (Adding means updating C1.)
 4. **Boiler scenario numbers** (B6): illustrative cost ranges, who signs them off.

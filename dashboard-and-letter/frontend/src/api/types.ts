@@ -93,6 +93,7 @@ export interface DemoState {
 
 export interface CaseSummary {
   id: string
+  customer: string
   source: CaseSource
   status: CaseStatus
   urgency: Urgency
@@ -115,4 +116,13 @@ export interface Case extends CaseSummary {
   helper_note: string | null
   draft: { source: string; text: string; guardrail: Guardrail } | null
   approved_at: string | null
+}
+
+export interface Transaction { id: string; date: string; time: string | null; description: string; amount: number; channel: string }
+export interface Statement { month: string; transactions: Transaction[] }
+
+export interface WhatWeKnow {
+  profile: Customer
+  data_held: { label: string; description: string; count: number }[]
+  access_log: { at: string; who: string; role: string; what: string }[]
 }

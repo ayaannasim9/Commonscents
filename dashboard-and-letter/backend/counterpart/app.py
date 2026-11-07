@@ -14,7 +14,7 @@ from .service import World
 
 
 def create_app(db_path=None, client: LLMClient | None = None) -> FastAPI:
-    app = FastAPI(title="Counterpart", version="0.1.0")
+    app = FastAPI(title="Common Cents", version="0.1.0")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=config.CORS_ORIGINS,
