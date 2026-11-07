@@ -63,8 +63,8 @@ def inject_event(cid: str, body: EventIn, request: Request) -> dict:
         if state.add_event(w.conn, body.event):
             state.bump(w.conn)
         new = [f.model_dump(mode="json") for f in w.facts().flags if (f.kind, f.date, f.amount) not in before]
-        # new_case_id: B6 opens a system_flag case for high flags
-        return {"facts_version": state.facts_version(w.conn), "new_flags": new, "new_case_id": None}
+        case_id = request.app.state.cases.open_flag_cases(new)  # high flag -> urgent system_flag case
+        return {"facts_version": state.facts_version(w.conn), "new_flags": new, "new_case_id": case_id}
 
 
 @router.post("/customers/{cid}/letter")
@@ -94,8 +94,8 @@ def demo_state(request: Request) -> dict:
 @router.post("/demo/next-month")
 def next_month(request: Request) -> dict:
     w = world(request)
-    with w.lock:  # B8 will also close approved cases and push their notes into since_last_visit
-        return {"as_of": state.next_month(w.conn).isoformat()}
+    with w.lock:  # closes approved cases; their note becomes "since your last visit"
+        return {"as_of": request.app.state.cases.advance()}
 
 
 @router.post("/demo/reset")
@@ -103,4 +103,6 @@ def reset(request: Request) -> dict:
     w = world(request)
     with w.lock:
         w._sections.clear()
-        return {"as_of": state.reset(w.conn).isoformat()}
+        as_of = state.reset(w.conn).isoformat()
+        request.app.state.cases.reset()
+        return {"as_of": as_of}

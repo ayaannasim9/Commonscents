@@ -61,13 +61,28 @@ _CATEGORY = [
 ]
 
 
+def plain_summary(category: str, text: str) -> str:
+    t = text.strip().rstrip("?.! ")
+    if category == "afford_purchase":
+        m = re.search(r"afford\s+(.+)$", t, re.I)
+        return f"Asking if she can afford {m.group(1)}" if m else "Asking about affording something"
+    if category == "scam_worry":
+        return "Worried about a possible scam"
+    if category in ("bill_query", "payment_query"):
+        return f"Question about {'a bill' if category == 'bill_query' else 'a payment'}: {t[:100]}"
+    return t[:140] or "A question"
+
+
 def triage(text: str, ticks: list[str] | None = None, client: LLMClient | None = None) -> dict:
     ticks = ticks or []
     urgent = bool(_URGENT.search(text)) or bool({"worried", "scam_call", "scam"} & set(ticks))
     category = next((c for c, rx in _CATEGORY if rx.search(text)), "general")
     if "scam_call" in ticks and category == "general":
         category = "scam_worry"
-    summary = text.strip().rstrip("?.! ")[:140]
+    for tick, cat in (("afford", "afford_purchase"), ("bill", "bill_query")):
+        if tick in ticks and category == "general":
+            category = cat
+    summary = plain_summary(category, text)
     client = client or LLMClient()
     try:
         r = client.complete_json(prompts.TRIAGE_SYSTEM, f"QUESTION:\n{text}\nTICKS: {ticks}")

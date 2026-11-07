@@ -79,7 +79,7 @@ def set_since_last_visit(conn, value: SinceLastVisit | None) -> None:
 def reset(conn) -> date:
     """Back to the clean starting state. facts_version only goes up, so clients refetch."""
     v = facts_version(conn)
-    for t in ("planted_events", "letters", "guardrail_events"):
+    for t in ("planted_events", "letters", "guardrail_events", "cases", "access_log"):
         conn.execute(f"DELETE FROM {t}")
     conn.execute("DELETE FROM demo_state")
     for k, val in db.DEFAULTS.items():

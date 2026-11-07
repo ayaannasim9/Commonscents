@@ -24,6 +24,12 @@ def _times(n: float) -> str:
     return "Many times your usual payment" if n >= 100 else f"About {round(n)} times your usual payment"
 
 
+def usual_payment_pence(txs: list[Transaction], year: int, month: int) -> int:
+    """Median of her bills and transfers before the given month (what 'usual' means in flags)."""
+    return round(median(-t.amount_pence for t in txs if ym(t.date) < (year, month)
+                        and t.amount_pence < 0 and t.channel in ("direct_debit", "faster_payment")))
+
+
 def anomalies(txs: list[Transaction], year: int, month: int) -> list[Flag]:
     """Flags about the last full month (subscriptions: first seen within two months)."""
     flags: list[Flag] = []

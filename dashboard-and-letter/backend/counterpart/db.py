@@ -32,6 +32,33 @@ CREATE TABLE IF NOT EXISTS letters (
   guardrail_json TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS cases (
+  id INTEGER PRIMARY KEY,
+  source TEXT NOT NULL,
+  status TEXT NOT NULL,
+  urgency TEXT NOT NULL,
+  category TEXT NOT NULL,
+  summary TEXT NOT NULL,
+  question_text TEXT,
+  ticks_json TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  due TEXT NOT NULL,
+  route_team TEXT NOT NULL,
+  route_reason TEXT NOT NULL,
+  briefing_json TEXT NOT NULL,
+  helper_note TEXT,
+  helper TEXT,
+  draft_json TEXT,
+  approved_at TEXT,
+  flag_key TEXT
+);
+CREATE TABLE IF NOT EXISTS access_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  at TEXT NOT NULL,
+  who TEXT NOT NULL,
+  role TEXT NOT NULL,
+  what TEXT NOT NULL
+);
 """
 
 DEFAULTS = {"as_of": "2026-12-01", "facts_version": "1"}

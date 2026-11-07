@@ -2,7 +2,7 @@
 
 The seam between `backend/` and `frontend/`. Source of truth is `plan.md` section C.
 
-- `openapi.json`: exported from FastAPI (`make openapi`). Covers customers, facts, dashboard, events, letter and demo routes (B5); cases, family and what-we-know follow.
+- `openapi.json`: exported from FastAPI (`make openapi`). Covers customers, facts, dashboard, events, letter, cases and demo routes (B1-B6, B8); family alerts, what-we-know and PDF follow (B7).
 - `fixtures/`: canned JSON responses. File names are fixed in `plan.md` section C7.
 
 Rules: only the backend session edits this folder. The frontend reads it (mock mode: `VITE_API_MODE=mock`).
