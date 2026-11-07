@@ -1,0 +1,42 @@
+{
+  "id": "case_0007",
+  "customer": "MRG-4471",
+  "source": "slip_post_office",
+  "status": "prepared",
+  "urgency": "normal",
+  "category": "afford_purchase",
+  "summary": "Asking about affording a new boiler",
+  "question_text": "Can I afford a new boiler?",
+  "ticks": [
+    "afford"
+  ],
+  "created_at": "2026-12-01T10:02:00",
+  "due": "2026-12-08",
+  "route": {
+    "team": "banker",
+    "reason": "Next hub day (Tuesday)"
+  },
+  "briefing": {
+    "asking": "Margaret wants to know about affording a new boiler.",
+    "numbers": [
+      {
+        "label": "Left over last month",
+        "value": 230
+      },
+      {
+        "label": "Putting aside £20 a month for a year",
+        "value": 240
+      }
+    ],
+    "open_flags": [],
+    "things_to_check": [
+      "Is the current boiler failing, or is this planning ahead?",
+      "Ask if there is a quote yet, as costs vary a lot.",
+      "Mention that free help is available from MoneyHelper and Citizens Advice.",
+      "Remind Margaret not to share personal details with anyone who phones about it."
+    ]
+  },
+  "helper_note": null,
+  "draft": null,
+  "approved_at": null
+}

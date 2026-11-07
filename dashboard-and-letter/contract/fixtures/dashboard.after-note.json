@@ -1,0 +1,128 @@
+{
+  "as_of": "2027-01-01",
+  "facts_version": 6,
+  "facts": {
+    "as_of": "2027-01-01",
+    "customer": {
+      "name": "Margaret",
+      "reference": "MRG-4471",
+      "bank": "NatWest",
+      "hub_day": "Tuesday"
+    },
+    "headline_status": "heads_up",
+    "last_month": {
+      "month": "December",
+      "year": 2026,
+      "in": 2040,
+      "out": [
+        {
+          "name": "Rent",
+          "amount": 480
+        },
+        {
+          "name": "Council tax",
+          "amount": 118
+        },
+        {
+          "name": "Local shop",
+          "amount": 92
+        },
+        {
+          "name": "Gas",
+          "amount": 86
+        },
+        {
+          "name": "Electricity",
+          "amount": 32
+        },
+        {
+          "name": "Everything else",
+          "amount": 82
+        }
+      ],
+      "cash": 160,
+      "left": 990
+    },
+    "forecast": [
+      {
+        "month": "January",
+        "year": 2027,
+        "status": "warn",
+        "reason": "TV licence",
+        "extra": 175,
+        "spare": 15
+      },
+      {
+        "month": "February",
+        "year": 2027,
+        "status": "ok",
+        "reason": "nothing unusual",
+        "extra": 0,
+        "spare": 348
+      },
+      {
+        "month": "March",
+        "year": 2027,
+        "status": "ok",
+        "reason": "nothing unusual",
+        "extra": 0,
+        "spare": 348
+      }
+    ],
+    "suggestion": {
+      "text_hint": "keep adding to your heating pot",
+      "amount": 20
+    },
+    "flags": [],
+    "since_last_visit": {
+      "helper": "Daria",
+      "note": "Set up heating pot, £20 a month",
+      "date": "2026-12-01"
+    },
+    "cash_blind_spot": true
+  },
+  "guardrail": {
+    "caught": false,
+    "events": []
+  },
+  "sections": [
+    {
+      "id": "headline",
+      "title": "How things look",
+      "text": "You are doing fine. January will be a little tight because your TV licence is due, but you are ready for it.",
+      "status": "heads_up"
+    },
+    {
+      "id": "last_month",
+      "title": "Last month",
+      "text": "In December, £2,040 came in because you had two pension payments. Your biggest bills were rent (£480), council tax (£118) and gas (£86). You took out £160 in cash, and you had £990 left over."
+    },
+    {
+      "id": "forecast",
+      "title": "The next three months",
+      "text": "January looks tight, with about £15 spare, mainly because your TV licence of £175 is due. February looks fine, with about £348 spare. March also looks fine, with about £348 spare."
+    },
+    {
+      "id": "idea",
+      "title": "One idea",
+      "text": "Keep adding £20 a month to your heating pot, just as you agreed with Daria. It is your choice. Free, independent help is available from MoneyHelper and Citizens Advice.",
+      "optional": true
+    },
+    {
+      "id": "scam_watch",
+      "title": "Scam watch",
+      "text": "Nothing unusual this month. Your payments all look like your normal ones. We will never ask for your details in a letter. If someone calls and asks you for money, put the phone down and use the number on the back of your bank card.",
+      "status": "nothing_unusual"
+    },
+    {
+      "id": "since_visit",
+      "title": "Since your last visit",
+      "text": "Daria agreed with you: set up heating pot, £20 a month."
+    },
+    {
+      "id": "ask",
+      "title": "Ask a question",
+      "text": "If you have a question, tick a box on the slip or ask your helper on Tuesday. Daria or a colleague will reply by letter."
+    }
+  ]
+}

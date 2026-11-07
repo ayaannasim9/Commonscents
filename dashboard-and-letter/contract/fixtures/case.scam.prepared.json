@@ -1,0 +1,41 @@
+{
+  "id": "case_0008",
+  "customer": "MRG-4471",
+  "source": "system_flag",
+  "status": "prepared",
+  "urgency": "high",
+  "category": "scam_worry",
+  "summary": "Unusual £2,000 payment to a new person",
+  "question_text": null,
+  "ticks": [],
+  "created_at": "2026-12-01T09:01:00",
+  "due": "2026-12-01",
+  "route": {
+    "team": "phone",
+    "reason": "Urgent: phone team, due today"
+  },
+  "briefing": {
+    "asking": "No question yet. The system noticed a payment that is not like the usual ones.",
+    "numbers": [
+      {
+        "label": "Payment",
+        "value": 2000
+      },
+      {
+        "label": "Usual payment is about",
+        "value": 32
+      }
+    ],
+    "open_flags": [
+      "flag_0001"
+    ],
+    "things_to_check": [
+      "Ask whether the payment was made by Margaret.",
+      "Ask if anyone phoned or texted asking for money.",
+      "If it was not Margaret, point to the number on the back of the bank card."
+    ]
+  },
+  "helper_note": null,
+  "draft": null,
+  "approved_at": null
+}

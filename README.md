@@ -6,16 +6,27 @@ The overview is the application homepage. Its **Learn** tab contains the Supabas
 
 ```sh
 npm install
+npm run setup:dashboard
 npm run dev
 ```
 
 Open http://127.0.0.1:3000/. Keep Supabase credentials in `.env.local` using `.env.example` as a template. Never commit credentials. Learning progress uses the existing demo learner; authentication is not implemented.
 
-- `/`: existing overview (Start, Future, Wrapped, Support and Report).
+- `/`: existing overview with integrated Dashboard and Report panels.
 - `/#learn`: four UK life-situation journeys plus the restored 10-lesson Banking basics course, glossary, scam protection and quizzes within the overview.
 - `/api/learn`: server-side Supabase learning API.
 
-The overview still uses mock data. Its banking connection, forecasts, support matching and report posting are demonstrations, not live integrations. Its former in-memory learning implementation has been replaced by the learning module.
+The overview still uses mock data. Its banking connection, forecasts and support matching are demonstrations, not live integrations. The original Future and Wrapped examples remain separate from the selected dashboard customer. Its former in-memory learning implementation has been replaced by the learning module.
+
+## Dashboard and monthly letter
+
+Integrated from `daria-dashboard-and-letter` into `overview-learning-integration`. The Dashboard tab includes spending, forecasts, scam watch and questions. Report displays the selected customer's monthly letter with print and PDF previews. Helper view exposes the question queue, case notes, draft replies, approval, six fictional people and demo controls. Nothing is actually posted or sent; the role switch is a demo control, not authentication.
+
+`npm run dev` starts Next on port 3000 and the Python FastAPI service on port 8000 (or reuses an already-running backend). Python 3.11+ is required. Run `npm run dev:web` or `npm run dev:dashboard` to start either separately. The browser calls the same-origin `/api/counterpart/*` proxy. The default template writer requires no AI key.
+
+Learning remains in Supabase. Imported dashboard cases, notes and approvals currently persist in the ignored local SQLite database `dashboard-and-letter/backend/counterpart.db`; they have not been migrated to Supabase. Customer selection and the demo role are held in memory. PDF generation uses ReportLab without native system libraries, preserves the letter's wording and figures, and retains the approval requirement for final PDFs.
+
+The imported components live in `dashboard-and-letter/frontend/src`; `app/components/dashboard-module.tsx` mounts them inside the overview shell. Shared colours, contrast and text sizing apply through `app/dashboard-theme.css`. After editing imported styles or that theme, run `npm run styles:dashboard` to regenerate the scoped stylesheet.
 
 ## Source files
 
@@ -30,7 +41,10 @@ SQL migrations remain versioned in `supabase/migrations/`. Migration `2026110700
 ```sh
 npm run typecheck
 npm test
+npm run test:dashboard
 npm run build
+# With the local app running:
+npm run test:integration
 ```
 
 Display controls apply to all sections. The optional starting-point selector recommends a journey without bypassing lesson completion. Banking basics also retains the original four-question knowledge check and four unit guidebooks. Gold Penny, unit milestones, all ten original lessons and the screen/branch guide are adapted from the overview’s original learning experience; progress and grading remain backed by Supabase. Overview onboarding and display preferences remain in memory for the current page session.
