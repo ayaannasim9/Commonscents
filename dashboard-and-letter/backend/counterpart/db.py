@@ -23,6 +23,15 @@ CREATE TABLE IF NOT EXISTS guardrail_events (
   action TEXT NOT NULL,
   context TEXT NOT NULL DEFAULT ''
 );
+CREATE TABLE IF NOT EXISTS letters (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  facts_version INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  html TEXT NOT NULL,
+  sections_json TEXT NOT NULL,
+  guardrail_json TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
 """
 
 DEFAULTS = {"as_of": "2026-12-01", "facts_version": "1"}
