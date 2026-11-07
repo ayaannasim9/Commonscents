@@ -185,6 +185,17 @@ def conf_label(c):
     return "High" if c >= 0.8 else "Medium" if c >= 0.6 else "Low"
 
 
+def ml_line(r):
+    m = ((r.get("model_info") or {}).get("hardship_model") or {})
+    t = m.get("test", {})
+    if not t:
+        return ""
+    g, rules = t["gradient_boosting_calibrated"], t["hand_weighted_rules"]
+    return (f'<p class="small" style="margin:4px 0 0"><b>Risk model:</b> gradient-boosted trees trained on {m["n_train"]:,} simulated customers. '
+            f'On {m["n_test"]:,} customers it never saw, it ranked risk correctly {round(g["roc_auc"] * 100)}% of the time (ROC-AUC {g["roc_auc"]}), '
+            f'compared with {round(rules["roc_auc"] * 100)}% for a hand-written formula.</p>')
+
+
 def plan_page(r, footer):
     A = r.get("advanced")
     if not A:
@@ -198,7 +209,7 @@ def plan_page(r, footer):
         better = (a > b) if k == "lowest_expected_balance" else (a < b)
         return (f'<tr><td>{lbl}</td><td class="n">{f(b)}</td><td class="n" style="color:{GOOD if better else INK};font-weight:{700 if better else 400}">{f(a)}</td></tr>')
     if ap["steps"]:
-        steps = "".join(f'<li><b>{escape(s["action"])}</b> <span class="small muted">({s["effort"]} · lowest balance then {money(s["after"]["lowest_expected_balance"])})</span></li>' for s in ap["steps"])
+        steps = "".join(f'<li><b>{escape(s["action"])}</b> <span class="small muted">({s["effort"]} · lowest balance then {money(s["after"]["lowest_expected_balance"])})</span></li>' for s in ap["steps"][:4])
         plan = (f'<ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px">{steps}</ol>'
                 f'<table style="margin-top:8px"><tr><th>Next {ap["window_days"]} days</th><th>Now</th><th>With the plan</th></tr>'
                 + mrow("Lowest expected balance", "lowest_expected_balance", money)
@@ -210,7 +221,7 @@ def plan_page(r, footer):
     cal = A.get("bill_calendar", [])
     cal_rows = "".join(f'<tr><td class="n">{pd.Timestamp(x["date"]).strftime("%a %d %b")}</td><td>{escape(x["who"])}</td>'
                        f'<td class="n" style="color:{GOOD if x["amount"] > 0 else INK}">{"+" if x["amount"] > 0 else ""}{money(x["amount"])}</td>'
-                       f'<td class="n">{money(x["balance_after"])}</td></tr>' for x in cal[:10 if "tracking" in needs else 7])
+                       f'<td class="n">{money(x["balance_after"])}</td></tr>' for x in cal[:8 if "tracking" in needs else 6])
     sig = "".join(f'<li>{escape(x["text"])}</li>' for x in A.get("behaviour_signals", [])) or "<li class=muted>Nothing unusual.</li>"
     sup = A.get("support", {})
     sup_html = "".join(f'<div style="margin-bottom:6px"><b>{escape(i["label"])}</b> <span class="small muted">({escape(i["offered_because"])})</span>'
@@ -238,7 +249,7 @@ def plan_page(r, footer):
     <div><h2>Support you asked for</h2>{sup_html or '<p class="small muted" style="margin:0">You can choose support options at any time.</p>'}
       <p class="small muted" style="margin:4px 0 0">{escape(sup.get("privacy", ""))}</p></div>
   </div>
-  {f'<div class="box"><div class="eyebrow">How accurate is this forecast?</div><p style="margin:4px 0 0">{escape(bt["summary"])}</p><p class="small muted" style="margin:2px 0 0">We re-ran the model as if it were {", ".join(str((pd.Timestamp(r["as_of"]) - pd.Timestamp(x["from"])).days) for x in bt["runs"])} days ago and compared it with what really happened. {escape(bt["note"])}</p></div>' if bt else ''}
+  {f'<div class="box"><div class="eyebrow">How accurate is this forecast?</div><p class="small" style="margin:4px 0 0">{escape(bt["summary"])}</p>{ml_line(r)}<p class="small muted" style="margin:2px 0 0">We re-ran the model as if it were {", ".join(str((pd.Timestamp(r["as_of"]) - pd.Timestamp(x["from"])).days) for x in bt["runs"])} days ago and compared it with what really happened. {escape(bt["note"])}</p></div>' if bt else ''}
   {footer}
 </section>"""
 
@@ -257,8 +268,8 @@ def render(r):
         return (f'<div class="tile"><div class="eyebrow">{label}</div><div class="v">{money(h["predicted_balance"])}</div>'
                 f'<div class="s">likely {money(h["range_low"])} to {money(h["range_high"])} · {conf_label(h["confidence"])} confidence ({pct(h["confidence"])})</div></div>')
 
-    drivers = "".join(f'<div>{escape(d["detail"])}</div><div class="meter"><b style="width:{min(100, d["weight"] / 3 * 100):.0f}%"></b></div>'
-                      for d in hr["drivers"]) or '<div class="muted">No significant risk factors found.</div><div></div>'
+    drivers = "".join(f'<div>{escape(d["detail"])}</div><div class="meter"><b style="width:{min(100, (d["impact"] * 200 if "impact" in d else d["weight"] / 3 * 100)):.0f}%"></b></div>'
+                      for d in hr["drivers"][:3]) or '<div class="muted">No significant risk factors found.</div><div></div>'
     life = cf.get("life_changes", [])
     life_html = "".join(f'<li><b>{escape(x["change"])}</b> from {pd.Timestamp(x["date"]).strftime("%d %b %Y")}: {escape(x["effect"])}. '
                         f'<span class="muted">Assumption: {escape(x["assumption"])}.</span></li>' for x in life)

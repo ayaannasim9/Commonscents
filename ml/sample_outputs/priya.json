@@ -2062,31 +2062,46 @@
     ]
   },
   "hardship_risk": {
-    "score": 0.43,
-    "level": "medium",
+    "score": 0.12,
+    "level": "low",
     "confidence": 0.9,
     "drivers": [
       {
-        "factor": "forecast_below_zero",
-        "detail": "100% chance your balance goes below \u00a30 in the next 90 days",
-        "weight": 1.2
+        "factor": "emergency_fund_months",
+        "detail": "Savings would cover 0.6 months of spending",
+        "impact": 0.081
+      },
+      {
+        "factor": "savings_change_6m_pct",
+        "detail": "Savings haven't grown in 6 months",
+        "impact": 0.041
       },
       {
         "factor": "self_reported_resilience",
         "detail": "You'd cover a \u00a3500 surprise bill with your overdraft",
-        "weight": 0.5
+        "impact": 0.024
+      }
+    ],
+    "protective_factors": [
+      {
+        "factor": "headroom_months",
+        "detail": "Your balance plus overdraft covers 1.8 months of spending",
+        "impact": -0.083
       },
       {
-        "factor": "thin_buffer",
-        "detail": "Savings would cover 0.55 months of spending",
-        "weight": 0.45
+        "factor": "mc_prob_past_overdraft_90d",
+        "detail": "1% chance of going past your overdraft limit in the next 90 days",
+        "impact": -0.055
       }
     ],
     "what_if": {
       "extra_buffer": 200,
-      "new_score": 0.38,
-      "risk_reduction_pct": 12
-    }
+      "new_score": 0.09,
+      "risk_reduction_pct": 28
+    },
+    "model": "gradient boosting, calibrated (trained)",
+    "model_test_auc": 0.949,
+    "rule_based_score": 0.43
   },
   "stress_tests": {
     "baseline": {
@@ -2705,6 +2720,172 @@
       ]
     }
   },
+  "model_info": {
+    "hardship_model": {
+      "n_customers": 2326,
+      "n_train": 1744,
+      "n_test": 582,
+      "hardship_rate": 0.329,
+      "label": "goes past overdraft limit within the next 90 days (hidden future)",
+      "test": {
+        "gradient_boosting_calibrated": {
+          "roc_auc": 0.949,
+          "pr_auc": 0.922,
+          "brier": 0.0809,
+          "log_loss": 0.2582,
+          "accuracy_at_0.5": 0.888
+        },
+        "logistic_regression": {
+          "roc_auc": 0.933,
+          "brier": 0.0941
+        },
+        "monte_carlo_only": {
+          "roc_auc": 0.924,
+          "brier": 0.1144
+        },
+        "hand_weighted_rules": {
+          "roc_auc": 0.879,
+          "brier": 0.1913
+        },
+        "base_rate_guess": {
+          "brier": 0.2211
+        }
+      },
+      "cv_roc_auc_5fold": {
+        "mean": 0.936,
+        "std": 0.017
+      },
+      "roc_auc_by_customer_type": {
+        "pension": 0.95,
+        "salary": 0.94,
+        "student": 0.995,
+        "wages": 0.94
+      },
+      "calibration": [
+        {
+          "predicted": 0.001,
+          "actual": 0.0
+        },
+        {
+          "predicted": 0.01,
+          "actual": 0.0
+        },
+        {
+          "predicted": 0.048,
+          "actual": 0.057
+        },
+        {
+          "predicted": 0.136,
+          "actual": 0.093
+        },
+        {
+          "predicted": 0.274,
+          "actual": 0.225
+        },
+        {
+          "predicted": 0.496,
+          "actual": 0.389
+        },
+        {
+          "predicted": 0.839,
+          "actual": 0.877
+        },
+        {
+          "predicted": 0.995,
+          "actual": 1.0
+        }
+      ],
+      "feature_importance": [
+        {
+          "feature": "mc_prob_past_overdraft_90d",
+          "auc_drop": 0.1777
+        },
+        {
+          "feature": "headroom_months",
+          "auc_drop": 0.0793
+        },
+        {
+          "feature": "emergency_fund_months",
+          "auc_drop": 0.0545
+        },
+        {
+          "feature": "balance_vs_income",
+          "auc_drop": 0.0103
+        },
+        {
+          "feature": "savings_change_6m_pct",
+          "auc_drop": 0.0054
+        },
+        {
+          "feature": "fixed_cost_change_pct",
+          "auc_drop": 0.0035
+        },
+        {
+          "feature": "mc_p10_90d_vs_spend",
+          "auc_drop": 0.0032
+        },
+        {
+          "feature": "spend_spike_days",
+          "auc_drop": 0.0023
+        },
+        {
+          "feature": "overdraft_days_pct_90d",
+          "auc_drop": 0.0021
+        },
+        {
+          "feature": "mc_prob_below_zero_90d",
+          "auc_drop": 0.001
+        },
+        {
+          "feature": "utility_cost_change_pct",
+          "auc_drop": 0.001
+        },
+        {
+          "feature": "income_volatility",
+          "auc_drop": 0.0003
+        },
+        {
+          "feature": "overdraft_days_change",
+          "auc_drop": 0.0003
+        },
+        {
+          "feature": "non_essential_spend_pct",
+          "auc_drop": 0.0002
+        },
+        {
+          "feature": "gambling_share",
+          "auc_drop": -0.0
+        },
+        {
+          "feature": "savings_rate",
+          "auc_drop": -0.0001
+        },
+        {
+          "feature": "debt_to_income",
+          "auc_drop": -0.0003
+        },
+        {
+          "feature": "payday_splurge_ratio",
+          "auc_drop": -0.0004
+        },
+        {
+          "feature": "bnpl_share",
+          "auc_drop": -0.0006
+        },
+        {
+          "feature": "income_change_pct",
+          "auc_drop": -0.0016
+        }
+      ]
+    },
+    "categoriser": {
+      "n_merchants": 197,
+      "n_examples": 788,
+      "n_categories": 16,
+      "accuracy_new_statement_formats": 0.994,
+      "accuracy_unseen_merchants": 0.415
+    }
+  },
   "assumptions": {
     "cpi_annual": 0.035,
     "food_inflation_annual": 0.04,
@@ -2720,31 +2901,31 @@
     }
   },
   "insights": {
-    "summary": "Priya, your weekly bar wages are keeping you steady for now, but your balance is likely to dip below \u00a30 around 1 December when rent is due, so here's how to keep it manageable until your Student Finance payment on 12 January.",
+    "summary": "Priya, your balance is likely to dip below \u00a30 around 1 December when rent leaves, and stay overdrawn until your Student Finance payment on 12 January, but you're very unlikely to go past your \u00a31,500 overdraft.",
     "alerts": [
       {
         "kind": "risk",
-        "title": "Rent on 1 December takes you below \u00a30",
-        "message": "Your \u00a3520 rent to Unite Students on 1 December is likely to take your balance to around -\u00a3134. You're expected to stay within your \u00a31,500 overdraft until your \u00a31,650 Student Finance payment arrives on 12 January.",
-        "why": "Your bill calendar shows rent of \u00a3520 on 1 December, and the forecast puts your balance at about -\u00a3977 the day before your 12 January payment, with a 1% chance of going past your overdraft limit.",
+        "title": "Rent will likely take you overdrawn",
+        "message": "Your \u00a3520 rent to Unite Students on 1 December is likely to take your balance to about -\u00a3134. It's forecast to reach around -\u00a3977 by 11 January, the day before your next Student Finance payment of \u00a31,650.",
+        "why": "Based on your bill calendar, the 1 December rent payment and the forecast for the day before your 12 January loan payment.",
         "confidence": "High",
-        "action": "Check your overdraft terms now so you know what using it will mean before 1 December."
+        "action": "Plan ahead for December by setting aside part of each weekly SU Bar wage of \u00a3102 before rent day."
       },
       {
         "kind": "forecast",
-        "title": "Your safe-to-spend amount until 12 January",
-        "message": "To stay within your overdraft until 12 January, try to keep everyday spending under \u00a321 a day. You usually spend about \u00a316 a day, so this is within reach.",
-        "why": "Safe-to-spend looks at the 65 days until your Student Finance payment, your typical daily spend of \u00a316 and your \u00a31,500 overdraft limit.",
+        "title": "Your safe-to-spend until 12 January",
+        "message": "To stay within your \u00a31,500 overdraft, keep everyday spending under \u00a321 a day until your loan arrives. You usually spend about \u00a316 a day, so this is within reach.",
+        "why": "Your safe-to-spend figure covers the 65 days to 12 January, alongside last year's December spending, which was about \u00a3484 higher than a typical month.",
         "confidence": "High",
-        "action": "On payday, move your fun money into a separate pot so your main account only covers bills."
+        "action": "Try a 48-hour wait before any non-essential buy over \u00a330, especially around Christmas."
       },
       {
         "kind": "resilience",
         "title": "Two changes that shorten your time overdrawn",
-        "message": "Spending about \u00a365 a month less on going out could cut your expected days overdrawn from about 61 to 50. Also spending about \u00a340 a month less on shopping could bring that down to about 43 days, with your lowest expected balance improving from about -\u00a31,006 to about -\u00a3794.",
-        "why": "These are the first two steps of your personalised plan, measured over the next 120 days. In the 3 days after money comes in, you spend about 8.3 times your usual on non-essentials, so this is where small changes go furthest.",
+        "message": "Spending half as much on going out (about \u00a365 a month) could cut your expected days overdrawn from about 61 to 50. Halving shopping as well (about \u00a340 a month) brings it to about 43 days and lifts your lowest expected balance from -\u00a31,006 to -\u00a3794.",
+        "why": "Our action plan tested these changes over the next 120 days. It also notes that in the 3 days after money comes in, you spend about 8.3 times your usual on non-essentials.",
         "confidence": "High",
-        "action": "Try a 48-hour wait before any non-essential buy over \u00a330, especially in the days after your loan or wages arrive."
+        "action": "On 12 January, move your fun money into a separate pot, so your main account only covers bills."
       }
     ],
     "source": "claude",

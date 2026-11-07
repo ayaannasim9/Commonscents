@@ -17,7 +17,7 @@ RULES = [
     (r"payroll|salary|wages|\bltd\b|\blimited\b", "salary", "income"),
     (r"lettings|unite students|rent|estate", "rent", "fixed"),
     (r"council", "council_tax", "fixed"),
-    (r"energy|british gas|edf|eon|octopus|ovo|water", "utilities", "fixed"),
+    (r"energy|british gas|edf|e\.?on\b|octopus|ovo|water|scottish power", "utilities", "fixed"),
     (r"insurance|admiral|aviva|direct line|rac |aa |breakdown", "insurance", "fixed"),
     (r"finance|loan|klarna|credit card", "debt_repayment", "fixed"),
     (r"\bee\b|three|vodafone|o2|bt |broadband", "phone", "fixed"),
@@ -49,6 +49,12 @@ def categorise(name, credit, code=None, mcc=None):
             return cat, kind
     if mcc in MCC and not credit:
         return MCC[mcc]
+    if not credit:  # trained text model for merchants the rules don't know
+        import mlmodels
+        cm = mlmodels.categoriser()
+        guess = cm.predict(name) if cm else None
+        if guess:
+            return guess[0], guess[1]
     if credit:
         return ("other_income", "income")
     if code in ("DD", "SO"):  # direct debits / standing orders are bills

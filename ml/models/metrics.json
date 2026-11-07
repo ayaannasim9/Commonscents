@@ -1,0 +1,166 @@
+{
+  "hardship_model": {
+    "n_customers": 2326,
+    "n_train": 1744,
+    "n_test": 582,
+    "hardship_rate": 0.329,
+    "label": "goes past overdraft limit within the next 90 days (hidden future)",
+    "test": {
+      "gradient_boosting_calibrated": {
+        "roc_auc": 0.949,
+        "pr_auc": 0.922,
+        "brier": 0.0809,
+        "log_loss": 0.2582,
+        "accuracy_at_0.5": 0.888
+      },
+      "logistic_regression": {
+        "roc_auc": 0.933,
+        "brier": 0.0941
+      },
+      "monte_carlo_only": {
+        "roc_auc": 0.924,
+        "brier": 0.1144
+      },
+      "hand_weighted_rules": {
+        "roc_auc": 0.879,
+        "brier": 0.1913
+      },
+      "base_rate_guess": {
+        "brier": 0.2211
+      }
+    },
+    "cv_roc_auc_5fold": {
+      "mean": 0.936,
+      "std": 0.017
+    },
+    "roc_auc_by_customer_type": {
+      "pension": 0.95,
+      "salary": 0.94,
+      "student": 0.995,
+      "wages": 0.94
+    },
+    "calibration": [
+      {
+        "predicted": 0.001,
+        "actual": 0.0
+      },
+      {
+        "predicted": 0.01,
+        "actual": 0.0
+      },
+      {
+        "predicted": 0.048,
+        "actual": 0.057
+      },
+      {
+        "predicted": 0.136,
+        "actual": 0.093
+      },
+      {
+        "predicted": 0.274,
+        "actual": 0.225
+      },
+      {
+        "predicted": 0.496,
+        "actual": 0.389
+      },
+      {
+        "predicted": 0.839,
+        "actual": 0.877
+      },
+      {
+        "predicted": 0.995,
+        "actual": 1.0
+      }
+    ],
+    "feature_importance": [
+      {
+        "feature": "mc_prob_past_overdraft_90d",
+        "auc_drop": 0.1777
+      },
+      {
+        "feature": "headroom_months",
+        "auc_drop": 0.0793
+      },
+      {
+        "feature": "emergency_fund_months",
+        "auc_drop": 0.0545
+      },
+      {
+        "feature": "balance_vs_income",
+        "auc_drop": 0.0103
+      },
+      {
+        "feature": "savings_change_6m_pct",
+        "auc_drop": 0.0054
+      },
+      {
+        "feature": "fixed_cost_change_pct",
+        "auc_drop": 0.0035
+      },
+      {
+        "feature": "mc_p10_90d_vs_spend",
+        "auc_drop": 0.0032
+      },
+      {
+        "feature": "spend_spike_days",
+        "auc_drop": 0.0023
+      },
+      {
+        "feature": "overdraft_days_pct_90d",
+        "auc_drop": 0.0021
+      },
+      {
+        "feature": "mc_prob_below_zero_90d",
+        "auc_drop": 0.001
+      },
+      {
+        "feature": "utility_cost_change_pct",
+        "auc_drop": 0.001
+      },
+      {
+        "feature": "income_volatility",
+        "auc_drop": 0.0003
+      },
+      {
+        "feature": "overdraft_days_change",
+        "auc_drop": 0.0003
+      },
+      {
+        "feature": "non_essential_spend_pct",
+        "auc_drop": 0.0002
+      },
+      {
+        "feature": "gambling_share",
+        "auc_drop": -0.0
+      },
+      {
+        "feature": "savings_rate",
+        "auc_drop": -0.0001
+      },
+      {
+        "feature": "debt_to_income",
+        "auc_drop": -0.0003
+      },
+      {
+        "feature": "payday_splurge_ratio",
+        "auc_drop": -0.0004
+      },
+      {
+        "feature": "bnpl_share",
+        "auc_drop": -0.0006
+      },
+      {
+        "feature": "income_change_pct",
+        "auc_drop": -0.0016
+      }
+    ]
+  },
+  "categoriser": {
+    "n_merchants": 197,
+    "n_examples": 788,
+    "n_categories": 16,
+    "accuracy_new_statement_formats": 0.994,
+    "accuracy_unseen_merchants": 0.415
+  }
+}

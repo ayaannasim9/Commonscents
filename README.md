@@ -39,14 +39,16 @@ The Overview app is served by the ML API, and `Overview/ml-bridge.js` swaps its 
 
 ## What the ML engine does (`ml/`)
 - **Cashflow forecast**: 1,000 simulated futures per customer (7 days to 12 months) with ranges and confidence
-- **Hardship risk** with explainable drivers, **upcoming expenses**, **opportunities**
+- **Trained hardship model**: gradient-boosted trees, calibrated, trained on a synthetic population with hidden futures. ROC-AUC **0.949** on unseen customers vs 0.879 for hand-written rules, with per-customer explanations
+- **Trained merchant categoriser** (TF-IDF + logistic regression) for merchants the rules don't know
+- **Upcoming expenses**, **opportunities**
 - **Onboarding answers** (goal, worry, life changes, £500 shock, optional support needs) change the forecast
 - **Action planner**: an optimiser that finds the smallest changes with the biggest risk reduction
 - **Safe-to-spend**, **backtest** (35–77% more accurate than simple baselines), **behaviour signals**, **life-stage** tips
 - **Support preferences** (anxiety, simple language, impulse spending, gambling, bill tracking) change presentation only and are never used in scoring
 - Reads **UK Open Banking v3.1** (NatWest's API format)
 
-Details: [`ml/README.md`](ml/README.md).
+Details and full metrics: [`ml/README.md`](ml/README.md). Tests: `cd ml && python3 -m pytest -q tests` (26 passing).
 
 ## Ethics
 Guidance only: nothing moves money or blocks payments. No protected characteristics are used, and mental health is never inferred. Recommendations under 60% confidence are hidden. Every number Claude writes comes from the models.

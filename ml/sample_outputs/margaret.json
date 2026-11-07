@@ -2052,15 +2052,25 @@
     "life_changes": []
   },
   "hardship_risk": {
-    "score": 0.08,
+    "score": 0.0,
     "level": "low",
     "confidence": 0.9,
     "drivers": [],
+    "protective_factors": [
+      {
+        "factor": "headroom_months",
+        "detail": "Your balance plus overdraft covers 2.7 months of spending",
+        "impact": -0.105
+      }
+    ],
     "what_if": {
       "extra_buffer": 200,
-      "new_score": 0.08,
+      "new_score": 0.0,
       "risk_reduction_pct": 0
-    }
+    },
+    "model": "gradient boosting, calibrated (trained)",
+    "model_test_auc": 0.949,
+    "rule_based_score": 0.08
   },
   "stress_tests": {
     "baseline": {
@@ -2633,6 +2643,172 @@
       ]
     }
   },
+  "model_info": {
+    "hardship_model": {
+      "n_customers": 2326,
+      "n_train": 1744,
+      "n_test": 582,
+      "hardship_rate": 0.329,
+      "label": "goes past overdraft limit within the next 90 days (hidden future)",
+      "test": {
+        "gradient_boosting_calibrated": {
+          "roc_auc": 0.949,
+          "pr_auc": 0.922,
+          "brier": 0.0809,
+          "log_loss": 0.2582,
+          "accuracy_at_0.5": 0.888
+        },
+        "logistic_regression": {
+          "roc_auc": 0.933,
+          "brier": 0.0941
+        },
+        "monte_carlo_only": {
+          "roc_auc": 0.924,
+          "brier": 0.1144
+        },
+        "hand_weighted_rules": {
+          "roc_auc": 0.879,
+          "brier": 0.1913
+        },
+        "base_rate_guess": {
+          "brier": 0.2211
+        }
+      },
+      "cv_roc_auc_5fold": {
+        "mean": 0.936,
+        "std": 0.017
+      },
+      "roc_auc_by_customer_type": {
+        "pension": 0.95,
+        "salary": 0.94,
+        "student": 0.995,
+        "wages": 0.94
+      },
+      "calibration": [
+        {
+          "predicted": 0.001,
+          "actual": 0.0
+        },
+        {
+          "predicted": 0.01,
+          "actual": 0.0
+        },
+        {
+          "predicted": 0.048,
+          "actual": 0.057
+        },
+        {
+          "predicted": 0.136,
+          "actual": 0.093
+        },
+        {
+          "predicted": 0.274,
+          "actual": 0.225
+        },
+        {
+          "predicted": 0.496,
+          "actual": 0.389
+        },
+        {
+          "predicted": 0.839,
+          "actual": 0.877
+        },
+        {
+          "predicted": 0.995,
+          "actual": 1.0
+        }
+      ],
+      "feature_importance": [
+        {
+          "feature": "mc_prob_past_overdraft_90d",
+          "auc_drop": 0.1777
+        },
+        {
+          "feature": "headroom_months",
+          "auc_drop": 0.0793
+        },
+        {
+          "feature": "emergency_fund_months",
+          "auc_drop": 0.0545
+        },
+        {
+          "feature": "balance_vs_income",
+          "auc_drop": 0.0103
+        },
+        {
+          "feature": "savings_change_6m_pct",
+          "auc_drop": 0.0054
+        },
+        {
+          "feature": "fixed_cost_change_pct",
+          "auc_drop": 0.0035
+        },
+        {
+          "feature": "mc_p10_90d_vs_spend",
+          "auc_drop": 0.0032
+        },
+        {
+          "feature": "spend_spike_days",
+          "auc_drop": 0.0023
+        },
+        {
+          "feature": "overdraft_days_pct_90d",
+          "auc_drop": 0.0021
+        },
+        {
+          "feature": "mc_prob_below_zero_90d",
+          "auc_drop": 0.001
+        },
+        {
+          "feature": "utility_cost_change_pct",
+          "auc_drop": 0.001
+        },
+        {
+          "feature": "income_volatility",
+          "auc_drop": 0.0003
+        },
+        {
+          "feature": "overdraft_days_change",
+          "auc_drop": 0.0003
+        },
+        {
+          "feature": "non_essential_spend_pct",
+          "auc_drop": 0.0002
+        },
+        {
+          "feature": "gambling_share",
+          "auc_drop": -0.0
+        },
+        {
+          "feature": "savings_rate",
+          "auc_drop": -0.0001
+        },
+        {
+          "feature": "debt_to_income",
+          "auc_drop": -0.0003
+        },
+        {
+          "feature": "payday_splurge_ratio",
+          "auc_drop": -0.0004
+        },
+        {
+          "feature": "bnpl_share",
+          "auc_drop": -0.0006
+        },
+        {
+          "feature": "income_change_pct",
+          "auc_drop": -0.0016
+        }
+      ]
+    },
+    "categoriser": {
+      "n_merchants": 197,
+      "n_examples": 788,
+      "n_categories": 16,
+      "accuracy_new_statement_formats": 0.994,
+      "accuracy_unseen_merchants": 0.415
+    }
+  },
   "assumptions": {
     "cpi_annual": 0.035,
     "food_inflation_annual": 0.04,
@@ -2648,47 +2824,31 @@
     }
   },
   "insights": {
-    "summary": "Your pension covers your monthly spending, and you could handle a \u00a3500 surprise bill with money to spare.",
+    "summary": "Your finances look steady, and you could cover a \u00a3500 surprise bill without dipping below \u00a31,882.",
     "alerts": [
       {
         "kind": "resilience",
         "title": "Ready for a surprise bill",
-        "message": "You are well placed for unexpected bills. If a \u00a3500 bill arrived, your lowest balance would still be about \u00a31,882.",
-        "why": "Our surprise bill test shows your lowest expected balance would be \u00a31,882. Your usual lowest balance is \u00a32,382.",
+        "message": "You can handle an unexpected \u00a3500 bill. Your balance would still stay above \u00a31,882.",
+        "why": "Our test of a \u00a3500 surprise bill shows your lowest expected balance would be \u00a31,882. You also have \u00a314,250 in savings.",
         "confidence": "High",
-        "action": "Keep your savings in an easy-access account so you can reach them quickly if a bill comes."
+        "action": "Keep your savings in an easy-access account so they are there for any bill that crops up."
       },
       {
         "kind": "forecast",
-        "title": "Winter and Christmas costs ahead",
-        "message": "Your spending usually rises in December. Last year it was about \u00a3525 higher than a typical month.",
-        "why": "Last December's spending was about \u00a3525 above normal. Your energy bills were also about \u00a347 a month higher last winter.",
+        "title": "Winter costs are coming",
+        "message": "Your spending is likely to rise this winter. December could cost between \u00a3420 and \u00a3630 more than usual.",
+        "why": "Last December you spent about \u00a3525 more than a typical month. Your energy bills were also about \u00a347 a month higher last winter.",
         "confidence": "High",
-        "action": "Set aside about \u00a3525 in your current account before December to cover the extra costs."
+        "action": "Set aside a little extra in your current account before December to cover gifts and heating."
       },
       {
         "kind": "opportunity",
         "title": "Your savings could earn more",
-        "message": "Your savings of \u00a314,250 earn a low rate. A better easy-access account could earn you about \u00a3570 more a year.",
-        "why": "Your Instant Access Saver pays 0.5%. Some easy-access accounts pay around 4.5%.",
+        "message": "Your savings earn a very low rate. Moving them could earn you about \u00a3570 more a year.",
+        "why": "Your \u00a314,250 Instant Access Saver earns 0.5%. Some easy-access accounts pay around 4.5%.",
         "confidence": "High",
-        "action": "Compare easy-access savings accounts this month and choose one that keeps your money easy to reach."
-      },
-      {
-        "kind": "forecast",
-        "title": "Your next bills",
-        "message": "British Gas takes \u00a3105 on 15 November. Your State Pension of \u00a3885 arrives on 17 November.",
-        "why": "Your bill calendar also shows BT Broadband for \u00a346 on 20 November and Stockport Council for \u00a3165 on 1 December.",
-        "confidence": "High",
-        "action": "Note these dates on your calendar so nothing comes as a surprise."
-      },
-      {
-        "kind": "opportunity",
-        "title": "Check for Pension Credit",
-        "message": "Many people who could get Pension Credit don't claim it. It can also unlock other help.",
-        "why": "You are retired and living on pension income, which is when Pension Credit may apply.",
-        "confidence": "Medium",
-        "action": "Use the free Pension Credit checker on GOV.UK to see if you might qualify."
+        "action": "Compare easy-access savings accounts, and also check whether you could get Pension Credit."
       }
     ],
     "source": "claude",

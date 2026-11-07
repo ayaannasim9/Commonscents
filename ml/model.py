@@ -15,6 +15,7 @@ import pandas as pd
 
 import personalise as P
 import advanced as A
+import mlmodels as M
 
 HORIZONS = [7, 30, 90, 180, 365]
 SIM_DAYS = 365
@@ -315,6 +316,41 @@ def hardship_risk(f, balances, overdraft_limit, extra_terms=()):
                         "risk_reduction_pct": round((score - score_buf) / score * 100) if score > 0 else 0}}
 
 
+def ml_hardship_risk(f, acct, balances, tx, today, extra_terms=()):
+    """Trained gradient-boosting model (see train.py). Falls back to the rule-based score if no model file."""
+    rm = M.risk_model()
+    lim = acct["overdraft_limit"]
+    rules = hardship_risk(f, balances, lim, extra_terms)
+    if rm is None:
+        return dict(rules, model="rule-based (no trained model found)")
+    beh = M.behaviour_numbers(tx, today)
+
+    def vec(b, extra_cash=0.0):
+        a = dict(acct, current_balance=acct["current_balance"] + extra_cash)
+        ff = dict(f, emergency_fund_months=f["emergency_fund_months"] + extra_cash / max(f["avg_monthly_spending"], 1))
+        mc = {"prob_past": float((b[:, :90] < -lim).any(axis=1).mean()), "prob_below": float((b[:, :90] < 0).any(axis=1).mean()),
+              "p10_90": float(np.percentile(b[:, 89], 10))}
+        return M.feature_vector(ff, a, mc, beh)
+
+    x = vec(balances)
+    p, drivers, protective = rm.explain(x)
+    # self-reported resilience (the £500 question) nudges the score in log-odds space
+    shift = sum(t[1] for t in extra_terms) * 0.5
+    adj = lambda q: float(_sigmoid(np.log(max(q, 1e-4) / max(1 - q, 1e-4)) + shift))
+    score = adj(p)
+    for t in extra_terms:
+        drivers.append({"factor": t[0], "detail": t[2], "impact": round(score - p, 3)})
+    p_buf = adj(rm.predict(vec(balances + 200, 200)))
+    level = "high" if score >= 0.6 else "medium" if score >= 0.3 else "low"
+    m = rm.metrics.get("test", {}).get("gradient_boosting_calibrated", {})
+    return {"score": round(score, 2), "level": level, "confidence": round(min(0.9, 0.5 + f["history_months"] / 40), 2),
+            "drivers": drivers[:4], "protective_factors": protective,
+            "what_if": {"extra_buffer": 200, "new_score": round(p_buf, 2),
+                        "risk_reduction_pct": round((score - p_buf) / score * 100) if score > 0 else 0},
+            "model": "gradient boosting, calibrated (trained)",
+            "model_test_auc": m.get("roc_auc"), "rule_based_score": rules["score"]}
+
+
 # ------------------------------------------------------------------ Model 3: future expenses
 def upcoming_expenses(tx, scheduled, factors, today, f):
     t0 = pd.Timestamp(today)
@@ -423,7 +459,7 @@ def analyse(customer, transactions, today=None, answers=None):
     if a["shock_500"] in P.SHOCK_WEIGHT and P.SHOCK_WEIGHT[a["shock_500"]] > 0:
         extra.append(("self_reported_resilience", P.SHOCK_WEIGHT[a["shock_500"]],
                       f"You'd cover a £500 surprise bill with {P.SHOCK_LABEL[a['shock_500']]}"))
-    hr = hardship_risk(f, balances, limit, extra)
+    hr = ml_hardship_risk(f, acct, balances, tx, today, extra)
     st = P.stress_tests(flows, scheduled, acct["current_balance"], limit, today)
     ue = upcoming_expenses(tx, scheduled, factors, today, f)
     op = opportunities(customer, f)
@@ -470,6 +506,8 @@ def analyse(customer, transactions, today=None, answers=None):
         "history": {"monthly": [{"month": m, "income": r.inc, "spending": r.out} for m, r in hist.iterrows()],
                     "balance_last_90d": {"dates": [d.date().isoformat() for d in bal_hist.index[-90:]],
                                          "balance": np.round(bal_hist.to_numpy()[-90:], 2).tolist()}},
+        "model_info": {"hardship_model": (M.risk_model().metrics if M.risk_model() else None),
+                       "categoriser": (M.categoriser().metrics if M.categoriser() else None)},
         "assumptions": dict({k: v for k, v in ASSUMPTIONS.items() if k != "seasonal_prior"},
                             life_events={k: v["assumption"] for k, v in P.LIFE_EVENTS.items()}),
     }

@@ -99,3 +99,32 @@ Put `ANTHROPIC_API_KEY=...` in `ml/.env` (git-ignored); `api.py` loads it automa
 
 These change only **presentation**: Claude's tone (calm / simple), the report wording ("needs attention" instead of "high"), and which help is shown.
 We never infer mental health from spending. It's a protected characteristic, and our ethics section rules it out (in line with the FCA's guidance on treating vulnerable customers fairly).
+
+## Trained machine learning (`mlmodels.py`, `train.py`, `population.py`)
+
+Retrain any time with `python3 train.py 3000` (about 25 seconds on 8 cores). Metrics are written to `models/metrics.json`.
+
+### 1. Hardship risk model: gradient-boosted trees, calibrated
+- **Training data:** `population.py` generates thousands of varied synthetic customers (salaried, hourly, students, pensioners) with 13 months of history and a **hidden 90-day future** that includes random shocks (pay cuts, surprise bills, price rises).
+- **Task:** predict whether a customer who is currently within their limit **goes past their overdraft in the next 90 days**.
+- **Features (20):** Monte Carlo forecast outputs, headroom, savings rate, income change and volatility, bill and energy trends, emergency-fund months, overdraft-use trend, debt-to-income, gambling and buy-now-pay-later share, payday splurge, spending spikes. No protected characteristics.
+- **Model:** `HistGradientBoostingClassifier` with isotonic calibration (5-fold), so "70%" means about 70%.
+- **Results on 582 held-out customers:**
+
+| Model | ROC-AUC | Brier (lower is better) |
+|---|---|---|
+| **Gradient boosting (ours)** | **0.949** | **0.081** |
+| Logistic regression | 0.933 | 0.094 |
+| Monte Carlo simulation alone | 0.924 | 0.114 |
+| Hand-written rules | 0.879 | 0.191 |
+| Base-rate guess | – | 0.221 |
+
+  5-fold cross-validated AUC 0.936 ± 0.017. AUC by type: salary 0.94, wages 0.94, pension 0.95, student 0.995.
+- **Explanations:** for each customer, every feature is replaced with the population median and the change in predicted risk is measured. The biggest increases become the "what's driving your risk" sentences, and the biggest decreases become protective factors.
+
+### 2. Merchant categoriser: TF-IDF character n-grams + logistic regression
+Trained on 197 UK merchants across 16 categories in bank-statement formats ("CARD PAYMENT TO GREGGS", "WAITROSE 1234"). Used only when the keyword rules don't match and the model is at least 45% confident.
+Accuracy: **99%** on new statement formats of known merchants, **42%** on brands it has never seen (an honest limit, which is why it's a fallback).
+
+### Tests
+`python3 -m pytest -q tests`: 26 end-to-end tests covering demo customers, 12 random synthetic customers, every answer option, model-beats-baselines, categoriser, Open Banking round trip, all API endpoints, and valid JSON with no NaN values.
