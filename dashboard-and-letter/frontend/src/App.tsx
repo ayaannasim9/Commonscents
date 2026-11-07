@@ -20,8 +20,8 @@ function AppBar() {
   const links = [
     { to: '/dashboard', label: 'Dashboard' },
     role === 'helper' && { to: '/queue', label: 'Questions' },
-    role === 'helper' && { to: '/demo', label: 'Demo' },
-    role === 'helper' && { to: '/personas', label: 'People' },
+    { to: '/demo', label: 'Demo' },
+    { to: '/personas', label: 'People' },
     { to: '/letter', label: 'Letter' },
     { to: '/what-we-know', label: 'What we know' },
   ].filter(Boolean) as { to: string; label: string }[]
@@ -102,8 +102,8 @@ export default function App() {
           <Route path="/dashboard" element={<Guard allow={['customer', 'helper']}><DashboardPage /></Guard>} />
           <Route path="/queue" element={<Guard allow={['helper']}><QueuePage /></Guard>} />
           <Route path="/cases/:id" element={<Guard allow={['helper']}><CasePage /></Guard>} />
-          <Route path="/demo" element={<Guard allow={['helper']}><DemoPage /></Guard>} />
-          <Route path="/personas" element={<Guard allow={['helper']}><PersonasPage /></Guard>} />
+          <Route path="/demo" element={<DemoPage />} />
+          <Route path="/personas" element={<PersonasPage />} />
           <Route path="/what-we-know" element={<WhatWeKnowPage />} />
           <Route path="/letter" element={<LetterPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
