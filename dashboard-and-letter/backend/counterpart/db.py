@@ -15,6 +15,14 @@ CREATE TABLE IF NOT EXISTS planted_events (
   year INTEGER NOT NULL,
   month INTEGER NOT NULL
 );
+CREATE TABLE IF NOT EXISTS guardrail_events (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  at TEXT NOT NULL,
+  "check" TEXT NOT NULL,
+  detail TEXT NOT NULL,
+  action TEXT NOT NULL,
+  context TEXT NOT NULL DEFAULT ''
+);
 """
 
 DEFAULTS = {"as_of": "2026-12-01", "facts_version": "1"}
