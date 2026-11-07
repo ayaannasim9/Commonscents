@@ -4,3 +4,8 @@ node_modules/
 !.env.example
 *.tsbuildinfo
 .DS_Store
+
+# Python (ml/)
+**/.env
+__pycache__/
+*.pyc

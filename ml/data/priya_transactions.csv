@@ -1,0 +1,620 @@
+id,date,amount,merchant,category,kind
+priya-00000,2025-05-01,-520.0,Unite Students,rent,fixed
+priya-00001,2025-05-02,92.93,SU Bar Payroll,wages,income
+priya-00002,2025-05-03,-27.27,Tesco,groceries,variable
+priya-00003,2025-05-03,-26.26,Revolution Bar,going_out,optional
+priya-00004,2025-05-05,-22.99,PureGym,subscriptions,fixed
+priya-00005,2025-05-05,-2.65,Stagecoach,transport,variable
+priya-00006,2025-05-06,-18.25,Tesco,groceries,variable
+priya-00007,2025-05-06,-2.5,Stagecoach,transport,variable
+priya-00008,2025-05-09,-28.02,Revolution Bar,going_out,optional
+priya-00009,2025-05-09,114.77,SU Bar Payroll,wages,income
+priya-00010,2025-05-10,-21.03,Tesco,groceries,variable
+priya-00011,2025-05-10,-29.39,ASOS,shopping,optional
+priya-00012,2025-05-12,-2.53,Stagecoach,transport,variable
+priya-00013,2025-05-13,-23.4,Tesco,groceries,variable
+priya-00014,2025-05-15,-6.99,Spotify,subscriptions,fixed
+priya-00015,2025-05-15,-2.65,Stagecoach,transport,variable
+priya-00016,2025-05-16,-33.59,Revolution Bar,going_out,optional
+priya-00017,2025-05-16,-24.49,Deliveroo,eating_out,optional
+priya-00018,2025-05-16,128.29,SU Bar Payroll,wages,income
+priya-00019,2025-05-17,-15.5,Tesco,groceries,variable
+priya-00020,2025-05-17,-26.5,Revolution Bar,going_out,optional
+priya-00021,2025-05-19,-2.39,Stagecoach,transport,variable
+priya-00022,2025-05-20,-15.0,Three Mobile,phone,fixed
+priya-00023,2025-05-20,-13.48,Tesco,groceries,variable
+priya-00024,2025-05-20,-2.83,Stagecoach,transport,variable
+priya-00025,2025-05-22,-2.73,Stagecoach,transport,variable
+priya-00026,2025-05-23,-2.55,Stagecoach,transport,variable
+priya-00027,2025-05-23,130.48,SU Bar Payroll,wages,income
+priya-00028,2025-05-24,-32.7,Tesco,groceries,variable
+priya-00029,2025-05-24,-17.99,Deliveroo,eating_out,optional
+priya-00030,2025-05-26,-2.56,Stagecoach,transport,variable
+priya-00031,2025-05-26,-33.39,ASOS,shopping,optional
+priya-00032,2025-05-27,-10.92,Tesco,groceries,variable
+priya-00033,2025-05-30,119.77,SU Bar Payroll,wages,income
+priya-00034,2025-05-31,-18.93,Deliveroo,eating_out,optional
+priya-00035,2025-05-31,-25.01,Revolution Bar,going_out,optional
+priya-00036,2025-06-01,-520.0,Unite Students,rent,fixed
+priya-00037,2025-06-02,-2.5,Stagecoach,transport,variable
+priya-00038,2025-06-03,-16.71,Tesco,groceries,variable
+priya-00039,2025-06-05,-22.99,PureGym,subscriptions,fixed
+priya-00040,2025-06-06,206.58,SU Bar Payroll,wages,income
+priya-00041,2025-06-06,-31.95,Revolution Bar,going_out,optional
+priya-00042,2025-06-06,-2.41,Stagecoach,transport,variable
+priya-00043,2025-06-07,-26.45,Tesco,groceries,variable
+priya-00044,2025-06-10,-39.96,Tesco,groceries,variable
+priya-00045,2025-06-10,-2.49,Stagecoach,transport,variable
+priya-00046,2025-06-11,-2.44,Stagecoach,transport,variable
+priya-00047,2025-06-12,-2.23,Stagecoach,transport,variable
+priya-00048,2025-06-13,217.71,SU Bar Payroll,wages,income
+priya-00049,2025-06-13,-38.02,Deliveroo,eating_out,optional
+priya-00050,2025-06-13,-2.4,Stagecoach,transport,variable
+priya-00051,2025-06-14,-25.38,Tesco,groceries,variable
+priya-00052,2025-06-15,-6.99,Spotify,subscriptions,fixed
+priya-00053,2025-06-16,-2.56,Stagecoach,transport,variable
+priya-00054,2025-06-17,-47.87,Tesco,groceries,variable
+priya-00055,2025-06-19,-16.48,ASOS,shopping,optional
+priya-00056,2025-06-19,-2.49,Stagecoach,transport,variable
+priya-00057,2025-06-20,258.3,SU Bar Payroll,wages,income
+priya-00058,2025-06-20,-15.0,Three Mobile,phone,fixed
+priya-00059,2025-06-20,-17.24,Revolution Bar,going_out,optional
+priya-00060,2025-06-20,-2.63,Stagecoach,transport,variable
+priya-00061,2025-06-20,-23.84,ASOS,shopping,optional
+priya-00062,2025-06-21,-35.38,Revolution Bar,going_out,optional
+priya-00063,2025-06-23,-70.16,ASOS,shopping,optional
+priya-00064,2025-06-23,-2.54,Stagecoach,transport,variable
+priya-00065,2025-06-24,-2.13,Stagecoach,transport,variable
+priya-00066,2025-06-24,-9.29,Tesco,groceries,variable
+priya-00067,2025-06-25,-2.64,Stagecoach,transport,variable
+priya-00068,2025-06-27,236.11,SU Bar Payroll,wages,income
+priya-00069,2025-06-27,-20.54,Revolution Bar,going_out,optional
+priya-00070,2025-06-27,-3.01,Stagecoach,transport,variable
+priya-00071,2025-06-28,-28.6,Tesco,groceries,variable
+priya-00072,2025-06-28,-14.78,Deliveroo,eating_out,optional
+priya-00073,2025-06-30,-2.45,Stagecoach,transport,variable
+priya-00074,2025-07-01,-520.0,Unite Students,rent,fixed
+priya-00075,2025-07-01,-21.66,Tesco,groceries,variable
+priya-00076,2025-07-02,-2.34,Stagecoach,transport,variable
+priya-00077,2025-07-03,-2.63,Stagecoach,transport,variable
+priya-00078,2025-07-04,257.44,SU Bar Payroll,wages,income
+priya-00079,2025-07-05,-22.99,PureGym,subscriptions,fixed
+priya-00080,2025-07-05,-15.86,Revolution Bar,going_out,optional
+priya-00081,2025-07-07,-2.46,Stagecoach,transport,variable
+priya-00082,2025-07-08,-45.26,Tesco,groceries,variable
+priya-00083,2025-07-09,-2.41,Stagecoach,transport,variable
+priya-00084,2025-07-10,-26.16,ASOS,shopping,optional
+priya-00085,2025-07-10,-2.49,Stagecoach,transport,variable
+priya-00086,2025-07-11,212.99,SU Bar Payroll,wages,income
+priya-00087,2025-07-11,-19.18,Revolution Bar,going_out,optional
+priya-00088,2025-07-11,-2.44,Stagecoach,transport,variable
+priya-00089,2025-07-12,-12.96,Tesco,groceries,variable
+priya-00090,2025-07-14,-2.74,Stagecoach,transport,variable
+priya-00091,2025-07-15,-6.99,Spotify,subscriptions,fixed
+priya-00092,2025-07-15,-19.28,Tesco,groceries,variable
+priya-00093,2025-07-16,-2.33,Stagecoach,transport,variable
+priya-00094,2025-07-17,-2.49,Stagecoach,transport,variable
+priya-00095,2025-07-18,201.92,SU Bar Payroll,wages,income
+priya-00096,2025-07-19,-27.98,Tesco,groceries,variable
+priya-00097,2025-07-19,-20.53,Revolution Bar,going_out,optional
+priya-00098,2025-07-20,-15.0,Three Mobile,phone,fixed
+priya-00099,2025-07-21,-2.54,Stagecoach,transport,variable
+priya-00100,2025-07-22,-26.31,Tesco,groceries,variable
+priya-00101,2025-07-25,227.48,SU Bar Payroll,wages,income
+priya-00102,2025-07-25,-18.89,Deliveroo,eating_out,optional
+priya-00103,2025-07-26,-26.88,Tesco,groceries,variable
+priya-00104,2025-07-28,-2.41,Stagecoach,transport,variable
+priya-00105,2025-07-29,-2.12,Stagecoach,transport,variable
+priya-00106,2025-07-30,-24.13,ASOS,shopping,optional
+priya-00107,2025-07-31,-2.44,Stagecoach,transport,variable
+priya-00108,2025-08-01,248.33,SU Bar Payroll,wages,income
+priya-00109,2025-08-01,-520.0,Unite Students,rent,fixed
+priya-00110,2025-08-01,-21.67,Revolution Bar,going_out,optional
+priya-00111,2025-08-02,-15.04,Tesco,groceries,variable
+priya-00112,2025-08-02,-25.72,Revolution Bar,going_out,optional
+priya-00113,2025-08-02,-31.52,Deliveroo,eating_out,optional
+priya-00114,2025-08-05,-2.66,Stagecoach,transport,variable
+priya-00115,2025-08-05,-22.99,PureGym,subscriptions,fixed
+priya-00116,2025-08-05,-20.18,Tesco,groceries,variable
+priya-00117,2025-08-06,-2.37,Stagecoach,transport,variable
+priya-00118,2025-08-07,-2.11,Stagecoach,transport,variable
+priya-00119,2025-08-08,202.22,SU Bar Payroll,wages,income
+priya-00120,2025-08-08,-24.05,Deliveroo,eating_out,optional
+priya-00121,2025-08-09,-30.39,Tesco,groceries,variable
+priya-00122,2025-08-09,-20.1,Revolution Bar,going_out,optional
+priya-00123,2025-08-11,-2.21,Stagecoach,transport,variable
+priya-00124,2025-08-12,-50.47,Tesco,groceries,variable
+priya-00125,2025-08-15,-31.41,Revolution Bar,going_out,optional
+priya-00126,2025-08-15,258.77,SU Bar Payroll,wages,income
+priya-00127,2025-08-15,-6.99,Spotify,subscriptions,fixed
+priya-00128,2025-08-16,-17.5,Tesco,groceries,variable
+priya-00129,2025-08-18,-2.68,Stagecoach,transport,variable
+priya-00130,2025-08-19,-21.93,Tesco,groceries,variable
+priya-00131,2025-08-20,-15.0,Three Mobile,phone,fixed
+priya-00132,2025-08-22,-2.13,Stagecoach,transport,variable
+priya-00133,2025-08-22,219.33,SU Bar Payroll,wages,income
+priya-00134,2025-08-23,-18.3,Revolution Bar,going_out,optional
+priya-00135,2025-08-23,-27.39,Tesco,groceries,variable
+priya-00136,2025-08-25,-2.22,Stagecoach,transport,variable
+priya-00137,2025-08-26,-18.65,Tesco,groceries,variable
+priya-00138,2025-08-26,-2.53,Stagecoach,transport,variable
+priya-00139,2025-08-27,-2.45,Stagecoach,transport,variable
+priya-00140,2025-08-28,-2.41,Stagecoach,transport,variable
+priya-00141,2025-08-29,248.0,SU Bar Payroll,wages,income
+priya-00142,2025-08-30,-25.53,Tesco,groceries,variable
+priya-00143,2025-08-30,-20.55,Revolution Bar,going_out,optional
+priya-00144,2025-09-01,-520.0,Unite Students,rent,fixed
+priya-00145,2025-09-03,-2.59,Stagecoach,transport,variable
+priya-00146,2025-09-05,104.87,SU Bar Payroll,wages,income
+priya-00147,2025-09-05,-22.99,PureGym,subscriptions,fixed
+priya-00148,2025-09-05,-2.38,Stagecoach,transport,variable
+priya-00149,2025-09-06,-25.7,Tesco,groceries,variable
+priya-00150,2025-09-09,-2.51,Stagecoach,transport,variable
+priya-00151,2025-09-09,-20.74,Tesco,groceries,variable
+priya-00152,2025-09-12,105.7,SU Bar Payroll,wages,income
+priya-00153,2025-09-13,-21.52,Deliveroo,eating_out,optional
+priya-00154,2025-09-13,-29.5,Tesco,groceries,variable
+priya-00155,2025-09-15,-6.99,Spotify,subscriptions,fixed
+priya-00156,2025-09-15,-2.48,Stagecoach,transport,variable
+priya-00157,2025-09-16,-22.9,Tesco,groceries,variable
+priya-00158,2025-09-17,-2.79,Stagecoach,transport,variable
+priya-00159,2025-09-18,-50.3,ASOS,shopping,optional
+priya-00160,2025-09-19,126.22,SU Bar Payroll,wages,income
+priya-00161,2025-09-19,-28.2,Revolution Bar,going_out,optional
+priya-00162,2025-09-20,-38.35,Revolution Bar,going_out,optional
+priya-00163,2025-09-20,-16.46,Tesco,groceries,variable
+priya-00164,2025-09-20,-15.0,Three Mobile,phone,fixed
+priya-00165,2025-09-22,1650.0,Student Finance England,student_finance,income
+priya-00166,2025-09-23,-134.48,ASOS,shopping,optional
+priya-00167,2025-09-23,-15.28,Tesco,groceries,variable
+priya-00168,2025-09-24,-65.61,Revolution Bar,going_out,optional
+priya-00169,2025-09-25,-85.0,Blackwell's Books,education,fixed
+priya-00170,2025-09-26,107.75,SU Bar Payroll,wages,income
+priya-00171,2025-09-27,-39.14,Tesco,groceries,variable
+priya-00172,2025-09-28,-28.46,ASOS,shopping,optional
+priya-00173,2025-09-30,-29.27,Tesco,groceries,variable
+priya-00174,2025-10-01,-520.0,Unite Students,rent,fixed
+priya-00175,2025-10-02,-2.27,Stagecoach,transport,variable
+priya-00176,2025-10-03,126.52,SU Bar Payroll,wages,income
+priya-00177,2025-10-03,-30.61,Revolution Bar,going_out,optional
+priya-00178,2025-10-04,-19.73,Tesco,groceries,variable
+priya-00179,2025-10-04,-15.4,Revolution Bar,going_out,optional
+priya-00180,2025-10-04,-28.48,Deliveroo,eating_out,optional
+priya-00181,2025-10-05,-22.99,PureGym,subscriptions,fixed
+priya-00182,2025-10-06,-2.56,Stagecoach,transport,variable
+priya-00183,2025-10-07,-34.6,Tesco,groceries,variable
+priya-00184,2025-10-08,-2.52,Stagecoach,transport,variable
+priya-00185,2025-10-09,-2.78,Stagecoach,transport,variable
+priya-00186,2025-10-10,128.31,SU Bar Payroll,wages,income
+priya-00187,2025-10-10,-29.89,Revolution Bar,going_out,optional
+priya-00188,2025-10-11,-12.04,Tesco,groceries,variable
+priya-00189,2025-10-14,-21.76,Tesco,groceries,variable
+priya-00190,2025-10-15,-6.99,Spotify,subscriptions,fixed
+priya-00191,2025-10-16,-2.52,Stagecoach,transport,variable
+priya-00192,2025-10-17,-2.39,Stagecoach,transport,variable
+priya-00193,2025-10-17,86.93,SU Bar Payroll,wages,income
+priya-00194,2025-10-18,-27.36,Tesco,groceries,variable
+priya-00195,2025-10-18,-19.28,Revolution Bar,going_out,optional
+priya-00196,2025-10-20,-15.0,Three Mobile,phone,fixed
+priya-00197,2025-10-21,-21.54,Tesco,groceries,variable
+priya-00198,2025-10-21,-2.37,Stagecoach,transport,variable
+priya-00199,2025-10-22,-18.79,ASOS,shopping,optional
+priya-00200,2025-10-24,-33.46,Revolution Bar,going_out,optional
+priya-00201,2025-10-24,-2.7,Stagecoach,transport,variable
+priya-00202,2025-10-24,95.98,SU Bar Payroll,wages,income
+priya-00203,2025-10-25,-17.85,Tesco,groceries,variable
+priya-00204,2025-10-25,-46.79,Deliveroo,eating_out,optional
+priya-00205,2025-10-28,-20.49,Tesco,groceries,variable
+priya-00206,2025-10-29,-2.41,Stagecoach,transport,variable
+priya-00207,2025-10-31,105.22,SU Bar Payroll,wages,income
+priya-00208,2025-10-31,-38.35,Revolution Bar,going_out,optional
+priya-00209,2025-11-01,-19.79,Tesco,groceries,variable
+priya-00210,2025-11-01,-520.0,Unite Students,rent,fixed
+priya-00211,2025-11-01,-27.63,Revolution Bar,going_out,optional
+priya-00212,2025-11-04,-20.32,Tesco,groceries,variable
+priya-00213,2025-11-05,-22.99,PureGym,subscriptions,fixed
+priya-00214,2025-11-05,-2.02,Stagecoach,transport,variable
+priya-00215,2025-11-07,114.92,SU Bar Payroll,wages,income
+priya-00216,2025-11-08,-28.49,Tesco,groceries,variable
+priya-00217,2025-11-08,-15.59,Revolution Bar,going_out,optional
+priya-00218,2025-11-11,-17.27,Tesco,groceries,variable
+priya-00219,2025-11-14,-9.95,Revolution Bar,going_out,optional
+priya-00220,2025-11-14,-2.62,Stagecoach,transport,variable
+priya-00221,2025-11-14,100.03,SU Bar Payroll,wages,income
+priya-00222,2025-11-15,-6.99,Spotify,subscriptions,fixed
+priya-00223,2025-11-15,-29.24,Tesco,groceries,variable
+priya-00224,2025-11-15,-16.09,Revolution Bar,going_out,optional
+priya-00225,2025-11-17,-1.75,Stagecoach,transport,variable
+priya-00226,2025-11-18,-26.54,Tesco,groceries,variable
+priya-00227,2025-11-18,-2.29,Stagecoach,transport,variable
+priya-00228,2025-11-20,-15.0,Three Mobile,phone,fixed
+priya-00229,2025-11-21,106.49,SU Bar Payroll,wages,income
+priya-00230,2025-11-21,-2.57,Stagecoach,transport,variable
+priya-00231,2025-11-22,-33.47,Tesco,groceries,variable
+priya-00232,2025-11-24,-2.35,Stagecoach,transport,variable
+priya-00233,2025-11-25,-33.15,Tesco,groceries,variable
+priya-00234,2025-11-26,-2.36,Stagecoach,transport,variable
+priya-00235,2025-11-27,-2.57,Stagecoach,transport,variable
+priya-00236,2025-11-28,124.14,SU Bar Payroll,wages,income
+priya-00237,2025-11-29,-33.5,Tesco,groceries,variable
+priya-00238,2025-11-29,-39.34,Revolution Bar,going_out,optional
+priya-00239,2025-12-01,-520.0,Unite Students,rent,fixed
+priya-00240,2025-12-01,-40.99,Amazon,gifts,optional
+priya-00241,2025-12-03,-37.8,Amazon,gifts,optional
+priya-00242,2025-12-03,-2.55,Stagecoach,transport,variable
+priya-00243,2025-12-04,-2.3,Stagecoach,transport,variable
+priya-00244,2025-12-05,132.19,SU Bar Payroll,wages,income
+priya-00245,2025-12-05,-22.99,PureGym,subscriptions,fixed
+priya-00246,2025-12-05,-24.92,Revolution Bar,going_out,optional
+priya-00247,2025-12-05,-24.96,Deliveroo,eating_out,optional
+priya-00248,2025-12-06,-21.59,Revolution Bar,going_out,optional
+priya-00249,2025-12-08,-23.89,ASOS,shopping,optional
+priya-00250,2025-12-09,-41.76,Tesco,groceries,variable
+priya-00251,2025-12-10,-19.4,Amazon,gifts,optional
+priya-00252,2025-12-10,-92.39,ASOS,shopping,optional
+priya-00253,2025-12-11,-24.7,Amazon,gifts,optional
+priya-00254,2025-12-12,100.61,SU Bar Payroll,wages,income
+priya-00255,2025-12-12,-25.13,Revolution Bar,going_out,optional
+priya-00256,2025-12-12,-2.52,Stagecoach,transport,variable
+priya-00257,2025-12-13,-27.63,Tesco,groceries,variable
+priya-00258,2025-12-13,-39.45,Revolution Bar,going_out,optional
+priya-00259,2025-12-13,-34.37,ASOS,shopping,optional
+priya-00260,2025-12-15,-6.99,Spotify,subscriptions,fixed
+priya-00261,2025-12-16,-56.98,ASOS,shopping,optional
+priya-00262,2025-12-16,-37.85,Tesco,groceries,variable
+priya-00263,2025-12-16,-2.43,Stagecoach,transport,variable
+priya-00264,2025-12-17,-2.54,Stagecoach,transport,variable
+priya-00265,2025-12-19,131.88,SU Bar Payroll,wages,income
+priya-00266,2025-12-19,-33.53,Revolution Bar,going_out,optional
+priya-00267,2025-12-19,-2.21,Stagecoach,transport,variable
+priya-00268,2025-12-19,-50.94,Amazon,gifts,optional
+priya-00269,2025-12-20,-8.42,Deliveroo,eating_out,optional
+priya-00270,2025-12-20,-27.56,Revolution Bar,going_out,optional
+priya-00271,2025-12-20,-15.0,Three Mobile,phone,fixed
+priya-00272,2025-12-20,-68.17,Tesco,groceries,variable
+priya-00273,2025-12-23,-44.17,Tesco,groceries,variable
+priya-00274,2025-12-23,-2.92,Stagecoach,transport,variable
+priya-00275,2025-12-26,122.59,SU Bar Payroll,wages,income
+priya-00276,2025-12-26,-33.54,Revolution Bar,going_out,optional
+priya-00277,2025-12-27,-40.72,Tesco,groceries,variable
+priya-00278,2025-12-29,-2.51,Stagecoach,transport,variable
+priya-00279,2025-12-30,-2.18,Stagecoach,transport,variable
+priya-00280,2025-12-30,-27.68,Tesco,groceries,variable
+priya-00281,2025-12-31,-2.46,Stagecoach,transport,variable
+priya-00282,2026-01-01,-520.0,Unite Students,rent,fixed
+priya-00283,2026-01-01,-2.84,Stagecoach,transport,variable
+priya-00284,2026-01-02,102.39,SU Bar Payroll,wages,income
+priya-00285,2026-01-03,-50.17,Tesco,groceries,variable
+priya-00286,2026-01-03,-26.45,Revolution Bar,going_out,optional
+priya-00287,2026-01-05,-22.99,PureGym,subscriptions,fixed
+priya-00288,2026-01-05,-2.65,Stagecoach,transport,variable
+priya-00289,2026-01-06,-35.38,Tesco,groceries,variable
+priya-00290,2026-01-07,-2.48,Stagecoach,transport,variable
+priya-00291,2026-01-09,116.71,SU Bar Payroll,wages,income
+priya-00292,2026-01-10,-14.74,Tesco,groceries,variable
+priya-00293,2026-01-12,1650.0,Student Finance England,student_finance,income
+priya-00294,2026-01-13,-137.27,ASOS,shopping,optional
+priya-00295,2026-01-13,-45.5,Tesco,groceries,variable
+priya-00296,2026-01-13,-2.86,Stagecoach,transport,variable
+priya-00297,2026-01-14,-64.12,Revolution Bar,going_out,optional
+priya-00298,2026-01-14,-30.0,16-25 Railcard,transport,fixed
+priya-00299,2026-01-15,-6.99,Spotify,subscriptions,fixed
+priya-00300,2026-01-16,100.93,SU Bar Payroll,wages,income
+priya-00301,2026-01-16,-26.82,Revolution Bar,going_out,optional
+priya-00302,2026-01-17,-23.67,Tesco,groceries,variable
+priya-00303,2026-01-17,-26.7,Revolution Bar,going_out,optional
+priya-00304,2026-01-17,-21.45,Deliveroo,eating_out,optional
+priya-00305,2026-01-20,-18.26,Tesco,groceries,variable
+priya-00306,2026-01-20,-15.0,Three Mobile,phone,fixed
+priya-00307,2026-01-21,-2.7,Stagecoach,transport,variable
+priya-00308,2026-01-22,-2.26,Stagecoach,transport,variable
+priya-00309,2026-01-23,-2.22,Stagecoach,transport,variable
+priya-00310,2026-01-23,109.42,SU Bar Payroll,wages,income
+priya-00311,2026-01-23,-31.73,Revolution Bar,going_out,optional
+priya-00312,2026-01-24,-21.95,Tesco,groceries,variable
+priya-00313,2026-01-24,-17.4,Revolution Bar,going_out,optional
+priya-00314,2026-01-26,-2.75,Stagecoach,transport,variable
+priya-00315,2026-01-27,-52.94,Tesco,groceries,variable
+priya-00316,2026-01-30,110.65,SU Bar Payroll,wages,income
+priya-00317,2026-01-30,-12.65,Deliveroo,eating_out,optional
+priya-00318,2026-01-31,-24.13,Revolution Bar,going_out,optional
+priya-00319,2026-02-01,-520.0,Unite Students,rent,fixed
+priya-00320,2026-02-03,-20.89,Tesco,groceries,variable
+priya-00321,2026-02-03,-57.8,ASOS,shopping,optional
+priya-00322,2026-02-05,-22.99,PureGym,subscriptions,fixed
+priya-00323,2026-02-05,-2.24,Stagecoach,transport,variable
+priya-00324,2026-02-06,98.36,SU Bar Payroll,wages,income
+priya-00325,2026-02-06,-13.15,Deliveroo,eating_out,optional
+priya-00326,2026-02-06,-2.16,Stagecoach,transport,variable
+priya-00327,2026-02-07,-13.39,Tesco,groceries,variable
+priya-00328,2026-02-10,-28.01,Tesco,groceries,variable
+priya-00329,2026-02-13,130.35,SU Bar Payroll,wages,income
+priya-00330,2026-02-14,-30.94,Tesco,groceries,variable
+priya-00331,2026-02-14,-15.15,Deliveroo,eating_out,optional
+priya-00332,2026-02-15,-6.99,Spotify,subscriptions,fixed
+priya-00333,2026-02-17,-26.54,Tesco,groceries,variable
+priya-00334,2026-02-17,-2.65,Stagecoach,transport,variable
+priya-00335,2026-02-19,-2.26,Stagecoach,transport,variable
+priya-00336,2026-02-20,-24.61,Deliveroo,eating_out,optional
+priya-00337,2026-02-20,-12.42,Revolution Bar,going_out,optional
+priya-00338,2026-02-20,121.08,SU Bar Payroll,wages,income
+priya-00339,2026-02-20,-15.0,Three Mobile,phone,fixed
+priya-00340,2026-02-21,-33.45,Tesco,groceries,variable
+priya-00341,2026-02-24,-20.28,Tesco,groceries,variable
+priya-00342,2026-02-24,-2.5,Stagecoach,transport,variable
+priya-00343,2026-02-25,-2.54,Stagecoach,transport,variable
+priya-00344,2026-02-27,-12.09,Deliveroo,eating_out,optional
+priya-00345,2026-02-27,139.99,SU Bar Payroll,wages,income
+priya-00346,2026-02-27,-27.67,Revolution Bar,going_out,optional
+priya-00347,2026-02-28,-19.38,Tesco,groceries,variable
+priya-00348,2026-03-01,-520.0,Unite Students,rent,fixed
+priya-00349,2026-03-03,-2.11,Stagecoach,transport,variable
+priya-00350,2026-03-04,-2.4,Stagecoach,transport,variable
+priya-00351,2026-03-05,-22.99,PureGym,subscriptions,fixed
+priya-00352,2026-03-05,-2.41,Stagecoach,transport,variable
+priya-00353,2026-03-06,136.22,SU Bar Payroll,wages,income
+priya-00354,2026-03-06,-44.21,Revolution Bar,going_out,optional
+priya-00355,2026-03-07,-27.26,Tesco,groceries,variable
+priya-00356,2026-03-07,-15.62,Deliveroo,eating_out,optional
+priya-00357,2026-03-10,-33.51,Tesco,groceries,variable
+priya-00358,2026-03-13,-2.25,Stagecoach,transport,variable
+priya-00359,2026-03-13,96.27,SU Bar Payroll,wages,income
+priya-00360,2026-03-13,-30.93,Revolution Bar,going_out,optional
+priya-00361,2026-03-14,-31.37,Tesco,groceries,variable
+priya-00362,2026-03-14,-35.12,Revolution Bar,going_out,optional
+priya-00363,2026-03-14,-29.01,Deliveroo,eating_out,optional
+priya-00364,2026-03-15,-6.99,Spotify,subscriptions,fixed
+priya-00365,2026-03-17,-30.14,Tesco,groceries,variable
+priya-00366,2026-03-18,-2.55,Stagecoach,transport,variable
+priya-00367,2026-03-20,-3.1,Stagecoach,transport,variable
+priya-00368,2026-03-20,133.18,SU Bar Payroll,wages,income
+priya-00369,2026-03-20,-15.0,Three Mobile,phone,fixed
+priya-00370,2026-03-21,-17.84,Tesco,groceries,variable
+priya-00371,2026-03-24,-48.64,Tesco,groceries,variable
+priya-00372,2026-03-26,-2.91,Stagecoach,transport,variable
+priya-00373,2026-03-27,138.69,SU Bar Payroll,wages,income
+priya-00374,2026-03-27,-38.42,Revolution Bar,going_out,optional
+priya-00375,2026-03-27,-17.8,Deliveroo,eating_out,optional
+priya-00376,2026-03-28,-9.56,Revolution Bar,going_out,optional
+priya-00377,2026-03-28,-12.65,Tesco,groceries,variable
+priya-00378,2026-03-30,-2.32,Stagecoach,transport,variable
+priya-00379,2026-03-31,-25.64,Tesco,groceries,variable
+priya-00380,2026-04-01,-520.0,Unite Students,rent,fixed
+priya-00381,2026-04-01,-2.68,Stagecoach,transport,variable
+priya-00382,2026-04-02,-2.32,Stagecoach,transport,variable
+priya-00383,2026-04-03,134.51,SU Bar Payroll,wages,income
+priya-00384,2026-04-04,-14.67,Deliveroo,eating_out,optional
+priya-00385,2026-04-04,-21.58,Tesco,groceries,variable
+priya-00386,2026-04-05,-22.99,PureGym,subscriptions,fixed
+priya-00387,2026-04-07,-21.58,Tesco,groceries,variable
+priya-00388,2026-04-08,-2.59,Stagecoach,transport,variable
+priya-00389,2026-04-08,-57.42,ASOS,shopping,optional
+priya-00390,2026-04-09,-2.9,Stagecoach,transport,variable
+priya-00391,2026-04-10,113.66,SU Bar Payroll,wages,income
+priya-00392,2026-04-11,-15.92,Tesco,groceries,variable
+priya-00393,2026-04-11,-16.32,Revolution Bar,going_out,optional
+priya-00394,2026-04-11,-23.35,Deliveroo,eating_out,optional
+priya-00395,2026-04-14,-30.16,Tesco,groceries,variable
+priya-00396,2026-04-14,-2.46,Stagecoach,transport,variable
+priya-00397,2026-04-15,-2.47,Stagecoach,transport,variable
+priya-00398,2026-04-15,-6.99,Spotify,subscriptions,fixed
+priya-00399,2026-04-16,-2.19,Stagecoach,transport,variable
+priya-00400,2026-04-17,102.64,SU Bar Payroll,wages,income
+priya-00401,2026-04-18,-26.5,Tesco,groceries,variable
+priya-00402,2026-04-18,-33.16,Revolution Bar,going_out,optional
+priya-00403,2026-04-20,1650.0,Student Finance England,student_finance,income
+priya-00404,2026-04-20,-15.0,Three Mobile,phone,fixed
+priya-00405,2026-04-21,-145.73,ASOS,shopping,optional
+priya-00406,2026-04-22,-2.79,Stagecoach,transport,variable
+priya-00407,2026-04-22,-62.62,Revolution Bar,going_out,optional
+priya-00408,2026-04-23,-2.5,Stagecoach,transport,variable
+priya-00409,2026-04-24,110.58,SU Bar Payroll,wages,income
+priya-00410,2026-04-25,-44.13,Tesco,groceries,variable
+priya-00411,2026-04-25,-16.46,Revolution Bar,going_out,optional
+priya-00412,2026-04-25,-10.82,Deliveroo,eating_out,optional
+priya-00413,2026-04-28,-25.59,Tesco,groceries,variable
+priya-00414,2026-04-28,-2.97,Stagecoach,transport,variable
+priya-00415,2026-04-29,-2.06,Stagecoach,transport,variable
+priya-00416,2026-05-01,-23.07,Revolution Bar,going_out,optional
+priya-00417,2026-05-01,103.48,SU Bar Payroll,wages,income
+priya-00418,2026-05-01,-520.0,Unite Students,rent,fixed
+priya-00419,2026-05-02,-43.23,Tesco,groceries,variable
+priya-00420,2026-05-02,-14.69,Deliveroo,eating_out,optional
+priya-00421,2026-05-05,-22.99,PureGym,subscriptions,fixed
+priya-00422,2026-05-06,-2.63,Stagecoach,transport,variable
+priya-00423,2026-05-08,-7.32,Deliveroo,eating_out,optional
+priya-00424,2026-05-08,121.22,SU Bar Payroll,wages,income
+priya-00425,2026-05-08,-2.62,Stagecoach,transport,variable
+priya-00426,2026-05-09,-28.13,Tesco,groceries,variable
+priya-00427,2026-05-11,-2.28,Stagecoach,transport,variable
+priya-00428,2026-05-12,-37.15,Tesco,groceries,variable
+priya-00429,2026-05-12,-2.52,Stagecoach,transport,variable
+priya-00430,2026-05-14,-54.9,ASOS,shopping,optional
+priya-00431,2026-05-15,117.93,SU Bar Payroll,wages,income
+priya-00432,2026-05-15,-6.99,Spotify,subscriptions,fixed
+priya-00433,2026-05-15,-2.14,Stagecoach,transport,variable
+priya-00434,2026-05-16,-21.31,Deliveroo,eating_out,optional
+priya-00435,2026-05-16,-32.9,Tesco,groceries,variable
+priya-00436,2026-05-18,-2.81,Stagecoach,transport,variable
+priya-00437,2026-05-19,-19.96,Tesco,groceries,variable
+priya-00438,2026-05-19,-43.88,ASOS,shopping,optional
+priya-00439,2026-05-20,-15.0,Three Mobile,phone,fixed
+priya-00440,2026-05-22,130.87,SU Bar Payroll,wages,income
+priya-00441,2026-05-22,-24.15,Revolution Bar,going_out,optional
+priya-00442,2026-05-23,-14.72,Tesco,groceries,variable
+priya-00443,2026-05-26,-38.08,Tesco,groceries,variable
+priya-00444,2026-05-29,-2.43,Stagecoach,transport,variable
+priya-00445,2026-05-29,137.15,SU Bar Payroll,wages,income
+priya-00446,2026-05-30,-28.23,Tesco,groceries,variable
+priya-00447,2026-05-30,-65.92,Revolution Bar,going_out,optional
+priya-00448,2026-06-01,-520.0,Unite Students,rent,fixed
+priya-00449,2026-06-01,-2.48,Stagecoach,transport,variable
+priya-00450,2026-06-02,-18.38,Tesco,groceries,variable
+priya-00451,2026-06-02,-2.85,Stagecoach,transport,variable
+priya-00452,2026-06-04,-2.46,Stagecoach,transport,variable
+priya-00453,2026-06-05,-22.99,PureGym,subscriptions,fixed
+priya-00454,2026-06-05,-22.39,Revolution Bar,going_out,optional
+priya-00455,2026-06-05,202.02,SU Bar Payroll,wages,income
+priya-00456,2026-06-06,-29.13,Tesco,groceries,variable
+priya-00457,2026-06-06,-46.91,Revolution Bar,going_out,optional
+priya-00458,2026-06-09,-30.55,Tesco,groceries,variable
+priya-00459,2026-06-09,-2.52,Stagecoach,transport,variable
+priya-00460,2026-06-10,-2.42,Stagecoach,transport,variable
+priya-00461,2026-06-12,233.09,SU Bar Payroll,wages,income
+priya-00462,2026-06-12,-14.66,Deliveroo,eating_out,optional
+priya-00463,2026-06-13,-14.35,Revolution Bar,going_out,optional
+priya-00464,2026-06-15,-3.1,Stagecoach,transport,variable
+priya-00465,2026-06-15,-6.99,Spotify,subscriptions,fixed
+priya-00466,2026-06-16,-27.63,Tesco,groceries,variable
+priya-00467,2026-06-19,207.11,SU Bar Payroll,wages,income
+priya-00468,2026-06-20,-15.0,Three Mobile,phone,fixed
+priya-00469,2026-06-20,-16.43,Tesco,groceries,variable
+priya-00470,2026-06-20,-17.73,Revolution Bar,going_out,optional
+priya-00471,2026-06-20,-12.63,Deliveroo,eating_out,optional
+priya-00472,2026-06-21,-18.41,ASOS,shopping,optional
+priya-00473,2026-06-23,-2.48,Stagecoach,transport,variable
+priya-00474,2026-06-23,-22.16,Tesco,groceries,variable
+priya-00475,2026-06-26,234.93,SU Bar Payroll,wages,income
+priya-00476,2026-06-27,-26.94,Tesco,groceries,variable
+priya-00477,2026-06-27,-31.35,Revolution Bar,going_out,optional
+priya-00478,2026-06-29,-2.86,Stagecoach,transport,variable
+priya-00479,2026-06-30,-3.07,Stagecoach,transport,variable
+priya-00480,2026-07-01,-2.46,Stagecoach,transport,variable
+priya-00481,2026-07-01,-520.0,Unite Students,rent,fixed
+priya-00482,2026-07-03,-2.52,Stagecoach,transport,variable
+priya-00483,2026-07-03,-25.71,Deliveroo,eating_out,optional
+priya-00484,2026-07-03,241.15,SU Bar Payroll,wages,income
+priya-00485,2026-07-03,-37.82,Revolution Bar,going_out,optional
+priya-00486,2026-07-04,-19.32,Tesco,groceries,variable
+priya-00487,2026-07-04,-22.51,Revolution Bar,going_out,optional
+priya-00488,2026-07-05,-22.99,PureGym,subscriptions,fixed
+priya-00489,2026-07-07,-19.13,Tesco,groceries,variable
+priya-00490,2026-07-10,241.26,SU Bar Payroll,wages,income
+priya-00491,2026-07-10,-42.22,Revolution Bar,going_out,optional
+priya-00492,2026-07-11,-17.54,Deliveroo,eating_out,optional
+priya-00493,2026-07-11,-21.64,Tesco,groceries,variable
+priya-00494,2026-07-14,-14.99,Tesco,groceries,variable
+priya-00495,2026-07-14,-2.85,Stagecoach,transport,variable
+priya-00496,2026-07-15,-6.99,Spotify,subscriptions,fixed
+priya-00497,2026-07-15,-2.9,Stagecoach,transport,variable
+priya-00498,2026-07-16,-2.41,Stagecoach,transport,variable
+priya-00499,2026-07-17,202.53,SU Bar Payroll,wages,income
+priya-00500,2026-07-17,-23.8,Revolution Bar,going_out,optional
+priya-00501,2026-07-18,-27.23,Tesco,groceries,variable
+priya-00502,2026-07-18,-15.74,Deliveroo,eating_out,optional
+priya-00503,2026-07-20,-15.0,Three Mobile,phone,fixed
+priya-00504,2026-07-21,-27.55,Tesco,groceries,variable
+priya-00505,2026-07-21,-2.64,Stagecoach,transport,variable
+priya-00506,2026-07-23,-2.83,Stagecoach,transport,variable
+priya-00507,2026-07-24,256.4,SU Bar Payroll,wages,income
+priya-00508,2026-07-24,-24.41,Revolution Bar,going_out,optional
+priya-00509,2026-07-25,-18.7,Tesco,groceries,variable
+priya-00510,2026-07-27,-2.41,Stagecoach,transport,variable
+priya-00511,2026-07-28,-10.17,Tesco,groceries,variable
+priya-00512,2026-07-31,-12.89,Deliveroo,eating_out,optional
+priya-00513,2026-07-31,241.13,SU Bar Payroll,wages,income
+priya-00514,2026-08-01,-520.0,Unite Students,rent,fixed
+priya-00515,2026-08-01,-25.89,Revolution Bar,going_out,optional
+priya-00516,2026-08-04,-33.07,Tesco,groceries,variable
+priya-00517,2026-08-04,-2.22,Stagecoach,transport,variable
+priya-00518,2026-08-05,-22.99,PureGym,subscriptions,fixed
+priya-00519,2026-08-05,-2.59,Stagecoach,transport,variable
+priya-00520,2026-08-06,-2.81,Stagecoach,transport,variable
+priya-00521,2026-08-07,235.99,SU Bar Payroll,wages,income
+priya-00522,2026-08-08,-29.42,Revolution Bar,going_out,optional
+priya-00523,2026-08-08,-37.71,Tesco,groceries,variable
+priya-00524,2026-08-11,-13.71,Tesco,groceries,variable
+priya-00525,2026-08-11,-2.13,Stagecoach,transport,variable
+priya-00526,2026-08-12,-2.8,Stagecoach,transport,variable
+priya-00527,2026-08-13,-26.49,ASOS,shopping,optional
+priya-00528,2026-08-14,237.79,SU Bar Payroll,wages,income
+priya-00529,2026-08-14,-28.44,Revolution Bar,going_out,optional
+priya-00530,2026-08-14,-2.06,Stagecoach,transport,variable
+priya-00531,2026-08-15,-30.05,Deliveroo,eating_out,optional
+priya-00532,2026-08-15,-43.46,Tesco,groceries,variable
+priya-00533,2026-08-15,-6.99,Spotify,subscriptions,fixed
+priya-00534,2026-08-18,-35.62,Tesco,groceries,variable
+priya-00535,2026-08-20,-15.0,Three Mobile,phone,fixed
+priya-00536,2026-08-21,200.56,SU Bar Payroll,wages,income
+priya-00537,2026-08-22,-16.74,Tesco,groceries,variable
+priya-00538,2026-08-22,-15.67,Deliveroo,eating_out,optional
+priya-00539,2026-08-25,-11.63,Tesco,groceries,variable
+priya-00540,2026-08-28,-2.38,Stagecoach,transport,variable
+priya-00541,2026-08-28,249.3,SU Bar Payroll,wages,income
+priya-00542,2026-08-29,-31.51,Tesco,groceries,variable
+priya-00543,2026-09-01,-520.0,Unite Students,rent,fixed
+priya-00544,2026-09-01,-21.1,Tesco,groceries,variable
+priya-00545,2026-09-02,-2.92,Stagecoach,transport,variable
+priya-00546,2026-09-04,93.96,SU Bar Payroll,wages,income
+priya-00547,2026-09-04,-39.04,Revolution Bar,going_out,optional
+priya-00548,2026-09-05,-22.99,PureGym,subscriptions,fixed
+priya-00549,2026-09-05,-20.12,Tesco,groceries,variable
+priya-00550,2026-09-05,-34.73,ASOS,shopping,optional
+priya-00551,2026-09-07,-2.29,Stagecoach,transport,variable
+priya-00552,2026-09-08,-19.55,Tesco,groceries,variable
+priya-00553,2026-09-10,-2.4,Stagecoach,transport,variable
+priya-00554,2026-09-11,135.52,SU Bar Payroll,wages,income
+priya-00555,2026-09-11,-20.1,Revolution Bar,going_out,optional
+priya-00556,2026-09-12,-30.36,Tesco,groceries,variable
+priya-00557,2026-09-12,-47.24,Revolution Bar,going_out,optional
+priya-00558,2026-09-15,-21.6,Tesco,groceries,variable
+priya-00559,2026-09-15,-6.99,Spotify,subscriptions,fixed
+priya-00560,2026-09-16,-2.86,Stagecoach,transport,variable
+priya-00561,2026-09-17,-2.9,Stagecoach,transport,variable
+priya-00562,2026-09-18,94.14,SU Bar Payroll,wages,income
+priya-00563,2026-09-19,-37.58,Tesco,groceries,variable
+priya-00564,2026-09-20,-15.0,Three Mobile,phone,fixed
+priya-00565,2026-09-21,1700.0,Student Finance England,student_finance,income
+priya-00566,2026-09-21,-2.57,Stagecoach,transport,variable
+priya-00567,2026-09-22,-127.68,ASOS,shopping,optional
+priya-00568,2026-09-22,-23.93,Tesco,groceries,variable
+priya-00569,2026-09-23,-69.02,Revolution Bar,going_out,optional
+priya-00570,2026-09-24,-2.51,Stagecoach,transport,variable
+priya-00571,2026-09-25,90.72,SU Bar Payroll,wages,income
+priya-00572,2026-09-25,-85.0,Blackwell's Books,education,fixed
+priya-00573,2026-09-25,-24.52,Revolution Bar,going_out,optional
+priya-00574,2026-09-26,-28.86,Deliveroo,eating_out,optional
+priya-00575,2026-09-26,-19.66,Tesco,groceries,variable
+priya-00576,2026-09-28,-2.66,Stagecoach,transport,variable
+priya-00577,2026-09-29,-2.8,Stagecoach,transport,variable
+priya-00578,2026-09-29,-16.8,Tesco,groceries,variable
+priya-00579,2026-10-01,-520.0,Unite Students,rent,fixed
+priya-00580,2026-10-01,-2.75,Stagecoach,transport,variable
+priya-00581,2026-10-01,-77.48,ASOS,shopping,optional
+priya-00582,2026-10-02,114.55,SU Bar Payroll,wages,income
+priya-00583,2026-10-02,-15.74,Deliveroo,eating_out,optional
+priya-00584,2026-10-03,-22.89,Tesco,groceries,variable
+priya-00585,2026-10-03,-16.73,Deliveroo,eating_out,optional
+priya-00586,2026-10-05,-2.56,Stagecoach,transport,variable
+priya-00587,2026-10-05,-22.99,PureGym,subscriptions,fixed
+priya-00588,2026-10-06,-14.64,Tesco,groceries,variable
+priya-00589,2026-10-09,88.21,SU Bar Payroll,wages,income
+priya-00590,2026-10-10,-29.38,Tesco,groceries,variable
+priya-00591,2026-10-12,-2.56,Stagecoach,transport,variable
+priya-00592,2026-10-15,-6.99,Spotify,subscriptions,fixed
+priya-00593,2026-10-15,-2.17,Stagecoach,transport,variable
+priya-00594,2026-10-16,116.74,SU Bar Payroll,wages,income
+priya-00595,2026-10-16,-3.04,Stagecoach,transport,variable
+priya-00596,2026-10-17,-27.85,Revolution Bar,going_out,optional
+priya-00597,2026-10-17,-21.18,Tesco,groceries,variable
+priya-00598,2026-10-20,-15.0,Three Mobile,phone,fixed
+priya-00599,2026-10-20,-18.8,Tesco,groceries,variable
+priya-00600,2026-10-21,-3.04,Stagecoach,transport,variable
+priya-00601,2026-10-23,95.78,SU Bar Payroll,wages,income
+priya-00602,2026-10-23,-43.57,Revolution Bar,going_out,optional
+priya-00603,2026-10-23,-32.43,Deliveroo,eating_out,optional
+priya-00604,2026-10-23,-2.33,Stagecoach,transport,variable
+priya-00605,2026-10-24,-24.71,Tesco,groceries,variable
+priya-00606,2026-10-24,-14.84,Deliveroo,eating_out,optional
+priya-00607,2026-10-24,-9.82,ASOS,shopping,optional
+priya-00608,2026-10-27,-14.94,Tesco,groceries,variable
+priya-00609,2026-10-29,-2.39,Stagecoach,transport,variable
+priya-00610,2026-10-30,126.55,SU Bar Payroll,wages,income
+priya-00611,2026-10-31,-39.23,Tesco,groceries,variable
+priya-00612,2026-11-01,-520.0,Unite Students,rent,fixed
+priya-00613,2026-11-02,-2.18,Stagecoach,transport,variable
+priya-00614,2026-11-03,-24.22,Tesco,groceries,variable
+priya-00615,2026-11-05,-22.99,PureGym,subscriptions,fixed
+priya-00616,2026-11-06,-28.34,Revolution Bar,going_out,optional
+priya-00617,2026-11-06,101.78,SU Bar Payroll,wages,income
+priya-00618,2026-11-07,-49.65,Tesco,groceries,variable
