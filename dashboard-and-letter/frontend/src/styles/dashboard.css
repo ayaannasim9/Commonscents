@@ -81,3 +81,30 @@
 .skel { background: var(--paper-2); border-radius: var(--radius); }
 .errbox { padding: var(--s3); border: 2px solid var(--status-short); border-radius: var(--radius); display: grid; gap: var(--s2); justify-items: start; }
 .guardrail-badge { display: inline-flex; align-items: center; gap: var(--s1); min-height: 40px; padding: 4px var(--s2); border: 2px solid var(--purple); border-radius: 999px; background: var(--purple-soft); color: var(--purple); font-weight: 700; font-size: var(--fs-small); }
+
+/* persona picker (F6.6) and gallery (F7) */
+.picker { border: 0; margin: var(--s3) 0 0; padding: 0; min-width: 0; }
+.picker legend { font-weight: 700; margin-bottom: var(--s1); padding: 0; }
+.picker-opts { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.picker-opt { position: relative; display: grid; min-height: 64px; min-width: 132px; padding: var(--s1) var(--s2); border: 2px solid var(--border); border-radius: var(--radius); background: var(--paper); cursor: pointer; align-content: center; }
+.picker-opt input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.picker-opt:has(input:checked) { background: var(--purple); border-color: var(--purple); color: #fff; }
+.picker-opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+.picker-name { font-weight: 700; }
+.picker-arch { font-size: var(--fs-small); color: var(--muted); }
+.picker-opt:has(input:checked) .picker-arch { color: #fff; }
+
+.personas-page h1 { font-size: var(--fs-section); margin-bottom: var(--s2); }
+.persona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s2); margin-top: var(--s3); }
+.persona-card { display: grid; gap: var(--s2); align-content: start; width: 100%; height: 100%; min-height: 300px; text-align: left; padding: var(--s3); border: 2px solid var(--border); border-radius: var(--radius); background: var(--paper); transition: background-color 150ms; }
+button.persona-card:hover { background: var(--purple-soft); }
+.persona-card .badge { justify-self: start; }
+.persona-top { display: grid; gap: 2px; }
+.persona-name { font-size: var(--fs-month); font-weight: 700; color: var(--purple); line-height: 1.2; }
+.persona-arch { font-size: var(--fs-small); color: var(--muted); font-weight: 600; }
+.persona-tag { font-size: var(--fs-small); }
+.persona-head { font-size: var(--fs-small); }
+@media (max-width: 960px) { .persona-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .persona-grid { grid-template-columns: 1fr; } }
+.read.emph { border-width: 3px; background: var(--purple-soft); }
+.read.emph.on { background: var(--purple); }

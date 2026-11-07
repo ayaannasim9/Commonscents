@@ -2,11 +2,11 @@
 export type HeadlineStatus = 'good' | 'heads_up' | 'attention'
 export type ForecastStatus = 'ok' | 'warn' | 'short'
 export type FlagSeverity = 'info' | 'medium' | 'high'
-export type Role = 'margaret' | 'helper' | 'family'
+export type Role = 'customer' | 'helper'
 export type HelperRole = 'banker' | 'post_office' | 'phone'
 export type CaseStatus = 'new' | 'prepared' | 'with_helper' | 'draft_ready' | 'approved' | 'closed'
 export type CaseSource =
-  | 'slip_post_office' | 'slip_post' | 'counter_verbal' | 'hub_visit' | 'phone' | 'trusted_person' | 'system_flag'
+  | 'slip_post_office' | 'slip_post' | 'counter_verbal' | 'hub_visit' | 'phone' | 'system_flag'
 export type Urgency = 'high' | 'normal'
 export type CaseCategory = 'scam_worry' | 'afford_purchase' | 'bill_query' | 'payment_query' | 'general'
 export type DemoEvent = 'scam_transfer' | 'forgotten_subscription' | 'price_rise'
@@ -69,14 +69,20 @@ export interface Dashboard {
   sections: Section[]
 }
 
-export interface Customer {
+export type Archetype = 'elderly' | 'first_account' | 'recent_migrant' | 'low_literacy' | 'learning_difficulty' | 'never_budgeted'
+
+export interface PersonaSummary {
   id: string
   name: string
   age: number
+  archetype: Archetype
+  tagline: string
+}
+
+export interface Customer extends PersonaSummary {
   bank: string
   hub_day: string
-  trusted_person: { name: string; relation: string; level: string }
-  preferences: { large_print: boolean; language: string }
+  preferences: { large_print: boolean; read_aloud_default: boolean; language: string }
 }
 
 export interface DemoState {

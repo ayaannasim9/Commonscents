@@ -86,7 +86,7 @@ const TICKS: { v: Tick; label: string }[] = [
   { v: 'other', label: 'Something else' },
 ]
 
-export function QuestionForm({ source, onAsked }: { source: string; onAsked: () => void }) {
+export function QuestionForm({ customerId, source, onAsked }: { customerId: string; source: string; onAsked: () => void }) {
   const [ticks, setTicks] = useState<Tick[]>([])
   const [text, setText] = useState('')
   const [err, setErr] = useState('')
@@ -104,7 +104,7 @@ export function QuestionForm({ source, onAsked }: { source: string; onAsked: () 
     if (!ticks.length && !text.trim()) return setErr('Please tick a box or write your question, then send it.')
     setErr(''); setBusy(true)
     try {
-      await api.createCase(source, text.trim(), ticks)
+      await api.createCase(customerId, source, text.trim(), ticks)
       setDone(true); onAsked()
     } catch {
       setErr('We could not send that just now. Nothing was lost. Please try again, or ask your helper.')

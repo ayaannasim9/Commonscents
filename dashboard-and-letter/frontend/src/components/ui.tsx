@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from 'react'
 import type { ForecastStatus, Guardrail, HeadlineStatus } from '../api/types'
+import { useApp } from '../state'
 import { Icon } from './Icon'
 
 type Look = { cls: string; icon: string; word: string }
@@ -32,6 +33,7 @@ const subscribe = (f: () => void) => { subs.add(f); return () => { subs.delete(f
 
 export function ReadAloudButton({ id, title, text }: { id: string; title: string; text: string }) {
   const speaking = useSyncExternalStore(subscribe, () => current === id)
+  const { customer } = useApp()
   if (!speechOk) return null
   const toggle = () => {
     window.speechSynthesis.cancel()
@@ -44,7 +46,7 @@ export function ReadAloudButton({ id, title, text }: { id: string; title: string
     window.speechSynthesis.speak(u)
   }
   return (
-    <button type="button" className={`read ${speaking ? 'on' : ''}`} aria-label={`${speaking ? 'Stop' : 'Read this out loud'}: ${title}`} onClick={toggle}>
+    <button type="button" className={`read ${speaking ? 'on' : ''} ${customer?.preferences.read_aloud_default ? 'emph' : ''}`} aria-label={`${speaking ? 'Stop' : 'Read this out loud'}: ${title}`} onClick={toggle}>
       <Icon name={speaking ? 'stop' : 'speaker'} size={22} />
       {speaking ? 'Stop' : 'Read this out loud'}
     </button>

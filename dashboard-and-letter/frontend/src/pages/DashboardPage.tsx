@@ -5,7 +5,7 @@ import { useDashboard } from '../useDashboard'
 import { useApp } from '../state'
 
 export default function DashboardPage() {
-  const { role } = useApp()
+  const { role, customerId } = useApp()
   const { data, error, retry } = useDashboard()
   if (error && !data)
     return (
@@ -18,6 +18,7 @@ export default function DashboardPage() {
   return (
     <DashboardView
       data={data}
+      customerId={customerId}
       asking={role === 'helper' ? 'counter_verbal' : 'hub_visit'}
       onAsked={() => {}}
       showGuardrail={role === 'helper'}

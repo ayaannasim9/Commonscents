@@ -1,8 +1,8 @@
 import { handle } from './mock'
-import type { Case, CaseSummary, Customer, Dashboard, DemoEvent, DemoState, Tick } from './types'
+import type { Case, CaseSummary, Customer, PersonaSummary, Dashboard, DemoEvent, DemoState, Tick } from './types'
 
 export const MOCK = import.meta.env.VITE_API_MODE !== 'live'
-export const CUSTOMER_ID = 'MRG-4471'
+export const DEFAULT_CUSTOMER = 'MRG-4471'
 
 export class ApiError extends Error {
   status: number
@@ -30,15 +30,16 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   return (res.headers.get('content-type')?.includes('json') ? res.json() : res.text()) as Promise<T>
 }
 
-const c = `/customers/${CUSTOMER_ID}`
+const c = (id: string) => `/customers/${id}`
 export const api = {
-  customer: () => request<Customer>('GET', c),
-  dashboard: () => request<Dashboard>('GET', `${c}/dashboard`),
+  personas: () => request<PersonaSummary[]>('GET', '/personas'),
+  customer: (id: string) => request<Customer>('GET', c(id)),
+  dashboard: (id: string) => request<Dashboard>('GET', `${c(id)}/dashboard`),
   demoState: () => request<DemoState>('GET', '/demo/state'),
-  injectEvent: (event: DemoEvent) => request('POST', `${c}/events`, { event }),
+  injectEvent: (id: string, event: DemoEvent) => request('POST', `${c(id)}/events`, { event }),
   nextMonth: () => request('POST', '/demo/next-month'),
   reset: () => request('POST', '/demo/reset'),
-  cases: (q = '') => request<CaseSummary[]>('GET', `/cases${q}`),
+  cases: (id: string, q = '') => request<CaseSummary[]>('GET', `/cases?customer=${id}${q ? `&${q}` : ''}`),
   case: (id: string, viewer?: string) => request<Case>('GET', `/cases/${id}${viewer ? `?viewer=${viewer}` : ''}`),
-  createCase: (source: string, text: string, ticks: Tick[]) => request<Case>('POST', '/cases', { source, text, ticks }),
+  createCase: (customer: string, source: string, text: string, ticks: Tick[]) => request<Case>('POST', '/cases', { customer, source, text, ticks }),
 }

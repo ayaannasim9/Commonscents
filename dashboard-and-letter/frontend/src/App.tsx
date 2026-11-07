@@ -2,22 +2,23 @@ import { useEffect, useRef } from 'react'
 import { BrowserRouter, Navigate, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 import type { Role } from './api/types'
 import DashboardPage from './pages/DashboardPage'
+import DemoPage from './pages/DemoPage'
+import PersonasPage from './pages/PersonasPage'
 import Stub from './pages/Stub'
 import { HELPER, useApp } from './state'
 
-const ROLES: { v: Role; label: string }[] = [
-  { v: 'margaret', label: 'Margaret' },
-  { v: 'helper', label: 'Helper' },
-  { v: 'family', label: 'Family' },
-]
 
 function AppBar() {
-  const { role, setRole, large, setLarge } = useApp()
+  const { role, setRole, large, setLarge, customer } = useApp()
+  const roles: { v: Role; label: string }[] = [
+    { v: 'customer', label: customer?.name ?? 'Customer' },
+    { v: 'helper', label: 'Helper' },
+  ]
   const links = [
-    role !== 'family' && { to: '/dashboard', label: 'Dashboard' },
+    { to: '/dashboard', label: 'Dashboard' },
     role === 'helper' && { to: '/queue', label: 'Questions' },
     role === 'helper' && { to: '/demo', label: 'Demo' },
-    role === 'family' && { to: '/family', label: 'Alerts' },
+    role === 'helper' && { to: '/personas', label: 'People' },
     { to: '/letter', label: 'Letter' },
     { to: '/what-we-know', label: 'What we know' },
   ].filter(Boolean) as { to: string; label: string }[]
@@ -31,9 +32,9 @@ function AppBar() {
         </nav>
         <fieldset className="segmented">
           <legend>Who is looking</legend>
-          {ROLES.map((r) => (
+          {roles.map((r) => (
             <label key={r.v}>
-              <input type="radio" name="role" value={r.v} checked={role === r.v} onChange={() => setRole(r.v)} />
+              <input type="radio" name="role" value={r.v} checked={role === r.v} aria-label={r.v === 'customer' ? `${r.label} (customer view)` : r.label} onChange={() => setRole(r.v)} />
               {r.label}
             </label>
           ))}
@@ -51,7 +52,7 @@ function AppBar() {
 
 const TITLES: Record<string, string> = {
   '/dashboard': 'Your money', '/queue': 'Questions', '/cases': 'Question', '/demo': 'Statement and letter',
-  '/family': 'Family alert', '/what-we-know': 'What we know about you', '/letter': 'Your letter',
+  '/personas': 'People', '/what-we-know': 'What we know about you', '/letter': 'Your letter',
 }
 
 function Layout() {
@@ -86,21 +87,20 @@ function Layout() {
 
 function Guard({ allow, children }: { allow: Role[]; children: React.ReactElement }) {
   const { role } = useApp()
-  return allow.includes(role) ? children : <Navigate to={role === 'family' ? '/family' : '/dashboard'} replace />
+  return allow.includes(role) ? children : <Navigate to="/dashboard" replace />
 }
 
 export default function App() {
-  const { role } = useApp()
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to={role === 'family' ? '/family' : '/dashboard'} replace />} />
-          <Route path="/dashboard" element={<Guard allow={['margaret', 'helper']}><DashboardPage /></Guard>} />
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<Guard allow={['customer', 'helper']}><DashboardPage /></Guard>} />
           <Route path="/queue" element={<Guard allow={['helper']}><Stub title="Questions" milestone="F5" /></Guard>} />
           <Route path="/cases/:id" element={<Guard allow={['helper']}><Stub title="Question" milestone="F4" /></Guard>} />
-          <Route path="/demo" element={<Guard allow={['helper']}><Stub title="Statement and letter" milestone="F6" /></Guard>} />
-          <Route path="/family" element={<Guard allow={['family']}><Stub title="Family alert" milestone="F7" /></Guard>} />
+          <Route path="/demo" element={<Guard allow={['helper']}><DemoPage /></Guard>} />
+          <Route path="/personas" element={<Guard allow={['helper']}><PersonasPage /></Guard>} />
           <Route path="/what-we-know" element={<Stub title="What we know about you" milestone="F8" />} />
           <Route path="/letter" element={<Stub title="Your letter" milestone="F9" />} />
           <Route path="*" element={<Navigate to="/" replace />} />

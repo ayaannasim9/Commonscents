@@ -5,7 +5,7 @@ import { Icon } from './Icon'
 import { GuardrailBadge, StatusBadge } from './ui'
 
 /** The shared dashboard. Pure render of the dashboard payload: sections in array order, text verbatim (P9, P10). */
-export function DashboardView({ data, asking, onAsked, showGuardrail }: { data: Dashboard; asking: string; onAsked: () => void; showGuardrail: boolean }) {
+export function DashboardView({ data, customerId, asking, onAsked, showGuardrail }: { data: Dashboard; customerId: string; asking: string; onAsked: () => void; showGuardrail: boolean }) {
   const { facts } = data
   const body = (s: Sec) => {
     switch (s.id) {
@@ -44,7 +44,7 @@ export function DashboardView({ data, asking, onAsked, showGuardrail }: { data: 
           </div>
         )
       case 'ask':
-        return (<><p>{s.text}</p><QuestionForm source={asking} onAsked={onAsked} /></>)
+        return (<><p>{s.text}</p><QuestionForm customerId={customerId} source={asking} onAsked={onAsked} /></>)
     }
   }
   return (
