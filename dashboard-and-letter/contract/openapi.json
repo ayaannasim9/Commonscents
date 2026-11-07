@@ -978,7 +978,7 @@
           "helper": {
             "type": "string",
             "title": "Helper",
-            "default": "Priya"
+            "default": "Daria"
           }
         },
         "type": "object",
@@ -1089,7 +1089,7 @@
           "helper": {
             "type": "string",
             "title": "Helper",
-            "default": "Priya"
+            "default": "Daria"
           }
         },
         "type": "object",

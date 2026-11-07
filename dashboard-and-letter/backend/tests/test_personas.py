@@ -159,10 +159,10 @@ def test_state_is_keyed_by_customer(client):
 
 def test_access_log_and_what_we_know_are_scoped(client):
     [jc] = client.get("/cases?customer=JDN-2208").json()
-    client.get(f"/cases/{jc['id']}?viewer=helper:priya")
-    client.get("/customers/JDN-2208/dashboard?viewer=helper:priya")
+    client.get(f"/cases/{jc['id']}?viewer=helper:daria")
+    client.get("/customers/JDN-2208/dashboard?viewer=helper:daria")
     jay = client.get("/customers/JDN-2208/what-we-know").json()
-    assert [e["who"] for e in jay["access_log"]] == ["Priya", "Priya"] and "Looked at your dashboard" in [e["what"] for e in jay["access_log"]]
+    assert [e["who"] for e in jay["access_log"]] == ["Daria", "Daria"] and "Looked at your dashboard" in [e["what"] for e in jay["access_log"]]
     assert client.get("/customers/MRG-4471/what-we-know").json()["access_log"] == []
     assert set(jay) == {"profile", "data_held", "access_log"} and "trusted_person" not in str(jay)
     assert [d["label"] for d in jay["data_held"]] == ["Your details", "Your bank payments", "Your letters", "Your questions", "Helper notes"]

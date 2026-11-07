@@ -13,7 +13,7 @@ Frontend: React + Vite + TypeScript, plain CSS (tokens as custom properties). Ba
 ## Users
 
 - **Margaret (81)**: offline NatWest customer who does not use banking apps. Reads a paper monthly letter. May look at the dashboard with a helper at a hub / Post Office counter, or on her own on a home tablet. Needs large print, plain English, nothing that moves.
-- **The helper** (community banker / Post Office / phone team, e.g. Priya): sits beside Margaret, turns a tablet towards her, works the case queue, approves replies.
+- **The helper** (community banker / Post Office / phone team, e.g. Daria): sits beside Margaret, turns a tablet towards her, works the case queue, approves replies.
 - **Five more customers, one product** (see `personas.md`): Jayden (18, first account), Amira (recent migrant), Daniel (low literacy), Sam (learning difficulty), Ravi (never budgeted). Same product for everyone; only their generated transaction data differs.
 - **Hackathon judges** (NatWest financial inclusion challenge): watch a 3-minute demo and probe the ethics.
 

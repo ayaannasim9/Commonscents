@@ -18,7 +18,7 @@ def boiler(client):
 
 def test_seeded_boiler_case_matches_fixture(client):
     cid = boiler(client)
-    c = client.get(f"/cases/{cid}?viewer=helper:priya").json()
+    c = client.get(f"/cases/{cid}?viewer=helper:daria").json()
     ref = fx("case.boiler.prepared.json")
     check_shape(c, ref)
     for k in ("source", "status", "urgency", "category", "summary", "question_text", "ticks", "route", "due"):
@@ -61,9 +61,9 @@ def test_new_urgent_question_routes_to_phone(client):
 
 def test_viewing_a_case_is_logged(client):
     cid = boiler(client)
-    client.get(f"/cases/{cid}?viewer=helper:priya:banker")
+    client.get(f"/cases/{cid}?viewer=helper:daria:banker")
     rows = client.app.state.db.execute("SELECT who, role, what FROM access_log").fetchall()
-    assert [(r["who"], r["role"]) for r in rows] == [("Priya", "banker")] and "boiler" in rows[0]["what"]
+    assert [(r["who"], r["role"]) for r in rows] == [("Daria", "banker")] and "boiler" in rows[0]["what"]
     assert client.get("/cases/case_9999").status_code == 404
 
 
@@ -71,28 +71,28 @@ def test_approval_gate_409s(client):
     cid = boiler(client)
     assert client.post(f"/cases/{cid}/approve").status_code == 409          # nothing drafted
     assert client.post(f"/cases/{cid}/draft-reply").status_code == 409      # needs a note first
-    client.post(f"/cases/{cid}/note", json={"note": "Talked it through.", "helper": "Priya"})
+    client.post(f"/cases/{cid}/note", json={"note": "Talked it through.", "helper": "Daria"})
     assert client.get(f"/cases/{cid}").json()["status"] == "with_helper"
     assert client.post(f"/cases/{cid}/approve").status_code == 409          # note but no draft
 
 
 def test_draft_with_unverified_number_cannot_be_approved(client):
     cid = boiler(client)
-    client.post(f"/cases/{cid}/note", json={"note": "Suggest a heating pot, £20 a month.", "helper": "Priya"})
+    client.post(f"/cases/{cid}/note", json={"note": "Suggest a heating pot, £20 a month.", "helper": "Daria"})
     d = client.post(f"/cases/{cid}/draft-reply").json()
     assert d["status"] == "draft_ready" and d["draft"]["guardrail"]["caught"] is False
-    bad = client.post(f"/cases/{cid}/draft", json={"text": "Dear Margaret, a boiler costs £2,400. Priya"}).json()
+    bad = client.post(f"/cases/{cid}/draft", json={"text": "Dear Margaret, a boiler costs £2,400. Daria"}).json()
     assert bad["status"] == "with_helper" and bad["draft"]["guardrail"]["events"][0]["action"] == "blocked"
     assert client.post(f"/cases/{cid}/approve").status_code == 409
-    ok = client.post(f"/cases/{cid}/draft", json={"text": "Dear Margaret, saving £20 a month is £240 in a year. Priya"}).json()
+    ok = client.post(f"/cases/{cid}/draft", json={"text": "Dear Margaret, saving £20 a month is £240 in a year. Daria"}).json()
     assert ok["status"] == "draft_ready" and ok["draft"]["source"] == "helper"
-    assert client.post(f"/cases/{cid}/approve", json={"helper": "Priya"}).json()["status"] == "approved"
+    assert client.post(f"/cases/{cid}/approve", json={"helper": "Daria"}).json()["status"] == "approved"
     assert client.post(f"/cases/{cid}/note", json={"note": "x"}).status_code == 409  # locked once approved
 
 
 def test_note_with_unverified_figure_blocks_the_draft(client):
     cid = boiler(client)
-    client.post(f"/cases/{cid}/note", json={"note": "Boilers cost about £2,400.", "helper": "Priya"})
+    client.post(f"/cases/{cid}/note", json={"note": "Boilers cost about £2,400.", "helper": "Daria"})
     r = client.post(f"/cases/{cid}/draft-reply")
     assert r.status_code == 422 and "blocked" in r.json()["detail"]["message"]
 
@@ -102,18 +102,18 @@ def test_the_full_demo_loop(client):
     assert "Nothing new since we last spoke" in next(s for s in v0["sections"] if s["id"] == "since_visit")["text"]
     assert client.post(f"{C}/events", json={"event": "scam_transfer"}).json()["new_case_id"]       # step 2
     cid = boiler(client)                                                                            # step 3
-    client.get(f"/cases/{cid}?viewer=helper:priya")
-    client.post(f"/cases/{cid}/note", json={"note": "Set up a heating pot, £20 a month", "helper": "Priya"})
+    client.get(f"/cases/{cid}?viewer=helper:daria")
+    client.post(f"/cases/{cid}/note", json={"note": "Set up a heating pot, £20 a month", "helper": "Daria"})
     d = client.post(f"/cases/{cid}/draft-reply").json()
     check_shape(d, fx("case.boiler.draft-ready.json"))
-    a = client.post(f"/cases/{cid}/approve", json={"helper": "Priya"}).json()
+    a = client.post(f"/cases/{cid}/approve", json={"helper": "Daria"}).json()
     check_shape(a, fx("case.boiler.approved.json"))
     assert a["status"] == "approved" and a["approved_at"]
     assert client.post("/demo/next-month").json() == {"as_of": "2027-01-01"}                       # step 4
     dash = client.get(f"{C}/dashboard").json()
     visit = next(s for s in dash["sections"] if s["id"] == "since_visit")["text"]
-    assert visit == "When we last spoke, Priya agreed: Set up a heating pot, £20 a month."
-    assert dash["facts"]["since_last_visit"] == {"helper": "Priya", "note": "Set up a heating pot, £20 a month", "date": "2026-12-01"}
+    assert visit == "When we last spoke, Daria agreed: Set up a heating pot, £20 a month."
+    assert dash["facts"]["since_last_visit"] == {"helper": "Daria", "note": "Set up a heating pot, £20 a month", "date": "2026-12-01"}
     assert visit in client.get(f"{C}/letter.html").text                                              # letter agrees
     assert client.get(f"/cases/{cid}").json()["status"] == "closed"
     assert cid not in [c["id"] for c in client.get("/cases").json()]                                # off the queue
@@ -124,7 +124,7 @@ def test_the_full_demo_loop(client):
 
 def test_reset_restores_the_demo(client):
     cid = boiler(client)
-    client.post(f"/cases/{cid}/note", json={"note": "x", "helper": "Priya"})
+    client.post(f"/cases/{cid}/note", json={"note": "x", "helper": "Daria"})
     client.post(f"{C}/events", json={"event": "scam_transfer"})
     client.post("/demo/reset")
     lst = client.get("/cases").json()

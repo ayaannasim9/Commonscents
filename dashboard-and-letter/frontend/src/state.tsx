@@ -26,7 +26,7 @@ export const useApp = () => {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const HELPER = { name: 'Priya', roleLabel: 'Community banker' }
+export const HELPER = { name: 'Daria', roleLabel: 'Community banker' }
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [role, setRoleState] = useState<Role>(() => (read('cs.role') === 'helper' ? 'helper' : 'customer'))

@@ -13,7 +13,7 @@ from counterpart.models import SinceLastVisit
 from counterpart.personas import MARGARET
 from counterpart.pipeline import build_facts
 
-H = SinceLastVisit(helper="Priya", note="Set up heating pot, £20 a month", date=date(2026, 12, 1))
+H = SinceLastVisit(helper="Daria", note="Set up heating pot, £20 a month", date=date(2026, 12, 1))
 SCEN = {
     "clean": build_facts(MARGARET, generate(MARGARET), date(2026, 12, 1)),
     "scam": build_facts(MARGARET, generate(MARGARET, events=["scam_transfer"]), date(2026, 12, 1)),
@@ -50,7 +50,7 @@ def test_scam_text_and_idea_omitted():
 
 
 def test_note_appears_in_text():
-    assert "Priya agreed: Set up heating pot, £20 a month." in write_sections(SCEN["note"], STUB).texts["since_visit"]
+    assert "Daria agreed: Set up heating pot, £20 a month." in write_sections(SCEN["note"], STUB).texts["since_visit"]
 
 
 def test_demo_bad_number_flag_gives_the_badge_and_a_clean_result():
@@ -154,8 +154,8 @@ def test_model_cannot_lower_urgency(tmp_path, monkeypatch):
 
 def test_reply_may_use_case_numbers_only_plus_facts():
     f = SCEN["clean"]
-    g = draft_reply(f, "Can I afford a boiler?", "Priya", "Suggest a heating pot, £20 a month, over a year that is £240", [240], STUB)
+    g = draft_reply(f, "Can I afford a boiler?", "Daria", "Suggest a heating pot, £20 a month, over a year that is £240", [240], STUB)
     assert g.source == "stub" and "£240" in g.texts["text"] and g.texts["text"].startswith("Dear Margaret")
     from counterpart.guardrails import GuardrailFailure
     with pytest.raises(GuardrailFailure):  # a helper note with an unverified figure is blocked
-        draft_reply(f, "q", "Priya", "A boiler costs £2,400", [], STUB)
+        draft_reply(f, "q", "Daria", "A boiler costs £2,400", [], STUB)

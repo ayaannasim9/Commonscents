@@ -43,13 +43,13 @@
   "access_log": [
     {
       "at": "2026-12-01T10:05:00",
-      "who": "Priya",
+      "who": "Daria",
       "role": "banker",
       "what": "Looked at your question about a boiler"
     },
     {
       "at": "2026-12-01T09:20:00",
-      "who": "Priya",
+      "who": "Daria",
       "role": "banker",
       "what": "Looked at your dashboard"
     }

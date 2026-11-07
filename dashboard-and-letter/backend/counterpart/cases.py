@@ -289,7 +289,7 @@ class CaseService:
 
 
 def _viewer(viewer: str | None) -> tuple[str, str]:
-    """'helper:priya' or 'helper:priya:phone' -> ('Priya', role)."""
+    """'helper:daria' or 'helper:daria:phone' -> ('Daria', role)."""
     parts = (viewer or "").split(":")
     who = parts[1].strip().title() if len(parts) > 1 and parts[1].strip() else "A helper"
     role = parts[2] if len(parts) > 2 and parts[2] in ("banker", "post_office", "phone") else "banker"

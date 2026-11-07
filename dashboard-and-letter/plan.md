@@ -183,11 +183,11 @@ Case object (every case carries its `customer` id; cases, access logs, letters a
 ```
 GET  /cases?customer=&status=&urgency= -> [case summary]  (urgent first, then due date). customer defaults to MRG-4471; customer=all lists everyone. Closed cases are hidden unless status=closed|all.
 POST /cases                          { customer?: "MRG-4471", source, text, ticks:["worried"|"scam_call"|"bill"|"afford"|"other"] } -> case
-GET  /cases/{id}?viewer=helper:priya[:banker|post_office|phone] -> case (logs access against that case's customer, P7)
-POST /cases/{id}/note                { note, helper:"Priya" } -> case
+GET  /cases/{id}?viewer=helper:daria[:banker|post_office|phone] -> case (logs access against that case's customer, P7)
+POST /cases/{id}/note                { note, helper:"Daria" } -> case
 POST /cases/{id}/draft-reply         -> case with draft:{ text, guardrail } (status draft_ready)
 POST /cases/{id}/draft               { text } -> case      # helper edits the draft; re-runs guardrails
-POST /cases/{id}/approve             { helper:"Priya" } -> case (status approved, then closed on next-month)
+POST /cases/{id}/approve             { helper:"Daria" } -> case (status approved, then closed on next-month)
 ```
 
 **Allowed numbers for a case draft** (B3): the facts object plus `briefing.numbers` values for that case. The backend computes scenario numbers (e.g. £20 x 12 = £240) in code and puts them in `briefing.numbers`; the reply drafter may use only those.
@@ -297,7 +297,7 @@ Accent pink/teal from NatWest's wider palette may appear **only** on the demo pa
 
 ### F2. App shell and roles
 
-Top bar: product name left; role switcher (segmented control: **Customer | Helper**; the customer label shows the selected persona's first name, e.g. "Margaret") and "Bigger text" toggle right. Role is stored in `localStorage` (try/catch) and is just a UI switch (0.7). Customer role hides `/queue`, helper panel, demo link. Helper role shows a "You are signed in as Priya, Community banker" strip beneath the bar (role from `helper_role`). Footer: disclaimer plus link to What we know. Skip-to-content link first. Document `lang="en-GB"`, one `<h1>` per route.
+Top bar: product name left; role switcher (segmented control: **Customer | Helper**; the customer label shows the selected persona's first name, e.g. "Margaret") and "Bigger text" toggle right. Role is stored in `localStorage` (try/catch) and is just a UI switch (0.7). Customer role hides `/queue`, helper panel, demo link. Helper role shows a "You are signed in as Daria, Community banker" strip beneath the bar (role from `helper_role`). Footer: disclaimer plus link to What we know. Skip-to-content link first. Document `lang="en-GB"`, one `<h1>` per route.
 
 ### F3. Shared dashboard (hero, `/dashboard` and inside `/cases/:id`)
 
@@ -309,7 +309,7 @@ This is the letter's twin: C2.3 order, same strings. Single column, 960px.
 4. **One idea.** One card, `--purple-soft` ground, text + "£N a month" from `facts.suggestion`. Omitted entirely when absent (no empty box). Footer line signposting: MoneyHelper and Citizens Advice by **name only, no link** (P6).
 5. **Scam watch.** Calm state: shield-check icon, "Nothing unusual this month". Flagged state: `FlagCard` with the severity word, plain explanation from `text`, the `reasons[]` as a short bulleted list, and a fixed line "You do not have to do anything. Your helper can talk it through with you." Scam flags inform, never block or demand (P4).
 6. **Since your last visit.** Helper name, note text, date. Empty state: "Nothing new since we last spoke."
-7. **Ask a question.** The same options as the tear-off slip, as large radio/checkbox tiles (`ticks` list from C5) plus a textarea. Submit creates a case (`POST /cases`, source `hub_visit` in helper context else `counter_verbal`; Margaret solo = `hub_visit`... confirm in section 7). Success shows "Thank you. Priya or a colleague will reply by letter." (copy from backend `ask.text`).
+7. **Ask a question.** The same options as the tear-off slip, as large radio/checkbox tiles (`ticks` list from C5) plus a textarea. Submit creates a case (`POST /cases`, source `hub_visit` in helper context else `counter_verbal`; Margaret solo = `hub_visit`... confirm in section 7). Success shows "Thank you. Daria or a colleague will reply by letter." (copy from backend `ask.text`).
 
 Every section has a header row: title left, `ReadAloudButton` right. `GuardrailBadge` (F6.4) never appears on Margaret role.
 

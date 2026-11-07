@@ -96,7 +96,7 @@ export function QuestionForm({ customerId, source, onAsked }: { customerId: stri
 
   if (done)
     return (
-      <p className="ask-done" role="status"><Icon name="check-circle" size={32} />Thank you. Priya or a colleague will reply by letter.</p>
+      <p className="ask-done" role="status"><Icon name="check-circle" size={32} />Thank you. Daria or a colleague will reply by letter.</p>
     )
 
   const submit = async (e: FormEvent) => {

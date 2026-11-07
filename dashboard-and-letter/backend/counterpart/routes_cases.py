@@ -33,7 +33,7 @@ class CaseIn(BaseModel):
 
 class NoteIn(BaseModel):
     note: str = Field(min_length=1, max_length=2000)
-    helper: str = "Priya"
+    helper: str = "Daria"
 
 
 class DraftIn(BaseModel):
@@ -41,7 +41,7 @@ class DraftIn(BaseModel):
 
 
 class ApproveIn(BaseModel):
-    helper: str = "Priya"
+    helper: str = "Daria"
 
 
 @router.get("/cases")

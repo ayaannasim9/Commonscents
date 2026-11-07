@@ -124,7 +124,7 @@ All deterministic except where marked LLM.
   "suggestion": { "text_hint": "save for January heating", "amount": 20 },
   "flags": [],
   "since_last_visit": {
-    "helper": "Priya",
+    "helper": "Daria",
     "note": "Set up heating pot, £20/month"
   },
   "cash_blind_spot": true
@@ -243,7 +243,7 @@ Everything held about Margaret and an access log. Printable. Visible to Margaret
 
 1. Raw statement next to Margaret's letter, then flip to the shared dashboard: same story, words vs visuals.
 2. Click "Inject scam transfer" → letter and dashboard scam watch both change, an urgent case appears in the queue.
-3. Open a slip case ("Can I afford a new boiler?") → the shared dashboard opens with the helper panel. "This is what Margaret and Priya look at together at the counter." Type a note, draft reply, approve.
+3. Open a slip case ("Can I afford a new boiler?") → the shared dashboard opens with the helper panel. "This is what Margaret and Daria look at together at the counter." Type a note, draft reply, approve.
 4. Click "Next month" → letter and dashboard both show "Since your last visit" with the note.
 5. Ten seconds on What We Know.
 6. Close: "We didn't make Margaret go digital. We gave her and the people around her the same clear picture, on paper and on screen."

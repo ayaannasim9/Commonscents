@@ -75,7 +75,7 @@
     },
     "flags": [],
     "since_last_visit": {
-      "helper": "Priya",
+      "helper": "Daria",
       "note": "Set up heating pot, £20 a month",
       "date": "2026-12-01"
     },
@@ -105,7 +105,7 @@
     {
       "id": "idea",
       "title": "One idea",
-      "text": "Keep adding £20 a month to your heating pot, just as you agreed with Priya. It is your choice. Free, independent help is available from MoneyHelper and Citizens Advice.",
+      "text": "Keep adding £20 a month to your heating pot, just as you agreed with Daria. It is your choice. Free, independent help is available from MoneyHelper and Citizens Advice.",
       "optional": true
     },
     {
@@ -117,12 +117,12 @@
     {
       "id": "since_visit",
       "title": "Since your last visit",
-      "text": "Priya agreed with you: set up heating pot, £20 a month."
+      "text": "Daria agreed with you: set up heating pot, £20 a month."
     },
     {
       "id": "ask",
       "title": "Ask a question",
-      "text": "If you have a question, tick a box on the slip or ask your helper on Tuesday. Priya or a colleague will reply by letter."
+      "text": "If you have a question, tick a box on the slip or ask your helper on Tuesday. Daria or a colleague will reply by letter."
     }
   ]
 }
