@@ -245,7 +245,8 @@
     "description": "Understand what comes in, what goes out and how to take the next step.",
     "units": [
       "Find your starting point",
-      "Build a routine"
+      "Build a routine",
+      "Protect yourself from scams"
     ],
     "flexible": true,
     "lessons": [
@@ -466,6 +467,74 @@
             ],
             "correct_index": 2,
             "explanation": "A clear record helps you follow up and check whether the agreed change happened."
+          }
+        ]
+      },
+      {
+        "id": "own-scams",
+        "title": "Stop, check and protect your money",
+        "description": "Practise spotting suspicious calls, messages and investment offers.",
+        "reading_cards": [
+          "A caller says they are from your bank and tells you to move money to a “safe account”. Stop. Do not make the transfer. End the call and contact your bank using a number on your card or statement, or its official app.",
+          "A familiar number on the screen does not prove who is calling. If you are checking a suspicious landline call, use a different phone if possible so the caller cannot keep the same line open. Never give an unexpected caller your PIN, password or one-time security code.",
+          "Someone offering to “fix” your computer or help with an investment may ask you to install software or share your screen. Do not give an unexpected caller remote control of a device. They could see information or operate your bank account.",
+          "Be cautious about guaranteed high returns, urgency or instructions to keep an offer secret. For financial services, check the FCA Firm Checker independently and use the contact details it lists. A genuine firm’s name can be copied; authorisation is not a guarantee that an investment is suitable or cannot lose money.",
+          "If you have sent money or shared details, contact your bank promptly through a trusted route. If a device may be under someone else’s control, use another trusted device or phone. Keep messages and payment details. Scams can happen to anyone: you deserve help, not blame."
+        ],
+        "checklist": [
+          "Keep a trusted bank contact number somewhere you can find it without opening a message link.",
+          "Agree with yourself that an unexpected request for money or security codes can wait while you check.",
+          "If you have already acted, contact your bank promptly and keep relevant messages and transaction details."
+        ],
+        "sources": [
+          {
+            "title": "FCA · Banking and online account scams",
+            "url": "https://www.fca.org.uk/consumers/banking-online-account-scams"
+          },
+          {
+            "title": "Age UK · Phone scams",
+            "url": "https://www.ageuk.org.uk/information-advice/money-legal/scams-fraud/phone-scams/"
+          },
+          {
+            "title": "FCA · Screen-sharing scams",
+            "url": "https://www.fca.org.uk/consumers/screen-sharing-scams"
+          },
+          {
+            "title": "FCA · Protect yourself from scams",
+            "url": "https://www.fca.org.uk/consumers/protect-yourself-scams"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "A caller claiming to be your bank says to transfer your savings to a “safe account”. What should you do?",
+            "options": [
+              "End the call and contact your bank using a trusted number",
+              "Transfer a small amount first to test the account",
+              "Follow the instructions because the caller knows your name"
+            ],
+            "correct_index": 0,
+            "explanation": "Do not move money on an unexpected caller’s instructions. Verify through a trusted route; names and caller numbers can be imitated."
+          },
+          {
+            "prompt": "An unexpected investment caller asks you to install software so they can control your computer. What is the safer response?",
+            "options": [
+              "Install it but hide your bank card",
+              "Decline, end the contact and independently check the firm",
+              "Allow access as long as they promise not to open your bank"
+            ],
+            "correct_index": 1,
+            "explanation": "Remote access can let someone see private information or operate accounts. Do not grant it to an unexpected caller."
+          },
+          {
+            "prompt": "You have already shared a code and notice an unfamiliar payment. What should you do next?",
+            "options": [
+              "Wait to see if the money comes back",
+              "Pay someone who promises a guaranteed recovery",
+              "Contact your bank promptly through a trusted route and keep the evidence"
+            ],
+            "correct_index": 2,
+            "explanation": "Act promptly using a trusted device or phone if yours may be compromised. You deserve support; do not let embarrassment delay asking for help."
           }
         ]
       }

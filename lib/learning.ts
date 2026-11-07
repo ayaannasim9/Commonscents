@@ -15,6 +15,6 @@ export async function loadLearning(): Promise<LearningState> {
     if (!lessons.data?.length || !journeys.data?.length) throw new Error('Run the supplied migrations to load your learning journeys.');
     return { lessons: lessons.data, journeys: journeys.data, activeJourney: learner.data.active_journey, progress: summarize(completions.data ?? []), error: null };
   } catch (e) {
-    return { lessons: [], journeys: [], activeJourney: 'university', progress: {completed: [], xp: 0, streak: 0, todayXp: 0}, error: e instanceof Error ? e.message : 'Could not connect to Supabase.' };
+    return { lessons: [], journeys: [], activeJourney: 'independent', progress: {completed: [], xp: 0, streak: 0, todayXp: 0}, error: e instanceof Error ? e.message : 'Could not connect to Supabase.' };
   }
 }

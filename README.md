@@ -1,6 +1,6 @@
 # Commonscents learning module
 
-Local financial education prototype using Next.js, React, TypeScript, Tailwind CSS and Supabase PostgreSQL. Includes four UK life-situation journeys with 16 lessons and 48 scenario questions, practical checklists, source links, server-graded quizzes and persistent progress. The six original foundation lessons remain in the database to preserve earlier progress. No authentication or browser persistence.
+Local financial education prototype using Next.js, React, TypeScript, Tailwind CSS and Supabase PostgreSQL. Includes four UK life-situation journeys with 17 lessons and 51 scenario questions, practical checklists, source links, server-graded quizzes and persistent progress. The six original foundation lessons remain in the database to preserve earlier progress. No authentication or browser persistence.
 
 ## Start
 
@@ -58,6 +58,14 @@ npm run db:deploy
 
 Add a new migration for each change; do not rewrite migrations already applied to shared environments. `npm test` replays every migration in filename order against an isolated PGlite database. For full Supabase verification, replay against the optional local stack as well. CLI state in `supabase/.temp/` and credentials are ignored by Git.
 
+## Accessible starting guides and scam protection
+
+The default journey for new learners is `independent` (Managing money for the first time). Migration `202611070003_accessible_money_basics.sql` also switches the demo learner to it once, preserving completions and XP. Later explicit journey choices still persist.
+
+`content/money-guide.json` contains a tailored introduction for every journey plus 18 plain-English money terms with examples and source links. The definitions are educational information, not product recommendations. All paths expose the same `own-scams` lesson, stored once under the independent journey; completing it from any path awards XP only once and counts towards the independent path. The independent journey has five lessons; other paths have four. Its final unit contains one lesson, so denominators are dynamic.
+
+The interface uses larger default reading text, native expandable explanations, labelled search, visible focus, reduced-motion support and a session-only larger-text toggle. Lesson reading can be revisited with Previous explanation. Test with older learners and assistive technology before public release; automated checks are not a usability certification.
+
 ## UK learning content
 
 `content/journeys.json` is the editable content reference for the UK journeys. The immutable database snapshot is `supabase/migrations/202611070002_uk_journeys.sql`. Future published content edits must be delivered in a new migration; editing JSON alone does not update Supabase. `lib/journey-preview.ts` contains public metadata only, never quiz answers.
@@ -70,7 +78,7 @@ The initial migration was applied in the SQL Editor. The journeys migration was 
 npx --no-install supabase db query --remote --file supabase/migrations/202611070002_uk_journeys.sql
 ```
 
-Both migrations are already applied to the currently linked project. Do not rerun them there. This SQL API route does not populate the CLI migration ledger. Before the next `db:deploy`, verify the deployed schema and reconcile both applied versions (`202611070001`, `202611070002`) using Supabase migration history repair once database connectivity works. Fresh environments can replay the migration files in order with the normal CLI workflow.
+All three migrations (including `202611070003_accessible_money_basics.sql`) are already applied to the currently linked project. Do not rerun them there. This SQL API route does not populate the CLI migration ledger. Before the next `db:deploy`, verify the deployed schema and reconcile the applied versions (`202611070001`, `202611070002`, `202611070003`) using Supabase migration history repair once database connectivity works. Fresh environments can replay the migration files in order with the normal CLI workflow.
 
 ## Architecture
 
