@@ -3,15 +3,13 @@
     "id": "MRG-4471",
     "name": "Margaret",
     "age": 81,
+    "archetype": "elderly",
+    "tagline": "Gets a letter, not an app.",
     "bank": "NatWest",
     "hub_day": "Tuesday",
-    "trusted_person": {
-      "name": "Sarah",
-      "relation": "daughter",
-      "level": "alerts_only"
-    },
     "preferences": {
       "large_print": true,
+      "read_aloud_default": false,
       "language": "en"
     }
   },
@@ -55,12 +53,5 @@
       "role": "banker",
       "what": "Looked at your dashboard"
     }
-  ],
-  "trusted_person": {
-    "name": "Sarah",
-    "relation": "daughter",
-    "can_see": [
-      "alerts"
-    ]
-  }
+  ]
 }

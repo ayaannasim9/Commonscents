@@ -16,7 +16,7 @@ Cross-references use section IDs: `C#` = shared contract, `B#` = backend, `F#` =
 | 0.4 | Layout: `backend/` (FastAPI) and `frontend/` (React + Vite + TS), one start script (`make dev`). |
 | 0.5 | LLM: live Claude + on-disk cache + templated fallback if the API fails. Guardrails run on every output regardless of source. |
 | 0.6 | PDF: WeasyPrint, HTML template shared with the on-screen letter preview. Check pango installs on WSL early (B7). |
-| 0.7 | Auth: role switcher only (Margaret / Helper / Family). No login. |
+| 0.7 | Auth: role switcher only (**Customer / Helper**). No login. |
 | 0.8 | Margaret banks with **NatWest** (CLAUDE.md says Lloyds; change `persona.bank` and all mock strings). |
 | 0.9 | UI styled NatWest purple + white, **calm paper-like** character. Letter itself has no logo/links (P6). |
 | 0.10 | Realistic income: State Pension every 4 weeks (some months have two payments) plus small monthly work pension. |
@@ -24,6 +24,8 @@ Cross-references use section IDs: `C#` = shared contract, `B#` = backend, `F#` =
 | 0.12 | Equal weight to Margaret-facing screens (calm, accessible) and a judge-facing demo page (`/demo`). |
 | 0.13 | Dashboard: tablet landscape, **one scrolling page**, sections in letter order (C2.3). Helper panel docks right. |
 | 0.14 | Run the `web-quality-skills-accessibility` skill (WCAG 2.2) on the finished frontend. |
+| 0.15 | **Family alerts and the trusted person are out of scope.** No `family` role, no `/family` page, no `/family-alerts` endpoint, no `trusted_person` in the persona or contract, no `trusted_person` case source. CLAUDE.md principle 5 is dropped. |
+| 0.16 | **Six personas, one product** (see `personas.md`): Margaret plus five more. The UI, letter template, thresholds and guardrails are identical; **only the generated transaction data differs**. A persona picker on the demo page switches the customer. Margaret stays the hero. |
 
 Open items needing a human answer are collected in section 7.
 
@@ -72,10 +74,10 @@ All money in API responses is **whole pounds as integers** (P1, conventions): th
 headline_status : "good" | "heads_up" | "attention"
 forecast_status : "ok" | "warn" | "short"
 flag_severity   : "info" | "medium" | "high"
-role            : "margaret" | "helper" | "family"
+role            : "customer" | "helper"
 helper_role     : "banker" | "post_office" | "phone"
 case_status     : "new" | "prepared" | "with_helper" | "draft_ready" | "approved" | "closed"
-case_source     : "slip_post_office" | "slip_post" | "counter_verbal" | "hub_visit" | "phone" | "trusted_person" | "system_flag"
+case_source     : "slip_post_office" | "slip_post" | "counter_verbal" | "hub_visit" | "phone" | "system_flag"
 urgency         : "high" | "normal"
 case_category   : "scam_worry" | "afford_purchase" | "bill_query" | "payment_query" | "general"
 event           : "scam_transfer" | "forgotten_subscription" | "price_rise"
@@ -126,7 +128,8 @@ C2.3 **Section order is fixed and identical to the letter**: headline, last_mont
 ### C3. Customers, transactions, events, demo
 
 ```
-GET  /customers/{id}                 -> { id, name, age, bank, hub_day, trusted_person{name,relation,level}, preferences{large_print,language} }
+GET  /personas                       -> [{ id, name, age, archetype, tagline }]     # the six personas, see personas.md
+GET  /customers/{id}                 -> { id, name, age, archetype, tagline, bank, hub_day, preferences{large_print,read_aloud_default,language} }
 GET  /customers/{id}/transactions    -> { month, transactions:[{id,date,time|null,description,amount,channel}] }   # amount signed pounds, 2dp, as in CLAUDE.md
 POST /customers/{id}/events          { "event": "<event enum>" } -> { facts_version, new_flags:[flag], new_case_id|null }
 POST /demo/next-month                -> { as_of }       # advances as_of by one month, keeps history stable
@@ -192,17 +195,14 @@ POST /cases/{id}/approve             { helper:"Priya" } -> case (status approved
 
 Approval rules (P3): `approve` returns **409** unless `status=="draft_ready"` and the latest draft passed guardrails.
 
-### C6. Family and transparency
+### C6. Transparency
 
-```
-GET /customers/{id}/family-alerts -> { alerts:[{ id, at, message, reason_category }] }
-```
-`message` example: "Margaret may need a check-in today: unusual payment." `reason_category` ∈ `unusual_payment | missed_visit | open_urgent_case`. **No amounts, balances, names of payees or question text** (P5). The backend must make that structurally impossible (separate pydantic model with only these fields).
+Family alerts and the trusted person were removed from scope (section 0.15).
 
 ```
 GET /customers/{id}/what-we-know -> {
   profile:{…}, data_held:[{ label, description, count }],
-  access_log:[{ at, who, role, what }], trusted_person:{ name, relation, can_see:["alerts"] }
+  access_log:[{ at, who, role, what }]
 }
 ```
 
@@ -210,7 +210,9 @@ GET /customers/{id}/what-we-know -> {
 
 Minimum set, names fixed so both sides agree:
 
-**Written** (in `contract/fixtures/`, numbers verified consistent): `customer.json`, `transactions.nov.json`, `transactions.nov.scam.json` (adds the £2,000 payment at 21:14), `facts.clean.json`, `dashboard.clean.json`, `dashboard.scam.json` (high flag, `attention`, urgent), `dashboard.guardrail-caught.json`, `dashboard.after-note.json` (**as_of 2027-01-01**, December is the last month, `since_visit` filled), `cases.list.json` (urgent scam case + boiler case, summary form), `case.boiler.prepared.json`, `case.boiler.draft-ready.json`, `case.boiler.approved.json`, `case.scam.prepared.json`, `family-alerts.json`, `family-alerts.empty.json`, `what-we-know.json`, `letter.draft.html`.
+**Per-persona fixtures (new, to be written by the backend session from real generator output once `personas.md` data exists):** `personas.json` (the `GET /personas` list) and `dashboard.<id>.json` for `jayden`, `amira`, `daniel`, `sam`, `ravi` (clean state, November 2026). Margaret's existing fixtures stay as is.
+
+**Written** (in `contract/fixtures/`, numbers verified consistent): `customer.json`, `transactions.nov.json`, `transactions.nov.scam.json` (adds the £2,000 payment at 21:14), `facts.clean.json`, `dashboard.clean.json`, `dashboard.scam.json` (high flag, `attention`, urgent), `dashboard.guardrail-caught.json`, `dashboard.after-note.json` (**as_of 2027-01-01**, December is the last month, `since_visit` filled), `cases.list.json` (urgent scam case + boiler case, summary form), `case.boiler.prepared.json`, `case.boiler.draft-ready.json`, `case.boiler.approved.json`, `case.scam.prepared.json`, `what-we-know.json`, `letter.draft.html`.
 
 The fixtures tell one story: November 2026, money in £1,280, left over £230; December comfortable (£990 spare, two pension payments), January tight (£15 spare, TV licence £175), February fine (£348 spare). With the scam: -£1,770 left over, headline `attention`. The after-note fixture is the same customer one month later. `facts_version` values in fixtures are illustrative.
 
@@ -221,7 +223,7 @@ The fixtures tell one story: November 2026, money in £1,280, left over £230; D
 Follows CLAUDE.md build order. All paths under `backend/counterpart/`.
 
 - **B0 Scaffold.** `pyproject.toml` (fastapi, uvicorn, pydantic 2, anthropic, weasyprint, pytest), app factory, CORS for Vite (5173), SQLite via plain `sqlite3`, `GET /health`. Export OpenAPI to `contract/openapi.json` (script).
-- **B1 Persona + generator + merchants** (CLAUDE.md steps 1). Seeded per-month RNG (`Random(f"{seed}-{year}-{month}")`) so history is stable when "next month" appends. Transaction stores `amount_pence:int`, exposes signed pounds. Optional `time`. Demo end month is November 2026. Merchant lookup returns `plain_name, category, cadence` (`4weekly|monthly|annual|weekly|seasonal|average|oneoff`); unknown descriptions go to the LLM categoriser (B4) and are cached. Persona bank = NatWest. Income model per 0.10. TV licence in January (annual). Events per `event` enum, applied with month; `forgotten_subscription` recurs monthly after first hit; `price_rise` bumps water 18%.
+- **B1 Persona + generator + merchants + six personas.** Implement `PersonaSpec` and all six personas from `personas.md` (income, bills, variable spend, annual items, seeded events and case); persona differences are data only, no persona-specific code paths. Add the new merchants listed in `personas.md`. `print_month.py --persona <id>` for human review of each. Remove `trusted_person` from the persona model. Original B1 scope: (CLAUDE.md steps 1). Seeded per-month RNG (`Random(f"{seed}-{year}-{month}")`) so history is stable when "next month" appends. Transaction stores `amount_pence:int`, exposes signed pounds. Optional `time`. Demo end month is November 2026. Merchant lookup returns `plain_name, category, cadence` (`4weekly|monthly|annual|weekly|seasonal|average|oneoff`); unknown descriptions go to the LLM categoriser (B4) and are cached. Persona bank = NatWest. Income model per 0.10. TV licence in January (annual). Events per `event` enum, applied with month; `forgotten_subscription` recurs monthly after first hit; `price_rise` bumps water 18%.
 - **B2 Pipeline** (step 2, no LLM): `summarise`, `forecast` (cadence-driven, see rules below), `anomalies`, `facts`. Unit tests on every number. Print a month of transactions and the facts JSON for human review before B3.
   - Forecast rules: 4weekly projects from last payment +28 days; monthly present if present same month last year (or new this year); annual only if present same month last year; weekly counts weekdays in the month; seasonal uses same month last year; average uses last 3 months; `oneoff` ignored. Status: `short` if spare < 0, `warn` if spare < £100 or extra ≥ £50, else `ok`. Reason = largest positive driver vs her 12-month per-item average (or an income dip). Thresholds are tunable and tested.
   - Anomalies: `unusual_payment` = new payee + amount > 3× her median outgoing (+ unusual hour 21:00–07:00 adds a reason). `new_regular_payment` = subscription-category payee first seen within 2 months. `price_rise` = recurring bill up ≥ 15%.
@@ -229,11 +231,12 @@ Follows CLAUDE.md build order. All paths under `backend/counterpart/`.
 - **B3 Guardrails.** `check_numbers(text, facts)` (every £ amount in text must be in facts numbers or in £ amounts inside facts strings; tolerate rounding to the pound) and `check_banned(text)` (URLs, phone numbers, "click", "verify your details", "urgent action", "QR"). Run on every customer-facing draft; failures logged to a `guardrail_events` table and returned in `guardrail` (C2). Retry LLM up to 2 times, then raise `GuardrailFailure`; the API returns the templated fallback marked `source:"fallback"`. Unit tests cover the "£2,400 hallucination" demo case.
 - **B4 LLM layer.** One client wrapper (`llm/client.py`) with: live call, disk cache keyed by (prompt hash, model), `LLM_MODE=live|cached|stub`. One `prompts.py`. Writers: letter sections (structured output per C2.sections), triage, case prep, reply drafter, categoriser fallback. Deterministic template writer used as the stub/fallback so the whole app works offline. Model and key from `ANTHROPIC_MODEL`, `ANTHROPIC_API_KEY`.
 - **B5 API: customers, facts, dashboard, events, demo, letter HTML** (C2–C4). `dashboard` and `letter` both read one `generate_sections(facts)` result so they cannot disagree (P9). Cache sections per `facts_version`.
-- **B6 Cases** (C5): model, service, routing (urgent -> phone team due today; else banker on next hub day; missed visit + open case -> family nudge), triage, case prep (scenario maths in code, e.g. boiler: spare vs typical quote ranges are **hard-coded illustrative ranges labelled as such**, never from the LLM), notes, draft-reply, approve gate (409 rule), access logging (P7). On close, the helper note feeds `since_last_visit` at the next `next-month`.
-- **B7 PDF, family alerts, what-we-know** (C4, C6). WeasyPrint spike on day one; if pango fails on WSL, fall back to browser print CSS and drop `/letter.pdf` to a stretch goal (tell frontend).
+- **B6 Cases** (C5): model, service, routing (urgent -> phone team due today; else banker on next hub day), triage, case prep (scenario maths in code, e.g. boiler: spare vs typical quote ranges are **hard-coded illustrative ranges labelled as such**, never from the LLM), notes, draft-reply, approve gate (409 rule), access logging (P7). On close, the helper note feeds `since_last_visit` at the next `next-month`.
+- **B7 PDF, what-we-know** (C4, C6). Family alerts are out of scope (0.15). WeasyPrint spike on day one; if pango fails on WSL, fall back to browser print CSS and drop `/letter.pdf` to a stretch goal (tell frontend).
+- **B8.1 Multi-customer.** All state is keyed by customer id: events, cases, access log, letters, `facts_version`. `GET /personas`. `POST /demo/reset` resets all six. Each persona seeds its own case (`personas.md`). `GET /cases?customer=<id>` filters.
 - **B8 Demo controls.** `next-month`: advance `as_of`, close approved cases, push their notes into `since_last_visit`, regenerate sections. `reset`: wipe state, re-seed. Seed one pre-baked normal case ("Can I afford a new boiler?", `slip_post_office`) so the demo script step 3 works without typing.
 - **B8.2** Slip tick list = C5 `ticks`.
-- **B9 Contract tests.** For every fixture in C7, a test that the live endpoint (in stub mode with the same scenario) returns the same key set and types. Plus: P5 test (family response has no amounts), P6 test (letter HTML has no `http`, no `<a href>`, no digits resembling phone numbers), P9 test (every figure in dashboard text appears in letter HTML).
+- **B9 Contract tests.** For every fixture in C7, a test that the live endpoint (in stub mode with the same scenario) returns the same key set and types. Plus: persona tests from `personas.md` (all six produce guardrail-clean letters; Amira's regular transfer abroad is never flagged; identical code path for every persona), P6 test (letter HTML has no `http`, no `<a href>`, no digits resembling phone numbers), P9 test (every figure in dashboard text appears in letter HTML).
 - **B10 Polish.** `make dev`, `make test`, `make reset`, README.
 
 Definition of done for backend: steps 1–6 pass with `LLM_MODE=stub`; live LLM path works with the key; fixtures validated.
@@ -253,11 +256,11 @@ Routes:
 | Route | Screen | Roles |
 |---|---|---|
 | `/` | redirects to `/dashboard` | all |
-| `/dashboard` | F3 Shared dashboard | margaret, helper |
+| `/dashboard` | F3 Shared dashboard for the currently selected persona | customer, helper |
 | `/queue` | F5 Helper queue | helper |
 | `/cases/:id` | F3 dashboard + F4 helper panel | helper |
 | `/demo` | F6 Statement vs letter | helper (judge page, always reachable) |
-| `/family` | F7 Family alert | family |
+| `/personas` | F7 Persona gallery (judge-facing) | helper |
 | `/what-we-know` | F8 What we know | all |
 | `/letter` | F9 Printable letter preview | all |
 
@@ -287,13 +290,13 @@ Accent pink/teal from NatWest's wider palette may appear **only** on the demo pa
 
 **Layout rules.** Max content width 960px centred; helper panel adds a fixed 360px right column (page does not reflow, content column stays the same width; below 1100px the panel becomes a bottom drawer). Spacing scale 8/16/24/40/64. Sections separated by 64px and a 1px `--line` rule; each section is a `<section aria-labelledby>`. Nothing animates except focus and a 150ms colour change; honour `prefers-reduced-motion`. Zero layout shift: reserve heights, skeletons match final sizes.
 
-**Components** (build once, reuse): `AppBar` (brand mark text "Counterpart", role switcher, large-print toggle, helper role badge), `Section` (title, read-aloud button, content), `StatusBadge` (icon + word + colour), `MoneyBar` (CSS-only horizontal bar, label left, £ right), `MonthCard`, `FlagCard`, `ReadAloudButton`, `GuardrailBadge`, `CaseRow`, `HelperPanel`, `PhoneFrame`, `QuestionForm`, `Disclaimer` footer ("Prototype, not an official NatWest product").
+**Components** (build once, reuse): `AppBar` (brand mark text "Counterpart", role switcher, large-print toggle, helper role badge), `Section` (title, read-aloud button, content), `StatusBadge` (icon + word + colour), `MoneyBar` (CSS-only horizontal bar, label left, £ right), `MonthCard`, `FlagCard`, `ReadAloudButton`, `GuardrailBadge`, `CaseRow`, `HelperPanel`, `QuestionForm`, `PersonaCard`, `Disclaimer` footer ("Prototype, not an official NatWest product").
 
 **Read aloud.** `speechSynthesis`, `en-GB`, 0.9 rate. Button label "Read this out loud" with a speaker icon, toggles to "Stop". Reads the section's `text` string, not the DOM, so it is exactly the letter words. If unsupported, hide the button and keep nothing broken.
 
 ### F2. App shell and roles
 
-Top bar: product name left; role switcher (segmented control: **Margaret | Helper | Family**) and "Bigger text" toggle right. Role is stored in `localStorage` (try/catch) and is just a UI switch (0.7). Margaret role hides `/queue`, helper panel, demo link. Helper role shows a "You are signed in as Priya, Community banker" strip beneath the bar (role from `helper_role`). Footer: disclaimer plus link to What we know. Skip-to-content link first. Document `lang="en-GB"`, one `<h1>` per route.
+Top bar: product name left; role switcher (segmented control: **Customer | Helper**; the customer label shows the selected persona's first name, e.g. "Margaret") and "Bigger text" toggle right. Role is stored in `localStorage` (try/catch) and is just a UI switch (0.7). Customer role hides `/queue`, helper panel, demo link. Helper role shows a "You are signed in as Priya, Community banker" strip beneath the bar (role from `helper_role`). Footer: disclaimer plus link to What we know. Skip-to-content link first. Document `lang="en-GB"`, one `<h1>` per route.
 
 ### F3. Shared dashboard (hero, `/dashboard` and inside `/cases/:id`)
 
@@ -337,15 +340,16 @@ Judge-facing, this is where the pink/teal accent from the NatWest palette is all
 2. Toolbar buttons: **Inject scam transfer**, **Inject forgotten subscription**, **Inject price rise**, **Next month**, **Regenerate**, **Reset demo**. Each shows an in-flight state and, on success, briefly highlights (outline, 1s, reduced-motion safe) the changed statement rows and the Scam watch section.
 3. A thin status strip: `as_of` date, `LLM mode` (live/cached/stub), `facts_version`.
 4. **Guardrail badge.** When `guardrail.caught` is true, a small badge "Guardrail caught this" (shield icon) appears above the affected letter/dashboard text; clicking opens a popover listing `guardrail.events[]` ("£2,400 was not in the facts, so it was regenerated"). Visible on `/demo` and for helpers on drafts; never to Margaret.
+6. **Persona picker.** A compact segmented control or menu in the toolbar: Margaret, Jayden, Amira, Daniel, Sam, Ravi (first name plus archetype label, from `GET /personas`). Choosing one swaps the statement pane, letter and dashboard to that customer, resets nothing, and keeps the active tab. Event buttons act on the selected customer. Full gallery in F7.
 5. Side-by-side "same numbers" affordance: a toggle "Highlight figures" outlines every £ amount in both panes, proving P9 visually (pure CSS on the rendered strings).
 
-### F7. Family alert (`/family`)
+### F7. Persona gallery (`/personas`)
 
-Centre-stage phone frame (CSS-drawn, 360x720) with a lock-screen style SMS bubble: sender "Counterpart", text from `alerts[0].message`, time. Nothing else on the phone. Beside it (outside the frame) a small caption for judges: "This is everything Sarah sees. No balances, no transactions, no question content." Empty state: phone shows "No alerts today." The page polls and updates when a new alert appears.
+Judge-facing page that shows the same product for six different people (`personas.md`). A 3x2 grid of persona cards, each a button: first name, age, archetype label (e.g. "Recent migrant"), tagline, and, read from that persona's own `GET /customers/{id}/dashboard`, the status badge and the headline sentence (verbatim, never recomputed). Selecting a card sets the active customer (stored in `localStorage`, try/catch) and opens `/dashboard` for them. A "Back to the demo" link returns to `/demo`. Nothing else differs: the dashboard, helper panel, queue, letter and What we know all re-render from the selected customer's data (P9, P10). Archetype labels appear **only here and on the F6.6 picker**, never on the customer-facing dashboard (personas.md, "Display copy"). Cards are real buttons with accessible names that include the archetype and headline status. Loading state: six skeleton cards with fixed height.
 
 ### F8. What we know (`/what-we-know`)
 
-Read-mode page, printable (`@media print`: hide app bar/role switcher, black on white, 12pt, page breaks between sections). Sections: "About you" (profile), "What we hold" (`data_held` list with plain descriptions and counts), "Who has looked" (`access_log` as a simple list: date, who, why), "Who gets alerts" (trusted person, what they can and cannot see). "Print this page" button. Visible to margaret and helper.
+Read-mode page, printable (`@media print`: hide app bar/role switcher, black on white, 12pt, page breaks between sections). Sections: "About you" (profile), "What we hold" (`data_held` list with plain descriptions and counts), "Who has looked" (`access_log` as a simple list: date, who, why),. "Print this page" button. Visible to margaret and helper.
 
 ### F9. Letter preview (`/letter`, also embedded in F6)
 
@@ -359,7 +363,7 @@ Renders `letter.html` from the backend inside a paper-styled container (A4 ratio
 - Targets >= 48x48px, 8px apart. Forms have visible labels, errors in text and `aria-live="polite"`.
 - Respect `prefers-reduced-motion`, `prefers-contrast`; support 200% zoom and 400% reflow without horizontal scroll (except the F6 statement pane).
 - Read-aloud on every F3 section (F1). Screen-reader pass with NVDA/VoiceOver on F3 and F4.
-- Dynamic updates (new case, alert) announced politely via a live region, never stealing focus.
+- Dynamic updates (new case) announced politely via a live region, never stealing focus.
 
 ### F11. Frontend definition of done
 
@@ -377,7 +381,7 @@ All routes work against mock fixtures with every C7 fixture exercised; then pass
 | F4 helper panel | B6 briefing, draft-reply, approve (409 rule) | C5 |
 | F5 queue | B6 routing, ordering | C5 |
 | F6 demo | B5 events, B8 next-month/reset, B3 guardrail events | C3, C2.guardrail |
-| F7 family | B7 family model (P5 test in B9) | C6 |
+| F7 persona gallery, F6.6 picker | B1 six personas, B8.1 multi-customer, `GET /personas` | C3 |
 | F8 what we know | B6 access logging (P7), B7 | C6 |
 | F9 letter | B5 letter HTML, B7 PDF | C4 |
 
@@ -390,7 +394,7 @@ All routes work against mock fixtures with every C7 fixture exercised; then pass
 3. **M2 B3–B5, F3 + F6 (statement vs letter) on fixtures.** First real integration: `VITE_API_MODE=live` against `LLM_MODE=stub`. Demo steps 1–2 work.
 4. **M3 B6, F4 + F5.** Demo step 3 works. **Cut line:** if time runs out, stop after this plus B8 next-month (steps 1–6 are the full loop).
 5. **M4 B8 next-month/reset, approval -> since_visit.** Demo step 4.
-6. **M5 B7 + F7 + F8 + F9.** Demo step 5.
+6. **M5 B7 + F7 + F8 + F9.** Demo step 5. Persona gallery (F7) needs backend B1/B8.1 first.
 7. **M6 polish:** live LLM on, rehearsal x3 from `reset`, accessibility pass, disclaimer, fonts self-hosted, offline test (wifi off, `LLM_MODE=cached`).
 
 Commit each milestone to `daria-dashboard-and-letter` with explicit paths (section 1 rules); open one PR to `main` at the end.
@@ -402,7 +406,7 @@ Commit each milestone to `daria-dashboard-and-letter` with explicit paths (secti
 | Step | What happens | Backend | Frontend |
 |---|---|---|---|
 | 1 | Raw statement next to the letter, flip to dashboard: same story | B5 | F6, F3 |
-| 2 | Click **Inject scam transfer**: Scam watch changes in letter and dashboard, urgent case appears, family alert appears | B1, B2, B6, B7 | F6.2, F3.5, F5, F7 |
+| 2 | Click **Inject scam transfer**: Scam watch changes in letter and dashboard, urgent case appears | B1, B2, B6 | F6.2, F3.5, F5 |
 | 3 | Open the boiler case: dashboard + helper panel, note, draft, approve | B6 | F4 |
 | 4 | **Next month**: letter and dashboard both show "Since your last visit" with the note | B8 | F3.6, F6 |
 | 5 | Ten seconds on What we know | B6, B7 | F8 |
@@ -414,12 +418,15 @@ Also show: the guardrail badge once (force a bad number in stub mode with a hidd
 
 ## 7. Open items (need a human)
 
+0. **Persona details (`personas.md`).** Confirm names, ages and the six stories, and whether Jayden, Amira, Daniel, Sam and Ravi each need a seeded boiler-style case or just a short slip question (current plan: one short question each).
+
 1. **NatWest brand specifics.** Confirm exact purple hex and whether to display the NatWest name/mark in the app bar. Recommendation: text "Counterpart" only, no logo, plus the disclaimer.
 2. **Disclaimer wording** in the footer: confirm.
 3. **Margaret solo case source** when she asks a question herself on a home tablet: use `hub_visit`? or add a new `self_service` source? (Adding means updating C1.)
 4. **Boiler scenario numbers** (B6): illustrative cost ranges, who signs them off.
 5. **Are cached LLM outputs committed** to the repo for the offline fallback? Recommended yes (`backend/cache/`), after a clean rehearsal run.
-6. **Impeccable update available** (v4.8.0 vs 4.3.1): not applied; run `npx impeccable update` yourself in a new session if wanted.
+6. **Per-persona reading level / translation.** Out of scope: all personas get the same plain English (reading age about 9). Add later only if you want it.
+7. **Impeccable update available** (v4.8.0 vs 4.3.1): not applied; run `npx impeccable update` yourself in a new session if wanted.
 
 ---
 
@@ -432,3 +439,11 @@ Backend session prompt:
 
 Frontend session prompt:
 > Read `CLAUDE.md`, `PRODUCT.md`, `plan.md` sections 0, 1, C, F, 5, 6, D. You own `frontend/` only; `backend/`, `contract/` and `plan.md` are read-only. Git: commit with explicit paths only (`git add frontend/`), never `-A`/`.`/`commit -a`, never checkout/stash/reset/rebase. Build F0–F3 against `contract/fixtures/` (`VITE_API_MODE=mock`). If you need a contract change, stop and ask me. Use the Impeccable and web-quality accessibility skills; verify contrast of the tokens in F1.
+
+### Round 2 prompts (after family-alert removal and personas)
+
+Backend session:
+> Read `personas.md` and `plan.md` sections 0 (especially 0.15 and 0.16), C3, C6, C7, B1, B7, B8.1, B9. Family alerts and the trusted person are out of scope: remove `trusted_person` from the persona model and any family-alert code or tests, and drop `trusted_person` from What we know. Then implement the six personas as data (`PersonaSpec`, new merchants), make all state keyed by customer id, add `GET /personas` and `GET /cases?customer=`, and show me `print_month.py --persona <id>` output for each persona before writing fixtures. Then write the per-persona dashboard fixtures and `personas.json` into `contract/fixtures/`. Same git rules.
+
+Frontend session:
+> Read `personas.md` and `plan.md` sections 0 (0.15, 0.16), F0, F2, F6, F7, F8. Family alerts are out of scope: remove the Family role (roles are now Customer | Helper) and the `/family` route and any trusted-person UI. Make the active customer id a piece of state (default Margaret, MRG-4471) that every API call uses, add the persona picker (F6.6) and the persona gallery page `/personas` (F7). Build against `contract/fixtures/personas.json` and `dashboard.<id>.json` as they appear (mock mode); until then create local stand-ins under `frontend/src/api/` only. Same git rules.
