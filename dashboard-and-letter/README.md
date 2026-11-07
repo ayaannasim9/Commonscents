@@ -7,6 +7,8 @@ A plain-English monthly letter and one shared dashboard show the same facts. Que
 
 ## Quick start
 
+For the integrated application, use the repository root: `npm install`, `npm run setup:dashboard`, then `npm run dev`, and open http://127.0.0.1:3000. Dashboard and Report share the overview navigation and accessibility controls. The commands below are for the standalone reference application.
+
 You need Python 3.11+, [uv](https://docs.astral.sh/uv/), and Node 20+.
 
 ```bash
@@ -82,9 +84,9 @@ Use **Reset demo** between runs.
 
 ## Troubleshooting
 
-- **Page says it could not load / empty people list:** the backend is not running, or the frontend is in mock mode. Use `make run` (it sets live mode for you).
+- **Page says it could not load / empty people list:** check that the backend is running on port 8000. Use `npm run dev` from the repository root for the integrated app.
 - **`make setup` fails on `uv`:** install it with `curl -LsSf https://astral.sh/uv/install.sh | sh`.
-- **PDF returns an error:** WeasyPrint needs system libraries. On Ubuntu/WSL: `sudo apt install libpango-1.0-0 libpangoft2-1.0-0`. The on-screen letter works without it.
+- **PDF returns an error:** install the portable ReportLab dependency with `npm run setup:dashboard` from the repository root. Final PDFs require approval; preview PDFs are available before approval.
 - **Port already in use:** `lsof -ti:8000 | xargs kill` (or `:5173`).
 - **Old names or data after pulling changes:** run `make reset`, or delete `backend/counterpart.db` and restart.
 - **Live mode shows template wording:** `ANTHROPIC_API_KEY` or `ANTHROPIC_MODEL` is missing or wrong in `.env`, so it fell back to templates.

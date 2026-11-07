@@ -114,7 +114,7 @@ class World:
 
     def letter_pdf(self, cid: str, preview: bool = False) -> bytes:
         """PDF of the customer's latest APPROVED letter (P3). preview=True renders the current draft with a banner."""
-        from weasyprint import HTML  # imported here so the API starts even if pango is missing
+        from .pdf import render_pdf
 
         with self.lock:
             if preview:
@@ -127,7 +127,7 @@ class World:
                 if not r:
                     raise LookupError("No approved letter yet")
                 html = r["html"]
-        return HTML(string=html).write_pdf()
+        return render_pdf(html)
 
     def clear_cache(self) -> None:
         self._sections.clear()

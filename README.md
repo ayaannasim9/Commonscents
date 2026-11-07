@@ -1,54 +1,70 @@
-# Common Cents: Financial Time Travel
+# Commonscents
 
-Most banking tools explain where money went. Common Cents predicts where financial hardship may happen next, and helps people act before it does, in whatever way suits them: app, paper letter, a human helper, or lessons.
+The overview is the application homepage. Its **Learn** tab contains the Supabase-backed learning journeys in the same page. The overview header, navigation, text size, contrast and dark-mode controls are shared across all sections. `/learn` redirects to `/#learn` for older bookmarks.
 
-Built at GreatUniHack 2026 for the **NatWest: AI-Powered Financial Inclusion & Resilience** challenge. All people and figures are made up.
+## Run locally
 
-## Run everything
-
-```bash
-./start.sh
+```sh
+npm install
+npm run setup:dashboard
+npm run dev
 ```
 
-| App | URL | Folder | Owner |
-|---|---|---|---|
-| **Main app (start here)**: onboarding, 5-year timelines, Wrapped, Learn, Support, Report | http://localhost:8001 | `Overview/` | Martins |
-| **ML engine + API + printable report** | http://localhost:8001/docs | `ml/` | Animesh |
-| **Dashboard & letters**: plain-English letter, helper queue, scam watch | http://localhost:5173 | `dashboard-and-letter/` | Daria |
-| **Learning module**: life-situation lessons and quizzes | http://127.0.0.1:3000 | `app/`, `lib/`, `supabase/` | Ayaan |
+Open http://127.0.0.1:3000/. Keep Supabase credentials in `.env.local` using `.env.example` as a template. Never commit credentials. Learning progress uses the existing demo learner; authentication is not implemented.
 
-Needs Python 3.11+ and Node 20+. `start.sh` installs what's missing on first run.
+- `/`: existing overview with integrated Dashboard and Report panels.
+- `/#learn`: four UK life-situation journeys plus the restored 10-lesson Banking basics course, glossary, scam protection and quizzes within the overview.
+- `/api/learn`: server-side Supabase learning API.
 
-### API keys (optional, never commit them)
-- `ml/.env`: `ANTHROPIC_API_KEY=...` turns on Claude-written alerts in the forecast report (rule-based without it).
-- `dashboard-and-letter/.env`: `ANTHROPIC_API_KEY`, `LLM_MODE=live` turns on Claude-written letters (template writer without it).
-- `.env.local` (root): Supabase URL and server key for the learning module (see `LEARNING_MODULE.md`). Without it the module shows a preview.
+The **Future** tab and the forecast report use live output from the ML engine (`ml/`) for three demo customers; the banking connection and support matching are still demonstrations. The original Future and Wrapped examples remain separate from the selected dashboard customer. Its former in-memory learning implementation has been replaced by the learning module.
 
-## How the parts connect
+## Dashboard and monthly letter
 
+Integrated from `daria-dashboard-and-letter` into `overview-learning-integration`. The Dashboard tab includes spending, forecasts, scam watch and questions. Report displays the selected customer's monthly letter with print and PDF previews. Helper view exposes the question queue, case notes, draft replies, approval, six fictional people and demo controls. Nothing is actually posted or sent; the role switch is a demo control, not authentication.
+
+`npm run dev` starts Next on port 3000 and the Python FastAPI service on port 8000 (or reuses an already-running backend). Python 3.11+ is required. Run `npm run dev:web` or `npm run dev:dashboard` to start either separately. The browser calls the same-origin `/api/counterpart/*` proxy. The default template writer requires no AI key.
+
+Learning remains in Supabase. Imported dashboard cases, notes and approvals currently persist in the ignored local SQLite database `dashboard-and-letter/backend/counterpart.db`; they have not been migrated to Supabase. Customer selection and the demo role are held in memory. PDF generation uses ReportLab without native system libraries, preserves the letter's wording and figures, and retains the approval requirement for final PDFs.
+
+The imported components live in `dashboard-and-letter/frontend/src`; `app/components/dashboard-module.tsx` mounts them inside the overview shell. Shared colours, contrast and text sizing apply through `app/dashboard-theme.css`. After editing imported styles or that theme, run `npm run styles:dashboard` to regenerate the scoped stylesheet.
+
+## Source files
+
+Edit `Overview/index.html`, `Overview/styles.css` and `Overview/app.js` for the overview. The homepage renders the HTML shell and mounts the React learning module into its Learn panel; scripts and styles remain editable here. The original `Overview/common-cents.html` and zip are standalone reference snapshots, not the running application.
+
+The learning UI lives in `app/components/`, its integration in `app/components/overview-app.tsx`, and its content in `content/`. `app/learning-integrated.css` scopes learning styles to the module and uses the overview’s theme variables. Learning remains mounted when changing tabs, preserving an in-progress explanation or question.
+
+## Database and verification
+
+SQL migrations remain versioned in `supabase/migrations/`. Migration `202611070004_restore_original_banking.sql` adds the original banking course and exercise metadata without changing existing completions. The existing hosted database was set up by applying those SQL files; reconcile its migration history before using `db:deploy` to avoid replaying them.
+
+```sh
+npm run typecheck
+npm test
+npm run test:dashboard
+npm run build
+# With the local app running:
+npm run test:integration
 ```
-onboarding answers (Overview) ─┐
-                               ▼
-bank transactions ──► ML engine (ml/) ──► 5-year timelines A/B/C ──► Overview Future tab
-(NatWest Open Banking format)  │                                   ► recommendations ("Do this next")
-                               ├──► Claude alerts + 4-page A4 report ─► Overview Report tab
-                               └──► JSON API (/customers/{id}/insights) for other front ends
-```
 
-The Overview app is served by the ML API, and `Overview/ml-bridge.js` swaps its example data for live forecasts. Pick Jordan, Priya or Margaret with the **Demo customer** menu.
+Display controls apply to all sections. The optional starting-point selector recommends a journey without bypassing lesson completion. Banking basics also retains the original four-question knowledge check and four unit guidebooks. Gold Penny, unit milestones, all ten original lessons and the screen/branch guide are adapted from the overview’s original learning experience; progress and grading remain backed by Supabase. Overview onboarding and display preferences remain in memory for the current page session.
 
-## What the ML engine does (`ml/`)
-- **Cashflow forecast**: 1,000 simulated futures per customer (7 days to 12 months) with ranges and confidence
-- **Trained hardship model**: gradient-boosted trees, calibrated, trained on a synthetic population with hidden futures. ROC-AUC **0.949** on unseen customers vs 0.879 for hand-written rules, with per-customer explanations
-- **Trained merchant categoriser** (TF-IDF + logistic regression) for merchants the rules don't know
-- **Upcoming expenses**, **opportunities**
-- **Onboarding answers** (goal, worry, life changes, £500 shock, optional support needs) change the forecast
-- **Action planner**: an optimiser that finds the smallest changes with the biggest risk reduction
-- **Safe-to-spend**, **backtest** (35–77% more accurate than simple baselines), **behaviour signals**, **life-stage** tips
-- **Support preferences** (anxiety, simple language, impulse spending, gambling, bill tracking) change presentation only and are never used in scoring
-- Reads **UK Open Banking v3.1** (NatWest's API format)
 
-Details and full metrics: [`ml/README.md`](ml/README.md). Tests: `cd ml && python3 -m pytest -q tests` (26 passing).
+## Restored original content
 
-## Ethics
-Guidance only: nothing moves money or blocks payments. No protected characteristics are used, and mental health is never inferred. Recommendations under 60% confidence are hidden. Every number Claude writes comes from the models.
+The original GitHub `Overview/app.js` blob is `fa1d4ef5602d21a3d1f9bfb69a398ed92062b284`. Its lesson data is retained unchanged in `content/original/overview-banking.json`. `scripts/restore-banking.py` builds the reviewed course and additive migration, preserving original lesson IDs with a `bank-` prefix, all 30 reading cards and all 30 exercises. Do not edit an already-applied migration; use a new migration for future changes.
+
+Matching and ordering are rendered as labelled selects and move buttons. Their complete answer combinations map to server-graded option indices, so the existing transactional grading and idempotent XP mechanism remain authoritative. Banking basics is flexible; the knowledge check suggests where to start without granting completions or XP.
+
+See `docs/accessibility-review.md` for verified checks and remaining assistive-technology tests. This is not a WCAG conformance certification.
+
+## ML engine (`ml/`)
+
+`npm run dev` also starts the ML engine on http://127.0.0.1:8001 (needs `pip install -r ml/requirements.txt` once). `Overview/ml-bridge.js` connects the Overview to it: pick Jordan, Priya or Margaret with **Demo customer**, then open **Future**.
+
+- **Forecast:** 1,000 Monte Carlo futures per customer (7 days to 12 months), learned from the customer's own spending with seasonality and inflation
+- **Trained hardship model:** calibrated gradient-boosted trees trained on a synthetic population with hidden futures. ROC-AUC 0.949 on unseen customers (rules 0.879), with plain-English explanations per customer
+- **Action planner** (optimiser), **safe-to-spend**, **backtesting**, behaviour signals, life-stage tips, opt-in support preferences (never used in scoring)
+- **Claude-written alerts** (numbers always come from the models) and a 4-page printable A4 report: `http://127.0.0.1:8001/customers/jordan/report`
+- Reads NatWest / UK Open Banking v3.1 data; trained merchant categoriser for unknown merchants
+- `ml/.env` holds `ANTHROPIC_API_KEY` (git-ignored). Tests: `cd ml && python3 -m pytest -q tests`. Details: [`ml/README.md`](ml/README.md)

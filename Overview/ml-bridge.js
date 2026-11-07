@@ -93,7 +93,7 @@
   if (document.readyState !== "loading") init();
   function init() {
     if (inited) return; inited = true;
-    const main = document.querySelector("#main");
+    const main = document.querySelector("#s-future") || document.querySelector("#main");
     const bar = document.createElement("div");
     bar.className = "card";
     bar.style.cssText = "display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin-bottom:1rem";
@@ -111,7 +111,7 @@
     const link = (sel, html) => { const el = document.querySelector(sel); if (el) { const d = document.createElement("div"); d.className = "card"; d.innerHTML = html; el.append(d); } };
     if (!document.querySelector("#learning-root")) link("#s-learn", `<h3 style="margin-top:0">🎓 More lessons</h3><p class="lead">Life-situation journeys with scenario quizzes and progress tracking.</p>
       <a class="btn pri" href="http://127.0.0.1:3000" target="_blank" rel="noopener">Open the learning module →</a>`);
-    link("#s-support", `<h3 style="margin-top:0">📬 Prefer paper and people?</h3><p class="lead">A plain-English monthly letter, and a helper who answers your questions.</p>
+    if (!document.querySelector("#s-dashboard")) link("#s-support", `<h3 style="margin-top:0">📬 Prefer paper and people?</h3><p class="lead">A plain-English monthly letter, and a helper who answers your questions.</p>
       <a class="btn pri" href="http://localhost:5173" target="_blank" rel="noopener">Open dashboard &amp; letters →</a>`);
     const rep = document.querySelector("#s-report");
     if (rep) { const d = document.createElement("div"); d.id = "ml-report"; rep.prepend(d); }

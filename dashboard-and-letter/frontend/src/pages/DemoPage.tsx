@@ -27,7 +27,7 @@ export default function DemoPage() {
   const [asOf, setAsOf] = useState('')
   const [msg, setMsg] = useState('')
 
-  const loadState = useCallback(() => { api.demoState().then((s) => setAsOf(s.as_of)).catch(() => {}) }, [])
+  const loadState = useCallback(() => { api.demoState(customerId).then((s) => setAsOf(s.as_of)).catch(() => {}) }, [customerId])
   useEffect(() => { api.transactions(customerId).then(setSt).catch(() => setSt(null)); loadState() }, [customerId, version, loadState])
 
   const act = async (key: string, f: () => Promise<unknown>, done: string) => {
@@ -46,7 +46,7 @@ export default function DemoPage() {
         {BUTTONS.map((b) => (
           <button key={b.key} className="btn btn-demo" disabled={!!busy} onClick={() => act(b.key, () => api.injectEvent(customerId, b.ev!), `${b.label}: done.`)}>{busy === b.key ? 'Working…' : b.label}</button>
         ))}
-        <button className="btn btn-demo" disabled={!!busy} onClick={() => act('next', () => api.nextMonth(), 'Moved on to next month.')}>{busy === 'next' ? 'Working…' : 'Next month'}</button>
+        <button className="btn btn-demo" disabled={!!busy} onClick={() => act('next', () => api.nextMonth(customerId), 'Moved on to next month.')}>{busy === 'next' ? 'Working…' : 'Next month'}</button>
         <button className="btn btn-demo btn-quiet" disabled={!!busy} onClick={() => act('regen', () => api.regenerate(customerId), 'Letter written again.')}>Regenerate</button>
         <button className="btn btn-demo btn-quiet" disabled={!!busy} onClick={() => act('bad', () => api.regenerate(customerId, true), 'Wrong number planted. Watch the guardrail catch it.')}>Plant a wrong number</button>
         <button className="btn btn-demo btn-quiet" disabled={!!busy} onClick={() => act('reset', () => api.reset(), 'Everything is back to the start.')}>Reset demo</button>

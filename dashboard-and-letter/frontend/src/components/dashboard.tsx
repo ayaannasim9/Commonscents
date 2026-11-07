@@ -22,7 +22,7 @@ function MoneyBar({ label, amount, of, cls = '' }: { label: string; amount: numb
   // Bar length is decoration only; every value is also written as text beside it.
   const w = Math.max(2, Math.min(100, (amount / of) * 100))
   return (
-    <li className={`bar ${cls}`}>
+    <li className={`money-row ${cls}`}>
       <div className="bar-head"><span>{label}</span><span className="bar-val">{pounds(amount)}</span></div>
       <div className="bar-track" aria-hidden="true"><div className="bar-fill" style={{ width: `${w}%` }} /></div>
     </li>
@@ -36,7 +36,7 @@ export function LastMonthBars({ lm }: { lm: Facts['last_month'] }) {
       <MoneyBar label="Money in" amount={lm.in} of={lm.in} cls="bar-in" />
       {lm.out.map((o) => <MoneyBar key={o.name} label={o.name} amount={o.amount} of={lm.in} />)}
       <MoneyBar label="Cash from the Post Office" amount={lm.cash} of={lm.in} cls="bar-cash" />
-      <li className={`bar bar-left ${neg ? 'neg' : ''}`}>
+      <li className={`money-row bar-left ${neg ? 'neg' : ''}`}>
         <div className="bar-head">
           <span>{neg ? 'More went out than came in' : 'Left over'}</span>
           <span className="bar-val">{pounds(Math.abs(lm.left))}</span>
@@ -53,7 +53,7 @@ export function MonthCards({ forecast }: { forecast: Facts['forecast'] }) {
         <li key={f.month + f.year} className="month">
           <h3>{f.month}</h3>
           <StatusBadge status={f.status} kind="forecast" />
-          <p className="month-reason">{sentence(f.reason)}{f.extra > 0 && <> ({pounds(f.extra)} extra)</>}</p>
+          <p className="month-reason">{sentence(f.reason)}{f.extra > 0 && <> ({pounds(f.extra)})</>}</p>
           <p className="month-spare"><span>Expected spare</span><strong>{pounds(f.spare)}</strong></p>
         </li>
       ))}

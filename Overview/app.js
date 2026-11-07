@@ -1,5 +1,5 @@
 const $=s=>document.querySelector(s),R=document.documentElement;
-const tabs=[["start","🚀","Start"],["future","🔮","Future"],["wrapped","🎉","Wrapped"],["learn","🎓","Learn"],["support","🧭","Support"],["report","📬","Report"]];
+const tabs=[["start","🚀","Start"],["dashboard","💷","Dashboard"],["future","🔮","Future"],["wrapped","🎉","Wrapped"],["learn","🎓","Learn"],["support","🧭","Support"],["report","📬","Report"]];
 const nav=$("#nav");
 tabs.forEach(([id,i,l],n)=>{const b=document.createElement("button");b.id="t-"+id;b.setAttribute("role","tab");b.setAttribute("aria-selected",n==0);b.setAttribute("aria-controls","s-"+id);b.tabIndex=n===0?0:-1;b.innerHTML='<span class="i" aria-hidden="true">'+i+'</span>'+l;b.onclick=()=>go(id);nav.appendChild(b)});
 function go(id){history.replaceState(null,"","#"+id);tabs.forEach(([t])=>{$("#s-"+t).hidden=t!=id;$("#t-"+t).setAttribute("aria-selected",t==id);$("#t-"+t).tabIndex=t===id?0:-1});if(id=="future")drawTl();if(id=="support")sup();$("#main").focus({preventScroll:true});window.scrollTo({top:0})}

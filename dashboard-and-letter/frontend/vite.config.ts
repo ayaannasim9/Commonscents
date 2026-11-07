@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     fs: { allow: ['..'] },
-    proxy: { '/api': { target: 'http://localhost:8000', rewrite: (p) => p.replace(/^\/api/, '') } },
+    proxy: { '/api': { target: 'http://localhost:8000', rewrite: (p) => p.replace(/^\/api\/counterpart/, '') } },
   },
 })

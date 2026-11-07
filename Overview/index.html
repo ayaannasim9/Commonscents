@@ -29,6 +29,8 @@
 <div id="ob"></div>
 </section>
 
+<section id="s-dashboard" role="tabpanel" aria-labelledby="t-dashboard" hidden><div id="dashboard-root"></div></section>
+
 <section id="s-future" role="tabpanel" aria-labelledby="t-future" hidden>
 <h2>🔮 Your Financial Time Machine</h2>
 <p><span class="badge">Example profile: Sam, 34, care assistant, rents, 2 children</span></p>
@@ -74,17 +76,7 @@
 </section>
 
 <section id="s-report" role="tabpanel" aria-labelledby="t-report" hidden>
-<h2>📬 Your printed report</h2>
-<p class="lead">Large text. Simple words. Posted once a year, free.</p>
-<div class="paper" aria-label="Preview of printed report">
-<h3>My Financial Future Report</h3><p style="font-size:1.2rem;margin:.2rem 0 1rem">Your year in pictures · Printed in 18pt text</p>
-<div class="row"><span class="i" aria-hidden="true">🏠</span><div><b>Where you are now</b><br>You save about £120 a month.</div></div>
-<div class="row"><span class="i" aria-hidden="true">🔮</span><div><b>Where you could be</b><br>£8,400 more savings in 5 years.</div></div>
-<div class="row"><span class="i" aria-hidden="true">⚠️</span><div><b>Watch out for</b><br>Rising energy bills.</div></div>
-<div class="row"><span class="i" aria-hidden="true">🧭</span><div><b>Help available</b><br>Council Tax Support · Free courses</div></div>
-</div>
-<div class="card"><label style="display:flex;gap:1rem;align-items:center;font-weight:700;min-height:56px"><input type="checkbox" id="post" checked style="width:32px;height:32px"> Post my report to my address each year</label><p class="lead" style="margin:.4rem 0 0" id="postmsg" aria-live="polite">✔ We will post it to you. You can change this any time.</p></div>
-<button class="btn" onclick="window.print()">🖨️ Print preview</button>
+<div id="report-root"></div>
 </section>
 </main>
 <footer>Common Cents · Design mockup · Designed with accessibility in mind. Accessibility testing is ongoing.</footer>

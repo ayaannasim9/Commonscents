@@ -28,7 +28,7 @@ export function useDashboard() {
     const t = setInterval(async () => {
       if (document.hidden || version.current === null) return
       try {
-        const s = await api.demoState()
+        const s = await api.demoState(customerId)
         if (s.facts_version !== version.current) load(true)
       } catch { /* the next tick tries again */ }
     }, 2000)

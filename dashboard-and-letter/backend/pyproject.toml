@@ -12,9 +12,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# WeasyPrint needs pango; install separately once the B7 spike has run.
-pdf = ["weasyprint>=62"]
-dev = ["pytest>=8", "httpx>=0.27"]
+# Portable PDF output from the same letter content; no system Pango dependency.
+pdf = ["reportlab>=4"]
+dev = ["pytest>=8", "httpx>=0.27", "pypdf>=5"]
 
 [build-system]
 requires = ["setuptools>=68"]

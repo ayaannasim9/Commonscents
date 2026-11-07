@@ -32,7 +32,7 @@ const setCurrent = (id: string | null) => { current = id; subs.forEach((f) => f(
 const subscribe = (f: () => void) => { subs.add(f); return () => { subs.delete(f) } }
 
 export function ReadAloudButton({ id, title, text }: { id: string; title: string; text: string }) {
-  const speaking = useSyncExternalStore(subscribe, () => current === id)
+  const speaking = useSyncExternalStore(subscribe, () => current === id, () => false)
   const { customer } = useApp()
   if (!speechOk) return null
   const toggle = () => {

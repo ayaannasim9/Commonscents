@@ -85,6 +85,12 @@ def make_letter(cid: str, request: Request, demo: str | None = None) -> dict:
     return _customer(request, cid).new_letter(cid, force=True, demo_bad_number=demo == "bad-number")
 
 
+@router.get("/customers/{cid}/letter")
+def letter_status(cid: str, request: Request) -> dict:
+    current = _customer(request, cid).current_letter(cid)
+    return {"letter_id": current["letter_id"], "status": current["status"]}
+
+
 @router.get("/customers/{cid}/letter.html", response_class=HTMLResponse)
 def letter_html(cid: str, request: Request) -> str:
     return _customer(request, cid).current_letter(cid)["html"]
