@@ -2,7 +2,13 @@
    - Future tab: real A/B/C timelines, person details and recommendations from the engine
    - Report tab: link to the full printable A4 report
    - Falls back to the built-in example data if the engine isn't running. */
-(function () {
+(function start() {
+  // Wait until Overview/app.js has defined its globals (Next.js may load scripts in any order)
+  if (typeof TimeTravelEngine === "undefined" || typeof go !== "function" || typeof drawTl !== "function") {
+    return void setTimeout(start, 100);
+  }
+  if (window.__mlBridge) return;
+  window.__mlBridge = true;
   const API = (location.protocol.startsWith("http") && location.port === "8001") ? "" : "http://localhost:8001";
   const params = new URLSearchParams(location.search);
   let CID = params.get("customer") || "jordan";
@@ -82,9 +88,9 @@
       <a class="btn pri" href="${url}" target="_blank" rel="noopener">Open my printable report →</a></div>`;
   }
 
+  let inited = false;
   document.addEventListener("DOMContentLoaded", init);
   if (document.readyState !== "loading") init();
-  let inited = false;
   function init() {
     if (inited) return; inited = true;
     const main = document.querySelector("#main");
