@@ -14,7 +14,9 @@ from pathlib import Path
 
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+import timelines as TL
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -104,9 +106,12 @@ def insights_with_answers(cid: str, answers: Answers):
 
 @app.get("/customers/{cid}/report", response_class=HTMLResponse)
 def report(cid: str, goal: str | None = None, worry: str | None = None,
-           life_changes: str | None = None, shock_500: str | None = None):
+           life_changes: str | None = None, shock_500: str | None = None, support_needs: str | None = None):
     """Printable A4 report. Open in a browser, then Print / Save as PDF."""
-    return render(_run(cid, _query_answers(goal, worry, life_changes, shock_500)))
+    ans = _query_answers(goal, worry, life_changes, shock_500)
+    if support_needs:
+        ans = (ans or {}) | {"support_needs": [x.strip() for x in support_needs.split(",") if x.strip()]}
+    return render(_run(cid, ans))
 
 
 @app.post("/customers/{cid}/report", response_class=HTMLResponse)
@@ -142,3 +147,24 @@ def analyse_openbanking(req: OpenBankingRequest):
     """Run the models straight on NatWest / UK Open Banking API responses."""
     tx, customer = from_open_banking(req.transactions, req.balances, req.savings_balances, req.profile, name=req.name)
     return analyse(customer, tx, today=req.today or date.today(), answers=req.answers.model_dump() if req.answers else None)
+
+
+# ---------------------------------------------------------------- Overview app (Martins) integration
+@app.get("/customers/{cid}/timelines")
+def timelines(cid: str, goal: str | None = None, worry: str | None = None,
+              life_changes: str | None = None, shock_500: str | None = None, support_needs: str | None = None):
+    """Three 5-year timelines + recommendations in the shape Overview/app.js expects."""
+    ans = _query_answers(goal, worry, life_changes, shock_500)
+    if support_needs:
+        ans = (ans or {}) | {"support_needs": [x.strip() for x in support_needs.split(",") if x.strip()]}
+    return TL.build(_run(cid, ans))
+
+
+_OVERVIEW = Path(__file__).resolve().parent.parent / "Overview"
+if _OVERVIEW.exists():
+    app.mount("/app", StaticFiles(directory=_OVERVIEW, html=True), name="overview")
+
+
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse("/app/" if _OVERVIEW.exists() else "/docs")
