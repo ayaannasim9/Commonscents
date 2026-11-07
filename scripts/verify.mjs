@@ -12,8 +12,8 @@ try {
   const learner='00000000-0000-4000-8000-000000000001';
   const id = () => crypto.randomUUID();
   const submit = async (lesson,answers,attempt=id()) => (await db.query('select cs_complete_lesson($1,$2,$3::jsonb,$4) as result',[learner,lesson,JSON.stringify(answers),attempt])).rows[0].result;
-  assert.equal((await db.query('select count(*)::int as n from cs_questions')).rows[0].n,69);
-  assert.equal((await db.query('select count(*)::int as n from cs_journeys where visible')).rows[0].n,4);
+  assert.equal((await db.query('select count(*)::int as n from cs_questions')).rows[0].n,99);
+  assert.equal((await db.query('select count(*)::int as n from cs_journeys where visible')).rows[0].n,5);
   await assert.rejects(submit('budget-balance',[1,0,2]),/locked/);
   const fail=await submit('money-map',[1,0,0]);
   assert.equal(fail.passed,false); assert.equal(fail.awarded,0);
@@ -57,6 +57,32 @@ try {
     }
   }
   assert.equal((await db.query('select sum(xp)::int as xp from cs_completions')).rows[0].xp,570);
+  const original=JSON.parse(await readFile(new URL('../content/original/overview-banking.json',import.meta.url),'utf8'));
+  const banking=JSON.parse(await readFile(new URL('../content/banking-course.json',import.meta.url),'utf8'));
+  assert.deepEqual(banking.lessons.map(l=>l.id),original.units.flatMap(u=>u.L.map(l=>'bank-'+l.id)));
+  assert.deepEqual(banking.units,original.units.map(u=>u.n));
+  const kinds=new Set();
+  for(const lesson of banking.lessons){
+    assert.equal(lesson.reading_cards.length,3);
+    assert.equal(lesson.questions.length,3);
+    const stored=(await db.query('select interaction,options,correct_index from cs_questions where lesson_id=$1 order by position',[lesson.id])).rows;
+    for(const [i,q] of lesson.questions.entries()){
+      assert.deepEqual(stored[i].interaction,q.interaction);
+      kinds.add(q.interaction?.kind??'choice');
+      if(q.interaction?.kind==='match'||q.interaction?.kind==='order'){
+        const indices=JSON.parse(q.options[q.correct_index]);
+        assert.equal(new Set(indices).size,q.interaction.items.length);
+        assert.ok(indices.every(n=>n>=0&&n<q.interaction.items.length));
+      }
+    }
+    const wrong=lesson.questions.map(q=>(q.correct_index+1)%q.options.length);
+    assert.equal((await submit(lesson.id,wrong)).passed,false);
+    const answers=lesson.questions.map(q=>q.correct_index);
+    assert.equal((await submit(lesson.id,answers)).awarded,30);
+    assert.equal((await submit(lesson.id,answers)).awarded,0);
+  }
+  assert.deepEqual([...kinds].sort(),['choice','fill','match','order']);
+  assert.equal((await db.query('select sum(xp)::int as xp from cs_completions')).rows[0].xp,870);
   await db.exec('set role anon');
   await assert.rejects(db.query('select * from cs_questions'),/permission denied/);
   await db.exec('reset role');
@@ -65,5 +91,5 @@ try {
   assert.equal(summarize(rows,new Date('2026-11-07T12:00:00Z')).streak,2);
   assert.equal(summarize(rows,new Date('2026-11-08T12:00:00Z')).streak,0);
   assert.equal(summarize(rows,new Date('2026-11-06T12:00:00Z')).todayXp,30);
-  console.log('Passed: migration and seed, grading, failed attempts, unlock enforcement, invalid answers, idempotency, XP uniqueness, anonymous access denial, timezone and streaks; all 17 UK lessons, default journey and shared scam lesson, independent journey unlocking and flexible support journeys.');
+  console.log('Passed: migration and seed, grading, failed attempts, unlock enforcement, invalid answers, idempotency, XP uniqueness, anonymous access denial, timezone and streaks; all 17 UK lessons plus all 10 original banking lessons and all four exercise styles, default journey and shared scam lesson, independent journey unlocking and flexible support journeys.');
 } finally { await db.close(); }

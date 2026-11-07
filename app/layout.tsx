@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
-export const metadata: Metadata = { title: 'Commonscents — A little wiser, every day', description: 'Build money confidence, one small lesson at a time.' };
+export const metadata: Metadata = { title: 'Common Cents — Your financial future', description: 'Explore your financial future and build practical money skills.' };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en-GB"><body>{children}</body></html>;
 }

@@ -3,7 +3,7 @@
    - Report tab: link to the full printable A4 report
    - Falls back to the built-in example data if the engine isn't running. */
 (function () {
-  const API = location.protocol.startsWith("http") ? "" : "http://localhost:8001";
+  const API = (location.protocol.startsWith("http") && location.port === "8001") ? "" : "http://localhost:8001";
   const params = new URLSearchParams(location.search);
   let CID = params.get("customer") || "jordan";
 
@@ -103,7 +103,7 @@
     sel.onchange = () => { CID = sel.value; ML = null; load().then(() => { if (!document.querySelector("#s-future").hidden) drawTl(); }); };
     // links to the rest of the team's apps (started by ./start.sh)
     const link = (sel, html) => { const el = document.querySelector(sel); if (el) { const d = document.createElement("div"); d.className = "card"; d.innerHTML = html; el.append(d); } };
-    link("#s-learn", `<h3 style="margin-top:0">🎓 More lessons</h3><p class="lead">Life-situation journeys with scenario quizzes and progress tracking.</p>
+    if (!document.querySelector("#learning-root")) link("#s-learn", `<h3 style="margin-top:0">🎓 More lessons</h3><p class="lead">Life-situation journeys with scenario quizzes and progress tracking.</p>
       <a class="btn pri" href="http://127.0.0.1:3000" target="_blank" rel="noopener">Open the learning module →</a>`);
     link("#s-support", `<h3 style="margin-top:0">📬 Prefer paper and people?</h3><p class="lead">A plain-English monthly letter, and a helper who answers your questions.</p>
       <a class="btn pri" href="http://localhost:5173" target="_blank" rel="noopener">Open dashboard &amp; letters →</a>`);

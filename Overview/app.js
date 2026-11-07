@@ -1,10 +1,10 @@
 const $=s=>document.querySelector(s),R=document.documentElement;
 const tabs=[["start","🚀","Start"],["future","🔮","Future"],["wrapped","🎉","Wrapped"],["learn","🎓","Learn"],["support","🧭","Support"],["report","📬","Report"]];
 const nav=$("#nav");
-tabs.forEach(([id,i,l],n)=>{const b=document.createElement("button");b.id="t-"+id;b.setAttribute("role","tab");b.setAttribute("aria-selected",n==0);b.innerHTML='<span class="i" aria-hidden="true">'+i+'</span>'+l;b.onclick=()=>go(id);nav.appendChild(b)});
-function go(id){tabs.forEach(([t])=>{$("#s-"+t).hidden=t!=id;$("#t-"+t).setAttribute("aria-selected",t==id)});if(id=="future")drawTl();if(id=="support")sup();$("#main").focus({preventScroll:true});window.scrollTo({top:0})}
+tabs.forEach(([id,i,l],n)=>{const b=document.createElement("button");b.id="t-"+id;b.setAttribute("role","tab");b.setAttribute("aria-selected",n==0);b.setAttribute("aria-controls","s-"+id);b.tabIndex=n===0?0:-1;b.innerHTML='<span class="i" aria-hidden="true">'+i+'</span>'+l;b.onclick=()=>go(id);nav.appendChild(b)});
+function go(id){history.replaceState(null,"","#"+id);tabs.forEach(([t])=>{$("#s-"+t).hidden=t!=id;$("#t-"+t).setAttribute("aria-selected",t==id);$("#t-"+t).tabIndex=t===id?0:-1});if(id=="future")drawTl();if(id=="support")sup();$("#main").focus({preventScroll:true});window.scrollTo({top:0})}
 document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g)go(g.dataset.go)});
-nav.addEventListener("keydown",e=>{const b=[...nav.children],i=b.indexOf(document.activeElement);if(e.key=="ArrowRight")b[(i+1)%b.length].focus();if(e.key=="ArrowLeft")b[(i-1+b.length)%b.length].focus()});
+nav.addEventListener("keydown",e=>{const b=[...nav.children],i=b.indexOf(document.activeElement);let next;if(e.key==="ArrowRight")next=(i+1)%b.length;if(e.key==="ArrowLeft")next=(i-1+b.length)%b.length;if(e.key==="Home")next=0;if(e.key==="End")next=b.length-1;if(next!==undefined){e.preventDefault();b.forEach((tab,n)=>tab.tabIndex=n===next?0:-1);b[next].focus()}});
 
 /* display settings */
 const sizes=[["18px","normal"],["22px","large"],["26px","extra large"]];let si=0;
@@ -99,162 +99,6 @@ t.pts.forEach((v,i)=>{s+='<circle cx="'+X(i)+'" cy="'+Y(v)+'" r="8" fill="var(--
 $("#chart").innerHTML=s;
 $("#chartdesc").textContent="The money you could use goes from "+gbp(t.pts[0])+" now to "+gbp(t.pts[5])+" in 5 years. Example data.";}
 
-/* learn: Duolingo-style path, UK banking basics, app/web vs high street branch */
-/* ===== LESSON CONTENT: edit here =====
-   Step types: T teach slide, M match pairs, F fill the gap, C choose, O put in order */
-const T=(e,h,a,b)=>({k:"t",e,h,a,b}),M=(q,p)=>({k:"m",q,p}),F=(q,s,w,a)=>({k:"f",q,s,w,a}),C=(q,o,a)=>({k:"c",q,o,a}),O=(q,it)=>({k:"o",q,it});
-const U=[
-{n:"Banking in the UK",c:"#5a287d",tip:"Most people in the UK use a current account for everyday money and pay by debit card, phone or bank transfer. Cheques are now rare. Banks are regulated, and savings are protected by a government-backed scheme (the FSCS) up to a limit.",L:[
-{id:"a1",i:"🏦",t:"What is a current account?",s:[
-T("🗄️","Your everyday account","A current account is where your pay goes in and your bills come out.","Like a locked drawer behind the counter. Only you have the key."),
-T("💳","Your debit card","Your card is linked to your account. When you pay, the money leaves your account straight away.","Like handing over cash, but you don’t have to carry the cash."),
-T("📱","Check it any time","You can see your money in the app, on the website, or at a cash machine.","Like asking the cashier for your balance, but open 24 hours a day."),
-M("Match each item to what it does",[["💳 Debit card","Pay in shops"],["🗄️ Current account","Holds everyday money"],["🏧 Cash machine","Take out cash"]]),
-F("Fill in the gap","A debit card takes money from your ___.",["account","pocket","friend"],"account"),
-C("Which one is like a locked drawer in a branch?",["Your current account","A cash machine","A shop"],0)]},
-{id:"a2",i:"🔢",t:"Sort code and account number",s:[
-T("📍","Sort code","A sort code has 6 numbers, like 12-34-56. It shows which bank you use.","Like the address of the building."),
-T("🔢","Account number","An account number has 8 numbers. It points to your account and nobody else’s.","Like the number on your drawer inside."),
-T("🤝","Getting paid","To get paid, give your name, sort code and account number. Never give your PIN.","Like writing your details on a paying-in slip."),
-M("Match the numbers",[["6 numbers","Sort code"],["8 numbers","Account number"],["4 numbers","Card PIN (secret)"]]),
-F("Fill in the gap","A sort code has ___ numbers.",["6","8","4"],"6"),
-C("What should you NEVER tell anyone?",["Your PIN","Your sort code","Your name"],0)]},
-{id:"a3",i:"🛡️",t:"Is my money safe?",s:[
-T("📜","Banks follow rules","UK banks must follow strict rules. Official bodies check them.","Like a branch that gets visits from an inspector."),
-T("🛡️","The FSCS","If a bank fails, a scheme called the FSCS can pay back your savings, up to a limit.","Like a safe that the government backs up."),
-T("🔍","Check the limit","The limit can change. Check it on the FSCS website before you save a lot.","Or ask an adviser at the desk."),
-F("Fill in the gap","The FSCS protects your ___ up to a limit.",["savings","shoes","phone"],"savings"),
-M("Match the word to its job",[["🛡️ FSCS","Protects savings"],["📜 Regulator","Checks the rules"],["📞 Your bank","Where you ask questions"]]),
-C("Where do you check the FSCS limit?",["The FSCS website","A text from a stranger","Social media"],0)]}]},
-{n:"Your NatWest app",c:"#006a68",tip:"The app is a branch in your pocket. Always download it from your phone’s official app store and check it says NatWest.",L:[
-{id:"b1",i:"📲",t:"Download and log in",s:[
-T("🔎","Find the app","Open your phone’s app store and search for NatWest. Choose the one made by NatWest.","Like finding the right branch on the high street."),
-T("🔐","Log in","Enter your details. The app may send a code to your phone.","Like showing your ID at the counter."),
-T("👆","Make it quick","Set Face ID, a fingerprint or a passcode. Next time you log in faster.","Like staff who know your face."),
-O("Put these in order",["Open the app store","Search for NatWest","Download the app","Log in"]),
-F("Fill in the gap","Always download apps from your phone’s official ___.",["app store","text message","stranger"],"app store"),
-C("What makes logging in faster?",["Face ID or a passcode","Sharing your PIN","A paper form"],0)]},
-{id:"b2",i:"💷",t:"Your home screen",s:[
-T("💷","Your balance","At the top you see how much money you can spend.","Like asking the cashier for your balance."),
-T("🧾","Payments list","Under it is a list of money in and money out. Tap one to see more.","Like a printed statement."),
-T("🔔","Alerts","Switch on alerts to get a message when money arrives or leaves.","Like a friendly cashier giving you a ring."),
-M("Match the item to its meaning",[["💷 Balance","Money you have now"],["🧾 Payments list","Money in and out"],["🔔 Alerts","Messages about your money"]]),
-F("Fill in the gap","Your ___ is shown at the top of the screen.",["balance","photo","PIN"],"balance"),
-C("Money leaving your account is called…",["A payment","A prize","A password"],0)]},
-{id:"b3",i:"✍️",t:"Pay someone",s:[
-T("✍️","Add the person","Tap Pay. Add their name, sort code and account number.","Like filling in a paying-in slip."),
-T("🔎","Check carefully","Check every number. A wrong number can send money to the wrong person.","Like reading the slip twice before you hand it over."),
-T("✅","Confirm","Tap Confirm. Most payments arrive in minutes. You will see a tick.","Like the cashier stamping your slip."),
-O("Put the steps in order",["Tap Pay","Add name, sort code, account number","Check the numbers","Confirm"]),
-F("Fill in the gap","Always ___ the numbers before you pay.",["check","guess","hide"],"check"),
-M("Match the numbers",[["6 numbers","Sort code"],["8 numbers","Account number"],["£","Amount to pay"]])]}]},
-{n:"The NatWest website",c:"#a8004f",tip:"Online banking is the same account as the app, just on a bigger screen. Always check the address bar says natwest.com.",L:[
-{id:"c1",i:"💻",t:"Log in online",s:[
-T("💻","Go to the website","Type natwest.com into your web browser.","Like walking up to the right shop front."),
-T("🔒","Check the address","Look for natwest.com and a padlock in the address bar.","Like checking the sign above the door."),
-T("🔑","Extra security","You may get a code by text. This is normal. Only you should use it.","Like the cashier asking one more question."),
-F("Fill in the gap","The address should say ___.com",["natwest","free-money","bank-help"],"natwest"),
-C("A code arrives by text when you log in. It is…",["Extra security for you","Something to read to a caller","A prize"],0),
-M("Match the word to its meaning",[["🔒 Padlock","Safe connection"],["🌐 Browser","Where you open websites"],["🔑 Code","Only you use it"]])]},
-{id:"c2",i:"📄",t:"Statements and settings",s:[
-T("📄","Statements","Open Statements to read or download your monthly statements.","Like asking staff for a copy."),
-T("⚙️","Settings","Open Settings to change your phone number or address.","Like filling in a change of address form."),
-T("🏠","Proof of address","Some places accept a statement as proof of address. Ask them first.","Like asking the branch for a letter."),
-M("Match the item to its job",[["📄 Statement","Record of your money"],["⚙️ Settings","Change your details"],["🏠 Address","Keep it up to date"]]),
-F("Fill in the gap","Keep your phone number and ___ up to date.",["address","shoe size","PIN"],"address"),
-C("Where do you change your phone number?",["Settings","A cash machine","A shop"],0)]}]},
-{n:"Stay safe and get help",c:"#9a3b00",tip:"Your bank will never ask for your PIN or full password, or ask you to move money to a “safe account”. If in doubt, hang up and call the number on your card.",L:[
-{id:"d1",i:"🚨",t:"Spot a scam",s:[
-T("🚨","Scams are common","Scammers pretend to be your bank. They call, text or email.","In a branch, you can see the person helping you."),
-T("🛑","Never share","Your bank will never ask for your PIN, or ask you to move money to a “safe account”.","A cashier would never ask for your PIN."),
-T("📞","Hang up and call back","If unsure, hang up. Call the number on the back of your card.","Or walk into a branch and ask."),
-C("A caller says “move your money to a safe account”. You…",["Hang up and call your bank","Do it quickly","Give your PIN"],0),
-F("Fill in the gap","Your bank will never ask for your ___.",["PIN","hello","time"],"PIN"),
-M("Match the item to its meaning",[["🚨 Scam","A trick to steal money"],["📞 Hang up","Stop the call"],["💳 Number on card","Safe number to call"]])]},
-{id:"d2",i:"💬",t:"Getting help",s:[
-T("💬","Ask in the app","Use Help in the app to chat or call. No question is silly.","Like going to the help desk."),
-T("📍","Find a branch","Use the branch finder to see opening times and your nearest branch.","Like asking where the nearest branch is."),
-T("🧑‍🤝‍🧑","Bring someone","You can ask a trusted person to come with you.","Staff are used to helping people who are new."),
-C("Where can you ask for help?",["The Help section in the app","Nowhere","Only by post"],0),
-M("Match the way to get help",[["💬 Chat","Type your question"],["📞 Call","Speak to someone"],["📍 Branch","Talk face to face"]]),
-F("Fill in the gap","You can ___ for help at any time.",["ask","hide","wait"],"ask")]}]}];
-
-const QZ=[["Which two numbers do you share so someone can pay money into your UK account?",["Sort code and account number","Passport and phone number","Card PIN and password","🤷 I’m not sure"],0],["Where do you usually see your balance in a banking app?",["Only in a letter","On the home screen after you log in","You have to call","🤷 I’m not sure"],1],["Online banking on a computer is…",["A different account","A shop","The same account, on the NatWest website","🤷 I’m not sure"],2],["Someone rings saying they are your bank and asks you to move money to a “safe account”. You…",["Do what they say","Give them your PIN","Hang up and call your bank on a number you trust","🤷 I’m not sure"],2]];
-const LV={done:new Set(),skip:new Set(),placed:false,qi:-1,pts:120,chest:new Set()};
-const allL=()=>U.flatMap((u,ui)=>u.L.map(l=>({u,ui,l})));
-const unitDone=ui=>LV.skip.has(ui)||U[ui].L.every(l=>LV.done.has(l.id));
-const MAS='<svg viewBox="0 0 100 110" width="100%" aria-hidden="true"><ellipse cx="50" cy="103" rx="30" ry="6" fill="rgba(0,0,0,.18)"/><circle cx="50" cy="52" r="42" fill="#ffc72c" stroke="#c98f00" stroke-width="6"/><circle cx="50" cy="52" r="31" fill="none" stroke="#c98f00" stroke-width="3" opacity=".6"/><path d="M14 42q36-26 72 0" fill="none" stroke="#5a287d" stroke-width="10" stroke-linecap="round"/><circle cx="38" cy="54" r="6" fill="#fff"/><circle cx="62" cy="54" r="6" fill="#fff"/><circle cx="39" cy="55" r="3" fill="#3c1053"/><circle cx="63" cy="55" r="3" fill="#3c1053"/><path d="M36 68q14 13 28 0" fill="none" stroke="#3c1053" stroke-width="5" stroke-linecap="round"/></svg>';
-function learn(){const el=$("#learn");
-if(!LV.placed){
-if(LV.qi<0){el.innerHTML='<div class="card" style="text-align:center"><div style="width:120px;margin:auto">'+MAS+'</div><h3 style="margin:.2rem 0">Hi, I’m Penny. Let’s find your starting point</h3><p class="lead">4 quick questions so you can skip what you already know. “I’m not sure” is a perfectly good answer.</p><button class="btn pri" id="qs">Start quick check</button> <button class="btn ghost" id="qk">Skip: start from the beginning</button></div>';$("#qs").onclick=()=>{LV.qi=0;learn();$("#qq").focus()};$("#qk").onclick=()=>{LV.placed=true;learn()};return}
-const [q,o,c]=QZ[LV.qi];
-el.innerHTML='<p style="font-weight:800;margin:0" aria-live="polite">Question '+(LV.qi+1)+' of 4</p><div class="bar" aria-hidden="true"><i style="width:'+(LV.qi*25)+'%"></i></div><div class="card"><h3 id="qq" tabindex="-1" style="margin-top:0;font-size:1.3rem">'+q+'</h3><div class="opts">'+o.map((x,i)=>'<button class="opt" data-i="'+i+'">'+x+'</button>').join("")+'</div></div>';
-el.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(+b.dataset.i==c)LV.skip.add(LV.qi);LV.qi++;if(LV.qi>=QZ.length)LV.placed=true;learn();const n=$("#qq")||$("#lnote");n&&n.focus()});return}
-const cur=allL().find(x=>!LV.done.has(x.l.id)&&!LV.skip.has(x.ui)),off=[0,-40,-64,-40,0,40,64,40];let k=0;
-const nb=[...U.keys()].filter(i=>unitDone(i)).length;
-let h='<div class="stats" aria-live="polite"><div class="stat"><span class="i">🔥</span>3 day streak</div><div class="stat"><span class="i">⭐</span>'+LV.pts+' points</div><div class="stat"><span class="i">🏅</span>'+nb+' of '+U.length+' units</div></div>';
-h+='<p id="lnote" tabindex="-1" class="lead">'+(LV.skip.size?'⭐ Nice! You skipped '+LV.skip.size+' unit'+(LV.skip.size>1?'s':'')+' you already know. You can still open them any time.':'Tap the pink button to start your first lesson.')+'</p>';
-U.forEach((u,ui)=>{const sk=LV.skip.has(ui);
-h+='<div class="ub" style="background:'+u.c+'"><div><small>SECTION 1 · UNIT '+(ui+1)+(sk?' · ⭐ SKIPPED':'')+'</small><b>'+u.n+'</b></div><button class="gb" data-gb="'+ui+'">📒 Guidebook</button></div><div class="path"><div class="mas '+(ui%2?'r':'l')+'">'+MAS+'</div>';
-u.L.forEach(l=>{const d=LV.done.has(l.id),isc=cur&&cur.l.id==l.id,st=sk?'skip':d?'done':isc?'cur':'lock',lab={skip:'skipped, tap to review',done:'completed',cur:'start here',lock:'locked'}[st];
-h+='<div class="row" style="transform:translateX('+off[k++%8]+'px)">'+(isc?'<div class="bub">START ▾</div>':'')+'<button class="nd '+st+'" data-l="'+l.id+'" '+(st=='lock'?'disabled':'')+' aria-label="'+l.t+', '+lab+'"><span aria-hidden="true">'+(st=='done'?'✔':st=='skip'?'⭐':st=='lock'?'🔒':l.i)+'</span></button><span class="lb">'+l.t+'</span></div>'});
-const ud=unitDone(ui),cl=LV.chest.has(ui);
-h+='<div class="row" style="transform:translateX('+off[k++%8]+'px)"><button class="nd chest" data-ch="'+ui+'" '+(ud&&!cl?'':'disabled')+' aria-label="Reward chest, '+(cl?'claimed':ud?'tap to open':'locked until the unit is complete')+'"><span aria-hidden="true">'+(cl?'✔':ud?'🎁':'🔒')+'</span></button><span class="lb">'+(cl?'+50 points claimed':'Unit reward')+'</span></div></div>'});
-el.innerHTML=h;
-el.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>lesson(b.dataset.l));
-el.querySelectorAll("[data-gb]").forEach(b=>b.onclick=()=>guide(+b.dataset.gb));
-el.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{LV.chest.add(+b.dataset.ch);LV.pts+=50;learn()})}
-const GB=[
-{sum:"A UK current account is where your money lives day to day. You get a debit card, a sort code and an account number. Your savings are protected, up to a limit.",
-pts:["Your pay goes into your current account. Your bills and shopping come out of it.","You pay with a debit card, your phone or a bank transfer. Cheques are rare now.","Your sort code (6 numbers) and account number (8 numbers) are how people pay you.","Never share your PIN or your full password. Not with anyone.","UK banks follow strict rules. Savings are protected by a scheme called the FSCS, up to a limit.","In a branch you talk to a person. In the app you do the same jobs yourself, at any time."],
-words:[["Current account","The account you use every day"],["Debit card","A card that takes money from your account"],["Sort code","6 numbers that show your bank"],["Account number","8 numbers for your account"],["PIN","Your secret 4 numbers. Never share"],["FSCS","A scheme that protects savings, up to a limit"]],
-rem:"If you are not sure, stop and ask. A real bank never minds questions."},
-{sum:"The NatWest app is a bank branch on your phone. You can check your balance, pay people and get help at any time.",
-pts:["Download it only from your phone’s official app store. Check that it says NatWest.","Log in, then set Face ID, a fingerprint or a passcode so it is quick next time.","Your balance is at the top. Below it is a list of money in and money out.","To pay someone, you need their name, sort code and account number. Check every number.","Turn on alerts. You get a message when money comes in or goes out.","If something looks wrong, use Help in the app."],
-words:[["App store","Where you safely download apps"],["Balance","How much money you have now"],["Payment","Money going out"],["Alert","A message about your money"],["Confirm","Press to say yes, go ahead"]],
-rem:"Take your time. You can always stop before you press Confirm."},
-{sum:"Online banking is the same account as the app, on a bigger screen. Always check the address says natwest.com.",
-pts:["Type natwest.com into your browser. Do not click links in texts or emails.","Look for the padlock and natwest.com in the address bar.","You may get a code by text. This is normal. The code is only for you.","Open Statements to read or download your monthly statements.","Open Settings to change your phone number or address.","Log out when you finish, especially on a shared computer."],
-words:[["Browser","The program you use to open websites"],["Padlock","A sign the connection is safe"],["Statement","A record of your money in and out"],["Log out","Close your account when you finish"]],
-rem:"Only you should ever use your codes."},
-{sum:"Scammers pretend to be your bank. Your bank will never ask for your PIN, or ask you to move money to a “safe account”.",
-pts:["Scammers can call, text or email. They sound kind, and in a hurry.","Your bank will never ask for your PIN or your full password.","Your bank will never ask you to move money to a “safe account”.","If you are unsure, hang up. Call the number on the back of your card.","Never read out a code from a text to someone who rang you.","You can walk into a branch, or use Help in the app, at any time."],
-words:[["Scam","A trick to steal your money"],["Phishing","A fake text or email that looks real"],["Safe account","A lie scammers use. There is no such thing"],["Hang up","End the call. You are allowed to"]],
-rem:"Real banks never rush you. If you feel rushed, stop."}];
-function guide(ui){const u=U[ui],g=GB[ui],d=$("#dlg");
-d.innerHTML='<div class="dh" style="background:'+u.c+'"><b>📒 Guidebook: '+u.n+'</b><button class="x" id="dx" aria-label="Close guidebook">✕</button></div><div class="db"><p class="gsum" id="gs" tabindex="-1" style="border-color:'+u.c+'"><b>In short:</b> '+g.sum+'</p><h3 class="sh">📝 The main points</h3><ol class="gp">'+g.pts.map(x=>'<li>'+x+'</li>').join("")+'</ol><h3 class="sh">📖 Words to know</h3><div class="gl">'+g.words.map(w=>'<div><b>'+w[0]+'</b><br>'+w[1]+'</div>').join("")+'</div><div class="fb g" role="note"><b>💡 Remember:</b> '+g.rem+'</div></div>';
-$("#dx").onclick=()=>d.close();d.showModal();$("#gs").focus()}
-const shuf=a=>{let r,t=0;do{r=[...a].sort(()=>Math.random()-.5)}while(a.length>1&&r.join("|")==a.join("|")&&t++<9);return r};
-function lesson(id){
-const {u,ui,l}=allL().find(x=>x.l.id==id),d=$("#dlg"),S=[...l.s],tot=S.filter(x=>x.k!="t").length;
-let n=0,ok=0,sel=null,seq=[],pool=[],stage="next";
-const draw=()=>{const s=S[n];sel=null;seq=[];let body="",lab="Continue",dis=false;
-if(!s){body='<div style="text-align:center"><div style="width:130px;margin:auto">'+MAS+'</div><h3 class="th">🎉 Lesson complete!</h3><p class="lead">You got '+ok+' of '+tot+' right first time.'+(S.length>l.s.length?' You went back over '+(S.length-l.s.length)+' you missed and got them right. That is how learning works.':' Brilliant.')+'</p><div class="stat" style="max-width:240px;margin:auto">⭐ +'+(20+ok*10)+' points</div></div>';lab="Finish"}
-else if(s.k=="t")body='<div class="hero" style="border-color:'+u.c+'" aria-hidden="true">'+s.e+'</div><h3 class="th">'+s.h+'</h3><div class="cmp"><div class="phn"><span class="tg">📱 App or website</span><p>'+s.a+'</p></div><div class="brn"><span class="tg">🏦 In a high street branch</span><p>'+s.b+'</p></div></div>';
-else{body='<h3 class="th" id="qq">'+(s.r?'🔁 ':'')+s.q+'</h3>';dis=true;stage="check";lab="Check";
-if(s.k=="c")body+='<div class="opts">'+s.o.map((x,i)=>'<button class="opt" data-i="'+i+'">'+x+'</button>').join("")+'</div>';
-if(s.k=="f"){const p=s.s.split("___");body+='<p class="sentence">'+p[0]+'<span class="gap" id="gap">&nbsp;</span>'+p[1]+'</p><div class="bank">'+s.w.map(x=>'<button class="chip" data-w="'+x+'">'+x+'</button>').join("")+'</div>'}
-if(s.k=="o"){pool=shuf(s.it);body+='<div class="ans" id="ans" aria-live="polite"></div><div class="bank" id="bk"></div>'}
-if(s.k=="m"){const r=shuf(s.p.map((_,i)=>i));body+='<div class="mt"><div class="col">'+s.p.map((x,i)=>'<button class="chip" data-l="'+i+'">'+x[0]+'</button>').join("")+'</div><div class="col">'+r.map(i=>'<button class="chip" data-r="'+i+'">'+s.p[i][1]+'</button>').join("")+'</div></div>'}}
-if(s&&(s.k=="t"||s.k=="m"))stage="next";
-d.innerHTML='<div class="dh" style="background:'+u.c+'"><b>'+l.i+' '+l.t+'</b><button class="x" id="dx" aria-label="Close lesson">✕</button></div><div class="db"><p id="dp" tabindex="-1" style="font-weight:800;margin:0 0 .4rem">'+(s?(s.r?'🔁 Review: ':'')+'Step '+(n+1)+' of '+S.length:'Lesson complete')+'</p><div class="bar" aria-hidden="true"><i style="width:'+(n/S.length*100)+'%"></i></div>'+body+'<div id="fb" aria-live="polite"></div><div style="margin-top:1rem"><button class="btn pri" id="ck" '+(dis?'disabled':'')+'>'+lab+'</button></div></div>';
-const btn=$("#ck");$("#dx").onclick=()=>d.close();
-const lock=()=>d.querySelectorAll(".opt,.chip").forEach(x=>x.disabled=true);
-const fin=(good,ans)=>{if(good&&!s.r)ok++;if(!good)S.push({...s,r:1});$("#fb").innerHTML='<div class="fb '+(good?'g':'b')+'" role="status"><b>'+(good?'✔ Correct! Well done.':'✖ Not quite.')+'</b>'+(good?'':' The answer is: '+ans+'. 🔁 We’ll ask this again at the end so you can master it.')+'</div>';btn.textContent="Continue";stage="next";lock()};
-if(s&&s.k=="c")d.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{sel=+b.dataset.i;d.querySelectorAll(".opt").forEach(x=>x.setAttribute("aria-pressed",x===b));btn.disabled=false});
-if(s&&s.k=="f")d.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{sel=b.dataset.w;$("#gap").textContent=sel;d.querySelectorAll("[data-w]").forEach(x=>x.classList.toggle("sel",x===b));btn.disabled=false});
-if(s&&s.k=="o"){const rend=()=>{$("#ans").innerHTML=seq.map((x,i)=>'<button class="chip on" data-r="'+i+'">'+(i+1)+'. '+x+'</button>').join("")||'<span class="lead" style="margin:0">Tap the steps in order</span>';$("#bk").innerHTML=pool.filter(x=>!seq.includes(x)).map(x=>'<button class="chip" data-a="'+pool.indexOf(x)+'">'+x+'</button>').join("");
-$("#ans").querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{seq.splice(+b.dataset.r,1);rend()});$("#bk").querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{seq.push(pool[+b.dataset.a]);rend()});btn.disabled=seq.length!=pool.length};rend()}
-if(s&&s.k=="m"){let L=null,got=0,mis=0;d.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{L=+b.dataset.l;d.querySelectorAll("[data-l]").forEach(x=>x.classList.toggle("sel",x===b))});
-d.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{if(L===null)return;const lb=d.querySelector('[data-l="'+L+'"]');if(lb.disabled)return;
-if(+b.dataset.r===L){lb.classList.remove("sel");lb.classList.add("ok");b.classList.add("ok");lb.disabled=b.disabled=true;got++;L=null;if(got==s.p.length){if(!mis&&!s.r)ok++;if(mis)S.push({...s,r:1});$("#fb").innerHTML='<div class="fb g" role="status"><b>✔ All matched!</b>'+(mis?' 🔁 We’ll ask this again at the end.':'')+'</div>';btn.disabled=false}}
-else{mis++;b.classList.add("no");lb.classList.add("no");setTimeout(()=>{b.classList.remove("no");lb.classList.remove("no")},700);lb.classList.remove("sel");L=null}})}
-btn.onclick=()=>{if(!s){if(!LV.done.has(id)&&!LV.skip.has(ui)){LV.done.add(id);LV.pts+=20+ok*10}d.close();learn();return}
-if(stage=="check"){if(s.k=="c")fin(sel==s.a,s.o[s.a]);if(s.k=="f")fin(sel==s.a,s.a);if(s.k=="o")fin(seq.join("|")==s.it.join("|"),s.it.map((x,i)=>(i+1)+". "+x).join("  "));return}
-n++;draw()};
-$("#dp").focus()};
-draw();d.showModal()}
-learn();
 /* ===== SUPPORT HUB: data ported 1:1 from recommendations.py (edit or regenerate from the Python) ===== */
 const RECS=[
 {n:"Council Tax Reduction",cat:"Government Support",url:"https://www.gov.uk/apply-council-tax-reduction",d:"Reduce your council tax bill if you're on a low income.",p:"High",sv:"£200-£2,000/year",g:["Low Income","Renters","Families"],c:"Local Council",t:["housing","bills","support"]},
@@ -296,3 +140,7 @@ $("#supform").innerHTML='<div class="card"><h3 style="margin-top:0">About you <s
 const up=()=>{P.edited=true;P.age=+$("#pa").value||0;P.inc=$("#pi").value;P.work=$("#pw").value;document.querySelectorAll("[data-k]").forEach(c=>P[c.dataset.k]=+c.checked);supList()};
 $("#pa").oninput=up;$("#pi").onchange=up;$("#pw").onchange=up;document.querySelectorAll("[data-k]").forEach(c=>c.onchange=up);supList()}
 sup();
+
+const initialSection=location.hash.slice(1);
+if(tabs.some(([id])=>id===initialSection))go(initialSection);
+window.addEventListener("hashchange",()=>{const id=location.hash.slice(1);if(tabs.some(([tab])=>tab===id))go(id)});

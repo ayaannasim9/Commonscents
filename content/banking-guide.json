@@ -1,0 +1,188 @@
+{
+  "units": [
+    "Banking in the UK",
+    "Your NatWest app",
+    "The NatWest website",
+    "Stay safe and get help"
+  ],
+  "guides": [
+    {
+      "sum": "A UK current account is where your money lives day to day. You get a debit card, a sort code and an account number. Eligible deposits at authorised firms are protected up to a limit; check the FSCS website.",
+      "pts": [
+        "Your pay goes into your current account. Your bills and shopping come out of it.",
+        "You pay with a debit card, your phone or a bank transfer. Cheques are rare now.",
+        "Your sort code (6 numbers) and account number (8 numbers) are how people pay you.",
+        "Never share your PIN or your full password. Not with anyone.",
+        "UK banks follow strict rules. Savings are protected by a scheme called the FSCS, up to a limit.",
+        "In a branch you talk to a person. In the app you do the same jobs yourself, at any time."
+      ],
+      "words": [
+        [
+          "Current account",
+          "The account you use every day"
+        ],
+        [
+          "Debit card",
+          "A card that takes money from your account"
+        ],
+        [
+          "Sort code",
+          "6 numbers that show your bank"
+        ],
+        [
+          "Account number",
+          "8 numbers for your account"
+        ],
+        [
+          "PIN",
+          "Your secret 4 numbers. Never share"
+        ],
+        [
+          "FSCS",
+          "A scheme that protects savings, up to a limit"
+        ]
+      ],
+      "rem": "If you are not sure, stop and ask. A real bank never minds questions."
+    },
+    {
+      "sum": "The NatWest app is a bank branch on your phone. You can check your balance, pay people and get help at any time.",
+      "pts": [
+        "Download it only from your phone’s official app store. Check that it says NatWest.",
+        "Log in, then set Face ID, a fingerprint or a passcode so it is quick next time.",
+        "Find your balances and transactions in the app. Consider pending payments and upcoming bills too.",
+        "To pay someone, you need their name, sort code and account number. Check every number.",
+        "Turn on alerts. You get a message when money comes in or goes out.",
+        "If something looks wrong, use Help in the app."
+      ],
+      "words": [
+        [
+          "App store",
+          "Where you safely download apps"
+        ],
+        [
+          "Balance",
+          "How much money you have now"
+        ],
+        [
+          "Payment",
+          "Money going out"
+        ],
+        [
+          "Alert",
+          "A message about your money"
+        ],
+        [
+          "Confirm",
+          "Press to say yes, go ahead"
+        ]
+      ],
+      "rem": "Take your time. You can always stop before you press Confirm."
+    },
+    {
+      "sum": "Online banking is the same account as the app, on a bigger screen. Always check the address says natwest.com.",
+      "pts": [
+        "Type natwest.com into your browser. Do not click links in texts or emails.",
+        "Check the website address carefully. A padlock or HTTPS alone does not prove a site is genuine.",
+        "You may get a code by text. This is normal. The code is only for you.",
+        "Open Statements to read or download your monthly statements.",
+        "Open Settings to change your phone number or address.",
+        "Log out when you finish, especially on a shared computer."
+      ],
+      "words": [
+        [
+          "Browser",
+          "The program you use to open websites"
+        ],
+        [
+          "Padlock",
+          "An encrypted connection; not proof a site is genuine"
+        ],
+        [
+          "Statement",
+          "A record of your money in and out"
+        ],
+        [
+          "Log out",
+          "Close your account when you finish"
+        ]
+      ],
+      "rem": "Only you should ever use your codes."
+    },
+    {
+      "sum": "Scammers pretend to be your bank. Your bank will never ask for your PIN, or ask you to move money to a “safe account”.",
+      "pts": [
+        "Scammers can call, text or email. They sound kind, and in a hurry.",
+        "Your bank will never ask for your PIN or your full password.",
+        "Your bank will never ask you to move money to a “safe account”.",
+        "If you are unsure, hang up. Call the number on the back of your card.",
+        "Never read out a code from a text to someone who rang you.",
+        "You can walk into a branch, or use Help in the app, at any time."
+      ],
+      "words": [
+        [
+          "Scam",
+          "A trick to steal your money"
+        ],
+        [
+          "Phishing",
+          "A fake text or email that looks real"
+        ],
+        [
+          "Safe account",
+          "A lie scammers use. There is no such thing"
+        ],
+        [
+          "Hang up",
+          "End the call. You are allowed to"
+        ]
+      ],
+      "rem": "Real banks never rush you. If you feel rushed, stop."
+    }
+  ],
+  "placement": [
+    [
+      "Which two numbers do you share so someone can pay money into your UK account?",
+      [
+        "Sort code and account number",
+        "Passport and phone number",
+        "Card PIN and password",
+        "🤷 I’m not sure"
+      ],
+      0
+    ],
+    [
+      "Where do you usually see your balance in a banking app?",
+      [
+        "Only in a letter",
+        "On the home screen after you log in",
+        "You have to call",
+        "🤷 I’m not sure"
+      ],
+      1
+    ],
+    [
+      "Online banking on a computer is…",
+      [
+        "A different account",
+        "A shop",
+        "The same account, on the NatWest website",
+        "🤷 I’m not sure"
+      ],
+      2
+    ],
+    [
+      "Someone rings saying they are your bank and asks you to move money to a “safe account”. You…",
+      [
+        "Do what they say",
+        "Give them your PIN",
+        "Hang up and call your bank on a number you trust",
+        "🤷 I’m not sure"
+      ],
+      2
+    ]
+  ],
+  "source": {
+    "url": "https://github.com/ayaannasim9/Commonscents/blob/OverviewOfApp/Overview/app.js",
+    "blob": "fa1d4ef5602d21a3d1f9bfb69a398ed92062b284"
+  }
+}

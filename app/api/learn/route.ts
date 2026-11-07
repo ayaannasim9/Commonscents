@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     const journey = state.journeys.find(j => j.id === lesson?.journey_id);
     const locked = lesson && !journey?.flexible && state.lessons.some(l => l.journey_id === lesson.journey_id && (l.journey_position ?? l.position) < (lesson.journey_position ?? lesson.position) && !state.progress.completed.includes(l.id));
     if (!lesson || !journey || locked) return NextResponse.json({error:'Complete the previous lesson first.'}, {status:403});
-    const {data, error} = await database().from('cs_questions').select('id,prompt,options,position').eq('lesson_id',lessonId).order('position');
+    const {data, error} = await database().from('cs_questions').select('id,prompt,options,position,interaction').eq('lesson_id',lessonId).order('position');
     if (error || !data?.length) throw new Error();
     return NextResponse.json({questions:data});
   } catch { return NextResponse.json({error:'Could not load this lesson. Check your database connection.'}, {status:503}); }

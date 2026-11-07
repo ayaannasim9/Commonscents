@@ -1,4 +1,10 @@
+import { overviewMarkup } from './overview-html';
 import { loadLearning } from '@/lib/learning';
-import LearningApp from './components/learning-app';
+import OverviewApp from './components/overview-app';
+import '../Overview/styles.css';
+import './learning-integrated.css';
 export const dynamic = 'force-dynamic';
-export default async function Home() { return <LearningApp initial={await loadLearning()} />; }
+export default async function Home() {
+  const [markup, initial] = await Promise.all([overviewMarkup(), loadLearning()]);
+  return <OverviewApp markup={markup} initial={initial}/>;
+}

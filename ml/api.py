@@ -162,6 +162,7 @@ def timelines(cid: str, goal: str | None = None, worry: str | None = None,
 
 _OVERVIEW = Path(__file__).resolve().parent.parent / "Overview"
 if _OVERVIEW.exists():
+    app.mount("/overview", StaticFiles(directory=_OVERVIEW), name="overview-assets")
     app.mount("/app", StaticFiles(directory=_OVERVIEW, html=True), name="overview")
 
 
