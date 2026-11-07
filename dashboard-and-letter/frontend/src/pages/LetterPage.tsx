@@ -14,7 +14,7 @@ export default function LetterPage() {
   const approve = async () => {
     setBusy(true)
     try { await api.approveLetter(customerId); setApproved(true); announce('The letter is approved and ready to print.') }
-    catch { announce('We could not approve the letter.') }
+    catch { announce('We could not approve the letter. Please try again. If it still fails, check that the dashboard service is running.') }
     finally { setBusy(false) }
   }
   return (
@@ -25,7 +25,7 @@ export default function LetterPage() {
         <button className="btn" onClick={() => ref.current?.contentWindow?.print()}>Print preview</button>
         {role === 'helper' && !approved && <button className="btn btn-quiet" disabled={busy} onClick={approve}>{busy ? 'Approving…' : 'Approve letter for printing'}</button>}
         {role === 'helper' && approved && <span className="badge st-good">Approved</span>}
-        <a className="btn btn-quiet" href={pdfUrl(customerId, !approved)} target="_blank" rel="noreferrer">{approved ? 'Open the PDF' : 'Preview the PDF'}</a>
+        <a className="btn btn-quiet" href={pdfUrl(customerId, !approved)} target="_blank" rel="noreferrer" aria-label={`${approved ? 'Open the PDF' : 'Preview the PDF'} (opens in a new tab)`}>{approved ? 'Open the PDF' : 'Preview the PDF'}</a>
       </div>
       <LetterFrame customerId={customerId} frameRef={ref} />
     </div>

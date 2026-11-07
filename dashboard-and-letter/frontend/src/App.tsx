@@ -29,7 +29,7 @@ function AppBar() {
     <header>
      <div className="appbar">
       <div className="appbar-inner">
-        <NavLink to="/" className="brand">Common Cents</NavLink>
+        <NavLink to="/" className="brand">NatWise</NavLink>
         <nav className="mainnav" aria-label="Main">
           <ul>{links.map((l) => <li key={l.to}><NavLink to={l.to}>{l.label}</NavLink></li>)}</ul>
         </nav>
@@ -64,8 +64,8 @@ function Layout() {
   const main = useRef<HTMLElement>(null)
   const prev = useRef(pathname)
   useEffect(() => {
-    const t = TITLES[pathname.replace(/^\/cases\/.+/, '/cases')] ?? 'Common Cents'
-    document.title = t === 'Common Cents' ? t : `${t} - Common Cents`
+    const t = TITLES[pathname.replace(/^\/cases\/.+/, '/cases')] ?? 'NatWise'
+    document.title = t === 'NatWise' ? t : `${t} - NatWise`
   }, [pathname])
   useEffect(() => {
     if (prev.current === pathname) return

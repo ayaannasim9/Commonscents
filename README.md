@@ -1,4 +1,4 @@
-# Commonscents
+# NatWise
 
 The overview is the application homepage. Its **Learn** tab contains the Supabase-backed learning journeys in the same page. The overview header, navigation, text size, contrast and dark-mode controls are shared across all sections. `/learn` redirects to `/#learn` for older bookmarks.
 

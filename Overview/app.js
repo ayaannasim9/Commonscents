@@ -7,9 +7,12 @@ document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g
 nav.addEventListener("keydown",e=>{const b=[...nav.children],i=b.indexOf(document.activeElement);let next;if(e.key==="ArrowRight")next=(i+1)%b.length;if(e.key==="ArrowLeft")next=(i-1+b.length)%b.length;if(e.key==="Home")next=0;if(e.key==="End")next=b.length-1;if(next!==undefined){e.preventDefault();b.forEach((tab,n)=>tab.tabIndex=n===next?0:-1);b[next].focus()}});
 
 /* display settings */
-const sizes=[["18px","normal"],["22px","large"],["26px","extra large"]];let si=0;
-$("#tsz").onclick=()=>{si=(si+1)%3;R.style.setProperty("--fs",sizes[si][0]);$("#tsz").setAttribute("aria-label","Change text size. Current: "+sizes[si][1])};
+const sizes=[["112.5%","normal"],["137.5%","large"],["162.5%","extra large"],["225%","double size"]];let si=0;
+$("#tsz").onclick=()=>{si=(si+1)%sizes.length;R.style.setProperty("--fs",sizes[si][0]);$("#tsz").setAttribute("aria-label","Change text size. Current: "+sizes[si][1]);$("#tsz").textContent="Aa Text: "+sizes[si][1];$("#display-status").textContent="Text size: "+sizes[si][1]};
 $("#thc").onclick=e=>{const on=e.target.getAttribute("aria-pressed")!="true";e.target.setAttribute("aria-pressed",on);on?R.dataset.contrast="high":delete R.dataset.contrast};
+const systemDark=window.matchMedia("(prefers-color-scheme: dark)");
+function syncTheme(){if(!R.dataset.theme)$("#tdk").setAttribute("aria-pressed",String(systemDark.matches))}
+syncTheme();systemDark.addEventListener("change",syncTheme);
 $("#tdk").onclick=e=>{const on=e.target.getAttribute("aria-pressed")!="true";e.target.setAttribute("aria-pressed",on);R.dataset.theme=on?"dark":"light"};
 
 /* onboarding */
@@ -26,7 +29,7 @@ const Q=[
 ["Would you like a printed report posted to you each year?",[["📬","Yes please"],["📱","No, digital only"]]]];
 let step=-1;const ans=[];
 function ob(){const el=$("#ob");
-if(step<0){el.innerHTML='<div class="card bank"><span class="big" aria-hidden="true">🏦</span><div><h3 style="margin:0">Connect your NatWest account</h3><p class="lead" style="margin:.2rem 0 .8rem">Read-only. We can see your money, but we can’t move it. You can disconnect any time.</p><button class="btn pri" id="conn">🔒 Connect NatWest</button></div></div>';$("#conn").onclick=()=>{step=0;ob()};return}
+if(step<0){el.innerHTML='<div class="card bank"><span class="big" aria-hidden="true">🏦</span><div><h3 style="margin:0">Connect your NatWest account</h3><p class="lead" style="margin:.2rem 0 .8rem">Read-only. We can see your money, but we can’t move it. You can disconnect any time.</p><button class="btn pri" id="conn">🔒 Connect NatWest</button></div></div>';$("#conn").onclick=()=>{step=0;ob();$("#q")?.focus()};return}
 if(step>=Q.length){el.innerHTML='<div class="card" style="text-align:center"><div style="font-size:4rem" aria-hidden="true">✅</div><h3>All done. Well done!</h3><p class="lead">We’re building your future timelines.</p><button class="btn pri" data-go="future">🔮 See my future</button></div>';$("#main").focus({preventScroll:true});return}
 const [q,o]=Q[step];
 el.innerHTML='<p id="pg" style="font-weight:800;margin:0">Question '+(step+1)+' of 10</p><div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" aria-valuenow="'+step+'" aria-labelledby="pg"><i style="width:'+(step*10)+'%"></i></div><div class="card"><h3 id="q" style="margin-top:0;font-size:1.4rem" tabindex="-1">'+q+'</h3><div class="opts" role="group" aria-labelledby="q">'+o.map((x,i)=>'<button class="opt" aria-pressed="'+(ans[step]===i)+'" data-i="'+i+'"><span class="i" aria-hidden="true">'+x[0]+'</span>'+x[1]+'</button>').join("")+'</div></div><div style="display:flex;gap:.7rem;flex-wrap:wrap"><button class="btn ghost" id="bk"'+(step==0?' disabled':'')+'>← Back</button><button class="btn pri" id="nx" disabled>Next →</button></div>';

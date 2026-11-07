@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Common Cents – Your Financial Future, Made Simple</title>
+<title>NatWise – Your Financial Future, Made Simple</title>
 <link rel="stylesheet" href="/overview/styles.css">
 </head>
 <body>
@@ -11,12 +11,13 @@
 <header>
 <svg class="bg" width="260" height="260" viewBox="0 0 260 260" aria-hidden="true"><circle cx="130" cy="130" r="120" fill="none" stroke="#fff" stroke-width="18"/><circle cx="130" cy="130" r="70" fill="none" stroke="#ffc72c" stroke-width="14"/></svg>
 <div class="top">
-<div class="brand"><span class="logo" aria-hidden="true">£</span>Common Cents</div>
+<div class="brand"><span class="logo" aria-hidden="true">£</span>NatWise</div>
 <div class="tools" role="group" aria-label="Display settings">
 <button id="tsz" aria-label="Change text size. Current: normal">Aa Text size</button>
 <button id="thc" aria-pressed="false">◐ High contrast</button>
 <button id="tdk" aria-pressed="false">🌙 Dark</button>
 </div></div>
+<p id="display-status" class="sr" role="status"></p>
 <h1>Your Financial Future, Made Simple</h1>
 <p>In partnership with <strong>NatWest</strong> · Mockup with example data</p>
 </header>
@@ -48,7 +49,6 @@
 <details class="dt"><summary><span class="si" aria-hidden="true">🗒️</span><span class="st">All 4 steps<small>What takes you to Timeline C</small></span></summary><div class="dtb"><div id="allacts"></div></div></details>
 <h3 class="sh">More detail</h3>
 <details class="dt"><summary><span class="si" aria-hidden="true">🏦</span><span class="st">My accounts<small id="pv-acc"></small></span></summary><div class="dtb"><p class="lead" style="margin-top:0">🔒 Connected from your NatWest account. Example data.</p><div id="acc"></div></div></details><details class="dt"><summary><span class="si" aria-hidden="true">📅</span><span class="st">My month<small id="pv-mon"></small></span></summary><div class="dtb"><div id="mon"></div></div></details><details class="dt"><summary><span class="si" aria-hidden="true">📍</span><span class="st">What happens along the way<small id="pv-st"></small></span></summary><div class="dtb"><ul class="steps" id="tlsteps" aria-label="Timeline milestones"></ul></div></details><details class="dt"><summary><span class="si" aria-hidden="true">ℹ️</span><span class="st">Why am I seeing this?</span></summary><div class="dtb"><p id="tlwhy" style="margin:0"></p></div></details>
-<div class="ph" role="note"><strong>🧩 Placeholder: Time Travel Engine.</strong> The ML model plugs in here. Call <code>TimeTravelEngine.getTimelines(answers)</code>. Numbers shown are example data.</div>
 </section>
 
 <section id="s-wrapped" role="tabpanel" aria-labelledby="t-wrapped" hidden>
@@ -79,7 +79,7 @@
 <div id="report-root"></div>
 </section>
 </main>
-<footer>Common Cents · Design mockup · Designed with accessibility in mind. Accessibility testing is ongoing.</footer>
+<footer>NatWise · Design mockup · Designed with accessibility in mind. Accessibility testing is ongoing.</footer>
 
 <script src="/overview/app.js"></script>
 </body>

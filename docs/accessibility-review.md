@@ -1,5 +1,27 @@
 # Accessibility and restoration review — 7 November 2026
 
+## NatWise UI update
+
+Reference: the remote `OverviewOfApp/Overview/styles.css`, retrieved from GitHub on 7 November 2026. The purple header, gold logo, rounded cards and section navigation are retained. The application is renamed NatWise, including its page title and standalone dashboard branding. `app/accessibility.css` applies shared fixes after the existing module styles.
+
+Implemented in this pass:
+
+- Fixed the header gradient so dark-mode accent colours cannot reduce white-text contrast. Darkened Wrapped gradients and strengthened form borders. High contrast now includes the header, controls and Wrapped cards; added Windows forced-colour styles.
+- Shared system font, relative font sizing, four visible text-size settings up to double size, and screen-reader announcements of changes. The dark-mode button reflects the system theme on first load.
+- Dashboard sections use the reference branch's rounded cards and readable body-sized summaries. Spending labels remain outside chart bars.
+- Visible keyboard focus, a skip link, native labelled controls, larger helper controls and wrapped layouts. Onboarding moves focus to its first question. Reduced motion includes pseudo-elements and scrolling; removed the perpetual lesson pulse.
+- Letter PDF links announce that they open a new tab. Approval errors include a recovery step. Decorative icons stay hidden from screen readers, and chart values/statuses have text equivalents.
+
+Executed browser checks:
+
+- Start, Dashboard, Future, Wrapped, Learn, Support and Report: **320 CSS pixels wide with double-size text; document scrollWidth = 320 on all seven tabs**. This tests reflow and text scaling; it is not an actual browser-zoom test.
+- Dashboard dark-theme visible text: computed foreground/background sample found no failures against 4.5:1 normal / 3:1 large text. This does not cover every state, gradient, PDF or graphic.
+- Keyboard End moved focus from Dashboard to Report, a solid focus outline was present, and Enter activated Report.
+- Submitting an empty question displayed an alert: “Please tick a box or write your question, then send it.” No case was submitted.
+- High-contrast light mode produced black header text on white, with matching controls. System dark-mode state was correctly exposed as pressed.
+
+Not yet verified: actual 200%/400% browser zoom, OS forced-colours/reduced-motion settings, comprehensive automated contrast scanning, and end-to-end VoiceOver, NVDA and TalkBack. These require a manual assistive-technology acceptance pass before claiming WCAG conformance. There is no autoplaying media; captions/transcripts are not applicable to the current screens.
+
 Scope: combined overview shell and Learn panel. This is a WCAG-inspired engineering review, not a declaration of WCAG 2.2 AA conformance. Checks below distinguish implemented features from executed tests.
 
 ## Restored content inventory

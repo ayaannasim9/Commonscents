@@ -1,0 +1,84 @@
+/* Preserve OverviewOfApp's visual language with accessible shared behaviour. */
+:root{--fs:112.5%;--control-border:#806b90}
+header{background:linear-gradient(135deg,#3c1053,#5a287d 70%,#66318b)}
+html{scroll-padding-top:7rem}
+body{overflow-wrap:anywhere}
+button,input,select,textarea{font:inherit}
+button,a,summary,input,select,textarea{touch-action:manipulation}
+button,summary,select{min-height:44px;max-width:100%;overflow-wrap:anywhere}
+input:not([type=checkbox]):not([type=radio]),select,textarea{max-width:100%;min-width:0}
+fieldset{min-width:0}
+img,video,svg{max-width:100%}
+:where(button,a,input,select,textarea,summary,[tabindex]):focus-visible{outline:3px solid var(--gold);outline-offset:3px;box-shadow:0 0 0 6px #3c1053;scroll-margin-block:8rem 2rem}
+#main:focus{outline:none;box-shadow:none}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;left:auto}
+.skip:focus{z-index:20}
+.btn:not(.ghost):not(.pri){background:#5a287d;border-color:#5a287d;color:#fff}
+.btn.pri{color:#fff!important}
+.w1{background:linear-gradient(135deg,#5a287d,#713698)}
+.w2{background:linear-gradient(135deg,#00515a,#006d69)}
+.w3{background:linear-gradient(135deg,#8f0044,#b0005e)}
+.w4{background:linear-gradient(135deg,#663000,#874800)}
+.w5{background:linear-gradient(135deg,#185a30,#206b3e)}
+.opt,.tl button,.pf input,.pf select{border-color:var(--control-border)}
+.opt{flex-wrap:wrap}.opt[aria-pressed=true]::after{white-space:normal}
+.nd.cur{animation:none}
+.wrapx{max-width:100%}
+.counterpart .sec,.counterpart .sec:first-child{background:var(--card);border:2px solid var(--line);border-radius:1.1rem;padding:1.1rem;margin-bottom:1rem}
+.counterpart .headline-text{font-size:1.35rem;font-weight:600;line-height:1.6;max-width:62ch}
+.counterpart .sec-head{flex-wrap:wrap;gap:.8rem}
+.counterpart .read{min-height:44px;white-space:normal;flex-shrink:1;min-width:0;max-width:100%;text-align:left}
+.counterpart .read svg{flex-shrink:0}
+.counterpart .read.on{background:#5a287d;color:#fff}
+.counterpart .month>*{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.counterpart .btn:disabled{background:var(--bg);color:var(--mut);border-color:var(--mut);cursor:not-allowed}
+.counterpart .chip[aria-pressed=true]{background:#5a287d;color:#fff}
+.counterpart .btn-demo.btn-quiet{color:var(--p)}
+.counterpart .toolbar{background:var(--card)}
+.counterpart .hp-checks label{min-height:44px;align-items:center}
+.counterpart .guardrail-badge{min-height:44px;white-space:normal}
+.counterpart .hpanel h2,.counterpart .stmt h2{font-size:1.4rem}
+.counterpart .hpanel h3{font-size:1.15rem}
+.counterpart .log li,.counterpart .held li,.counterpart .hp-nums div{flex-wrap:wrap;min-width:0}
+.counterpart .log .when{min-width:0}
+.counterpart .bar-head{flex-wrap:wrap;gap:.4rem 1rem}
+.counterpart .money-row{height:auto;overflow:visible;background:none;border-radius:0}
+.counterpart .paper{background:var(--card)}
+.integrated-learning .answer,.integrated-learning .match-row select{border-color:var(--control-border)}
+.integrated-learning .page-heading>div,.integrated-learning .banking-comparison>div,.integrated-learning .trail-heading>div{min-width:0;overflow-wrap:anywhere}
+.integrated-learning summary{flex-wrap:wrap}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--control-border:#b99bcc}}
+:root[data-theme=dark]{--control-border:#b99bcc}
+:root[data-contrast=high]{--control-border:var(--tx)}
+:root[data-contrast=high] .w,:root[data-contrast=high] header{background:var(--card);color:var(--tx);border:2px solid var(--tx)}
+:root[data-contrast=high] .tools button{color:var(--tx);border-color:var(--tx);background:var(--card)}
+:root[data-contrast=high] .tools button[aria-pressed=true],:root[data-contrast=high] .counterpart .chip[aria-pressed=true]{background:var(--tx);color:var(--card)}
+:root[data-contrast=high] .w .tag{background:var(--tx);color:var(--card)}
+@media(max-width:700px){
+ html{scroll-padding-top:1rem}
+ #nav{position:static;flex-wrap:wrap;overflow:visible}
+ #nav button{flex:1 1 8rem;min-width:0;white-space:normal}
+ #main{min-width:0;padding-inline:.8rem}
+ .tl,.wrap,.sup,.tiles,.acts,.mods,.gl{grid-template-columns:minmax(0,1fr)}
+ .act,.steps li{flex-wrap:wrap}
+ .card{padding:.7rem}
+ fieldset{margin-inline:0;padding:.5rem}
+ .ck{align-items:flex-start;gap:.4rem}
+ .act>div,.counterpart .sec,.counterpart .month{min-width:0}
+ .brand{flex-wrap:wrap;min-width:0}
+ .integrated-learning .page-heading .penny{display:none}
+ .integrated-learning .money-term summary{overflow-wrap:anywhere}
+ .counterpart .sec,.counterpart .sec:first-child{padding:.6rem}
+ .counterpart .month{padding:.6rem}
+ .counterpart .months,.counterpart .persona-grid{grid-template-columns:minmax(0,1fr)}
+ .counterpart .sec-head .read{font-size:.9rem}
+ .counterpart .case-row{grid-template-columns:minmax(0,1fr)}
+ :where(button,a,input,select,textarea,summary,[tabindex]):focus-visible{scroll-margin-block:1rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(forced-colors:active){
+ button,a,summary,input,select,textarea,.counterpart .badge{border-color:ButtonText!important}
+ :focus-visible{outline:3px solid Highlight!important;box-shadow:none!important}
+ #nav button[aria-selected=true]{border-bottom-color:Highlight}
+ .counterpart .bar-fill,.integrated-learning .progress-track span{background:Highlight;forced-color-adjust:none}
+}

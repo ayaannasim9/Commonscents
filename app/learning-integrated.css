@@ -66,3 +66,34 @@
 :root[data-contrast=high] .integrated-learning .path-node.done{background:var(--tx);color:var(--card);border-color:var(--tx)}
 
 .integrated-learning .ordering button[aria-disabled=true]{opacity:.6;cursor:not-allowed}
+
+/* Keep the lesson path first; secondary navigation and help live beside it. */
+#main:has(#s-learn:not([hidden])){max-width:1280px}
+.integrated-learning .app-shell{display:block}
+.integrated-learning .learning-nav{display:flex;flex-direction:column;gap:.6rem;margin:0 0 1rem}
+.integrated-learning .learning-nav button{border-radius:.8rem;justify-content:flex-start;text-align:left;padding:.65rem .8rem}
+.integrated-learning .workspace,.integrated-learning .main-column,.integrated-learning .learning-sidebar{min-width:0}
+.integrated-learning .page-heading{gap:.7rem;margin-bottom:.6rem}
+.integrated-learning .page-heading .penny{width:60px}
+.integrated-learning .page-heading h2{font-size:1.4rem}
+.integrated-learning .page-heading p{font-size:.9rem;margin:.25rem 0}
+.integrated-learning .journey-picker{margin-bottom:.8rem}
+.integrated-learning .dashboard-grid.with-sidebar{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,300px);gap:1.4rem;align-items:start}
+.integrated-learning .path-intro h2{font-size:1.1rem;margin:0}
+.integrated-learning .path-intro p{font-size:.85rem;margin:.2rem 0 .6rem}
+.integrated-learning .trail-heading{margin-top:0}
+.integrated-learning .learning-sidebar .next-lesson{display:block;margin:0 0 1rem;padding:1rem}
+.integrated-learning .learning-sidebar .next-lesson h2{font-size:1.15rem}
+.integrated-learning .learning-sidebar .next-lesson p{font-size:.9rem}
+.integrated-learning .learning-sidebar .next-lesson .primary{width:100%;margin-top:.7rem}
+.integrated-learning .learning-sidebar .banking-course-link{display:block;margin:1rem 0;padding:1rem}
+.integrated-learning .learning-sidebar .banking-course-link>svg{display:none}
+.integrated-learning .learning-sidebar .banking-course-link button{width:100%;margin-top:.5rem}
+.integrated-learning .learning-sidebar summary{padding:.8rem;font-size:.9rem}
+.integrated-learning .learning-sidebar .banking-comparison{grid-template-columns:minmax(0,1fr)}
+@media(max-width:780px){
+ .integrated-learning .dashboard-grid.with-sidebar{grid-template-columns:minmax(0,1fr)}
+ .integrated-learning .learning-sidebar{border-top:2px solid var(--line);padding-top:1rem}
+ .integrated-learning .page-heading .penny{display:none}
+ .integrated-learning .learning-nav button{flex:1 1 auto}
+}

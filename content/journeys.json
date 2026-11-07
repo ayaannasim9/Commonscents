@@ -5,7 +5,9 @@
     "description": "Make your funding last, understand housing costs and navigate money away from home.",
     "units": [
       "Before you move",
-      "Your first term"
+      "Your first term",
+      "Everyday student spending",
+      "When plans change"
     ],
     "flexible": false,
     "lessons": [
@@ -236,6 +238,150 @@
             "explanation": "Use a trusted route to verify the claim. Urgency is not proof that a message is genuine."
           }
         ]
+      },
+      {
+        "id": "uni-food",
+        "title": "Plan a food shop",
+        "description": "Practise fitting a shopping list into a weekly amount.",
+        "reading_cards": [
+          "Practice example: Alex has £35 for food this week. A planned shop costs £27, leaving £8. These are made-up figures, not a suggested food budget.",
+          "A short list can help you remember what you need. In this example, Alex checks the cupboard before buying another bag of rice.",
+          "A bigger packet does not always cost less per unit. Compare the price for the same amount, and consider whether you will use it all."
+        ],
+        "checklist": [
+          "Try the example calculation with your own notes."
+        ],
+        "sources": [],
+        "reviewed_at": null,
+        "questions": [
+          {
+            "prompt": "Alex has £35 and spends £27. How much remains?",
+            "options": [
+              "£8",
+              "£12",
+              "£27"
+            ],
+            "correct_index": 0,
+            "explanation": "£35 minus £27 leaves £8."
+          },
+          {
+            "prompt": "What can Alex do before shopping?",
+            "options": [
+              "Buy everything again",
+              "Check what is already in the cupboard",
+              "Ignore the shopping list"
+            ],
+            "correct_index": 1,
+            "explanation": "Checking what is already there can prevent duplicate purchases."
+          },
+          {
+            "prompt": "Which is cheaper per kilogram?",
+            "options": [
+              "500g for £2",
+              "1kg for £5",
+              "1kg for £3"
+            ],
+            "correct_index": 2,
+            "explanation": "500g for £2 is £4 per kilogram. £3 per kilogram is the lowest of these example prices."
+          }
+        ],
+        "draft": true
+      },
+      {
+        "id": "uni-split",
+        "title": "Split shared costs clearly",
+        "description": "Practise dividing a bill with housemates.",
+        "reading_cards": [
+          "Practice example: three housemates agree to split a £60 shared purchase equally. Each person contributes £20.",
+          "Before buying something together, agree what is shared, the amount and who will pay. A simple written note can help everyone remember the agreement.",
+          "If someone cannot pay their share, discuss it before the payment date. Do not assume another person has agreed to cover it."
+        ],
+        "checklist": [
+          "Try the example calculation with your own notes."
+        ],
+        "sources": [],
+        "reviewed_at": null,
+        "questions": [
+          {
+            "prompt": "Three people split £60 equally. What is each share?",
+            "options": [
+              "£10",
+              "£20",
+              "£30"
+            ],
+            "correct_index": 1,
+            "explanation": "£60 divided by three is £20."
+          },
+          {
+            "prompt": "What should the housemates agree before buying?",
+            "options": [
+              "Only the colour of the receipt",
+              "Nothing until afterwards",
+              "The cost and each person’s share"
+            ],
+            "correct_index": 2,
+            "explanation": "Agreeing the cost and shares first makes expectations clear."
+          },
+          {
+            "prompt": "A person expects to miss the agreed payment date. What helps?",
+            "options": [
+              "Tell the others early and discuss it",
+              "Say nothing",
+              "Assume someone else will pay"
+            ],
+            "correct_index": 0,
+            "explanation": "An early conversation gives everyone time to discuss the situation."
+          }
+        ],
+        "draft": true
+      },
+      {
+        "id": "uni-surprise",
+        "title": "Adjust for an unexpected cost",
+        "description": "Practise changing a plan when something comes up.",
+        "reading_cards": [
+          "Practice example: Taylor planned £40 of optional spending. A £15 replacement charger is needed. Using £15 from that amount leaves £25 for the original plans.",
+          "A spending plan can change. Write down the new cost and check which planned spending can wait rather than counting the same money twice.",
+          "If the example budget does not balance, pause and revise it. Completing this lesson does not mean you need to follow these particular amounts."
+        ],
+        "checklist": [
+          "Try the example calculation with your own notes."
+        ],
+        "sources": [],
+        "reviewed_at": null,
+        "questions": [
+          {
+            "prompt": "Taylor starts with £40 and uses £15 for a charger. What remains?",
+            "options": [
+              "£55",
+              "£25",
+              "£15"
+            ],
+            "correct_index": 1,
+            "explanation": "£40 minus £15 leaves £25."
+          },
+          {
+            "prompt": "What should change when the new cost is added?",
+            "options": [
+              "Nothing",
+              "Count the £15 twice",
+              "Update the amount left for other spending"
+            ],
+            "correct_index": 2,
+            "explanation": "The same £15 cannot also be spent on the original plans."
+          },
+          {
+            "prompt": "Which describes a useful practice budget?",
+            "options": [
+              "A plan you can update",
+              "A promise never to change anything",
+              "A list that ignores new costs"
+            ],
+            "correct_index": 0,
+            "explanation": "A plan is useful when you can revise it as circumstances change."
+          }
+        ],
+        "draft": true
       }
     ]
   },
@@ -246,7 +392,8 @@
     "units": [
       "Find your starting point",
       "Build a routine",
-      "Protect yourself from scams"
+      "Protect yourself from scams",
+      "Everyday money habits"
     ],
     "flexible": true,
     "lessons": [
@@ -537,6 +684,102 @@
             "explanation": "Act promptly using a trusted device or phone if yours may be compromised. You deserve support; do not let embarrassment delay asking for help."
           }
         ]
+      },
+      {
+        "id": "own-small-costs",
+        "title": "Notice the small costs",
+        "description": "Practise adding up everyday spending.",
+        "reading_cards": [
+          "Practice example: Jo buys a £3 snack on five days. That adds up to £15. These are invented amounts, not a recommended spending limit.",
+          "Small purchases can be easy to forget. Writing them down can help explain where your money went.",
+          "You decide which purchases matter to you. A spending record is information, not a reason to feel guilty."
+        ],
+        "questions": [
+          {
+            "prompt": "What is £3 spent on five days?",
+            "options": [
+              "£8",
+              "£15",
+              "£30"
+            ],
+            "correct_index": 1,
+            "explanation": "£3 multiplied by five is £15."
+          },
+          {
+            "prompt": "What could help Jo remember small purchases?",
+            "options": [
+              "Write them down",
+              "Ignore them",
+              "Guess at the end of the year"
+            ],
+            "correct_index": 0,
+            "explanation": "A short record makes spending easier to see."
+          },
+          {
+            "prompt": "What is the purpose of keeping a spending record?",
+            "options": [
+              "To blame yourself",
+              "To stop every enjoyable purchase",
+              "To understand your choices"
+            ],
+            "correct_index": 2,
+            "explanation": "A record helps you make choices that fit your situation."
+          }
+        ],
+        "checklist": [
+          "Try the example on paper at your own pace."
+        ],
+        "sources": [],
+        "reviewed_at": null,
+        "draft": true
+      },
+      {
+        "id": "own-weekly-check",
+        "title": "Do a five-minute money check",
+        "description": "Build a simple habit for reviewing your plan.",
+        "reading_cards": [
+          "Practice example: Lee has £100 available and a known £40 payment due before more money arrives. Reserving that payment leaves £60 for other costs.",
+          "A short check can include your available balance, payments still to come and any spending you have not yet recorded. Avoid counting the same money twice.",
+          "If a figure does not look right, check the details before changing your plan. You can make notes and ask someone you trust to help you understand them."
+        ],
+        "questions": [
+          {
+            "prompt": "Lee has £100 and reserves £40. What remains?",
+            "options": [
+              "£140",
+              "£60",
+              "£40"
+            ],
+            "correct_index": 1,
+            "explanation": "£100 minus £40 leaves £60."
+          },
+          {
+            "prompt": "What should a weekly check include?",
+            "options": [
+              "Only yesterday’s balance",
+              "Only money already spent",
+              "Payments still to come"
+            ],
+            "correct_index": 2,
+            "explanation": "Upcoming payments can reduce what is available to spend."
+          },
+          {
+            "prompt": "A figure seems unfamiliar. What is a useful first step?",
+            "options": [
+              "Check its details",
+              "Assume it must be correct",
+              "Forget about it"
+            ],
+            "correct_index": 0,
+            "explanation": "Checking the details helps you understand what the figure represents."
+          }
+        ],
+        "checklist": [
+          "Try the example on paper at your own pace."
+        ],
+        "sources": [],
+        "reviewed_at": null,
+        "draft": true
       }
     ]
   },

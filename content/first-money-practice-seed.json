@@ -1,0 +1,134 @@
+{
+  "lessons": [
+    {
+      "id": "own-small-costs",
+      "position": 310,
+      "title": "Notice the small costs",
+      "description": "Practise adding up everyday spending.",
+      "reading": "Practice example: Jo buys a \u00a33 snack on five days. That adds up to \u00a315. These are invented amounts, not a recommended spending limit. Small purchases can be easy to forget. Writing them down can help explain where your money went. You decide which purchases matter to you. A spending record is information, not a reason to feel guilty.",
+      "minutes": 3,
+      "xp": 30,
+      "journey_id": "independent",
+      "journey_position": 6,
+      "unit_index": 3,
+      "reading_cards": [
+        "Practice example: Jo buys a \u00a33 snack on five days. That adds up to \u00a315. These are invented amounts, not a recommended spending limit.",
+        "Small purchases can be easy to forget. Writing them down can help explain where your money went.",
+        "You decide which purchases matter to you. A spending record is information, not a reason to feel guilty."
+      ],
+      "checklist": [
+        "Try the example on paper at your own pace."
+      ],
+      "sources": [],
+      "reviewed_at": null
+    },
+    {
+      "id": "own-weekly-check",
+      "position": 311,
+      "title": "Do a five-minute money check",
+      "description": "Build a simple habit for reviewing your plan.",
+      "reading": "Practice example: Lee has \u00a3100 available and a known \u00a340 payment due before more money arrives. Reserving that payment leaves \u00a360 for other costs. A short check can include your available balance, payments still to come and any spending you have not yet recorded. Avoid counting the same money twice. If a figure does not look right, check the details before changing your plan. You can make notes and ask someone you trust to help you understand them.",
+      "minutes": 3,
+      "xp": 30,
+      "journey_id": "independent",
+      "journey_position": 7,
+      "unit_index": 3,
+      "reading_cards": [
+        "Practice example: Lee has \u00a3100 available and a known \u00a340 payment due before more money arrives. Reserving that payment leaves \u00a360 for other costs.",
+        "A short check can include your available balance, payments still to come and any spending you have not yet recorded. Avoid counting the same money twice.",
+        "If a figure does not look right, check the details before changing your plan. You can make notes and ask someone you trust to help you understand them."
+      ],
+      "checklist": [
+        "Try the example on paper at your own pace."
+      ],
+      "sources": [],
+      "reviewed_at": null
+    }
+  ],
+  "questions": [
+    {
+      "id": "own-small-costs-1",
+      "lesson_id": "own-small-costs",
+      "position": 1,
+      "prompt": "What is \u00a33 spent on five days?",
+      "options": [
+        "\u00a38",
+        "\u00a315",
+        "\u00a330"
+      ],
+      "correct_index": 1,
+      "explanation": "\u00a33 multiplied by five is \u00a315."
+    },
+    {
+      "id": "own-small-costs-2",
+      "lesson_id": "own-small-costs",
+      "position": 2,
+      "prompt": "What could help Jo remember small purchases?",
+      "options": [
+        "Write them down",
+        "Ignore them",
+        "Guess at the end of the year"
+      ],
+      "correct_index": 0,
+      "explanation": "A short record makes spending easier to see."
+    },
+    {
+      "id": "own-small-costs-3",
+      "lesson_id": "own-small-costs",
+      "position": 3,
+      "prompt": "What is the purpose of keeping a spending record?",
+      "options": [
+        "To blame yourself",
+        "To stop every enjoyable purchase",
+        "To understand your choices"
+      ],
+      "correct_index": 2,
+      "explanation": "A record helps you make choices that fit your situation."
+    },
+    {
+      "id": "own-weekly-check-1",
+      "lesson_id": "own-weekly-check",
+      "position": 1,
+      "prompt": "Lee has \u00a3100 and reserves \u00a340. What remains?",
+      "options": [
+        "\u00a3140",
+        "\u00a360",
+        "\u00a340"
+      ],
+      "correct_index": 1,
+      "explanation": "\u00a3100 minus \u00a340 leaves \u00a360."
+    },
+    {
+      "id": "own-weekly-check-2",
+      "lesson_id": "own-weekly-check",
+      "position": 2,
+      "prompt": "What should a weekly check include?",
+      "options": [
+        "Only yesterday\u2019s balance",
+        "Only money already spent",
+        "Payments still to come"
+      ],
+      "correct_index": 2,
+      "explanation": "Upcoming payments can reduce what is available to spend."
+    },
+    {
+      "id": "own-weekly-check-3",
+      "lesson_id": "own-weekly-check",
+      "position": 3,
+      "prompt": "A figure seems unfamiliar. What is a useful first step?",
+      "options": [
+        "Check its details",
+        "Assume it must be correct",
+        "Forget about it"
+      ],
+      "correct_index": 0,
+      "explanation": "Checking the details helps you understand what the figure represents."
+    }
+  ],
+  "units": [
+    "Find your starting point",
+    "Build a routine",
+    "Protect yourself from scams",
+    "Everyday money habits"
+  ]
+}
