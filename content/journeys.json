@@ -1,0 +1,1027 @@
+[
+  {
+    "id": "university",
+    "title": "Moving to university",
+    "description": "Make your funding last, understand housing costs and navigate money away from home.",
+    "units": [
+      "Before you move",
+      "Your first term"
+    ],
+    "flexible": false,
+    "lessons": [
+      {
+        "id": "uni-term",
+        "title": "Make your money last the term",
+        "description": "Turn a lump sum into a weekly plan.",
+        "reading_cards": [
+          "Sam has £3,000 available for a 12-week term. After reserving £1,800 for rent and £240 for known travel costs, £960 remains: £80 a week for everything else. These are practice figures, not a recommended student budget.",
+          "A balance can look generous while already being committed. List payment dates and all living costs before deciding what is available for food, study materials and social spending. Keep a margin for costs you cannot predict.",
+          "Check your actual funding schedule and eligibility with your student finance body. Rules and payment patterns differ across the UK and by circumstances; a termly payment is an example, not a universal rule."
+        ],
+        "checklist": [
+          "Write down the date and amount of your next confirmed funding payment.",
+          "Reserve money for rent and known costs before setting a weekly allowance.",
+          "Check whether your plan covers holidays as well as term time."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · University budgeting",
+            "url": "https://www.moneyhelper.org.uk/en/family-and-care/student-and-graduate-money/budgeting-for-college-or-university"
+          },
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Sam has £3,000 for 12 weeks, with £1,800 rent and £240 travel reserved. What is left per week?",
+            "options": [
+              "£80",
+              "£250",
+              "£100"
+            ],
+            "correct_index": 0,
+            "explanation": "£3,000 − £1,800 − £240 = £960; £960 ÷ 12 = £80. Other expenses must still fit within it."
+          },
+          {
+            "prompt": "Your account shows £900, but £650 rent is due before your next payment. What is a useful starting point?",
+            "options": [
+              "Assume your next funding will arrive early",
+              "Reserve £650 and plan the remaining £250 around other costs",
+              "Treat the whole £900 as spending money"
+            ],
+            "correct_index": 1,
+            "explanation": "Separate money already committed before deciding what you can spend."
+          },
+          {
+            "prompt": "Your friend receives funding three times a year. What should you use for your own plan?",
+            "options": [
+              "Their dates, because all UK funding is identical",
+              "The balance you hope to have",
+              "Your own award notice and payment dates"
+            ],
+            "correct_index": 2,
+            "explanation": "Use confirmed details from your own funding provider, not another student’s schedule."
+          }
+        ]
+      },
+      {
+        "id": "uni-home",
+        "title": "Look beyond the rent",
+        "description": "Compare the total cost before committing.",
+        "reading_cards": [
+          "A room advertised at £125 a week is not automatically cheaper than one at £145. Compare the number of weeks you must pay for, included bills, travel costs and money required before you move in.",
+          "For example, £125 for 51 weeks costs £6,375 in rent. £145 for 40 weeks costs £5,800. Check whether you also need somewhere to live outside the shorter contract.",
+          "Before signing or sending money, understand the agreement, deposit, guarantor requirements and who is responsible for payments. Housing rules vary by UK nation and type of accommodation. Ask the university housing team to explain unclear terms."
+        ],
+        "checklist": [
+          "Compare rent over the full contract, not just one week.",
+          "List bills, upfront payments and travel separately.",
+          "Ask the university housing team to review terms you do not understand."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · University budgeting",
+            "url": "https://www.moneyhelper.org.uk/en/family-and-care/student-and-graduate-money/budgeting-for-college-or-university"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Room A is £125 for 51 weeks; room B is £145 for 40 weeks. Ignoring other costs, which rent total is lower?",
+            "options": [
+              "They cost the same",
+              "Room B: £5,800",
+              "Room A: £6,375"
+            ],
+            "correct_index": 1,
+            "explanation": "Multiply the weekly price by the full contract length. A lower weekly price can mean a higher total."
+          },
+          {
+            "prompt": "A listing says “bills included”. What is worth checking before signing?",
+            "options": [
+              "Only the colour of the room",
+              "Nothing: every possible bill must be covered",
+              "Which bills, any usage caps and the full contract"
+            ],
+            "correct_index": 2,
+            "explanation": "Clarify exactly what is included; do not assume a short advert contains all the terms."
+          },
+          {
+            "prompt": "You do not understand a guarantor clause. What is the next step?",
+            "options": [
+              "Ask for an explanation before agreeing",
+              "Sign now and read it later",
+              "Ask a friend to sign without explaining it"
+            ],
+            "correct_index": 0,
+            "explanation": "A guarantor may take on financial responsibilities. Get the clause explained before anyone agrees."
+          }
+        ]
+      },
+      {
+        "id": "uni-shared",
+        "title": "Share a home, not confusion",
+        "description": "Make a workable plan for household bills.",
+        "reading_cards": [
+          "Four housemates estimate a shared bill at £120 a month and agree an equal split: £30 each. Decide who holds the account, when contributions arrive and how everyone can see the bill.",
+          "A private agreement about splitting costs does not replace the supplier or tenancy contract. Check who is legally responsible and plan what happens if someone leaves or cannot pay.",
+          "In Great Britain, households made up entirely of qualifying full-time students generally do not pay Council Tax; check the council’s evidence and application process. Mixed households need a separate check. Northern Ireland uses domestic rates instead, so do not assume the same exemption applies."
+        ],
+        "checklist": [
+          "Agree contributions and payment dates with housemates.",
+          "Keep shared bills and payment records accessible to everyone involved.",
+          "Check Council Tax or domestic rates with the relevant authority for your home."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Regular payments",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/banking/direct-debits-and-standing-orders"
+          },
+          {
+            "title": "GOV.UK · Full-time students and Council Tax",
+            "url": "https://www.gov.uk/council-tax/discounts-for-full-time-students"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "A £120 monthly bill is shared equally between four people. What is each share?",
+            "options": [
+              "£40",
+              "£25",
+              "£30"
+            ],
+            "correct_index": 2,
+            "explanation": "£120 divided by four is £30. Actual contributions depend on the agreement and bill."
+          },
+          {
+            "prompt": "One housemate agrees to collect everyone’s share. What still needs checking?",
+            "options": [
+              "Who is responsible under the supplier’s contract",
+              "Whether the private split cancels the contract",
+              "Whether nobody has to keep records"
+            ],
+            "correct_index": 0,
+            "explanation": "An informal split does not automatically change liability to the supplier."
+          },
+          {
+            "prompt": "A student moves to Northern Ireland. Should they assume the Great Britain Council Tax exemption applies?",
+            "options": [
+              "Yes: showing a student card always cancels every bill",
+              "No: check domestic rates rules for that property",
+              "Yes: all UK property taxes have identical student rules"
+            ],
+            "correct_index": 1,
+            "explanation": "Northern Ireland uses rates. Check the local rules rather than importing Council Tax assumptions."
+          }
+        ]
+      },
+      {
+        "id": "uni-backup",
+        "title": "When the plan does not stretch",
+        "description": "Spot borrowing risks and ask for support early.",
+        "reading_cards": [
+          "An overdraft is borrowing, even if an arranged student overdraft currently charges no interest. Check the limit, conditions and what changes when student status ends; it is not extra income.",
+          "If funding is delayed or essential costs do not fit, contact your university money or welfare team about available support. Help and eligibility vary. Avoid covering a continuing shortfall with repeated borrowing without advice.",
+          "Treat an unexpected funding message asking for a password or urgent payment with caution. Open your provider’s official site independently or contact them using a known number, rather than following the message link."
+        ],
+        "checklist": [
+          "Find your university’s money advice or student support contact.",
+          "Read the terms of any overdraft you already use.",
+          "Check funding messages through a trusted channel."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · University budgeting",
+            "url": "https://www.moneyhelper.org.uk/en/family-and-care/student-and-graduate-money/budgeting-for-college-or-university"
+          },
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Your account includes a £500 arranged overdraft. How should you think about it?",
+            "options": [
+              "Borrowing that needs repaying under its terms",
+              "An extra grant",
+              "Money that never needs repaying while you study"
+            ],
+            "correct_index": 0,
+            "explanation": "An overdraft remains debt, including during an interest-free period."
+          },
+          {
+            "prompt": "Your funding is late and rent is due. Which is a useful early step?",
+            "options": [
+              "Take several loans before checking other options",
+              "Contact student support and the accommodation provider",
+              "Ignore all messages until funding arrives"
+            ],
+            "correct_index": 1,
+            "explanation": "Explain the timing problem and ask what support or arrangements may be available."
+          },
+          {
+            "prompt": "A text says your funding will be cancelled unless you enter your password through its link. What should you do?",
+            "options": [
+              "Enter your password quickly",
+              "Forward the password to the sender instead",
+              "Check through the provider’s official site independently"
+            ],
+            "correct_index": 2,
+            "explanation": "Use a trusted route to verify the claim. Urgency is not proof that a message is genuine."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "independent",
+    "title": "Managing money for the first time",
+    "description": "Understand what comes in, what goes out and how to take the next step.",
+    "units": [
+      "Find your starting point",
+      "Build a routine",
+      "Protect yourself from scams"
+    ],
+    "flexible": true,
+    "lessons": [
+      {
+        "id": "own-map",
+        "title": "Make a simple money map",
+        "description": "Start with information, not a perfect budget.",
+        "reading_cards": [
+          "You do not need to understand everything today. Start with income, accounts you can access, regular bills and the next due dates. Use statements or official account information rather than guessing.",
+          "If someone else used to handle money, list what is unknown as well as what you know. An unfamiliar payment is something to investigate, not automatically something to cancel.",
+          "If this follows a death or another major change, ask the relevant bank or provider what access and documents are needed. This lesson is about your own day-to-day money; it does not establish authority to use someone else’s account."
+        ],
+        "checklist": [
+          "List your income sources and next expected dates.",
+          "Find a recent statement for accounts you are authorised to access.",
+          "Write down three unknowns to ask a bank or provider about."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "You have a statement but do not recognise a £42 payment. What is a useful first action?",
+            "options": [
+              "Check its reference and ask the bank or provider what it is",
+              "Cancel every regular payment",
+              "Assume it must be fraud without checking"
+            ],
+            "correct_index": 0,
+            "explanation": "Identify the payment and any contractual obligation before deciding what to change."
+          },
+          {
+            "prompt": "Which information helps build an initial money map?",
+            "options": [
+              "A friend’s monthly spending",
+              "Income dates, bill dates and amounts",
+              "Only the account balance today"
+            ],
+            "correct_index": 1,
+            "explanation": "Timing and commitments matter as well as the current balance."
+          },
+          {
+            "prompt": "You know the login for an account in someone else’s name. Does that establish authority to use it?",
+            "options": [
+              "Yes: knowing the password is enough",
+              "Yes: if you only make small payments",
+              "No: ask the bank about the appropriate process"
+            ],
+            "correct_index": 2,
+            "explanation": "Knowing login details is not the same as being authorised to manage an account."
+          }
+        ]
+      },
+      {
+        "id": "own-payments",
+        "title": "Read the payments on your statement",
+        "description": "Understand Direct Debits and standing orders.",
+        "reading_cards": [
+          "A Direct Debit lets a company collect an agreed payment from your bank account. A standing order is an instruction you set up to send a fixed amount regularly. A recurring card payment uses your card details.",
+          "If a Direct Debit has been collected in error, ask your bank about the Direct Debit Guarantee. A refund for a payment error does not erase a legitimate underlying debt.",
+          "Cancelling a payment instruction does not necessarily cancel the contract or what you owe. Check the agreement and contact the provider about ending or changing a service."
+        ],
+        "checklist": [
+          "Identify one Direct Debit, standing order or card subscription on your statement.",
+          "Check the next amount and date with the provider if unclear.",
+          "Before cancelling, check the agreement and any remaining amount owed."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Regular payments",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/banking/direct-debits-and-standing-orders"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "You tell your bank to send £50 to your savings account every month. What is that?",
+            "options": [
+              "A payslip deduction",
+              "A standing order",
+              "A Direct Debit collected by a company"
+            ],
+            "correct_index": 1,
+            "explanation": "A standing order is a regular fixed payment you instruct your bank to send."
+          },
+          {
+            "prompt": "You cancel the Direct Debit for a contract that still has six months left. What follows?",
+            "options": [
+              "The contract automatically disappears",
+              "The provider must refund all past payments",
+              "You may still owe payments under the contract"
+            ],
+            "correct_index": 2,
+            "explanation": "Stopping the bank instruction is different from ending the agreement."
+          },
+          {
+            "prompt": "A company takes a Direct Debit twice by mistake. Who can you ask about the Guarantee?",
+            "options": [
+              "Your bank",
+              "Only your employer",
+              "An unrelated social-media account"
+            ],
+            "correct_index": 0,
+            "explanation": "Your bank can help with a Direct Debit error. Any valid underlying bill still needs resolving."
+          }
+        ]
+      },
+      {
+        "id": "own-month",
+        "title": "Plan what you can actually spend",
+        "description": "Use a realistic monthly picture.",
+        "reading_cards": [
+          "Alex receives £1,600 a month. Regular commitments are £1,050 and estimated food and travel are £350. That leaves £200 before any other costs, savings or debt payments.",
+          "Include costs that do not arrive every month. An expected £180 annual expense would need £15 a month set aside over a full year if starting from zero.",
+          "A budget is a working plan. Review real spending, update estimates and look for support if essentials exceed income. A shortfall is information, not a personal failure."
+        ],
+        "checklist": [
+          "Use recent statements to estimate regular and variable costs.",
+          "Add a monthly allowance for known annual costs.",
+          "Set a short weekly check-in to compare your plan with reality."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Alex has £1,600 income, £1,050 commitments and £350 food and travel. What remains?",
+            "options": [
+              "£550",
+              "£300",
+              "£200"
+            ],
+            "correct_index": 2,
+            "explanation": "£1,600 − £1,050 − £350 = £200. Other costs may still need covering."
+          },
+          {
+            "prompt": "You need £180 for an annual expense in 12 months, starting from zero. What is the monthly amount?",
+            "options": [
+              "£15",
+              "£18",
+              "£30"
+            ],
+            "correct_index": 0,
+            "explanation": "£180 ÷ 12 = £15. A shorter timeframe would require a different amount."
+          },
+          {
+            "prompt": "Your essential spending is higher than your income. What does the plan tell you?",
+            "options": [
+              "The gap will disappear if you stop tracking it",
+              "There is a gap to address with support or changes",
+              "You have failed the task"
+            ],
+            "correct_index": 1,
+            "explanation": "The plan makes a problem visible so you can consider realistic options and support."
+          }
+        ]
+      },
+      {
+        "id": "own-support",
+        "title": "Make the next call easier",
+        "description": "Get help without giving away control.",
+        "reading_cards": [
+          "Prepare a short list before contacting a bank or provider: what you want to understand, the account reference and the relevant dates. Keep a note of agreed next steps.",
+          "Use contact details from a trusted statement, card or official website. Never share a PIN or a one-time security code with someone who has unexpectedly contacted you.",
+          "You can ask a provider about accessible communication, extra time or support from a trusted person. Ask about their formal arrangements instead of sharing account passwords."
+        ],
+        "checklist": [
+          "Choose one unanswered question and write it down.",
+          "Find the provider’s contact details independently.",
+          "Record the date, next step and any reference after the conversation."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          },
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Someone calls claiming to be your bank and asks for a one-time code. What is safer?",
+            "options": [
+              "End the call and contact the bank through a trusted route",
+              "Read out the code to prove who you are",
+              "Send the code by text instead"
+            ],
+            "correct_index": 0,
+            "explanation": "Do not give an unexpected caller a security code. Verify independently."
+          },
+          {
+            "prompt": "You want a trusted relative to help with calls. What should you ask the provider?",
+            "options": [
+              "Whether they can remove all account security",
+              "What authorised support arrangements they offer",
+              "How to share your password with everyone"
+            ],
+            "correct_index": 1,
+            "explanation": "Formal support can help you get assistance while keeping access appropriate."
+          },
+          {
+            "prompt": "After agreeing a payment change, what is useful to keep?",
+            "options": [
+              "Only the person’s first name",
+              "No record because it was discussed verbally",
+              "The date, agreed terms and reference"
+            ],
+            "correct_index": 2,
+            "explanation": "A clear record helps you follow up and check whether the agreed change happened."
+          }
+        ]
+      },
+      {
+        "id": "own-scams",
+        "title": "Stop, check and protect your money",
+        "description": "Practise spotting suspicious calls, messages and investment offers.",
+        "reading_cards": [
+          "A caller says they are from your bank and tells you to move money to a “safe account”. Stop. Do not make the transfer. End the call and contact your bank using a number on your card or statement, or its official app.",
+          "A familiar number on the screen does not prove who is calling. If you are checking a suspicious landline call, use a different phone if possible so the caller cannot keep the same line open. Never give an unexpected caller your PIN, password or one-time security code.",
+          "Someone offering to “fix” your computer or help with an investment may ask you to install software or share your screen. Do not give an unexpected caller remote control of a device. They could see information or operate your bank account.",
+          "Be cautious about guaranteed high returns, urgency or instructions to keep an offer secret. For financial services, check the FCA Firm Checker independently and use the contact details it lists. A genuine firm’s name can be copied; authorisation is not a guarantee that an investment is suitable or cannot lose money.",
+          "If you have sent money or shared details, contact your bank promptly through a trusted route. If a device may be under someone else’s control, use another trusted device or phone. Keep messages and payment details. Scams can happen to anyone: you deserve help, not blame."
+        ],
+        "checklist": [
+          "Keep a trusted bank contact number somewhere you can find it without opening a message link.",
+          "Agree with yourself that an unexpected request for money or security codes can wait while you check.",
+          "If you have already acted, contact your bank promptly and keep relevant messages and transaction details."
+        ],
+        "sources": [
+          {
+            "title": "FCA · Banking and online account scams",
+            "url": "https://www.fca.org.uk/consumers/banking-online-account-scams"
+          },
+          {
+            "title": "Age UK · Phone scams",
+            "url": "https://www.ageuk.org.uk/information-advice/money-legal/scams-fraud/phone-scams/"
+          },
+          {
+            "title": "FCA · Screen-sharing scams",
+            "url": "https://www.fca.org.uk/consumers/screen-sharing-scams"
+          },
+          {
+            "title": "FCA · Protect yourself from scams",
+            "url": "https://www.fca.org.uk/consumers/protect-yourself-scams"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "A caller claiming to be your bank says to transfer your savings to a “safe account”. What should you do?",
+            "options": [
+              "End the call and contact your bank using a trusted number",
+              "Transfer a small amount first to test the account",
+              "Follow the instructions because the caller knows your name"
+            ],
+            "correct_index": 0,
+            "explanation": "Do not move money on an unexpected caller’s instructions. Verify through a trusted route; names and caller numbers can be imitated."
+          },
+          {
+            "prompt": "An unexpected investment caller asks you to install software so they can control your computer. What is the safer response?",
+            "options": [
+              "Install it but hide your bank card",
+              "Decline, end the contact and independently check the firm",
+              "Allow access as long as they promise not to open your bank"
+            ],
+            "correct_index": 1,
+            "explanation": "Remote access can let someone see private information or operate accounts. Do not grant it to an unexpected caller."
+          },
+          {
+            "prompt": "You have already shared a code and notice an unfamiliar payment. What should you do next?",
+            "options": [
+              "Wait to see if the money comes back",
+              "Pay someone who promises a guaranteed recovery",
+              "Contact your bank promptly through a trusted route and keep the evidence"
+            ],
+            "correct_index": 2,
+            "explanation": "Act promptly using a trusted device or phone if yours may be compromised. You deserve support; do not let embarrassment delay asking for help."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bills",
+    "title": "Struggling to keep up with bills",
+    "description": "Find a manageable next step. No streaks, deadlines or pressure to finish.",
+    "units": [
+      "Understand what needs attention",
+      "Find support that fits"
+    ],
+    "flexible": true,
+    "lessons": [
+      {
+        "id": "bills-first",
+        "title": "Work out what needs attention first",
+        "description": "Start with consequences, not the loudest reminder.",
+        "reading_cards": [
+          "If there is not enough money for everything, begin with essential living costs and bills whose non-payment could have serious consequences. Rent arrears, for example, can threaten your home; a louder credit-card reminder does not automatically make that bill more urgent.",
+          "Priority debt categories and available procedures differ across England, Wales, Scotland and Northern Ireland. Use guidance for your nation and speak with a free debt adviser about your circumstances.",
+          "A court deadline, eviction notice or risk of losing an essential service needs prompt help. You do not need to finish this course first: the support link is always available."
+        ],
+        "checklist": [
+          "List overdue bills and any notices or deadlines.",
+          "Flag anything affecting your home, essential services or court action.",
+          "Use the free advice link if you are unsure what needs attention first."
+        ],
+        "sources": [
+          {
+            "title": "StepChange · Priority bills by UK nation",
+            "url": "https://www.stepchange.org/debt-info/dealing-with-debt-problems/what-debts-to-pay-first.aspx"
+          },
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "You have rent arrears and a strongly worded credit-card reminder. What should guide priorities?",
+            "options": [
+              "The consequences of missing each payment and your circumstances",
+              "Which company sends the most messages",
+              "Which envelope looks most official"
+            ],
+            "correct_index": 0,
+            "explanation": "Priority is about consequences, including risks to your home, not pressure from the loudest creditor."
+          },
+          {
+            "prompt": "A court notice gives a deadline next week. What is a sensible next step?",
+            "options": [
+              "Throw it away because it is stressful",
+              "Seek appropriate advice promptly and keep the notice",
+              "Wait until every lesson is finished"
+            ],
+            "correct_index": 1,
+            "explanation": "A learning app should not delay help with an urgent deadline."
+          },
+          {
+            "prompt": "You find an England-specific debt procedure but live in Scotland. What should you do?",
+            "options": [
+              "Assume all UK debt procedures are identical",
+              "Apply without checking where it operates",
+              "Check Scottish guidance or ask an adviser"
+            ],
+            "correct_index": 2,
+            "explanation": "Processes and options vary across UK nations; use guidance that fits your location."
+          }
+        ]
+      },
+      {
+        "id": "bills-contact",
+        "title": "Prepare a conversation with a provider",
+        "description": "Explain the problem and ask about realistic options.",
+        "reading_cards": [
+          "Before calling, note your income, essential costs and what is overdue. You can say: “I am struggling with this bill. Can we discuss support and an arrangement based on what I can afford?”",
+          "If you have £1,300 income and £1,280 essential costs in a practice budget, the remaining £20 must be considered alongside all other commitments. It is not automatically an offer you should make to one creditor.",
+          "Ask what options are available, how they affect your account and whether interest or charges can be considered. Do not promise an amount you cannot maintain; an adviser can help assess affordability."
+        ],
+        "checklist": [
+          "Write a brief explanation of what has changed.",
+          "Have your income, essential spending and other debts available.",
+          "Ask for any agreed arrangement in writing and check the next review date."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          },
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Your budget leaves £20 before other debts. A provider requests £80 a month. What is appropriate?",
+            "options": [
+              "Assume £20 must all go to this provider",
+              "Explain the affordability gap and seek help with a realistic arrangement",
+              "Promise £80 even though you cannot maintain it"
+            ],
+            "correct_index": 1,
+            "explanation": "An arrangement should reflect the full budget, including other obligations."
+          },
+          {
+            "prompt": "Which opening explains the situation usefully?",
+            "options": [
+              "I will pay any amount you suggest",
+              "I cannot call until I have solved everything",
+              "I am struggling to pay; can we discuss support and what is affordable?"
+            ],
+            "correct_index": 2,
+            "explanation": "You can ask for help before you have a complete solution."
+          },
+          {
+            "prompt": "A new payment plan is proposed. What should you clarify?",
+            "options": [
+              "Amounts, dates, charges and how the account will be treated",
+              "Only whether the call was short",
+              "Nothing once the provider says yes"
+            ],
+            "correct_index": 0,
+            "explanation": "Understand the terms and consequences before relying on an arrangement."
+          }
+        ]
+      },
+      {
+        "id": "bills-borrow",
+        "title": "Pause before borrowing to cover a gap",
+        "description": "Compare the full commitment, not just today’s payment.",
+        "reading_cards": [
+          "Borrowing can move a bill into the future without fixing a regular shortfall. Before taking new credit to cover existing debts, consider free debt advice and the full repayment commitment.",
+          "In a simplified comparison, option A requires £25 for six months: £150 total. Option B requires £18 for ten months: £180 total. A smaller monthly payment can still cost more overall.",
+          "Buy now, pay later is still a payment commitment. Check due dates, late-payment consequences and how it fits alongside rent, food and existing bills. Avoid pressure to decide immediately."
+        ],
+        "checklist": [
+          "Write down the total repayment, dates and charges for any offer.",
+          "Check whether the gap is one-off or repeats every month.",
+          "Get free advice before taking new borrowing to repay existing debts."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          },
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Which simplified option costs less overall: £25 for six months or £18 for ten?",
+            "options": [
+              "£18 for ten months: £180",
+              "Both cost the same",
+              "£25 for six months: £150"
+            ],
+            "correct_index": 2,
+            "explanation": "Multiply every instalment by the number of payments. Include fees when comparing real offers."
+          },
+          {
+            "prompt": "Your income falls short of essentials every month. What does a new loan change?",
+            "options": [
+              "It adds a repayment; it does not by itself solve the ongoing gap",
+              "It creates permanent extra income",
+              "It removes all future bills"
+            ],
+            "correct_index": 0,
+            "explanation": "Repeated shortfalls need a wider plan and support, not just moving costs forward."
+          },
+          {
+            "prompt": "A checkout offers four later payments. What should you treat them as?",
+            "options": [
+              "Payments you can ignore after receiving the item",
+              "Future commitments in your budget",
+              "A discount that removes the cost"
+            ],
+            "correct_index": 1,
+            "explanation": "Later payments still need funding and can have consequences if missed."
+          }
+        ]
+      },
+      {
+        "id": "bills-help",
+        "title": "Find support without having everything ready",
+        "description": "Take one manageable next step.",
+        "reading_cards": [
+          "Free, confidential debt advice is available. MoneyHelper’s locator lets you find online, telephone or face-to-face support. An adviser can help you understand options and possible entitlements.",
+          "Bring what you have: recent bills, income information and letters are useful, but do not let an incomplete folder stop you seeking help. Explain any urgent deadlines first.",
+          "Support schemes and debt options depend on circumstances and where you live. Do not assume a solution mentioned online is available or suitable for everyone; ask an adviser to explain the consequences."
+        ],
+        "checklist": [
+          "Open the advice locator and choose a contact method that suits you.",
+          "Gather the bills and income details you already have.",
+          "Write any urgent deadline at the top of your notes."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Free debt advice",
+            "url": "https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/debt-advice-locator"
+          },
+          {
+            "title": "StepChange · Priority bills by UK nation",
+            "url": "https://www.stepchange.org/debt-info/dealing-with-debt-problems/what-debts-to-pay-first.aspx"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "You are missing some statements but have an urgent bill problem. Should you wait?",
+            "options": [
+              "No: seek help and explain which information is missing",
+              "Yes: advisers only help with perfect records",
+              "Yes: wait until all deadlines have passed"
+            ],
+            "correct_index": 0,
+            "explanation": "Start with the information you have, especially when there is an urgent issue."
+          },
+          {
+            "prompt": "What can a free debt adviser help you explore?",
+            "options": [
+              "A requirement to take a new loan",
+              "Options and possible support suited to your circumstances",
+              "A guaranteed outcome for every person"
+            ],
+            "correct_index": 1,
+            "explanation": "Advice helps assess your situation; it does not mean one solution fits everyone."
+          },
+          {
+            "prompt": "A friend says one debt solution will solve everyone’s problems. What should you do?",
+            "options": [
+              "Choose it because it helped your friend",
+              "Assume it works identically across the UK",
+              "Ask an adviser about eligibility, alternatives and consequences"
+            ],
+            "correct_index": 2,
+            "explanation": "A suitable option depends on your circumstances and the relevant UK nation."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "first-job",
+    "title": "Starting your first job",
+    "description": "Understand your payslip, bridge your first payday and build a useful routine.",
+    "units": [
+      "Your first payday",
+      "Your next few months"
+    ],
+    "flexible": false,
+    "lessons": [
+      {
+        "id": "job-payslip",
+        "title": "Read your first payslip",
+        "description": "Know the difference between gross and take-home pay.",
+        "reading_cards": [
+          "Gross pay is earnings before deductions; net pay is what remains after them. In a fictional payslip, £2,000 gross minus £300 total deductions gives £1,700 net. These figures illustrate subtraction, not UK tax rates.",
+          "A payslip shows earnings and relevant deductions, such as Income Tax and National Insurance. Check the pay period, hours where relevant and the amount that reaches your bank.",
+          "If something does not match your agreed pay or hours, ask payroll to explain it. Keep payslips so you can check changes and provide evidence of earnings when needed."
+        ],
+        "checklist": [
+          "Find gross pay, deductions and net pay on your own payslip.",
+          "Compare the period and hours with your records.",
+          "Ask payroll about any unexplained difference."
+        ],
+        "sources": [
+          {
+            "title": "GOV.UK · Payslips",
+            "url": "https://www.gov.uk/payslips"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "A fictional payslip shows £2,000 gross and £300 total deductions. What is net pay?",
+            "options": [
+              "£1,700",
+              "£2,300",
+              "£2,000"
+            ],
+            "correct_index": 0,
+            "explanation": "Net pay is gross pay minus deductions: £2,000 − £300 = £1,700."
+          },
+          {
+            "prompt": "Which amount normally forms the starting point for your spending plan?",
+            "options": [
+              "The employer’s total staffing cost",
+              "Take-home pay after deductions",
+              "Gross pay before deductions"
+            ],
+            "correct_index": 1,
+            "explanation": "Use money actually available to you, then account for any other income or commitments."
+          },
+          {
+            "prompt": "Your paid hours do not match your records. What helps resolve it?",
+            "options": [
+              "Assume the bank can change your payslip",
+              "Ignore every future payslip",
+              "Compare the pay period and raise the difference with payroll"
+            ],
+            "correct_index": 2,
+            "explanation": "Check the period first, then ask payroll to investigate with your records."
+          }
+        ]
+      },
+      {
+        "id": "job-payday",
+        "title": "Bridge the gap to payday",
+        "description": "Plan dates as well as amounts.",
+        "reading_cards": [
+          "Starting work does not always mean being paid immediately. Ask about the payroll cut-off, first payment date and whether the first pay covers a full or partial period.",
+          "Riley has £240 before payday. Known travel is £60, food is £80 and a phone bill is £20, leaving £80 for other needs. These are practice figures; include your own essentials before making plans.",
+          "Once pay becomes regular, map bills against pay dates. If the timing does not fit, ask providers whether a due-date change is possible; confirm it before relying on it."
+        ],
+        "checklist": [
+          "Confirm your first payday and the period it covers.",
+          "List essential costs between now and that date.",
+          "Check bill dates and ask about changes if the timing is difficult."
+        ],
+        "sources": [
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          },
+          {
+            "title": "MoneyHelper · Regular payments",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/banking/direct-debits-and-standing-orders"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Riley has £240, with £60 travel, £80 food and £20 phone due. What remains?",
+            "options": [
+              "£160",
+              "£80",
+              "£100"
+            ],
+            "correct_index": 1,
+            "explanation": "£240 − £60 − £80 − £20 = £80, before any unlisted costs."
+          },
+          {
+            "prompt": "You start halfway through a payroll period. What should you check?",
+            "options": [
+              "Only the annual salary",
+              "Whether every employer pays on the same day",
+              "The first pay date, cut-off and period covered"
+            ],
+            "correct_index": 2,
+            "explanation": "The first payment may cover a partial period or arrive later than expected."
+          },
+          {
+            "prompt": "A bill is due before payday. What is a useful step?",
+            "options": [
+              "Ask the provider about timing options and confirm any change",
+              "Move the date in your own calendar and assume it is agreed",
+              "Ignore the bill because you now have a job"
+            ],
+            "correct_index": 0,
+            "explanation": "A reminder change does not change a contractual due date; speak with the provider."
+          }
+        ]
+      },
+      {
+        "id": "job-tax",
+        "title": "Make sense of deductions",
+        "description": "Know what to check and where to ask.",
+        "reading_cards": [
+          "PAYE is the system employers use to collect Income Tax from pay. National Insurance is a separate deduction. Your tax code helps your employer work out tax; it is not itself a percentage rate.",
+          "If tax looks unexpected, check the employment details and tax code through HMRC’s official service and ask payroll about the calculation. A first payslip alone does not prove there is an error.",
+          "Student loan deductions depend on your loan plan and earnings rules. Thresholds and tax treatment can change, and Income Tax differs in Scotland. Use current official guidance rather than treating these fictional examples as a personal calculation."
+        ],
+        "checklist": [
+          "Locate your tax code and deduction labels.",
+          "Check your employment information through HMRC if something looks wrong.",
+          "Ask payroll what each unfamiliar deduction relates to."
+        ],
+        "sources": [
+          {
+            "title": "GOV.UK · Check the tax on your payslip",
+            "url": "https://www.gov.uk/guidance/check-if-the-tax-on-your-payslip-is-correct"
+          },
+          {
+            "title": "GOV.UK · Payslips",
+            "url": "https://www.gov.uk/payslips"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "Your payslip has both Income Tax and National Insurance. Are they the same deduction?",
+            "options": [
+              "Yes: one must always be a duplicate",
+              "Yes: the labels are interchangeable",
+              "No: they are separate"
+            ],
+            "correct_index": 2,
+            "explanation": "They are distinct deductions. Seeing both does not itself mean tax was taken twice."
+          },
+          {
+            "prompt": "Your tax code looks unfamiliar. What should you do?",
+            "options": [
+              "Check HMRC’s official service and ask payroll if needed",
+              "Use a random online code for everyone",
+              "Assume the code is your tax percentage"
+            ],
+            "correct_index": 0,
+            "explanation": "A tax code helps determine how pay is taxed; check the details rather than guessing."
+          },
+          {
+            "prompt": "A colleague has a different student loan deduction. What matters?",
+            "options": [
+              "Your deduction must be wrong",
+              "Their plan and earnings rules may differ from yours",
+              "Everyone must pay the identical amount"
+            ],
+            "correct_index": 1,
+            "explanation": "Different plans and pay levels can produce different deductions. Check your own details."
+          }
+        ]
+      },
+      {
+        "id": "job-future",
+        "title": "Understand your pension and build a buffer",
+        "description": "Balance future saving with money you can access.",
+        "reading_cards": [
+          "A workplace pension is for retirement; it is different from an accessible emergency fund. Eligible workers are automatically enrolled and employers contribute under the applicable rules. Check the enrolment letter for your scheme.",
+          "Your pension contribution may reduce take-home pay, while employer contributions add to the pension. If you are considering leaving, understand what contributions or benefits you would lose and ask for guidance first.",
+          "For short-term surprises, choose an affordable amount for accessible savings only after considering essentials and your circumstances. A manageable plan can change over time; there is no single amount everyone must save."
+        ],
+        "checklist": [
+          "Read your pension enrolment letter and contribution details.",
+          "Check how the contribution appears on your payslip.",
+          "Consider an affordable accessible buffer for short-term costs."
+        ],
+        "sources": [
+          {
+            "title": "GOV.UK · Joining a workplace pension",
+            "url": "https://www.gov.uk/workplace-pensions/joining-a-workplace-pension"
+          },
+          {
+            "title": "MoneyHelper · Budget planner",
+            "url": "https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner"
+          }
+        ],
+        "reviewed_at": "2026-11-07",
+        "questions": [
+          {
+            "prompt": "You may need money for an unexpected expense next month. Which distinction matters?",
+            "options": [
+              "A pension is retirement saving, not an everyday emergency pot",
+              "A pension is identical to a current account",
+              "All savings can always be withdrawn immediately"
+            ],
+            "correct_index": 0,
+            "explanation": "Access rules differ. Retirement savings should not be treated as readily available spending money."
+          },
+          {
+            "prompt": "You are thinking about leaving your workplace pension. What should you understand first?",
+            "options": [
+              "Nothing: leaving never changes any benefits",
+              "The effect on your contributions and employer contributions",
+              "Only the colour of the scheme’s website"
+            ],
+            "correct_index": 1,
+            "explanation": "Review the scheme and get guidance on consequences rather than deciding from one payslip line."
+          },
+          {
+            "prompt": "You cannot afford a suggested savings target after essentials. What is reasonable?",
+            "options": [
+              "Borrow solely to hit the target",
+              "Treat the suggested amount as compulsory",
+              "Choose a manageable plan or seek support, then review it"
+            ],
+            "correct_index": 2,
+            "explanation": "Saving should fit your circumstances; an arbitrary target should not replace essentials."
+          }
+        ]
+      }
+    ]
+  }
+]
