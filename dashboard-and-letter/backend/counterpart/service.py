@@ -112,6 +112,23 @@ class World:
             self.conn.commit()
             return {"letter_id": cur["letter_id"], "status": "approved"}
 
+    def letter_pdf(self, cid: str, preview: bool = False) -> bytes:
+        """PDF of the customer's latest APPROVED letter (P3). preview=True renders the current draft with a banner."""
+        from weasyprint import HTML  # imported here so the API starts even if pango is missing
+
+        with self.lock:
+            if preview:
+                html = self.current_letter(cid)["html"].replace(
+                    "<body>", '<body><p style="border:2px solid #2B0D3E;padding:3mm;font-weight:bold">'
+                              "DRAFT: not yet approved by a helper. Not for posting.</p>", 1)
+            else:
+                r = self.conn.execute("SELECT html FROM letters WHERE customer=? AND status='approved' ORDER BY id DESC LIMIT 1",
+                                      (cid,)).fetchone()
+                if not r:
+                    raise LookupError("No approved letter yet")
+                html = r["html"]
+        return HTML(string=html).write_pdf()
+
     def clear_cache(self) -> None:
         self._sections.clear()
 

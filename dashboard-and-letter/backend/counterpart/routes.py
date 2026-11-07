@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Literal
 
 from fastapi import APIRouter, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from pydantic import BaseModel
 
 from . import state
@@ -88,6 +88,18 @@ def make_letter(cid: str, request: Request, demo: str | None = None) -> dict:
 @router.get("/customers/{cid}/letter.html", response_class=HTMLResponse)
 def letter_html(cid: str, request: Request) -> str:
     return _customer(request, cid).current_letter(cid)["html"]
+
+
+@router.get("/customers/{cid}/letter.pdf")
+def letter_pdf(cid: str, request: Request, preview: bool = False) -> Response:
+    """The latest approved letter as a PDF (same HTML as the on-screen letter). ?preview=true marks a draft."""
+    w = _customer(request, cid)
+    try:
+        pdf = w.letter_pdf(cid, preview)
+    except LookupError:
+        raise HTTPException(409, "No approved letter yet: approve the letter first, or use ?preview=true")
+    return Response(pdf, media_type="application/pdf",
+                    headers={"Content-Disposition": f'inline; filename="letter-{cid}.pdf"'})
 
 
 @router.post("/customers/{cid}/letter/approve")
