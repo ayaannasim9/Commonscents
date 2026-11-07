@@ -1,6 +1,7 @@
 [
   {
     "id": "case_0008",
+    "customer": "MRG-4471",
     "source": "system_flag",
     "status": "prepared",
     "urgency": "high",
@@ -15,11 +16,12 @@
   },
   {
     "id": "case_0007",
+    "customer": "MRG-4471",
     "source": "slip_post_office",
     "status": "prepared",
     "urgency": "normal",
     "category": "afford_purchase",
-    "summary": "Asking if she can afford a new boiler",
+    "summary": "Asking about affording a new boiler",
     "created_at": "2026-12-01T10:02:00",
     "due": "2026-12-08",
     "route": {

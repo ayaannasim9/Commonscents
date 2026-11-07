@@ -34,6 +34,7 @@ def headline(f: Facts) -> str:
         return f"{short.month} may be short of money, so it is worth talking it through with your helper."
     if warn:
         why = ("because your TV licence is due" if warn.reason == "TV licence"
+               else "mainly because less money is coming in" if warn.reason == "lower income"
                else f"mainly because of {warn.reason}" if warn.extra > 0 else "because there is not much spare")
         return f"You are doing fine. {warn.month} will be a little tight {why}, so it is worth planning for."
     if f.flags:
@@ -62,10 +63,12 @@ def forecast(f: Facts) -> str:
             s = f"{m.month} looks short, with about {gbp(m.spare)} less than you need"
         else:
             s = f"{m.month} looks {'tight' if m.status == 'warn' else 'comfortable' if m.spare >= 500 else 'fine'}, with about {gbp(m.spare)} spare"
-        if m.reason == "two pension payments":
-            s += " because you get two pension payments"
-        elif m.reason == "TV licence":
+        if m.reason == "TV licence":
             s += f", mainly because your TV licence of {gbp(m.extra)} is due"
+        elif m.reason == "lower income":
+            s += f", mainly because about {gbp(m.extra)} less is coming in than usual"
+        elif m.reason.startswith("two ") and m.reason.endswith(" payments"):
+            s += f" because you get {m.reason}"
         elif m.extra > 0:
             s += f", mainly because of {m.reason}, which is about {gbp(m.extra)} more than usual"
         parts.append(s + ".")

@@ -1,4 +1,5 @@
-"""B6 cases + B8 demo loop. One case shape for every source. AI prepares and drafts, a human approves."""
+"""B6 cases + B8 demo loop, per customer. One case shape for every source. AI prepares and drafts,
+a human approves. Nothing here knows which persona it is serving."""
 from __future__ import annotations
 
 import json
@@ -10,15 +11,16 @@ from . import state
 from .guardrails import GuardrailFailure, _event, allowed_numbers, check_texts, extract_amounts
 from .llm import prompts
 from .llm.client import LLMUnavailable
-from .llm.writers import draft_reply, plain_summary, triage
+from .llm.writers import afford_object, draft_reply, triage
 from .models import Facts, SinceLastVisit
+from .personas import SPECS
 from .pipeline.anomalies import usual_payment_pence
 from .pipeline.common import pounds
 from .pipeline.facts import GENTLE_SAVING
 from .service import World
 
 WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-SUMMARY_KEYS = ("id", "source", "status", "urgency", "category", "summary", "created_at", "due", "route")
+SIGNPOST = "Mention that free help is available from MoneyHelper and Citizens Advice."
 
 
 class CaseError(Exception):
@@ -53,34 +55,32 @@ class CaseService:
     def conn(self):
         return self.w.conn
 
-    def now(self) -> datetime:
-        """Demo date with the real London clock time, so dates agree with as_of."""
+    def now(self, customer: str) -> datetime:
+        """The customer's demo date with the real London clock time, so dates agree with as_of."""
         t = datetime.now(ZoneInfo("Europe/London"))
-        return datetime.combine(state.as_of(self.conn), t.time()).replace(microsecond=0)
+        return datetime.combine(state.as_of(self.conn, customer), t.time()).replace(microsecond=0)
 
     # ---- routing (simple rules, not ML) ----
-    def route(self, urgency: str) -> tuple[dict, str]:
-        today = state.as_of(self.conn)
+    def route(self, customer: str, urgency: str) -> tuple[dict, str]:
+        spec = self.w.spec(customer)
+        today = state.as_of(self.conn, customer)
         if urgency == "high":
             return {"team": "phone", "reason": "Urgent: phone team, due today"}, today.isoformat()
-        hub = self.w.persona.hub_day
         d = today + timedelta(days=1)
-        while WEEKDAYS[d.weekday()] != hub:
+        while WEEKDAYS[d.weekday()] != spec.hub_day:
             d += timedelta(days=1)
-        return {"team": "banker", "reason": f"Next hub day ({hub})"}, d.isoformat()
+        return {"team": spec.helper_role, "reason": f"Next hub day ({spec.hub_day})"}, d.isoformat()
 
     # ---- briefing: every number comes from code ----
-    def briefing(self, facts: Facts, category: str, question: str | None, system: bool = False) -> dict:
+    def briefing(self, customer: str, facts: Facts, category: str, question: str | None, system: bool = False) -> dict:
         name = facts.customer.name
-        numbers: list[dict] = []
         lm = facts.last_month
         flags = [f for f in facts.flags if f.severity == "high"]
-        usual = None
+        numbers: list[dict] = []
         if category == "scam_worry" and flags:
-            f = flags[0]
-            y, m = state.last_full_month(self.conn)
-            usual = pounds(usual_payment_pence(self.w.transactions(), y, m))
-            numbers = [{"label": "Payment", "value": f.amount}, {"label": "Her usual payment is about", "value": usual}]
+            y, m = state.last_full_month(self.conn, customer)
+            usual = pounds(usual_payment_pence(self.w.transactions(customer), y, m))
+            numbers = [{"label": "Payment", "value": flags[0].amount}, {"label": "Usual payment is about", "value": usual}]
         else:
             numbers.append({"label": "Left over last month", "value": lm.left})
             if category == "afford_purchase":
@@ -90,31 +90,32 @@ class CaseService:
             if category == "payment_query" and flags:
                 numbers.append({"label": "Unusual payment last month", "value": flags[0].amount})
 
-        obj = plain_summary("afford_purchase", question or "").removeprefix("Asking if she can afford ")
-        item = re.sub(r"^(?:a |an |the )?(?:new )?", "", obj).strip() or "one"
-        asking = {
-            True: "No question yet. The system noticed a payment that is not like her usual ones.",
-        }.get(system) or (
-            f"{name} wants to know whether she can afford {obj}." if category == "afford_purchase"
-            else f"{name} is worried about a possible scam: \"{question}\"" if category == "scam_worry"
-            else f"{name} asks: \"{question}\"")
+        obj = afford_object(question or "") if category == "afford_purchase" else None
+        item = re.sub(r"^(?:a |an |the )?(?:new )?", "", obj or "").strip()
+        if system:
+            asking = "No question yet. The system noticed a payment that is not like the usual ones."
+        elif obj:
+            asking = f"{name} wants to know about affording {obj}."
+        elif category == "scam_worry":
+            asking = f"{name} is worried about a possible scam: \"{question}\""
+        else:
+            asking = f"{name} asks: \"{question}\""
         checks = {
-            "scam_worry": ["Ask whether she made the payment herself.", "Ask if anyone phoned or texted her asking for money.",
-                           "If it was not her, explain she can use the number on the back of her bank card."],
-            "afford_purchase": [f"Is her current {item} failing, or is she planning ahead?",
-                                "Ask if she has a quote, as costs vary a lot.",
-                                "Mention that free help is available from MoneyHelper and Citizens Advice.",
-                                "Remind her not to share her details with anyone who phones her about it."],
-            "bill_query": ["Which bill is she looking at, and what changed?", "Check the bill against her statement together.",
-                           "Mention that free help is available from MoneyHelper and Citizens Advice."],
-            "payment_query": ["Which payment is she asking about?", "Ask whether she recognises the name on her statement.",
-                              "If it is not hers, explain she can use the number on the back of her bank card."],
-            "general": ["Make sure you understand what she is asking.", "Mention that free help is available from MoneyHelper and Citizens Advice."],
+            "scam_worry": [f"Ask whether the payment was made by {name}.", "Ask if anyone phoned or texted asking for money.",
+                           f"If it was not {name}, point to the number on the back of the bank card."],
+            "afford_purchase": [f"Is the current {item} failing, or is this planning ahead?" if item
+                                else "What is the money needed for, and when?",
+                                "Ask if there is a quote yet, as costs vary a lot.", SIGNPOST,
+                                f"Remind {name} not to share personal details with anyone who phones about it."],
+            "bill_query": ["Which bill is it, and what changed?", "Check the bill against the statement together.", SIGNPOST],
+            "payment_query": ["Which payment is it?", f"Ask whether {name} recognises the name on the statement.",
+                              "If it is not theirs, point to the number on the back of the bank card."],
+            "general": ["Make sure you understand the question.", SIGNPOST],
         }[category]
-        asking, checks = self._llm_prep(asking, checks, question, numbers)
+        asking, checks = self._llm_prep(asking, checks, question)
         return {"asking": asking, "numbers": numbers, "open_flags": [f.id for f in flags], "things_to_check": checks}
 
-    def _llm_prep(self, asking, checks, question, numbers):
+    def _llm_prep(self, asking, checks, question):
         """Live/cached: let the model reword the briefing text. No figures allowed; templates on any problem."""
         if self.w.client.mode == "stub" or not question:
             return asking, checks
@@ -128,41 +129,42 @@ class CaseService:
         return asking, checks
 
     # ---- create ----
-    def create(self, source: str, text: str | None, ticks: list[str], *, system_flag: dict | None = None,
+    def create(self, customer: str, source: str, text: str | None, ticks: list[str], *, system_flag: dict | None = None,
                created_at: str | None = None, flag_key: str | None = None) -> dict:
         with self.w.lock:
-            facts = self.w.facts()
+            facts = self.w.facts(customer)
             if system_flag:
                 t = {"category": "scam_worry", "urgency": "high",
                      "summary": f"Unusual £{system_flag['amount']:,} payment to a new person"}
             else:
                 t = triage(text or "", ticks, self.w.client)
-            route, due = self.route(t["urgency"])
-            brief = self.briefing(facts, t["category"], text, system=bool(system_flag))
+            route, due = self.route(customer, t["urgency"])
+            brief = self.briefing(customer, facts, t["category"], text, system=bool(system_flag))
             cur = self.conn.execute(
-                "INSERT INTO cases(source,status,urgency,category,summary,question_text,ticks_json,created_at,due,"
-                "route_team,route_reason,briefing_json,flag_key) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                (source, "prepared", t["urgency"], t["category"], t["summary"], text, json.dumps(ticks),
-                 created_at or self.now().isoformat(), due, route["team"], route["reason"], json.dumps(brief), flag_key))
+                "INSERT INTO cases(customer,source,status,urgency,category,summary,question_text,ticks_json,created_at,due,"
+                "route_team,route_reason,briefing_json,flag_key) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                (customer, source, "prepared", t["urgency"], t["category"], t["summary"], text, json.dumps(ticks),
+                 created_at or self.now(customer).isoformat(), due, route["team"], route["reason"], json.dumps(brief), flag_key))
             self.conn.commit()
             return self._get(cur.lastrowid)
 
-    def open_flag_cases(self, flags: list[dict]) -> str | None:
+    def open_flag_cases(self, customer: str, flags: list[dict]) -> str | None:
         """A high-severity flag opens one urgent system_flag case (once per flag)."""
         new_id = None
         for f in flags:
             if f["severity"] != "high":
                 continue
             key = f"{f['kind']}|{f['date']}|{f['amount']}"
-            if self.conn.execute("SELECT 1 FROM cases WHERE flag_key=?", (key,)).fetchone():
+            if self.conn.execute("SELECT 1 FROM cases WHERE customer=? AND flag_key=?", (customer, key)).fetchone():
                 continue
-            new_id = self.create("system_flag", None, [], system_flag=f, flag_key=key)["id"]
+            new_id = self.create(customer, "system_flag", None, [], system_flag=f, flag_key=key)["id"]
         return new_id
 
-    def seed(self) -> None:
-        """Demo step 3 works without typing: the boiler question from a Post Office slip."""
-        d = state.as_of(self.conn)
-        self.create("slip_post_office", "Can I afford a new boiler?", ["afford"], created_at=f"{d.isoformat()}T10:02:00")
+    def seed_all(self) -> None:
+        """Every persona starts with its own question in the queue (personas.md)."""
+        for cid, spec in SPECS.items():
+            d = state.as_of(self.conn, cid)
+            self.create(cid, spec.case.source, spec.case.text, list(spec.case.ticks), created_at=f"{d.isoformat()}T10:02:00")
 
     # ---- read ----
     def _row(self, n: int):
@@ -172,8 +174,9 @@ class CaseService:
         return r
 
     def _summary(self, r) -> dict:
-        return {"id": _id(r["id"]), "source": r["source"], "status": r["status"], "urgency": r["urgency"],
-                "category": r["category"], "summary": r["summary"], "created_at": r["created_at"], "due": r["due"],
+        return {"id": _id(r["id"]), "customer": r["customer"], "source": r["source"], "status": r["status"],
+                "urgency": r["urgency"], "category": r["category"], "summary": r["summary"],
+                "created_at": r["created_at"], "due": r["due"],
                 "route": {"team": r["route_team"], "reason": r["route_reason"]}}
 
     def _full(self, r) -> dict:
@@ -184,30 +187,28 @@ class CaseService:
     def _get(self, n: int) -> dict:
         return self._full(self._row(n))
 
-    def list(self, status: str | None = None, urgency: str | None = None) -> list[dict]:
+    def list(self, status: str | None = None, urgency: str | None = None, customer: str | None = None) -> list[dict]:
         rows = self.conn.execute("SELECT * FROM cases").fetchall()
-        rows = [r for r in rows if (r["status"] == status if status and status != "all" else status == "all" or r["status"] != "closed")
+        rows = [r for r in rows
+                if (not customer or r["customer"] == customer)
+                and (r["status"] == status if status and status != "all" else status == "all" or r["status"] != "closed")
                 and (not urgency or r["urgency"] == urgency)]
         rows.sort(key=lambda r: (r["urgency"] != "high", r["due"], r["created_at"], r["id"]))
         return [self._summary(r) for r in rows]
 
-    def view(self, cid: str, viewer: str | None) -> dict:
-        """Every case view is logged (P7)."""
-        n = _num(cid)
-        case = self._get(n)
+    def view(self, case_id: str, viewer: str | None) -> dict:
+        """Every case view is logged against its customer (P7)."""
+        n = _num(case_id)
+        r = self._row(n)
+        case = self._full(r)
         who, role = _viewer(viewer)
-        self.log(who, role, f"Looked at your question: {case['summary']}" if case["question_text"]
-                 else f"Looked at a payment alert: {case['summary']}")
+        self.w.log_access(r["customer"], who, role, f"Looked at your question: {case['summary']}" if case["question_text"]
+                          else f"Looked at a payment alert: {case['summary']}")
         return case
 
-    def log(self, who: str, role: str, what: str) -> None:
-        self.conn.execute("INSERT INTO access_log(at, who, role, what) VALUES (?,?,?,?)",
-                          (self.now().isoformat(), who, role, what))
-        self.conn.commit()
-
     # ---- helper actions ----
-    def note(self, cid: str, note: str, helper: str) -> dict:
-        n = _num(cid)
+    def note(self, case_id: str, note: str, helper: str) -> dict:
+        n = _num(case_id)
         with self.w.lock:
             r = self._row(n)
             if r["status"] in ("approved", "closed"):
@@ -217,8 +218,8 @@ class CaseService:
             self.conn.commit()
             return self._get(n)
 
-    def draft_reply(self, cid: str) -> dict:
-        n = _num(cid)
+    def draft_reply(self, case_id: str) -> dict:
+        n = _num(case_id)
         with self.w.lock:
             r = self._row(n)
             if r["status"] in ("approved", "closed"):
@@ -227,21 +228,21 @@ class CaseService:
                 raise CaseError(409, "Add a note first: the reply is drafted from it")
             nums = case_numbers(json.loads(r["briefing_json"]))
             try:
-                g = draft_reply(self.w.facts(), r["question_text"] or r["summary"], r["helper"] or "Your helper",
+                g = draft_reply(self.w.facts(r["customer"]), r["question_text"] or r["summary"], r["helper"] or "Your helper",
                                 r["helper_note"], nums, self.w.client, self.conn)
             except GuardrailFailure as e:
                 raise CaseError(422, {"message": "The draft was blocked: it contains something the checks do not allow. "
                                                  "Edit the note and try again.", "guardrail": {"caught": True, "events": e.events}})
             return self._save_draft(n, g.texts["text"], g.source, g.guardrail)
 
-    def edit_draft(self, cid: str, text: str) -> dict:
-        n = _num(cid)
+    def edit_draft(self, case_id: str, text: str) -> dict:
+        n = _num(case_id)
         with self.w.lock:
             r = self._row(n)
             if r["status"] in ("approved", "closed"):
                 raise CaseError(409, "This case is already approved")
             nums = case_numbers(json.loads(r["briefing_json"]))
-            bad = check_texts({"draft": text}, allowed_numbers(self.w.facts(), extra=nums))
+            bad = check_texts({"draft": text}, allowed_numbers(self.w.facts(r["customer"]), extra=nums))
             events = [_event(i, "blocked", "") for _, i in bad]
             return self._save_draft(n, text, "helper", {"caught": bool(bad), "events": events}, ok=not bad)
 
@@ -252,9 +253,9 @@ class CaseService:
         self.conn.commit()
         return self._get(n)
 
-    def approve(self, cid: str, helper: str) -> dict:
+    def approve(self, case_id: str, helper: str) -> dict:
         """The human approval gate (P3): 409 unless a draft is ready and passed the guardrails."""
-        n = _num(cid)
+        n = _num(case_id)
         with self.w.lock:
             r = self._row(n)
             draft = json.loads(r["draft_json"]) if r["draft_json"] else None
@@ -263,30 +264,28 @@ class CaseService:
             if any(e["action"] == "blocked" for e in draft["guardrail"]["events"]):
                 raise CaseError(409, "The latest draft did not pass the checks")
             self.conn.execute("UPDATE cases SET status='approved', approved_at=?, helper=? WHERE id=?",
-                              (self.now().isoformat(), helper, n))
+                              (self.now(r["customer"]).isoformat(), helper, n))
             self.conn.commit()
-            state.bump(self.conn)
+            state.bump(self.conn, r["customer"])
             return self._get(n)
 
-    # ---- B8: next month ----
-    def advance(self) -> str:
-        """Close approved cases; their note becomes next month's 'since your last visit'."""
+    # ---- B8: next month, for one customer ----
+    def advance(self, customer: str) -> str:
+        """Close this customer's approved cases; their note becomes next month's 'since your last visit'."""
         with self.w.lock:
-            old = state.as_of(self.conn)
-            approved = self.conn.execute("SELECT * FROM cases WHERE status='approved' ORDER BY approved_at DESC, id DESC").fetchall()
-            new_as_of = state.next_month(self.conn)
+            old = state.as_of(self.conn, customer)
+            approved = self.conn.execute(
+                "SELECT * FROM cases WHERE customer=? AND status='approved' ORDER BY approved_at DESC, id DESC", (customer,)).fetchall()
+            new_as_of = state.next_month(self.conn, customer)
             visit = None
             if approved:
                 r = approved[0]
                 visit = SinceLastVisit(helper=r["helper"] or "Your helper", note=r["helper_note"] or "", date=old)
-                self.conn.execute("UPDATE cases SET status='closed' WHERE status='approved'")
+                self.conn.execute("UPDATE cases SET status='closed' WHERE customer=? AND status='approved'", (customer,))
                 self.conn.commit()
-            if visit != state.since_last_visit(self.conn):
-                state.set_since_last_visit(self.conn, visit)
+            if visit != state.since_last_visit(self.conn, customer):
+                state.set_since_last_visit(self.conn, customer, visit)
             return new_as_of.isoformat()
-
-    def reset(self) -> None:
-        self.seed()
 
 
 def _viewer(viewer: str | None) -> tuple[str, str]:

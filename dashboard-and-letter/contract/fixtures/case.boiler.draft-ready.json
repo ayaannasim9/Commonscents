@@ -1,10 +1,11 @@
 {
   "id": "case_0007",
+  "customer": "MRG-4471",
   "source": "slip_post_office",
   "status": "draft_ready",
   "urgency": "normal",
   "category": "afford_purchase",
-  "summary": "Asking if she can afford a new boiler",
+  "summary": "Asking about affording a new boiler",
   "question_text": "Can I afford a new boiler?",
   "ticks": [
     "afford"
@@ -16,7 +17,7 @@
     "reason": "Next hub day (Tuesday)"
   },
   "briefing": {
-    "asking": "Margaret wants to know whether she can afford a new boiler.",
+    "asking": "Margaret wants to know about affording a new boiler.",
     "numbers": [
       {
         "label": "Left over last month",
@@ -29,10 +30,10 @@
     ],
     "open_flags": [],
     "things_to_check": [
-      "Is her current boiler failing, or is she planning ahead?",
-      "Ask if she has a quote, as costs vary a lot.",
+      "Is the current boiler failing, or is this planning ahead?",
+      "Ask if there is a quote yet, as costs vary a lot.",
       "Mention that free help is available from MoneyHelper and Citizens Advice.",
-      "Remind her not to share her details with anyone who phones her about it."
+      "Remind Margaret not to share personal details with anyone who phones about it."
     ]
   },
   "helper_note": "Talked it through. No quote yet. Suggest a heating pot, £20 a month, and getting a quote first.",

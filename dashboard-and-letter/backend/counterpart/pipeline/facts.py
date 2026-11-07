@@ -14,12 +14,13 @@ SMALL_SAVING = 10               # when last month's spare was under £100
 
 
 def _suggestion(last_left: int, months) -> Suggestion | None:
-    """One gentle, non-advisory idea, only when a cost-driven tight month is coming."""
-    for fm in months:
-        if fm.status in ("warn", "short") and fm.extra > 0 and last_left > 0:
-            return Suggestion(text_hint=f"put a little aside for the {fm.reason}",
-                              amount=GENTLE_SAVING if last_left >= 100 else SMALL_SAVING)
-    return None
+    """One gentle, non-advisory idea, aimed at the worst coming month that has a cost to plan for."""
+    tight = [m for m in months if m.status in ("warn", "short") and m.extra > 0 and m.reason != "lower income"]
+    if not tight or last_left <= 0:
+        return None
+    worst = max(tight, key=lambda m: (m.status == "short", m.extra))
+    return Suggestion(text_hint=f"put a little aside for the {worst.reason}",
+                      amount=GENTLE_SAVING if last_left >= 100 else SMALL_SAVING)
 
 
 def build_facts(

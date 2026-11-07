@@ -4,7 +4,7 @@ import pytest
 
 from counterpart.generator import generate
 from counterpart.merchants import categorise, payee_of
-from counterpart.persona import MARGARET
+from counterpart.personas import MARGARET
 from counterpart.pipeline import build_facts
 from counterpart.pipeline.common import pounds
 
@@ -22,7 +22,7 @@ def facts(txs):
 
 def test_generator_is_reproducible_and_18_months(txs):
     assert txs == generate(MARGARET)
-    assert (txs[0].date, txs[-1].date) == (date(2025, 6, 1), date(2026, 11, 30))
+    assert (txs[0].date.year, txs[0].date.month) == (2025, 6) and (txs[-1].date.year, txs[-1].date.month) == (2026, 11)
 
 
 def test_history_stable_when_a_month_is_appended(txs):

@@ -57,7 +57,10 @@ def _project(item: _Item, y: int, m: int, last_hist: tuple[int, int]) -> int | N
     if cad == "annual":
         return tot[ly] if ly in tot else None
     if cad == "weekly":
-        return _weekday_count(y, m, 4) * latest.amount_pence
+        # same weekday as the item's own payments; amount = what that month looked like last year if
+        # we have it (so a quiet December last year shows up), else the latest payment
+        same = [t.amount_pence for t in ordered if ym(t.date) == ly]
+        return _weekday_count(y, m, latest.date.weekday()) * (round(mean(same)) if same else latest.amount_pence)
     if cad == "seasonal":
         return tot[ly] if ly in tot else latest.amount_pence
     if cad == "average":
@@ -96,15 +99,15 @@ def forecast(txs: list[Transaction], first: tuple[int, int], months: int = 3) ->
         y, m = add_months(*first, k)
         income = 0
         costs: dict[str, tuple[Merchant, int]] = {}
-        four_weekly_payments = 0
+        multi_pay: str | None = None
         for key, item in items.items():
             p = _project(item, y, m, last_hist)
             if not p:
                 continue
             if p > 0:
                 income += p
-                if item.m.cadence == "4weekly":
-                    four_weekly_payments = p // item.txs[-1].amount_pence
+                if item.m.cadence == "4weekly" and p // item.txs[-1].amount_pence >= 2 and not multi_pay:
+                    multi_pay = f"two {item.m.reason_label} payments"
             else:
                 costs[key] = (item.m, -p)
         spend = sum(c for _, c in costs.values())
@@ -120,8 +123,8 @@ def forecast(txs: list[Transaction], first: tuple[int, int], months: int = 3) ->
             extra, reason = best[0], best[1].reason_label
         elif income < INCOME_DIP * avg_income:
             extra, reason = round(avg_income - income), "lower income"
-        elif four_weekly_payments >= 2:
-            extra, reason = 0, "two pension payments"
+        elif multi_pay:
+            extra, reason = 0, multi_pay
         else:
             extra, reason = 0, "nothing unusual"
 

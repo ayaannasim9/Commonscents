@@ -8,7 +8,7 @@ from counterpart.guardrails import (
     GuardrailFailure, allowed_numbers, check_banned, check_numbers, corrupt_with_bad_number,
     extract_amounts, run_guarded,
 )
-from counterpart.persona import MARGARET
+from counterpart.personas import MARGARET
 from counterpart.pipeline import build_facts
 from datetime import date, datetime
 

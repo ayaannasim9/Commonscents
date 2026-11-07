@@ -74,7 +74,7 @@ def anomalies(txs: list[Transaction], year: int, month: int) -> list[Flag]:
     by_bill: dict[str, list[Transaction]] = {}
     for t in txs:
         m = merchant_of(t)
-        if m.cadence == "monthly" and t.amount_pence < 0 and ym(t.date) <= target and m.category not in ("subscription",):
+        if m.cadence == "monthly" and t.amount_pence < 0 and ym(t.date) <= target and m.category not in ("subscription", "transfer_regular"):
             by_bill.setdefault(m.key, []).append(t)
     for ts in by_bill.values():
         ts.sort(key=lambda t: t.date)

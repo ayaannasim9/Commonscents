@@ -51,21 +51,30 @@ def write_sections(
 
 # ---- triage (urgency rules are code; the model may only add to them) ----
 
-_URGENT = re.compile(r"\b(call(ed|s|ing)?|phone[ds]?|rang|text(ed|s)?|sms|email(ed)?|asked? (me )?for money|"
-                     r"send (them|him|her) money|scam|fraud|suspicious|bank transfer|gift cards?)\b", re.I)
+# Urgency is a code rule (CLAUDE.md): calls, texts, or someone asking for money. "called" on its own is
+# not a phone call ("what is this payment called?"), so only calls to or from her count.
+_CALLS = (r"phone[ds]?\b|rang\b|ringing|(?:called|calls|calling)\s+(?:me|us)|a (?:phone )?call|phone call|"
+          r"text(?:ed|s|ing)?\b|sms|e-?mail(?:ed|s)?")
+_URGENT = re.compile(rf"\b(?:{_CALLS}|asked? (?:me )?for money|send (?:them|him|her) money|scam|fraud|suspicious|gift cards?)", re.I)
 _CATEGORY = [
-    ("scam_worry", re.compile(r"\b(scam|fraud|suspicious|phoned|called|rang|text(ed)?|asked for money)\b", re.I)),
+    ("scam_worry", re.compile(rf"\b(?:scam|fraud|suspicious|{_CALLS}|asked? (?:me )?for money)", re.I)),
     ("afford_purchase", re.compile(r"\b(afford|buy|boiler|new (fridge|cooker|washing)|replace|cost)\b", re.I)),
     ("bill_query", re.compile(r"\b(bill|council tax|gas|electric|water|licence|direct debit|price)\b", re.I)),
     ("payment_query", re.compile(r"\b(payment|paid|took|taken|charge[ds]?|transaction|what is this)\b", re.I)),
 ]
 
 
+def afford_object(text: str) -> str | None:
+    """'Can I afford a new boiler?' -> 'a new boiler'."""
+    m = re.search(r"afford\s+(.+)$", text.strip().rstrip("?.! "), re.I)
+    return m.group(1) if m else None
+
+
 def plain_summary(category: str, text: str) -> str:
     t = text.strip().rstrip("?.! ")
     if category == "afford_purchase":
-        m = re.search(r"afford\s+(.+)$", t, re.I)
-        return f"Asking if she can afford {m.group(1)}" if m else "Asking about affording something"
+        obj = afford_object(t)
+        return f"Asking about affording {obj}" if obj else t[:140]
     if category == "scam_worry":
         return "Worried about a possible scam"
     if category in ("bill_query", "payment_query"):

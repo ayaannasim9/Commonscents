@@ -116,7 +116,7 @@ def test_demo_bad_number_shows_badge_then_clears_on_regenerate(client):
 
 def test_next_month_matches_after_note_fixture(client):
     assert client.post("/demo/next-month").json() == {"as_of": "2027-01-01"}
-    state.set_since_last_visit(client.app.state.db, SinceLastVisit(helper="Priya", note="Set up heating pot, £20 a month", date=date(2026, 12, 1)))
+    state.set_since_last_visit(client.app.state.db, "MRG-4471", SinceLastVisit(helper="Priya", note="Set up heating pot, £20 a month", date=date(2026, 12, 1)))
     d = client.get(f"{C}/dashboard").json()
     check_shape(d, fx("dashboard.after-note.json"))
     f, ref = d["facts"], fx("dashboard.after-note.json")["facts"]

@@ -5,6 +5,30 @@
     "version": "0.1.0"
   },
   "paths": {
+    "/personas": {
+      "get": {
+        "summary": "Personas",
+        "description": "The six demo personas (personas.md). Same product for all; only their data differs.",
+        "operationId": "personas_personas_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "type": "array",
+                  "title": "Response Personas Personas Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/customers/{cid}": {
       "get": {
         "summary": "Customer",
@@ -173,6 +197,22 @@
                 }
               ],
               "title": "Demo"
+            }
+          },
+          {
+            "name": "viewer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Viewer"
             }
           }
         ],
@@ -390,19 +430,82 @@
         }
       }
     },
-    "/demo/state": {
+    "/customers/{cid}/what-we-know": {
       "get": {
-        "summary": "Demo State",
-        "operationId": "demo_state_demo_state_get",
+        "summary": "What We Know",
+        "operationId": "what_we_know_customers__cid__what_we_know_get",
+        "parameters": [
+          {
+            "name": "cid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Cid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
                   "type": "object",
+                  "additionalProperties": true,
+                  "title": "Response What We Know Customers  Cid  What We Know Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/demo/state": {
+      "get": {
+        "summary": "Demo State",
+        "operationId": "demo_state_demo_state_get",
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "MRG-4471",
+              "title": "Customer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true,
                   "title": "Response Demo State Demo State Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -414,15 +517,37 @@
       "post": {
         "summary": "Next Month",
         "operationId": "next_month_demo_next_month_post",
+        "parameters": [
+          {
+            "name": "customer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "MRG-4471",
+              "title": "Customer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "additionalProperties": true,
                   "type": "object",
+                  "additionalProperties": true,
                   "title": "Response Next Month Demo Next Month Post"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -433,6 +558,7 @@
     "/demo/reset": {
       "post": {
         "summary": "Reset",
+        "description": "Resets all six customers; returns Margaret's as_of (they all start on the same date).",
         "operationId": "reset_demo_reset_post",
         "responses": {
           "200": {
@@ -453,7 +579,7 @@
     "/cases": {
       "get": {
         "summary": "List Cases",
-        "description": "Urgent first, then due date. Closed cases are hidden unless status=closed or status=all.",
+        "description": "One customer's queue (default Margaret; customer=all for everyone). Urgent first, then due date.\nClosed cases are hidden unless status=closed or status=all.",
         "operationId": "list_cases_cases_get",
         "parameters": [
           {
@@ -486,6 +612,16 @@
                 }
               ],
               "title": "Urgency"
+            }
+          },
+          {
+            "name": "customer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "MRG-4471",
+              "title": "Customer"
             }
           }
         ],
@@ -850,6 +986,11 @@
       },
       "CaseIn": {
         "properties": {
+          "customer": {
+            "type": "string",
+            "title": "Customer",
+            "default": "MRG-4471"
+          },
           "source": {
             "type": "string",
             "enum": [
@@ -858,7 +999,6 @@
               "counter_verbal",
               "hub_visit",
               "phone",
-              "trusted_person",
               "system_flag"
             ],
             "title": "Source"

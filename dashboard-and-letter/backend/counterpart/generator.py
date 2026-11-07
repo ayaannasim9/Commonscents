@@ -1,7 +1,8 @@
-"""Seeded 18-month transaction generator for the persona.
+"""Seeded 18-month transaction generator. One generic engine; a persona is just data (personas.py).
 
-Each month has its own RNG (`Random(f"{seed}-{year}-{month}")`) so history is
-stable when "next month" appends. Events are placed in a named month.
+Each month has its own RNG (`Random(f"{seed}-{persona}-{year}-{month}")`) so history is stable when
+"next month" appends. Planted events land in a named month and (for subscriptions and price rises)
+carry forward.
 """
 from __future__ import annotations
 
@@ -10,24 +11,8 @@ import random
 from datetime import date, timedelta
 
 from . import config
-from .models import Persona, PlantedEvent, Transaction
-
-PENSION_ANCHOR = date(2026, 11, 3)  # a State Pension payday; others are +/- 28 days
-STATE_PENSION = 76000
-WORK_PENSION = 52000
-RENT = 48000
-COUNCIL_TAX = 11800
-PHONE_BEFORE_APRIL_2026, PHONE_AFTER = 2800, 3000
-ELECTRICITY = 3200
-GAS_WINTER, GAS_SUMMER = 8600, 4300
-WATER = 2800
-TV_LICENCE = 17500
-CASH_WEEKLY = 4000
-SHOP_MONTH_TOTAL = 9200  # eight trips, split randomly; total steady
-SHOP_TRIPS = 8
-CHEMIST_MONTH_TOTAL = 2400
-SUBSCRIPTION = 999
-SCAM_AMOUNT = 200000
+from .models import PlantedEvent, Transaction
+from .personas import Item, PersonaSpec
 
 _RAW = tuple[date, str | None, str, int, str]  # date, time, description, pence, channel
 
@@ -58,66 +43,92 @@ def _hhmm(rng: random.Random, lo_h: int, hi_h: int) -> str:
     return f"{rng.randint(lo_h, hi_h):02d}:{rng.randint(0, 59):02d}"
 
 
-def _month_raw(y: int, m: int, events: list[PlantedEvent], seed: int) -> list[_RAW]:
-    rng = random.Random(f"{seed}-{y}-{m}")
+def _active(it: Item, y: int, m: int) -> bool:
+    if it.kind == "once":
+        return it.start == (y, m)
+    return (not it.start or (y, m) >= it.start) and m not in it.skip and (it.months is None or m in it.months)
+
+
+def _amount(it: Item, y: int, m: int, rng: random.Random, price_on: bool) -> int:
+    base = it.seasonal.get(m, it.amount)
+    for cy, cm, cp in it.changes:
+        if (y, m) >= (cy, cm):
+            base = cp
+    rng_range = it.low.get((y, m), it.rng)
+    if rng_range:
+        lo, hi = sorted(abs(v) // 100 for v in rng_range)
+        base = (1 if (it.rng or rng_range)[0] > 0 else -1) * rng.randint(lo, hi) * 100
+    if it.price_event and price_on:
+        base = round(base * 1.18)  # +18%
+    return base
+
+
+def _day(it_day: int, y: int, m: int, credit: bool) -> date:
+    last = calendar.monthrange(y, m)[1]
+    d = date(y, m, last if it_day == -1 else min(it_day, last))
+    return _prev_weekday(d) if (credit or it_day == -1) else d
+
+
+def _bias_days(rng: random.Random, y: int, m: int, bias: str | None) -> int:
+    last = calendar.monthrange(y, m)[1]
+    if bias:
+        want = (lambda wd: wd >= 5) if bias == "weekend" else (lambda wd: wd <= 3)
+        pool = [d for d in range(1, last + 1) if want(date(y, m, d).weekday())]
+        if pool and (bias == "early_week" or rng.random() < 0.7):
+            return rng.choice(pool)
+    return rng.randint(1, last)
+
+
+def _month_raw(spec: PersonaSpec, y: int, m: int, events: list[PlantedEvent], seed: int) -> list[_RAW]:
+    rng = random.Random(f"{seed}-{spec.id}-{y}-{m}")
     last = calendar.monthrange(y, m)[1]
     out: list[_RAW] = []
-    add = lambda d, t, desc, p, ch: out.append((d, t, desc, p, ch))  # noqa: E731
 
-    # Event effects carry forward from the month they were planted.
-    def active(name: str) -> PlantedEvent | None:
-        for e in events:
-            if e.name == name and (e.year, e.month) <= (y, m):
-                return e
-        return None
+    def active(name: str) -> bool:
+        return any(e.name == name and (e.year, e.month) <= (y, m) for e in events)
 
-    # --- income ---
-    n = (date(y, m, 1) - PENSION_ANCHOR).days // 28 - 1
-    d = PENSION_ANCHOR + timedelta(days=28 * n)
-    while d.year * 12 + d.month <= y * 12 + m:
-        if (d.year, d.month) == (y, m):
-            add(d, None, "DWP STATE PENSION 4WK", STATE_PENSION, "credit")
-        d += timedelta(days=28)
-    add(_prev_weekday(date(y, m, 25)), None, "NEST PENSN 7783", WORK_PENSION, "credit")
+    price_on = active("price_rise")
+    for it in spec.items:
+        if not _active(it, y, m):
+            continue
+        credit = it.channel == "credit"
+        if it.kind in ("monthly", "once"):
+            out.append((_day(it.day, y, m, credit), None, it.desc, _amount(it, y, m, rng, price_on), it.channel))
+        elif it.kind == "annual":
+            if it.month == m:
+                out.append((_day(it.day, y, m, credit), None, it.desc, _amount(it, y, m, rng, price_on), it.channel))
+        elif it.kind == "4weekly":
+            d = it.anchor + timedelta(days=28 * ((date(y, m, 1) - it.anchor).days // 28 - 1))
+            while (d.year, d.month) <= (y, m):
+                if (d.year, d.month) == (y, m):
+                    out.append((d, None, it.desc, it.amount, it.channel))
+                d += timedelta(days=28)
+        elif it.kind == "weekly":
+            for day in range(1, last + 1):
+                if date(y, m, day).weekday() == it.weekday:
+                    t = None if credit else _hhmm(rng, *it.hours)
+                    out.append((date(y, m, day), t, it.desc, _amount(it, y, m, rng, price_on), it.channel))
+        elif it.kind == "sporadic":
+            for _ in range(rng.randint(*it.count)):
+                out.append((date(y, m, rng.randint(1, last)), _hhmm(rng, *it.hours), it.desc,
+                            _amount(it, y, m, rng, price_on), it.channel))
+        elif it.kind == "spread":
+            for amt in _split(rng, it.total, it.trips):
+                out.append((date(y, m, _bias_days(rng, y, m, it.bias)), _hhmm(rng, *it.hours), it.desc, amt, it.channel))
 
-    # --- direct debits ---
-    add(date(y, m, 1), None, "DD HARROWGATE HOUSING 0071", -RENT, "direct_debit")
-    if m not in (2, 3):  # council tax: 10 months a year
-        add(date(y, m, 3), None, "DD LBROUGH CNCL TAX 5532", -COUNCIL_TAX, "direct_debit")
-    phone = PHONE_AFTER if (y, m) >= (2026, 4) else PHONE_BEFORE_APRIL_2026  # April price rise
-    add(date(y, m, 8), None, "DD VF BBAND/TV 8830", -phone, "direct_debit")
-    add(date(y, m, 12), None, "DD EDF ENERGY 7710", -ELECTRICITY, "direct_debit")
-    winter = m in (11, 12, 1, 2, 3)
-    add(date(y, m, 15), None, "DD BGAS 4421 ENERGY", -(GAS_WINTER if winter else GAS_SUMMER), "direct_debit")
-    water = WATER
-    if active("price_rise"):
-        water = round(WATER * 1.18)  # +18%
-    add(date(y, m, 20), None, "DD SEVERN TRENT 0912", -water, "direct_debit")
-    if m == 1:
-        add(date(y, m, 5), None, "DD TV LICENCE MBP", -TV_LICENCE, "direct_debit")
-
-    # --- cash every Friday ---
-    for day in range(1, last + 1):
-        if date(y, m, day).weekday() == 4:
-            add(date(y, m, day), _hhmm(rng, 10, 11), "POST OFFICE CNTR WDL", -CASH_WEEKLY, "cash_withdrawal")
-
-    # --- small card spends ---
-    for amt in _split(rng, SHOP_MONTH_TOTAL, SHOP_TRIPS):
-        add(date(y, m, rng.randint(1, last)), _hhmm(rng, 9, 16), "CRD 4471 PATELS NEWS&FOOD", -amt, "card")
-    for amt in _split(rng, CHEMIST_MONTH_TOTAL, 2):
-        add(date(y, m, rng.randint(1, last)), _hhmm(rng, 10, 15), "CRD 4471 BOOTS PHARM 0231", -amt, "card")
-
-    # --- planted events ---
+    # --- planted events (same three for everyone; only the figures are the persona's data) ---
     if active("forgotten_subscription"):
-        add(date(y, m, 9), "00:30", "CRD 4471 STREAMFLIX*MEMBER", -SUBSCRIPTION, "card")
+        desc, pence, day = spec.subscription
+        out.append((date(y, m, min(day, last)), "00:30", desc, -pence, "card"))
     for e in events:
         if e.name == "scam_transfer" and (e.year, e.month) == (y, m):
-            add(date(y, m, 18), "21:14", "FASTER PMT TO M HOLLOWAY 04-00-75 ****3391", -SCAM_AMOUNT, "faster_payment")
+            payee, pence, time = spec.scam
+            out.append((date(y, m, 18), time, f"FASTER PMT TO {payee}", -pence, "faster_payment"))
     return out
 
 
 def generate(
-    persona: Persona,
+    persona: PersonaSpec,
     months: int = 18,
     events: list[PlantedEvent | str] | None = None,
     end: tuple[int, int] = (2026, 11),
@@ -128,7 +139,7 @@ def generate(
     evs = [e if isinstance(e, PlantedEvent) else PlantedEvent(name=e, year=end[0], month=end[1]) for e in events or []]
     raw: list[_RAW] = []
     for y, m in months_ending(end, months):
-        raw.extend(_month_raw(y, m, evs, seed))
+        raw.extend(_month_raw(persona, y, m, evs, seed))
     raw.sort(key=lambda r: (r[0], r[1] or ""))  # stable: ties keep insertion order
     return [
         Transaction(id=f"tx_{i:04d}", date=d, time=t, description=desc, amount_pence=p, channel=ch)

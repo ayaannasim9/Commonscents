@@ -5,11 +5,13 @@ from typing import Literal
 from fastapi import APIRouter, Request
 from pydantic import BaseModel, Field
 
-from .cases import CaseService
+from .cases import CaseService, _viewer
+from .personas import DEFAULT_ID, SPECS
+from fastapi import HTTPException
 
 router = APIRouter()
 
-Source = Literal["slip_post_office", "slip_post", "counter_verbal", "hub_visit", "phone", "trusted_person", "system_flag"]
+Source = Literal["slip_post_office", "slip_post", "counter_verbal", "hub_visit", "phone", "system_flag"]
 Tick = Literal["worried", "scam_call", "bill", "afford", "other"]  # C5: same list as the slip
 
 
@@ -17,7 +19,13 @@ def svc(request: Request) -> CaseService:
     return request.app.state.cases
 
 
+def viewer_log(w, cid: str, viewer: str, what: str) -> None:
+    who, role = _viewer(viewer)
+    w.log_access(cid, who, role, what)
+
+
 class CaseIn(BaseModel):
+    customer: str = DEFAULT_ID
     source: Source
     text: str = Field(min_length=1, max_length=2000)
     ticks: list[Tick] = []
@@ -37,14 +45,20 @@ class ApproveIn(BaseModel):
 
 
 @router.get("/cases")
-def list_cases(request: Request, status: str | None = None, urgency: str | None = None) -> list[dict]:
-    """Urgent first, then due date. Closed cases are hidden unless status=closed or status=all."""
-    return svc(request).list(status, urgency)
+def list_cases(request: Request, status: str | None = None, urgency: str | None = None,
+               customer: str = DEFAULT_ID) -> list[dict]:
+    """One customer's queue (default Margaret; customer=all for everyone). Urgent first, then due date.
+    Closed cases are hidden unless status=closed or status=all."""
+    if customer != "all" and customer not in SPECS:
+        raise HTTPException(404, "Unknown customer")
+    return svc(request).list(status, urgency, None if customer == "all" else customer)
 
 
 @router.post("/cases")
 def create_case(body: CaseIn, request: Request) -> dict:
-    return svc(request).create(body.source, body.text, list(body.ticks))
+    if body.customer not in SPECS:
+        raise HTTPException(404, "Unknown customer")
+    return svc(request).create(body.customer, body.source, body.text, list(body.ticks))
 
 
 @router.get("/cases/{cid}")

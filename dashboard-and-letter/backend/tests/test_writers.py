@@ -10,7 +10,7 @@ from counterpart.llm import prompts
 from counterpart.llm.client import LLMClient, LLMUnavailable
 from counterpart.llm.writers import draft_reply, triage, write_sections
 from counterpart.models import SinceLastVisit
-from counterpart.persona import MARGARET
+from counterpart.personas import MARGARET
 from counterpart.pipeline import build_facts
 
 H = SinceLastVisit(helper="Priya", note="Set up heating pot, £20 a month", date=date(2026, 12, 1))

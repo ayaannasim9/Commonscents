@@ -132,9 +132,9 @@ GET  /personas                       -> [{ id, name, age, archetype, tagline }] 
 GET  /customers/{id}                 -> { id, name, age, archetype, tagline, bank, hub_day, preferences{large_print,read_aloud_default,language} }
 GET  /customers/{id}/transactions    -> { month, transactions:[{id,date,time|null,description,amount,channel}] }   # amount signed pounds, 2dp, as in CLAUDE.md
 POST /customers/{id}/events          { "event": "<event enum>" } -> { facts_version, new_flags:[flag], new_case_id|null }
-POST /demo/next-month                -> { as_of }       # advances as_of by one month, keeps history stable
-POST /demo/reset                     -> { as_of }
-GET  /demo/state                     -> { as_of, events_applied:[...], facts_version }
+POST /demo/next-month?customer=<id>  -> { as_of }       # advances THAT customer's as_of by one month (default MRG-4471), keeps history stable
+POST /demo/reset                     -> { as_of }       # resets all six customers; returns MRG-4471's as_of (all start on 2026-12-01)
+GET  /demo/state?customer=<id>       -> { as_of, events_applied:[...], facts_version }   # default MRG-4471
 ```
 
 `facts_version` is an integer bumped on any change (event, approved case, next-month); frontend uses it to refetch.
@@ -152,11 +152,12 @@ Letter and dashboard text come from the **same generated section strings** (C2).
 
 ### C5. Cases
 
-Case object:
+Case object (every case carries its `customer` id; cases, access logs, letters and `facts_version` are all per customer, B8.1):
 
 ```json
 {
   "id": "case_0007",
+  "customer": "MRG-4471",
   "source": "slip_post_office",
   "status": "prepared",
   "urgency": "normal",
@@ -180,9 +181,9 @@ Case object:
 ```
 
 ```
-GET  /cases?status=&urgency=         -> [case summary]  (urgent first, then due date)
-POST /cases                          { source, text, ticks:["worried"|"scam"|…] } -> case
-GET  /cases/{id}?viewer=helper:priya -> case (logs access, P7)
+GET  /cases?customer=&status=&urgency= -> [case summary]  (urgent first, then due date). customer defaults to MRG-4471; customer=all lists everyone. Closed cases are hidden unless status=closed|all.
+POST /cases                          { customer?: "MRG-4471", source, text, ticks:["worried"|"scam_call"|"bill"|"afford"|"other"] } -> case
+GET  /cases/{id}?viewer=helper:priya[:banker|post_office|phone] -> case (logs access against that case's customer, P7)
 POST /cases/{id}/note                { note, helper:"Priya" } -> case
 POST /cases/{id}/draft-reply         -> case with draft:{ text, guardrail } (status draft_ready)
 POST /cases/{id}/draft               { text } -> case      # helper edits the draft; re-runs guardrails

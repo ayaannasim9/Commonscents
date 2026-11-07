@@ -6,17 +6,12 @@ from typing import Literal
 
 from pydantic import BaseModel, computed_field
 
-Channel = Literal["direct_debit", "credit", "cash_withdrawal", "card", "faster_payment"]
-
-
-class TrustedPerson(BaseModel):
-    name: str
-    relation: str
-    level: str
+Channel = Literal["direct_debit", "credit", "cash_withdrawal", "card", "faster_payment", "international_transfer"]
 
 
 class Preferences(BaseModel):
     large_print: bool
+    read_aloud_default: bool
     language: str
 
 
@@ -24,9 +19,10 @@ class Persona(BaseModel):
     id: str
     name: str
     age: int
+    archetype: str
+    tagline: str
     bank: str
     hub_day: str
-    trusted_person: TrustedPerson
     preferences: Preferences
 
 
