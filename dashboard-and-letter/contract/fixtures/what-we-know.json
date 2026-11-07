@@ -1,0 +1,57 @@
+{
+  "profile": {
+    "id": "MRG-4471",
+    "name": "Margaret",
+    "age": 81,
+    "archetype": "elderly",
+    "tagline": "Gets a letter, not an app.",
+    "bank": "NatWest",
+    "hub_day": "Tuesday",
+    "preferences": {
+      "large_print": true,
+      "read_aloud_default": false,
+      "language": "en"
+    }
+  },
+  "data_held": [
+    {
+      "label": "Your details",
+      "description": "Your name, age, bank, and the day you visit the hub.",
+      "count": 1
+    },
+    {
+      "label": "Your bank payments",
+      "description": "Money in and out of your account, for the last 18 months.",
+      "count": 412
+    },
+    {
+      "label": "Your letters",
+      "description": "Each monthly letter we have prepared for you.",
+      "count": 2
+    },
+    {
+      "label": "Your questions",
+      "description": "Questions you have asked, and the replies sent.",
+      "count": 1
+    },
+    {
+      "label": "Helper notes",
+      "description": "Notes your helper wrote after talking with you.",
+      "count": 1
+    }
+  ],
+  "access_log": [
+    {
+      "at": "2026-12-01T10:05:00",
+      "who": "Daria",
+      "role": "banker",
+      "what": "Looked at your question about a boiler"
+    },
+    {
+      "at": "2026-12-01T09:20:00",
+      "who": "Daria",
+      "role": "banker",
+      "what": "Looked at your dashboard"
+    }
+  ]
+}

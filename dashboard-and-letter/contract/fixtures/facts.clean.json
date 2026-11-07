@@ -1,0 +1,76 @@
+{
+  "as_of": "2026-12-01",
+  "customer": {
+    "name": "Margaret",
+    "reference": "MRG-4471",
+    "bank": "NatWest",
+    "hub_day": "Tuesday"
+  },
+  "headline_status": "heads_up",
+  "last_month": {
+    "month": "November",
+    "year": 2026,
+    "in": 1280,
+    "out": [
+      {
+        "name": "Rent",
+        "amount": 480
+      },
+      {
+        "name": "Council tax",
+        "amount": 118
+      },
+      {
+        "name": "Local shop",
+        "amount": 92
+      },
+      {
+        "name": "Gas",
+        "amount": 86
+      },
+      {
+        "name": "Electricity",
+        "amount": 32
+      },
+      {
+        "name": "Everything else",
+        "amount": 82
+      }
+    ],
+    "cash": 160,
+    "left": 230
+  },
+  "forecast": [
+    {
+      "month": "December",
+      "year": 2026,
+      "status": "ok",
+      "reason": "two pension payments",
+      "extra": 0,
+      "spare": 990
+    },
+    {
+      "month": "January",
+      "year": 2027,
+      "status": "warn",
+      "reason": "TV licence",
+      "extra": 175,
+      "spare": 15
+    },
+    {
+      "month": "February",
+      "year": 2027,
+      "status": "ok",
+      "reason": "nothing unusual",
+      "extra": 0,
+      "spare": 348
+    }
+  ],
+  "suggestion": {
+    "text_hint": "put a little aside for the TV licence",
+    "amount": 20
+  },
+  "flags": [],
+  "since_last_visit": null,
+  "cash_blind_spot": true
+}

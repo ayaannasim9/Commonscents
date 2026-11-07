@@ -1,0 +1,14 @@
+{
+  "id": "MRG-4471",
+  "name": "Margaret",
+  "age": 81,
+  "archetype": "elderly",
+  "tagline": "Gets a letter, not an app.",
+  "bank": "NatWest",
+  "hub_day": "Tuesday",
+  "preferences": {
+    "large_print": true,
+    "read_aloud_default": false,
+    "language": "en"
+  }
+}
