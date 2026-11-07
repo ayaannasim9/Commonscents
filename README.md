@@ -68,3 +68,29 @@ See `docs/accessibility-review.md` for verified checks and remaining assistive-t
 - **Claude-written alerts** (numbers always come from the models) and a 4-page printable A4 report: `http://127.0.0.1:8001/customers/jordan/report`
 - Reads NatWest / UK Open Banking v3.1 data; trained merchant categoriser for unknown merchants
 - `ml/.env` holds `ANTHROPIC_API_KEY` (git-ignored). Tests: `cd ml && python3 -m pytest -q tests`. Details: [`ml/README.md`](ml/README.md)
+
+## Run it on another laptop
+
+You need **Git**, **Python 3.11+** and **Node.js 20+** installed (check with `python3 --version` and `node --version`).
+
+```bash
+git clone https://github.com/ayaannasim9/Commonscents.git
+cd Commonscents
+git checkout overview-learning-integration
+./start.sh            # installs everything the first time, then starts the app
+```
+
+Then open **http://127.0.0.1:3000**. On the Future tab, pick a **Demo customer**.
+
+`start.sh` installs the ML engine's Python packages, sets up the dashboard backend and the Node packages, then runs `npm run dev`, which starts:
+- the app on :3000
+- Daria's dashboard backend on :8000
+- the ML engine on :8001
+
+Optional keys (never commit these):
+- `ml/.env`: `ANTHROPIC_API_KEY=...` for Claude-written alerts. Without it you get rule-based alerts, and everything else works.
+- `.env.local`: Supabase URL and server key for saved learning progress. Without it, Learn shows a preview.
+
+Windows: run the same commands in **Git Bash** or WSL. If `./start.sh` doesn't run, run its four lines by hand: `python3 -m pip install -r ml/requirements.txt`, `npm run setup:dashboard`, `npm install`, `npm run dev`.
+
+Trained models are already in `ml/models/`. To retrain: `cd ml && python3 train.py 3000` (about 35 seconds).

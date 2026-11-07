@@ -200,3 +200,140 @@ def categoriser():
     if _cat == "unloaded":
         _cat = Categoriser.load()
     return _cat
+
+
+# ------------------------------------------------------------------ learned forecaster (quantile GBM + conformal)
+HORIZONS_ML = (30, 90)
+QUANTS = (0.1, 0.5, 0.9)
+MC_FEATURES = [f"mc_q{int(q * 100)}_{h}d" for h in HORIZONS_ML for q in QUANTS]
+FORECAST_FEATURES = FEATURES + MC_FEATURES
+
+
+def mc_quantile_features(balances, current, spend):
+    """Monte Carlo quantiles of the balance change at 30/90 days, scaled by monthly spending."""
+    out = []
+    for h in HORIZONS_ML:
+        out += list((np.percentile(balances[:, h - 1], [q * 100 for q in QUANTS]) - current) / max(spend, 1.0))
+    return np.array(out)
+
+
+class Forecaster:
+    """Hybrid of the Monte Carlo simulation and quantile gradient boosting, with split-conformal intervals."""
+
+    def __init__(self, bundle):
+        self.models, self.conformal, self.blend, self.metrics = bundle["models"], bundle["conformal"], bundle["blend"], bundle.get("metrics", {})
+
+    @classmethod
+    def load(cls):
+        p = MODELS / "forecaster.joblib"
+        return cls(joblib.load(p)) if p.exists() else None
+
+    def predict(self, xf, current, spend):
+        out = {}
+        mc = xf[len(FEATURES):]
+        for hi, h in enumerate(HORIZONS_ML):
+            ml = [float(self.models[(h, q)].predict(xf.reshape(1, -1))[0]) for q in QUANTS]
+            mcq = list(mc[hi * 3: hi * 3 + 3])
+            w = self.blend
+            lo, mid, hiq = sorted(w * a + (1 - w) * b for a, b in zip(ml, mcq))
+            pad = self.conformal[h]
+            s = max(spend, 1.0)
+            out[h] = {"low": round(current + (lo - pad) * s, 2), "expected": round(current + mid * s, 2),
+                      "high": round(current + (hiq + pad) * s, 2)}
+        return out
+
+
+_fc = "unloaded"
+
+
+def forecaster():
+    global _fc
+    if _fc == "unloaded":
+        _fc = Forecaster.load()
+    return _fc
+
+
+# ------------------------------------------------------------------ customer segmentation (k-means)
+SEGMENT_FEATURES = ["savings_rate", "emergency_fund_months", "headroom_months", "income_volatility",
+                    "non_essential_spend_pct", "overdraft_days_pct_90d", "debt_to_income"]
+
+
+class Segmenter:
+    def __init__(self, bundle):
+        self.scaler, self.km, self.names, self.desc = bundle["scaler"], bundle["kmeans"], bundle["names"], bundle["desc"]
+        self.pop, self.labels, self.metrics = bundle["population"], bundle["labels"], bundle.get("metrics", {})
+
+    @classmethod
+    def load(cls):
+        p = MODELS / "segments.joblib"
+        return cls(joblib.load(p)) if p.exists() else None
+
+    def assign(self, x):
+        idx = [FEATURES.index(f) for f in SEGMENT_FEATURES]
+        z = self.scaler.transform(np.clip(x[idx], -20, 20).reshape(1, -1))
+        k = int(self.km.predict(z)[0])
+        peers = self.pop[self.labels == k]
+
+        def pct(feat, higher_is_better=True, group=peers):
+            j = FEATURES.index(feat)
+            v = (group[:, j] < x[j]).mean() if higher_is_better else (group[:, j] > x[j]).mean()
+            return round(float(v) * 100)
+        return {"segment": self.names[k], "description": self.desc[k], "share_of_customers": round(float((self.labels == k).mean()) * 100),
+                "peer_percentiles": {"savings_rate": pct("savings_rate"), "emergency_fund": pct("emergency_fund_months"),
+                                     "overdraft_use_lower_than": pct("overdraft_days_pct_90d", higher_is_better=False),
+                                     "savings_rate_vs_everyone": pct("savings_rate", group=self.pop)}}
+
+
+_seg = "unloaded"
+
+
+def segmenter():
+    global _seg
+    if _seg == "unloaded":
+        _seg = Segmenter.load()
+    return _seg
+
+
+# ------------------------------------------------------------------ unusual transactions (Isolation Forest)
+def unusual_transactions(tx, today, recent_days=45, max_items=5):
+    """Fit an Isolation Forest on the customer's own spending and flag recent transactions that don't fit."""
+    from sklearn.ensemble import IsolationForest
+    t0 = pd.Timestamp(today)
+    d = tx[(tx["amount"] < 0) & (tx["kind"] != "transfer") & (tx["date"] > t0 - pd.Timedelta(days=365))].copy()
+    if len(d) < 40:
+        return []
+    d["amt"] = -d["amount"]
+    first_seen = tx.groupby("merchant")["date"].transform("min").reindex(d.index)
+    counts = d["merchant"].map(d["merchant"].value_counts())
+    med = d.groupby("merchant")["amt"].transform("median")
+    mad = d.groupby("merchant")["amt"].transform(lambda s: (s - s.median()).abs().median()).replace(0, np.nan)
+    cat_share = d["category"].map(d["category"].value_counts(normalize=True))
+    F = pd.DataFrame({
+        "log_amount": np.log1p(d["amt"]),
+        "merchant_rarity": -np.log(counts),
+        "new_merchant": ((d["date"] - first_seen).dt.days < 30).astype(float),
+        "vs_usual": ((d["amt"] - med) / mad.fillna(d["amt"].std() or 1)).clip(-10, 10).fillna(0),
+        "category_rarity": -np.log(cat_share),
+        "weekend": (d["date"].dt.weekday >= 5).astype(float),
+    })
+    iso = IsolationForest(n_estimators=200, contamination=0.02, random_state=0).fit(F)
+    score = -iso.score_samples(F)
+    flag = iso.predict(F) == -1
+    d = d.assign(score=score, flag=flag, **{c: F[c] for c in F})
+    recent = d[(d["date"] > t0 - pd.Timedelta(days=recent_days)) & d["flag"] & (d["amt"] >= 25)].sort_values("score", ascending=False)
+    out = []
+    for _, r in recent.iterrows():
+        prev = tx[(tx["merchant"] == r["merchant"]) & (tx["date"] < r["date"])]["date"]
+        if len(prev) and 330 <= (r["date"] - prev.max()).days <= 400:
+            continue  # yearly bill (insurance, licence, books): expected, not unusual
+        rare_big = r["merchant_rarity"] > -np.log(3) and r["log_amount"] > np.log1p(d["amt"].quantile(0.95))
+        if not (r["new_merchant"] or r["vs_usual"] > 3 or rare_big):
+            continue  # Isolation Forest always flags its top 2%; only keep flags with a concrete reason
+        if len(out) >= max_items:
+            break
+        why = ("First payment to this merchant" if r["new_merchant"] else
+               f"About {r['amt'] / max(med[_], 1):.1f}× your usual payment to {r['merchant']}" if r["vs_usual"] > 3 else
+               "A large payment to a merchant you rarely use")
+        out.append({"date": r["date"].date().isoformat(), "merchant": r["merchant"], "amount": round(float(r["amt"]), 2),
+                    "category": r["category"], "why": why, "anomaly_score": round(float(r["score"]), 3)})
+    return out

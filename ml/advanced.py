@@ -319,3 +319,39 @@ def bill_calendar(scheduled, balances, days=30):
              "balance_after": round(float(p50[s["day_index"]]), 2)}
             for s in sorted(scheduled, key=lambda s: s["day_index"]) if s["day_index"] < days]
     return rows
+
+
+# ------------------------------------------------------------------ 7. Wrapped (year in review) from real data
+def wrapped(tx, f, customer, segment, today):
+    t0 = pd.Timestamp(today)
+    year = tx[tx["date"] > t0 - pd.Timedelta(days=365)]
+    cards = {}
+    if segment:
+        p = segment["peer_percentiles"]["savings_rate"]
+        cards["w1"] = {"n": f"{p}%", "p": f"You saved more than {p}% of people like you ({segment['segment'].lower()})."}
+    buys = year[year["kind"].isin(["variable", "optional"])]
+    if len(buys):
+        top = buys["merchant"].value_counts()
+        cards["w2"] = {"n": top.index[0], "p": f"Your most frequent purchase this year: {int(top.iloc[0])} times."}
+    fun = tx[tx["category"].isin(["eating_out", "going_out"])]
+    last6 = -fun[fun["date"] > t0 - pd.Timedelta(days=182)]["amount"].sum()
+    prev6 = -fun[(fun["date"] <= t0 - pd.Timedelta(days=182)) & (fun["date"] > t0 - pd.Timedelta(days=364))]["amount"].sum()
+    if prev6 > 0:
+        d = prev6 - last6
+        cards["w3"] = ({"tag": "💰 WELL DONE", "n": f"£{d:,.0f} less", "p": "You spent this much less on eating and going out than in the 6 months before."}
+                       if d >= 0 else
+                       {"tag": "👀 WORTH A LOOK", "n": f"£{-d:,.0f} more", "p": "You spent this much more on eating and going out than in the 6 months before."})
+    util = f.get("utility_cost_change_pct")
+    chg = util if util is not None else f["fixed_cost_change_pct"]
+    what = "energy bills" if util is not None else "household bills"
+    cards["w4"] = ({"tag": "⚠️ HEADS UP", "n": f"Bills up {round(chg * 100)}%", "p": f"Your {what} went up. We can help you look at them."}
+                   if chg > 0.02 else
+                   {"tag": "✅ STEADY", "n": f"Bills {'down ' + str(round(-chg * 100)) + '%' if chg < -0.02 else 'steady'}", "p": f"Your {what} didn't rise this year."})
+    sav = customer.get("savings_history", [])
+    if len(sav) >= 2:
+        base = sav[-13]["balance"] if len(sav) >= 13 else sav[0]["balance"]
+        d = sav[-1]["balance"] - base
+        cards["w5"] = ({"tag": "🛟 SAVINGS", "n": "No change", "p": "Your savings stayed the same this year. Even £10 a week adds up to £520."} if abs(d) < 1 else
+                       {"tag": "⭐ PROGRESS", "n": f"+£{d:,.0f}", "p": "Your savings grew by this much this year."} if d >= 0 else
+                       {"tag": "🛟 REBUILD", "n": f"−£{-d:,.0f}", "p": "Your savings went down this year. Your plan shows how to rebuild them."})
+    return cards

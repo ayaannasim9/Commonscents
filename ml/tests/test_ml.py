@@ -118,3 +118,18 @@ def test_api_endpoints():
                                                   "savings_balances": ob["savings"], "today": "2026-11-07"})
     assert r.status_code == 200
     check_result(r.json())
+
+
+def test_forecaster_and_segments():
+    m = json.loads((ML / "models/metrics.json").read_text())
+    for h in ("30d", "90d"):
+        f = m["forecaster"]["horizons"][h]
+        assert 0.75 <= f["hybrid_conformal"]["coverage_80"] <= 0.9          # calibrated ranges
+        assert f["hybrid_conformal"]["median_abs_error_gbp"] <= f["monte_carlo_only"]["median_abs_error_gbp"]
+    assert not any(n.startswith("Group") for n in m["segments"]["segments_pct"])
+    r = analyse(CUSTOMERS["jordan"], _tx("jordan"), TODAY)
+    h = [x for x in r["cashflow_forecast"]["horizons"] if x["days"] == 90][0]
+    assert h["calibrated_low"] <= h["calibrated_expected"] <= h["calibrated_high"]
+    assert r["advanced"]["segment"]["segment"] and set(r["advanced"]["wrapped"]) >= {"w1", "w2", "w4"}
+    t = client.get("/customers/margaret/timelines").json()
+    assert "w1" in t["wrapped"]

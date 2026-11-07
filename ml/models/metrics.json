@@ -156,6 +156,121 @@
       }
     ]
   },
+  "forecaster": {
+    "blend_weight_ml": 1.0,
+    "n_train": 1800,
+    "n_calibration": 600,
+    "n_test": 600,
+    "horizons": {
+      "30d": {
+        "monte_carlo_only": {
+          "pinball_avg_gbp": 74.7,
+          "median_abs_error_gbp": 138.8,
+          "coverage_80": 0.595
+        },
+        "learned_quantile_gbm": {
+          "pinball_avg_gbp": 60.6,
+          "median_abs_error_gbp": 108.0,
+          "coverage_80": 0.685
+        },
+        "hybrid_conformal": {
+          "pinball_avg_gbp": 59.8,
+          "median_abs_error_gbp": 108.0,
+          "coverage_80": 0.812
+        }
+      },
+      "90d": {
+        "monte_carlo_only": {
+          "pinball_avg_gbp": 183.1,
+          "median_abs_error_gbp": 331.0,
+          "coverage_80": 0.49
+        },
+        "learned_quantile_gbm": {
+          "pinball_avg_gbp": 135.4,
+          "median_abs_error_gbp": 239.3,
+          "coverage_80": 0.683
+        },
+        "hybrid_conformal": {
+          "pinball_avg_gbp": 133.2,
+          "median_abs_error_gbp": 239.3,
+          "coverage_80": 0.8
+        }
+      }
+    }
+  },
+  "segments": {
+    "k": 6,
+    "scaling": "quantile (rank) transform",
+    "silhouette": {
+      "4": 0.333,
+      "5": 0.399,
+      "6": 0.418
+    },
+    "segments_pct": {
+      "Comfortable savers": 21,
+      "Getting by": 18,
+      "Living in the overdraft": 11,
+      "Paying off debt": 17,
+      "Well cushioned": 22,
+      "Stretched": 11
+    },
+    "typical_member": {
+      "Comfortable savers": {
+        "savings_rate": 0.06,
+        "emergency_fund_months": 1.81,
+        "headroom_months": 0.51,
+        "income_volatility": 0.0,
+        "non_essential_spend_pct": 0.2,
+        "overdraft_days_pct_90d": 0.14,
+        "debt_to_income": 0.06
+      },
+      "Getting by": {
+        "savings_rate": 0.02,
+        "emergency_fund_months": 1.87,
+        "headroom_months": 1.05,
+        "income_volatility": 0.15,
+        "non_essential_spend_pct": 0.23,
+        "overdraft_days_pct_90d": 0.01,
+        "debt_to_income": 0.0
+      },
+      "Living in the overdraft": {
+        "savings_rate": -0.22,
+        "emergency_fund_months": 0.0,
+        "headroom_months": -0.61,
+        "income_volatility": 0.15,
+        "non_essential_spend_pct": 0.22,
+        "overdraft_days_pct_90d": 1.0,
+        "debt_to_income": 0.0
+      },
+      "Paying off debt": {
+        "savings_rate": 0.02,
+        "emergency_fund_months": 2.27,
+        "headroom_months": 1.08,
+        "income_volatility": 0.14,
+        "non_essential_spend_pct": 0.2,
+        "overdraft_days_pct_90d": 0.0,
+        "debt_to_income": 0.07
+      },
+      "Well cushioned": {
+        "savings_rate": 0.06,
+        "emergency_fund_months": 1.77,
+        "headroom_months": 0.52,
+        "income_volatility": 0.0,
+        "non_essential_spend_pct": 0.23,
+        "overdraft_days_pct_90d": 0.13,
+        "debt_to_income": 0.0
+      },
+      "Stretched": {
+        "savings_rate": -0.22,
+        "emergency_fund_months": 0.0,
+        "headroom_months": -0.75,
+        "income_volatility": 0.15,
+        "non_essential_spend_pct": 0.18,
+        "overdraft_days_pct_90d": 1.0,
+        "debt_to_income": 0.09
+      }
+    }
+  },
   "categoriser": {
     "n_merchants": 197,
     "n_examples": 788,

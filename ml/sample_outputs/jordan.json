@@ -49,7 +49,10 @@
         "predicted_balance": -405.06,
         "range_low": -549.06,
         "range_high": -268.41,
-        "confidence": 0.94
+        "confidence": 0.94,
+        "calibrated_low": -751.3,
+        "calibrated_expected": -347.79,
+        "calibrated_high": -52.9
       },
       {
         "days": 90,
@@ -57,7 +60,10 @@
         "predicted_balance": -771.06,
         "range_low": -1036.33,
         "range_high": -544.24,
-        "confidence": 0.91
+        "confidence": 0.91,
+        "calibrated_low": -1857.71,
+        "calibrated_expected": -878.84,
+        "calibrated_high": -56.67
       },
       {
         "days": 180,
@@ -2108,7 +2114,46 @@
         "effect": "\u00a3800 one-off, \u00a3450/month",
         "assumption": "About \u00a3450 a month in extra costs plus \u00a3800 for essentials at the start"
       }
-    ]
+    ],
+    "learned_forecast": {
+      "method": "Quantile gradient boosting stacked on the simulation, with split-conformal 80% ranges",
+      "metrics": {
+        "30d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 74.7,
+            "median_abs_error_gbp": 138.8,
+            "coverage_80": 0.595
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 60.6,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.685
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 59.8,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.812
+          }
+        },
+        "90d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 183.1,
+            "median_abs_error_gbp": 331.0,
+            "coverage_80": 0.49
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 135.4,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.683
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 133.2,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.8
+          }
+        }
+      }
+    }
   },
   "hardship_risk": {
     "score": 0.96,
@@ -2464,7 +2509,44 @@
         "amount": -24.99,
         "balance_after": -360.09
       }
-    ]
+    ],
+    "segment": {
+      "segment": "Paying off debt",
+      "description": "A noticeable share of income goes on debt.",
+      "share_of_customers": 17,
+      "peer_percentiles": {
+        "savings_rate": 14,
+        "emergency_fund": 8,
+        "overdraft_use_lower_than": 17,
+        "savings_rate_vs_everyone": 17
+      }
+    },
+    "unusual_transactions": [],
+    "wrapped": {
+      "w1": {
+        "n": "14%",
+        "p": "You saved more than 14% of people like you (paying off debt)."
+      },
+      "w2": {
+        "n": "Tesco",
+        "p": "Your most frequent purchase this year: 97 times."
+      },
+      "w3": {
+        "tag": "\ud83d\udc40 WORTH A LOOK",
+        "n": "\u00a347 more",
+        "p": "You spent this much more on eating and going out than in the 6 months before."
+      },
+      "w4": {
+        "tag": "\u26a0\ufe0f HEADS UP",
+        "n": "Bills up 20%",
+        "p": "Your energy bills went up. We can help you look at them."
+      },
+      "w5": {
+        "tag": "\ud83d\udedf REBUILD",
+        "n": "\u2212\u00a31,150",
+        "p": "Your savings went down this year. Your plan shows how to rebuild them."
+      }
+    }
   },
   "upcoming_expenses": [
     {
@@ -3006,6 +3088,121 @@
         }
       ]
     },
+    "forecaster": {
+      "blend_weight_ml": 1.0,
+      "n_train": 1800,
+      "n_calibration": 600,
+      "n_test": 600,
+      "horizons": {
+        "30d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 74.7,
+            "median_abs_error_gbp": 138.8,
+            "coverage_80": 0.595
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 60.6,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.685
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 59.8,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.812
+          }
+        },
+        "90d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 183.1,
+            "median_abs_error_gbp": 331.0,
+            "coverage_80": 0.49
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 135.4,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.683
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 133.2,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.8
+          }
+        }
+      }
+    },
+    "segments": {
+      "k": 6,
+      "scaling": "quantile (rank) transform",
+      "silhouette": {
+        "4": 0.333,
+        "5": 0.399,
+        "6": 0.418
+      },
+      "segments_pct": {
+        "Comfortable savers": 21,
+        "Getting by": 18,
+        "Living in the overdraft": 11,
+        "Paying off debt": 17,
+        "Well cushioned": 22,
+        "Stretched": 11
+      },
+      "typical_member": {
+        "Comfortable savers": {
+          "savings_rate": 0.06,
+          "emergency_fund_months": 1.81,
+          "headroom_months": 0.51,
+          "income_volatility": 0.0,
+          "non_essential_spend_pct": 0.2,
+          "overdraft_days_pct_90d": 0.14,
+          "debt_to_income": 0.06
+        },
+        "Getting by": {
+          "savings_rate": 0.02,
+          "emergency_fund_months": 1.87,
+          "headroom_months": 1.05,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.23,
+          "overdraft_days_pct_90d": 0.01,
+          "debt_to_income": 0.0
+        },
+        "Living in the overdraft": {
+          "savings_rate": -0.22,
+          "emergency_fund_months": 0.0,
+          "headroom_months": -0.61,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.22,
+          "overdraft_days_pct_90d": 1.0,
+          "debt_to_income": 0.0
+        },
+        "Paying off debt": {
+          "savings_rate": 0.02,
+          "emergency_fund_months": 2.27,
+          "headroom_months": 1.08,
+          "income_volatility": 0.14,
+          "non_essential_spend_pct": 0.2,
+          "overdraft_days_pct_90d": 0.0,
+          "debt_to_income": 0.07
+        },
+        "Well cushioned": {
+          "savings_rate": 0.06,
+          "emergency_fund_months": 1.77,
+          "headroom_months": 0.52,
+          "income_volatility": 0.0,
+          "non_essential_spend_pct": 0.23,
+          "overdraft_days_pct_90d": 0.13,
+          "debt_to_income": 0.0
+        },
+        "Stretched": {
+          "savings_rate": -0.22,
+          "emergency_fund_months": 0.0,
+          "headroom_months": -0.75,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.18,
+          "overdraft_days_pct_90d": 1.0,
+          "debt_to_income": 0.09
+        }
+      }
+    },
     "categoriser": {
       "n_merchants": 197,
       "n_examples": 788,
@@ -3029,31 +3226,31 @@
     }
   },
   "insights": {
-    "summary": "Your pay of \u00a31,720 is due on 25 November, but your balance needs attention before then, and a few simple bill-date changes could ease the pressure.",
+    "summary": "Jordan, you have a clear, step-by-step plan that could ease the pressure, though your balance needs attention as your bills before your 25 November payday are more than the money available.",
     "alerts": [
       {
         "kind": "resilience",
-        "title": "Two easy calls that could help",
-        "message": "Your next pay of \u00a31,720 from ACME Logistics Ltd arrives on 25 November. Asking Black Horse Finance to move your \u00a3189 payment from the 3rd to the 26th could lift your lowest expected balance from -\u00a31,493 to -\u00a31,304, and asking Manchester City Council to move your \u00a3128 payment from the 10th to the 26th could lift it further to -\u00a31,176.",
-        "why": "Our action plan tested these changes over the next 120 days; both steps are marked as easy and moving bills to just after payday was the biggest single improvement.",
+        "title": "Move bills to just after payday",
+        "message": "You could ask Black Horse Finance to move your \u00a3189 payment from the 3rd to the 26th, which lifts your lowest expected balance from -\u00a31,493 to -\u00a31,304. Asking Manchester City Council to move your \u00a3128 council tax from the 10th to the 26th lifts it further, to -\u00a31,176.",
+        "why": "Your action plan tested these changes over the next 120 days. Both are easy steps, and each one moves a bill to the day after your \u00a31,720 pay from ACME Logistics Ltd.",
         "confidence": "High",
-        "action": "Call Black Horse Finance this week and ask to move your payment date to the 26th, then do the same with Manchester City Council."
+        "action": "Call Black Horse Finance this week and ask to move your payment date to the 26th."
       },
       {
         "kind": "risk",
         "title": "Your balance before payday needs attention",
-        "message": "Your bills before 25 November are more than the money available, so your safe-to-spend amount until then is \u00a30. Your balance is expected to be around -\u00a3867 the day before payday, which is past your \u00a3500 overdraft limit.",
-        "why": "Your balance is -\u00a3160 today. Bills due are Netflix \u00a311 on 8 Nov, Manchester City Council \u00a3128 on 10 Nov, Octopus Energy \u00a3118 on 12 Nov, Spotify \u00a312 on 15 Nov, EE \u00a328 on 18 Nov and Klarna \u00a325 on 21 Nov.",
+        "message": "Your bills before 25 November add up to more than the money available, even with very little everyday spending. Your balance is expected to be about -\u00a3867 the day before your pay arrives, which is past your \u00a3500 overdraft limit.",
+        "why": "Your bill calendar shows Netflix on 8 Nov, Manchester City Council \u00a3128 on 10 Nov, Octopus Energy \u00a3118 on 12 Nov, Spotify on 15 Nov, EE \u00a328 on 18 Nov and Klarna \u00a325 on 21 Nov, with your pay due on 25 Nov.",
         "confidence": "High",
-        "action": "Talk to us or a free service such as StepChange or MoneyHelper before 10 November about the bills due this month. You can also ask us to record that you'd like extra support."
+        "action": "Talk to your bank or a free debt adviser such as StepChange or MoneyHelper now. They can help you with these bills."
       },
       {
         "kind": "opportunity",
-        "title": "Check support for your growing family",
-        "message": "With your income lower and a new child on the way, you may be entitled to extra help. It's free to check and only takes a few minutes.",
-        "why": "Your income is 8% lower than the previous 6 months and your spending is higher than your income. You told us you have a new child, which adds expected costs of about \u00a3450 a month plus \u00a3800 at the start.",
+        "title": "Check what support you could get",
+        "message": "Your hours have been cut and a new child is on the way, so you may be able to claim support you don't get yet. This could include Child Benefit and Tax-Free Childcare.",
+        "why": "Your income is 8% lower than the previous 6 months, you spend more than you earn each month, and you told us about a new child.",
         "confidence": "Medium",
-        "action": "Use a free benefits calculator such as Turn2us or entitledto, and check you're claiming Child Benefit. If it would help, GamCare also offers free, confidential support with the gambling payments we noticed."
+        "action": "Use a free benefits calculator such as Turn2us or entitledto. If you'd find it useful, GamCare also offers free, confidential help with gambling spending."
       }
     ],
     "source": "claude",

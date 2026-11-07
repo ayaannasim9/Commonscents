@@ -469,6 +469,23 @@ def analyse(customer, transactions, today=None, answers=None):
     op.sort(key=lambda o: (not o["matches_goal"], -o["confidence"]))
     hidden = sum(1 for x in ue + op if x["confidence"] < CONFIDENCE_THRESHOLD)
 
+    # trained models: learned (calibrated) forecast, customer segment, unusual payments
+    spend = max(f["avg_monthly_spending"], 1.0)
+    mc90 = {"prob_past": float((balances[:, :90] < -limit).any(axis=1).mean()),
+            "prob_below": float((balances[:, :90] < 0).any(axis=1).mean()), "p10_90": float(np.percentile(balances[:, 89], 10))}
+    xvec = M.feature_vector(f, acct, mc90, M.behaviour_numbers(tx, today))
+    fc = M.forecaster()
+    if fc:
+        learned = fc.predict(np.concatenate([xvec, M.mc_quantile_features(balances, acct["current_balance"], spend)]),
+                             acct["current_balance"], spend)
+        for h in cf["horizons"]:
+            if h["days"] in learned:
+                L = learned[h["days"]]
+                h.update(calibrated_low=L["low"], calibrated_expected=L["expected"], calibrated_high=L["high"])
+        cf["learned_forecast"] = {"method": "Quantile gradient boosting stacked on the simulation, with split-conformal 80% ranges",
+                                  "metrics": fc.metrics.get("horizons")}
+    seg = M.segmenter()
+
     # advanced layer
     signals = A.behaviour_signals(tx, today)
     support_needs = A.normalise_support((answers or {}).get("support_needs"))
@@ -480,7 +497,10 @@ def analyse(customer, transactions, today=None, answers=None):
         "life_stage": A.life_stage(customer.get("profile", {})),
         "support": A.support_plan(support_needs, signals),
         "bill_calendar": A.bill_calendar(scheduled, balances),
+        "segment": seg.assign(xvec) if seg else None,
+        "unusual_transactions": M.unusual_transactions(tx, today),
     }
+    advanced["wrapped"] = A.wrapped(tx, f, customer, advanced["segment"], today)
 
     monthly = tx.assign(m=tx["date"].dt.to_period("M").astype(str))
     hist = (monthly[monthly["kind"] != "transfer"]
@@ -507,6 +527,8 @@ def analyse(customer, transactions, today=None, answers=None):
                     "balance_last_90d": {"dates": [d.date().isoformat() for d in bal_hist.index[-90:]],
                                          "balance": np.round(bal_hist.to_numpy()[-90:], 2).tolist()}},
         "model_info": {"hardship_model": (M.risk_model().metrics if M.risk_model() else None),
+                       "forecaster": (M.forecaster().metrics if M.forecaster() else None),
+                       "segments": (M.segmenter().metrics if M.segmenter() else None),
                        "categoriser": (M.categoriser().metrics if M.categoriser() else None)},
         "assumptions": dict({k: v for k, v in ASSUMPTIONS.items() if k != "seasonal_prior"},
                             life_events={k: v["assumption"] for k, v in P.LIFE_EVENTS.items()}),

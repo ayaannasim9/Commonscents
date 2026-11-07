@@ -193,7 +193,12 @@ def ml_line(r):
     g, rules = t["gradient_boosting_calibrated"], t["hand_weighted_rules"]
     return (f'<p class="small" style="margin:4px 0 0"><b>Risk model:</b> gradient-boosted trees trained on {m["n_train"]:,} simulated customers. '
             f'On {m["n_test"]:,} customers it never saw, it ranked risk correctly {round(g["roc_auc"] * 100)}% of the time (ROC-AUC {g["roc_auc"]}), '
-            f'compared with {round(rules["roc_auc"] * 100)}% for a hand-written formula.</p>')
+            f'compared with {round(rules["roc_auc"] * 100)}% for a hand-written formula.'
+            + (lambda fm: (f' <b>Forecast ranges</b> are checked by a learned model with conformal calibration: on unseen customers the 90-day '
+                           f'80% range held the real balance {round(fm["hybrid_conformal"]["coverage_80"] * 100)}% of the time '
+                           f'(simulation alone: {round(fm["monte_carlo_only"]["coverage_80"] * 100)}%).') if fm else '')(
+                ((r.get("model_info") or {}).get("forecaster") or {}).get("horizons", {}).get("90d"))
+            + '</p>')
 
 
 def plan_page(r, footer):

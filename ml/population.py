@@ -142,4 +142,5 @@ def generate(seed, today=TODAY):
                     "savings_balance": sav_hist[today.strftime("%Y-%m")], "savings_product": None, "savings_rate": 0.01},
         "savings_history": [{"month": m, "balance": sav_hist[m]} for m in hist_months],
     }
-    return hist, customer, label, {"type": itype, "opening": opening, "future_min": float(future.min())}
+    return hist, customer, label, {"type": itype, "opening": opening, "future_min": float(future.min()),
+                                   "future": future.round(2).tolist()}

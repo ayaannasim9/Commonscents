@@ -48,7 +48,10 @@
         "predicted_balance": -175.46,
         "range_low": -330.17,
         "range_high": -51.22,
-        "confidence": 0.91
+        "confidence": 0.91,
+        "calibrated_low": -253.55,
+        "calibrated_expected": 90.43,
+        "calibrated_high": 244.98
       },
       {
         "days": 90,
@@ -56,7 +59,10 @@
         "predicted_balance": 89.12,
         "range_low": -238.0,
         "range_high": 364.42,
-        "confidence": 0.84
+        "confidence": 0.84,
+        "calibrated_low": -539.46,
+        "calibrated_expected": 227.65,
+        "calibrated_high": 542.9
       },
       {
         "days": 180,
@@ -2059,7 +2065,46 @@
         "effect": "\u00a31,700 of student loan payments stop",
         "assumption": "Student loan payments stop after graduation in July"
       }
-    ]
+    ],
+    "learned_forecast": {
+      "method": "Quantile gradient boosting stacked on the simulation, with split-conformal 80% ranges",
+      "metrics": {
+        "30d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 74.7,
+            "median_abs_error_gbp": 138.8,
+            "coverage_80": 0.595
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 60.6,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.685
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 59.8,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.812
+          }
+        },
+        "90d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 183.1,
+            "median_abs_error_gbp": 331.0,
+            "coverage_80": 0.49
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 135.4,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.683
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 133.2,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.8
+          }
+        }
+      }
+    }
   },
   "hardship_risk": {
     "score": 0.12,
@@ -2339,7 +2384,44 @@
         "amount": -22.99,
         "balance_after": -171.77
       }
-    ]
+    ],
+    "segment": {
+      "segment": "Getting by",
+      "description": "Balanced, with little room for surprises.",
+      "share_of_customers": 18,
+      "peer_percentiles": {
+        "savings_rate": 46,
+        "emergency_fund": 16,
+        "overdraft_use_lower_than": 52,
+        "savings_rate_vs_everyone": 52
+      }
+    },
+    "unusual_transactions": [],
+    "wrapped": {
+      "w1": {
+        "n": "46%",
+        "p": "You saved more than 46% of people like you (getting by)."
+      },
+      "w2": {
+        "n": "Stagecoach",
+        "p": "Your most frequent purchase this year: 99 times."
+      },
+      "w3": {
+        "tag": "\ud83d\udcb0 WELL DONE",
+        "n": "\u00a372 less",
+        "p": "You spent this much less on eating and going out than in the 6 months before."
+      },
+      "w4": {
+        "tag": "\u2705 STEADY",
+        "n": "Bills steady",
+        "p": "Your household bills didn't rise this year."
+      },
+      "w5": {
+        "tag": "\ud83d\udedf SAVINGS",
+        "n": "No change",
+        "p": "Your savings stayed the same this year. Even \u00a310 a week adds up to \u00a3520."
+      }
+    }
   },
   "upcoming_expenses": [
     {
@@ -2878,6 +2960,121 @@
         }
       ]
     },
+    "forecaster": {
+      "blend_weight_ml": 1.0,
+      "n_train": 1800,
+      "n_calibration": 600,
+      "n_test": 600,
+      "horizons": {
+        "30d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 74.7,
+            "median_abs_error_gbp": 138.8,
+            "coverage_80": 0.595
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 60.6,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.685
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 59.8,
+            "median_abs_error_gbp": 108.0,
+            "coverage_80": 0.812
+          }
+        },
+        "90d": {
+          "monte_carlo_only": {
+            "pinball_avg_gbp": 183.1,
+            "median_abs_error_gbp": 331.0,
+            "coverage_80": 0.49
+          },
+          "learned_quantile_gbm": {
+            "pinball_avg_gbp": 135.4,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.683
+          },
+          "hybrid_conformal": {
+            "pinball_avg_gbp": 133.2,
+            "median_abs_error_gbp": 239.3,
+            "coverage_80": 0.8
+          }
+        }
+      }
+    },
+    "segments": {
+      "k": 6,
+      "scaling": "quantile (rank) transform",
+      "silhouette": {
+        "4": 0.333,
+        "5": 0.399,
+        "6": 0.418
+      },
+      "segments_pct": {
+        "Comfortable savers": 21,
+        "Getting by": 18,
+        "Living in the overdraft": 11,
+        "Paying off debt": 17,
+        "Well cushioned": 22,
+        "Stretched": 11
+      },
+      "typical_member": {
+        "Comfortable savers": {
+          "savings_rate": 0.06,
+          "emergency_fund_months": 1.81,
+          "headroom_months": 0.51,
+          "income_volatility": 0.0,
+          "non_essential_spend_pct": 0.2,
+          "overdraft_days_pct_90d": 0.14,
+          "debt_to_income": 0.06
+        },
+        "Getting by": {
+          "savings_rate": 0.02,
+          "emergency_fund_months": 1.87,
+          "headroom_months": 1.05,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.23,
+          "overdraft_days_pct_90d": 0.01,
+          "debt_to_income": 0.0
+        },
+        "Living in the overdraft": {
+          "savings_rate": -0.22,
+          "emergency_fund_months": 0.0,
+          "headroom_months": -0.61,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.22,
+          "overdraft_days_pct_90d": 1.0,
+          "debt_to_income": 0.0
+        },
+        "Paying off debt": {
+          "savings_rate": 0.02,
+          "emergency_fund_months": 2.27,
+          "headroom_months": 1.08,
+          "income_volatility": 0.14,
+          "non_essential_spend_pct": 0.2,
+          "overdraft_days_pct_90d": 0.0,
+          "debt_to_income": 0.07
+        },
+        "Well cushioned": {
+          "savings_rate": 0.06,
+          "emergency_fund_months": 1.77,
+          "headroom_months": 0.52,
+          "income_volatility": 0.0,
+          "non_essential_spend_pct": 0.23,
+          "overdraft_days_pct_90d": 0.13,
+          "debt_to_income": 0.0
+        },
+        "Stretched": {
+          "savings_rate": -0.22,
+          "emergency_fund_months": 0.0,
+          "headroom_months": -0.75,
+          "income_volatility": 0.15,
+          "non_essential_spend_pct": 0.18,
+          "overdraft_days_pct_90d": 1.0,
+          "debt_to_income": 0.09
+        }
+      }
+    },
     "categoriser": {
       "n_merchants": 197,
       "n_examples": 788,
@@ -2901,31 +3098,39 @@
     }
   },
   "insights": {
-    "summary": "Priya, your balance is likely to dip below \u00a30 around 1 December when rent leaves, and stay overdrawn until your Student Finance payment on 12 January, but you're very unlikely to go past your \u00a31,500 overdraft.",
+    "summary": "Priya, your balance is likely to dip below \u00a30 around 1 December when rent goes out, but staying within your \u00a31,500 overdraft until your Student Finance payment on 12 Jan looks very likely, and small changes can shorten the time you spend overdrawn.",
     "alerts": [
       {
         "kind": "risk",
-        "title": "Rent will likely take you overdrawn",
-        "message": "Your \u00a3520 rent to Unite Students on 1 December is likely to take your balance to about -\u00a3134. It's forecast to reach around -\u00a3977 by 11 January, the day before your next Student Finance payment of \u00a31,650.",
-        "why": "Based on your bill calendar, the 1 December rent payment and the forecast for the day before your 12 January loan payment.",
+        "title": "Rent may take you into your overdraft",
+        "message": "Your \u00a3520 Unite Students rent on 1 December is likely to take your balance below \u00a30, to around -\u00a3134. It's very likely you'll stay overdrawn until your Student Finance England payment of \u00a31,650 on 12 January.",
+        "why": "Our forecast shows a 99% chance of going below \u00a30 within 30 days, with a median date of 1 December, and only a 1% chance of going past your overdraft limit in the next 90 days.",
         "confidence": "High",
-        "action": "Plan ahead for December by setting aside part of each weekly SU Bar wage of \u00a3102 before rent day."
+        "action": "Check whether your overdraft is interest-free as a student, so you know what being overdrawn until 12 January will cost."
       },
       {
         "kind": "forecast",
         "title": "Your safe-to-spend until 12 January",
-        "message": "To stay within your \u00a31,500 overdraft, keep everyday spending under \u00a321 a day until your loan arrives. You usually spend about \u00a316 a day, so this is within reach.",
-        "why": "Your safe-to-spend figure covers the 65 days to 12 January, alongside last year's December spending, which was about \u00a3484 higher than a typical month.",
+        "message": "To stay within your \u00a31,500 overdraft until 12 January, try to keep everyday spending under \u00a321 a day. You usually spend about \u00a316 a day, so you have some room, but December spending last year was about \u00a3484 higher than a typical month.",
+        "why": "Safe-to-spend within your overdraft is \u00a321.21 a day over the 65 days to your next Student Finance payment, compared with your typical \u00a315.98 a day. Last December you spent \u00a3387 to \u00a3580 more than usual.",
         "confidence": "High",
-        "action": "Try a 48-hour wait before any non-essential buy over \u00a330, especially around Christmas."
+        "action": "Try a 48-hour wait before any non-essential buy over \u00a330, especially in December."
       },
       {
         "kind": "resilience",
-        "title": "Two changes that shorten your time overdrawn",
-        "message": "Spending half as much on going out (about \u00a365 a month) could cut your expected days overdrawn from about 61 to 50. Halving shopping as well (about \u00a340 a month) brings it to about 43 days and lifts your lowest expected balance from -\u00a31,006 to -\u00a3794.",
-        "why": "Our action plan tested these changes over the next 120 days. It also notes that in the 3 days after money comes in, you spend about 8.3 times your usual on non-essentials.",
+        "title": "Two changes that cut your days overdrawn",
+        "message": "Spending half as much on going out (about \u00a365 a month) could cut your expected days overdrawn from about 61 to 50. Halving shopping as well (about \u00a340 a month) could bring it down to about 43 days and lift your lowest expected balance from -\u00a31,006 to -\u00a3794.",
+        "why": "Our action plan tested these changes over the next 120 days across simulated futures. We also noticed that in the 3 days after money comes in, non-essential spending is about 8.3 times your usual.",
         "confidence": "High",
-        "action": "On 12 January, move your fun money into a separate pot, so your main account only covers bills."
+        "action": "When your loan arrives on 12 January, move your going-out and shopping money into a separate pot so your main account just covers bills."
+      },
+      {
+        "kind": "opportunity",
+        "title": "Turn your loan into a weekly allowance",
+        "message": "Your income comes in large lumps, which can make it hard to pace spending. Moving each loan payment into your \u00a3150 Easy Saver and paying yourself a set amount each week could help it last and start your savings goal.",
+        "why": "Your income arrives a few times a year, your savings haven't grown in 6 months, and they would cover about 0.6 months of spending against a target of \u00a33,120.",
+        "confidence": "Medium",
+        "action": "On 12 January, move the \u00a31,650 to your Easy Saver and set up a weekly transfer back, dividing it by the weeks until your next payment."
       }
     ],
     "source": "claude",

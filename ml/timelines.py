@@ -110,4 +110,6 @@ def build(r):
         },
         "actions": acts,
         "report_url": f"/customers/{c['id']}/report",
+        "wrapped": adv.get("wrapped", {}),
+        "segment": adv.get("segment"),
     }

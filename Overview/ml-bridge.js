@@ -53,6 +53,14 @@
     reportLink();
     const badge = document.querySelector("#s-future .badge");
     if (badge) badge.textContent = `Live forecast: ${ML.person.name}, ${ML.person.persona}`;
+    // Wrapped tab: real year-in-review numbers from the ML engine
+    for (const [k, v] of Object.entries(ML.wrapped || {})) {
+      const card = document.querySelector(`#s-wrapped .${k}`);
+      if (!card) continue;
+      if (v.n && card.querySelector(".n")) card.querySelector(".n").textContent = v.n;
+      if (v.p && card.querySelector("p")) card.querySelector("p").textContent = v.p;
+      if (v.tag && card.querySelector(".tag")) card.querySelector(".tag").textContent = v.tag;
+    }
     const ph = document.querySelector("#s-future .ph");
     if (ph) ph.hidden = true;
   }
