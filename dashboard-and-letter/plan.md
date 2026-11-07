@@ -83,7 +83,7 @@ event           : "scam_transfer" | "forgotten_subscription" | "price_rise"
 
 ### C2. Facts and dashboard
 
-`GET /customers/{id}/facts` returns the facts object exactly as in CLAUDE.md "Pipeline step 5", with these additions: `as_of` (letter date), `customer.bank` is `"NatWest"`, `flags[]` entries below, `forecast[]` entries gain `year`, `since_last_visit` may be `null`.
+`GET /customers/{id}/facts` returns the facts object exactly as in CLAUDE.md "Pipeline step 5", with these additions: `as_of` (letter date), `customer.bank` is `"NatWest"`, `flags[]` entries below, `forecast[]` entries gain `year`, `last_month` gains `month` and `year`, `since_last_visit` may be `null` and otherwise has `{helper, note, date}`. `last_month.left` can be negative (e.g. -1770 after the scam transfer); the text then says "£1,770 more went out than came in", so the number guardrail compares absolute values.
 
 Flag object:
 
@@ -104,6 +104,7 @@ Flag object:
 ```json
 {
   "as_of": "2026-12-01",
+  "facts_version": 1,
   "facts": { "...": "facts object" },
   "guardrail": { "caught": false, "events": [] },
   "sections": [
@@ -185,6 +186,8 @@ POST /cases/{id}/draft               { text } -> case      # helper edits the dr
 POST /cases/{id}/approve             { helper:"Priya" } -> case (status approved, then closed on next-month)
 ```
 
+**Allowed numbers for a case draft** (B3): the facts object plus `briefing.numbers` values for that case. The backend computes scenario numbers (e.g. £20 x 12 = £240) in code and puts them in `briefing.numbers`; the reply drafter may use only those.
+
 `ticks` values for the slip: `"worried"`, `"scam_call"`, `"bill"`, `"afford"`, `"other"` (F5.5 and B8.2 must use this same list).
 
 Approval rules (P3): `approve` returns **409** unless `status=="draft_ready"` and the latest draft passed guardrails.
@@ -207,7 +210,9 @@ GET /customers/{id}/what-we-know -> {
 
 Minimum set, names fixed so both sides agree:
 
-`customer.json`, `transactions.nov.json`, `facts.clean.json`, `dashboard.clean.json`, `dashboard.scam.json` (high flag, `attention`), `dashboard.guardrail-caught.json`, `dashboard.after-note.json` (since_visit filled), `cases.list.json` (one urgent), `case.boiler.prepared.json`, `case.boiler.draft-ready.json`, `case.boiler.approved.json`, `family-alerts.json`, `family-alerts.empty.json`, `what-we-know.json`, `letter.draft.html`.
+**Written** (in `contract/fixtures/`, numbers verified consistent): `customer.json`, `transactions.nov.json`, `transactions.nov.scam.json` (adds the £2,000 payment at 21:14), `facts.clean.json`, `dashboard.clean.json`, `dashboard.scam.json` (high flag, `attention`, urgent), `dashboard.guardrail-caught.json`, `dashboard.after-note.json` (**as_of 2027-01-01**, December is the last month, `since_visit` filled), `cases.list.json` (urgent scam case + boiler case, summary form), `case.boiler.prepared.json`, `case.boiler.draft-ready.json`, `case.boiler.approved.json`, `case.scam.prepared.json`, `family-alerts.json`, `family-alerts.empty.json`, `what-we-know.json`, `letter.draft.html`.
+
+The fixtures tell one story: November 2026, money in £1,280, left over £230; December comfortable (£990 spare, two pension payments), January tight (£15 spare, TV licence £175), February fine (£348 spare). With the scam: -£1,770 left over, headline `attention`. The after-note fixture is the same customer one month later. `facts_version` values in fixtures are illustrative.
 
 ---
 

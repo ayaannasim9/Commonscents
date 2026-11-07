@@ -1,0 +1,189 @@
+{
+  "month": "2026-11",
+  "transactions": [
+    {
+      "id": "tx_0001",
+      "date": "2026-11-01",
+      "time": null,
+      "description": "DD HARROWGATE HOUSING 0071",
+      "amount": -480.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0002",
+      "date": "2026-11-03",
+      "time": null,
+      "description": "DD LBROUGH CNCL TAX 5532",
+      "amount": -118.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0003",
+      "date": "2026-11-03",
+      "time": null,
+      "description": "DWP STATE PENSION 4WK",
+      "amount": 760.0,
+      "channel": "credit"
+    },
+    {
+      "id": "tx_0004",
+      "date": "2026-11-06",
+      "time": "10:42",
+      "description": "POST OFFICE CNTR WDL",
+      "amount": -40.0,
+      "channel": "cash_withdrawal"
+    },
+    {
+      "id": "tx_0005",
+      "date": "2026-11-07",
+      "time": "09:58",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -14.2,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0006",
+      "date": "2026-11-08",
+      "time": null,
+      "description": "DD VF BBAND/TV 8830",
+      "amount": -30.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0007",
+      "date": "2026-11-09",
+      "time": "10:15",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -9.8,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0008",
+      "date": "2026-11-11",
+      "time": "11:20",
+      "description": "CRD 4471 BOOTS PHARM 0231",
+      "amount": -14.5,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0009",
+      "date": "2026-11-12",
+      "time": null,
+      "description": "DD EDF ENERGY 7710",
+      "amount": -32.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0010",
+      "date": "2026-11-13",
+      "time": "10:31",
+      "description": "POST OFFICE CNTR WDL",
+      "amount": -40.0,
+      "channel": "cash_withdrawal"
+    },
+    {
+      "id": "tx_0011",
+      "date": "2026-11-13",
+      "time": "16:05",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -11.5,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0012",
+      "date": "2026-11-15",
+      "time": null,
+      "description": "DD BGAS 4421 ENERGY",
+      "amount": -86.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0013",
+      "date": "2026-11-16",
+      "time": "09:40",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -12.3,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0014",
+      "date": "2026-11-18",
+      "time": "14:12",
+      "description": "CRD 4471 BOOTS PHARM 0231",
+      "amount": -9.5,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0015",
+      "date": "2026-11-18",
+      "time": "21:14",
+      "description": "FASTER PMT TO M HOLLOWAY 04-00-75 ****3391",
+      "amount": -2000.0,
+      "channel": "faster_payment"
+    },
+    {
+      "id": "tx_0016",
+      "date": "2026-11-20",
+      "time": null,
+      "description": "DD SEVERN TRENT 0912",
+      "amount": -28.0,
+      "channel": "direct_debit"
+    },
+    {
+      "id": "tx_0017",
+      "date": "2026-11-20",
+      "time": "10:55",
+      "description": "POST OFFICE CNTR WDL",
+      "amount": -40.0,
+      "channel": "cash_withdrawal"
+    },
+    {
+      "id": "tx_0018",
+      "date": "2026-11-21",
+      "time": "10:02",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -8.4,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0019",
+      "date": "2026-11-23",
+      "time": "15:47",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -13.6,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0020",
+      "date": "2026-11-25",
+      "time": null,
+      "description": "NEST PENSN 7783",
+      "amount": 520.0,
+      "channel": "credit"
+    },
+    {
+      "id": "tx_0021",
+      "date": "2026-11-26",
+      "time": "09:21",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -10.9,
+      "channel": "card"
+    },
+    {
+      "id": "tx_0022",
+      "date": "2026-11-27",
+      "time": "10:38",
+      "description": "POST OFFICE CNTR WDL",
+      "amount": -40.0,
+      "channel": "cash_withdrawal"
+    },
+    {
+      "id": "tx_0023",
+      "date": "2026-11-28",
+      "time": "11:09",
+      "description": "CRD 4471 PATELS NEWS&FOOD",
+      "amount": -11.3,
+      "channel": "card"
+    }
+  ]
+}

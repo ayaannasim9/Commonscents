@@ -1,0 +1,48 @@
+{
+  "id": "case_0007",
+  "source": "slip_post_office",
+  "status": "draft_ready",
+  "urgency": "normal",
+  "category": "afford_purchase",
+  "summary": "Asking if she can afford a new boiler",
+  "question_text": "Can I afford a new boiler?",
+  "ticks": [
+    "afford"
+  ],
+  "created_at": "2026-12-01T10:02:00",
+  "due": "2026-12-08",
+  "route": {
+    "team": "banker",
+    "reason": "Next hub day (Tuesday)"
+  },
+  "briefing": {
+    "asking": "Margaret wants to know whether she can afford a new boiler.",
+    "numbers": [
+      {
+        "label": "Left over last month",
+        "value": 230
+      },
+      {
+        "label": "Putting aside £20 a month for a year",
+        "value": 240
+      }
+    ],
+    "open_flags": [],
+    "things_to_check": [
+      "Is her current boiler failing, or is she planning ahead?",
+      "Ask if she has a quote, as costs vary a lot.",
+      "Mention that free help is available from MoneyHelper and Citizens Advice.",
+      "Remind her not to share her details with anyone who phones her about it."
+    ]
+  },
+  "helper_note": "Talked it through. No quote yet. Suggest a heating pot, £20 a month, and getting a quote first.",
+  "draft": {
+    "source": "llm",
+    "guardrail": {
+      "caught": false,
+      "events": []
+    },
+    "text": "Dear Margaret,\n\nThank you for your question about a new boiler. Last month you had £230 left over. If you put £20 a month aside, that would be £240 in a year. Boilers cost very different amounts, so the best first step is to get a quote. Priya has agreed to help you with that. Free, independent help is available from MoneyHelper and Citizens Advice.\n\nWith best wishes,\nPriya"
+  },
+  "approved_at": null
+}

@@ -1,0 +1,131 @@
+{
+  "as_of": "2026-12-01",
+  "facts_version": 3,
+  "facts": {
+    "as_of": "2026-12-01",
+    "customer": {
+      "name": "Margaret",
+      "reference": "MRG-4471",
+      "bank": "NatWest",
+      "hub_day": "Tuesday"
+    },
+    "headline_status": "heads_up",
+    "last_month": {
+      "month": "November",
+      "year": 2026,
+      "in": 1280,
+      "out": [
+        {
+          "name": "Rent",
+          "amount": 480
+        },
+        {
+          "name": "Council tax",
+          "amount": 118
+        },
+        {
+          "name": "Local shop",
+          "amount": 92
+        },
+        {
+          "name": "Gas",
+          "amount": 86
+        },
+        {
+          "name": "Phone and TV",
+          "amount": 30
+        },
+        {
+          "name": "Everything else",
+          "amount": 84
+        }
+      ],
+      "cash": 160,
+      "left": 230
+    },
+    "forecast": [
+      {
+        "month": "December",
+        "year": 2026,
+        "status": "ok",
+        "reason": "two pension payments",
+        "extra": 0,
+        "spare": 990
+      },
+      {
+        "month": "January",
+        "year": 2027,
+        "status": "warn",
+        "reason": "TV licence",
+        "extra": 175,
+        "spare": 15
+      },
+      {
+        "month": "February",
+        "year": 2027,
+        "status": "ok",
+        "reason": "nothing unusual",
+        "extra": 0,
+        "spare": 348
+      }
+    ],
+    "suggestion": {
+      "text_hint": "put a little aside for the TV licence",
+      "amount": 20
+    },
+    "flags": [],
+    "since_last_visit": null,
+    "cash_blind_spot": true
+  },
+  "guardrail": {
+    "caught": true,
+    "events": [
+      {
+        "at": "2026-12-01T09:03:12",
+        "check": "numbers",
+        "detail": "£240 was not in the facts",
+        "action": "regenerated"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "headline",
+      "title": "How things look",
+      "text": "You are doing fine. January will be a little tight because your TV licence is due, so it is worth planning for.",
+      "status": "heads_up"
+    },
+    {
+      "id": "last_month",
+      "title": "Last month",
+      "text": "In November, £1,280 came in. Your biggest bills were rent (£480), council tax (£118) and gas (£86). You took out £160 in cash at the Post Office, and you had £230 left over. We cannot see what the cash was spent on."
+    },
+    {
+      "id": "forecast",
+      "title": "The next three months",
+      "text": "December looks comfortable, with about £990 spare because you get two pension payments. January looks tight, with about £15 spare, mainly because your TV licence of £175 is due. February looks fine, with about £348 spare."
+    },
+    {
+      "id": "idea",
+      "title": "One idea",
+      "text": "If you put £20 aside in December, January will feel easier. This is only an idea, and it is your choice. Free, independent help is available from MoneyHelper and Citizens Advice.",
+      "optional": true
+    },
+    {
+      "id": "scam_watch",
+      "title": "Scam watch",
+      "text": "Nothing unusual this month. Your payments all look like your normal ones. We will never ask for your details in a letter. If someone calls and asks you for money, put the phone down and use the number on the back of your bank card.",
+      "status": "nothing_unusual"
+    },
+    {
+      "id": "since_visit",
+      "title": "Since your last visit",
+      "text": "Nothing new since we last spoke."
+    },
+    {
+      "id": "ask",
+      "title": "Ask a question",
+      "text": "If you have a question, tick a box on the slip or ask your helper on Tuesday. Priya or a colleague will reply by letter."
+    }
+  ]
+}
