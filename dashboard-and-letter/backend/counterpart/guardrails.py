@@ -128,7 +128,7 @@ class GuardrailFailure(Exception):
 @dataclass
 class Guarded:
     texts: dict[str, str]
-    source: Literal["llm", "fallback"]
+    source: Literal["llm", "stub", "fallback"]
     guardrail: dict = field(default_factory=lambda: {"caught": False, "events": []})
 
 
