@@ -1,0 +1,874 @@
+{
+  "units": [
+    {
+      "n": "Banking in the UK",
+      "c": "#5a287d",
+      "tip": "Most people in the UK use a current account for everyday money and pay by debit card, phone or bank transfer. Cheques are now rare. Banks are regulated, and savings are protected by a government-backed scheme (the FSCS) up to a limit.",
+      "L": [
+        {
+          "id": "a1",
+          "i": "🏦",
+          "t": "What is a current account?",
+          "s": [
+            {
+              "k": "t",
+              "e": "🗄️",
+              "h": "Your everyday account",
+              "a": "A current account is where your pay goes in and your bills come out.",
+              "b": "Like a locked drawer behind the counter. Only you have the key."
+            },
+            {
+              "k": "t",
+              "e": "💳",
+              "h": "Your debit card",
+              "a": "Your card is linked to your account. When you pay, the money leaves your account straight away.",
+              "b": "Like handing over cash, but you don’t have to carry the cash."
+            },
+            {
+              "k": "t",
+              "e": "📱",
+              "h": "Check it any time",
+              "a": "You can see your money in the app, on the website, or at a cash machine.",
+              "b": "Like asking the cashier for your balance, but open 24 hours a day."
+            },
+            {
+              "k": "m",
+              "q": "Match each item to what it does",
+              "p": [
+                [
+                  "💳 Debit card",
+                  "Pay in shops"
+                ],
+                [
+                  "🗄️ Current account",
+                  "Holds everyday money"
+                ],
+                [
+                  "🏧 Cash machine",
+                  "Take out cash"
+                ]
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "A debit card takes money from your ___.",
+              "w": [
+                "account",
+                "pocket",
+                "friend"
+              ],
+              "a": "account"
+            },
+            {
+              "k": "c",
+              "q": "Which one is like a locked drawer in a branch?",
+              "o": [
+                "Your current account",
+                "A cash machine",
+                "A shop"
+              ],
+              "a": 0
+            }
+          ]
+        },
+        {
+          "id": "a2",
+          "i": "🔢",
+          "t": "Sort code and account number",
+          "s": [
+            {
+              "k": "t",
+              "e": "📍",
+              "h": "Sort code",
+              "a": "A sort code has 6 numbers, like 12-34-56. It shows which bank you use.",
+              "b": "Like the address of the building."
+            },
+            {
+              "k": "t",
+              "e": "🔢",
+              "h": "Account number",
+              "a": "An account number has 8 numbers. It points to your account and nobody else’s.",
+              "b": "Like the number on your drawer inside."
+            },
+            {
+              "k": "t",
+              "e": "🤝",
+              "h": "Getting paid",
+              "a": "To get paid, give your name, sort code and account number. Never give your PIN.",
+              "b": "Like writing your details on a paying-in slip."
+            },
+            {
+              "k": "m",
+              "q": "Match the numbers",
+              "p": [
+                [
+                  "6 numbers",
+                  "Sort code"
+                ],
+                [
+                  "8 numbers",
+                  "Account number"
+                ],
+                [
+                  "4 numbers",
+                  "Card PIN (secret)"
+                ]
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "A sort code has ___ numbers.",
+              "w": [
+                "6",
+                "8",
+                "4"
+              ],
+              "a": "6"
+            },
+            {
+              "k": "c",
+              "q": "What should you NEVER tell anyone?",
+              "o": [
+                "Your PIN",
+                "Your sort code",
+                "Your name"
+              ],
+              "a": 0
+            }
+          ]
+        },
+        {
+          "id": "a3",
+          "i": "🛡️",
+          "t": "Is my money safe?",
+          "s": [
+            {
+              "k": "t",
+              "e": "📜",
+              "h": "Banks follow rules",
+              "a": "UK banks must follow strict rules. Official bodies check them.",
+              "b": "Like a branch that gets visits from an inspector."
+            },
+            {
+              "k": "t",
+              "e": "🛡️",
+              "h": "The FSCS",
+              "a": "If a bank fails, a scheme called the FSCS can pay back your savings, up to a limit.",
+              "b": "Like a safe that the government backs up."
+            },
+            {
+              "k": "t",
+              "e": "🔍",
+              "h": "Check the limit",
+              "a": "The limit can change. Check it on the FSCS website before you save a lot.",
+              "b": "Or ask an adviser at the desk."
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "The FSCS protects your ___ up to a limit.",
+              "w": [
+                "savings",
+                "shoes",
+                "phone"
+              ],
+              "a": "savings"
+            },
+            {
+              "k": "m",
+              "q": "Match the word to its job",
+              "p": [
+                [
+                  "🛡️ FSCS",
+                  "Protects savings"
+                ],
+                [
+                  "📜 Regulator",
+                  "Checks the rules"
+                ],
+                [
+                  "📞 Your bank",
+                  "Where you ask questions"
+                ]
+              ]
+            },
+            {
+              "k": "c",
+              "q": "Where do you check the FSCS limit?",
+              "o": [
+                "The FSCS website",
+                "A text from a stranger",
+                "Social media"
+              ],
+              "a": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Your NatWest app",
+      "c": "#006a68",
+      "tip": "The app is a branch in your pocket. Always download it from your phone’s official app store and check it says NatWest.",
+      "L": [
+        {
+          "id": "b1",
+          "i": "📲",
+          "t": "Download and log in",
+          "s": [
+            {
+              "k": "t",
+              "e": "🔎",
+              "h": "Find the app",
+              "a": "Open your phone’s app store and search for NatWest. Choose the one made by NatWest.",
+              "b": "Like finding the right branch on the high street."
+            },
+            {
+              "k": "t",
+              "e": "🔐",
+              "h": "Log in",
+              "a": "Enter your details. The app may send a code to your phone.",
+              "b": "Like showing your ID at the counter."
+            },
+            {
+              "k": "t",
+              "e": "👆",
+              "h": "Make it quick",
+              "a": "Set Face ID, a fingerprint or a passcode. Next time you log in faster.",
+              "b": "Like staff who know your face."
+            },
+            {
+              "k": "o",
+              "q": "Put these in order",
+              "it": [
+                "Open the app store",
+                "Search for NatWest",
+                "Download the app",
+                "Log in"
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "Always download apps from your phone’s official ___.",
+              "w": [
+                "app store",
+                "text message",
+                "stranger"
+              ],
+              "a": "app store"
+            },
+            {
+              "k": "c",
+              "q": "What makes logging in faster?",
+              "o": [
+                "Face ID or a passcode",
+                "Sharing your PIN",
+                "A paper form"
+              ],
+              "a": 0
+            }
+          ]
+        },
+        {
+          "id": "b2",
+          "i": "💷",
+          "t": "Your home screen",
+          "s": [
+            {
+              "k": "t",
+              "e": "💷",
+              "h": "Your balance",
+              "a": "At the top you see how much money you can spend.",
+              "b": "Like asking the cashier for your balance."
+            },
+            {
+              "k": "t",
+              "e": "🧾",
+              "h": "Payments list",
+              "a": "Under it is a list of money in and money out. Tap one to see more.",
+              "b": "Like a printed statement."
+            },
+            {
+              "k": "t",
+              "e": "🔔",
+              "h": "Alerts",
+              "a": "Switch on alerts to get a message when money arrives or leaves.",
+              "b": "Like a friendly cashier giving you a ring."
+            },
+            {
+              "k": "m",
+              "q": "Match the item to its meaning",
+              "p": [
+                [
+                  "💷 Balance",
+                  "Money you have now"
+                ],
+                [
+                  "🧾 Payments list",
+                  "Money in and out"
+                ],
+                [
+                  "🔔 Alerts",
+                  "Messages about your money"
+                ]
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "Your ___ is shown at the top of the screen.",
+              "w": [
+                "balance",
+                "photo",
+                "PIN"
+              ],
+              "a": "balance"
+            },
+            {
+              "k": "c",
+              "q": "Money leaving your account is called…",
+              "o": [
+                "A payment",
+                "A prize",
+                "A password"
+              ],
+              "a": 0
+            }
+          ]
+        },
+        {
+          "id": "b3",
+          "i": "✍️",
+          "t": "Pay someone",
+          "s": [
+            {
+              "k": "t",
+              "e": "✍️",
+              "h": "Add the person",
+              "a": "Tap Pay. Add their name, sort code and account number.",
+              "b": "Like filling in a paying-in slip."
+            },
+            {
+              "k": "t",
+              "e": "🔎",
+              "h": "Check carefully",
+              "a": "Check every number. A wrong number can send money to the wrong person.",
+              "b": "Like reading the slip twice before you hand it over."
+            },
+            {
+              "k": "t",
+              "e": "✅",
+              "h": "Confirm",
+              "a": "Tap Confirm. Most payments arrive in minutes. You will see a tick.",
+              "b": "Like the cashier stamping your slip."
+            },
+            {
+              "k": "o",
+              "q": "Put the steps in order",
+              "it": [
+                "Tap Pay",
+                "Add name, sort code, account number",
+                "Check the numbers",
+                "Confirm"
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "Always ___ the numbers before you pay.",
+              "w": [
+                "check",
+                "guess",
+                "hide"
+              ],
+              "a": "check"
+            },
+            {
+              "k": "m",
+              "q": "Match the numbers",
+              "p": [
+                [
+                  "6 numbers",
+                  "Sort code"
+                ],
+                [
+                  "8 numbers",
+                  "Account number"
+                ],
+                [
+                  "£",
+                  "Amount to pay"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "The NatWest website",
+      "c": "#a8004f",
+      "tip": "Online banking is the same account as the app, just on a bigger screen. Always check the address bar says natwest.com.",
+      "L": [
+        {
+          "id": "c1",
+          "i": "💻",
+          "t": "Log in online",
+          "s": [
+            {
+              "k": "t",
+              "e": "💻",
+              "h": "Go to the website",
+              "a": "Type natwest.com into your web browser.",
+              "b": "Like walking up to the right shop front."
+            },
+            {
+              "k": "t",
+              "e": "🔒",
+              "h": "Check the address",
+              "a": "Look for natwest.com and a padlock in the address bar.",
+              "b": "Like checking the sign above the door."
+            },
+            {
+              "k": "t",
+              "e": "🔑",
+              "h": "Extra security",
+              "a": "You may get a code by text. This is normal. Only you should use it.",
+              "b": "Like the cashier asking one more question."
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "The address should say ___.com",
+              "w": [
+                "natwest",
+                "free-money",
+                "bank-help"
+              ],
+              "a": "natwest"
+            },
+            {
+              "k": "c",
+              "q": "A code arrives by text when you log in. It is…",
+              "o": [
+                "Extra security for you",
+                "Something to read to a caller",
+                "A prize"
+              ],
+              "a": 0
+            },
+            {
+              "k": "m",
+              "q": "Match the word to its meaning",
+              "p": [
+                [
+                  "🔒 Padlock",
+                  "Safe connection"
+                ],
+                [
+                  "🌐 Browser",
+                  "Where you open websites"
+                ],
+                [
+                  "🔑 Code",
+                  "Only you use it"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "i": "📄",
+          "t": "Statements and settings",
+          "s": [
+            {
+              "k": "t",
+              "e": "📄",
+              "h": "Statements",
+              "a": "Open Statements to read or download your monthly statements.",
+              "b": "Like asking staff for a copy."
+            },
+            {
+              "k": "t",
+              "e": "⚙️",
+              "h": "Settings",
+              "a": "Open Settings to change your phone number or address.",
+              "b": "Like filling in a change of address form."
+            },
+            {
+              "k": "t",
+              "e": "🏠",
+              "h": "Proof of address",
+              "a": "Some places accept a statement as proof of address. Ask them first.",
+              "b": "Like asking the branch for a letter."
+            },
+            {
+              "k": "m",
+              "q": "Match the item to its job",
+              "p": [
+                [
+                  "📄 Statement",
+                  "Record of your money"
+                ],
+                [
+                  "⚙️ Settings",
+                  "Change your details"
+                ],
+                [
+                  "🏠 Address",
+                  "Keep it up to date"
+                ]
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "Keep your phone number and ___ up to date.",
+              "w": [
+                "address",
+                "shoe size",
+                "PIN"
+              ],
+              "a": "address"
+            },
+            {
+              "k": "c",
+              "q": "Where do you change your phone number?",
+              "o": [
+                "Settings",
+                "A cash machine",
+                "A shop"
+              ],
+              "a": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "n": "Stay safe and get help",
+      "c": "#9a3b00",
+      "tip": "Your bank will never ask for your PIN or full password, or ask you to move money to a “safe account”. If in doubt, hang up and call the number on your card.",
+      "L": [
+        {
+          "id": "d1",
+          "i": "🚨",
+          "t": "Spot a scam",
+          "s": [
+            {
+              "k": "t",
+              "e": "🚨",
+              "h": "Scams are common",
+              "a": "Scammers pretend to be your bank. They call, text or email.",
+              "b": "In a branch, you can see the person helping you."
+            },
+            {
+              "k": "t",
+              "e": "🛑",
+              "h": "Never share",
+              "a": "Your bank will never ask for your PIN, or ask you to move money to a “safe account”.",
+              "b": "A cashier would never ask for your PIN."
+            },
+            {
+              "k": "t",
+              "e": "📞",
+              "h": "Hang up and call back",
+              "a": "If unsure, hang up. Call the number on the back of your card.",
+              "b": "Or walk into a branch and ask."
+            },
+            {
+              "k": "c",
+              "q": "A caller says “move your money to a safe account”. You…",
+              "o": [
+                "Hang up and call your bank",
+                "Do it quickly",
+                "Give your PIN"
+              ],
+              "a": 0
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "Your bank will never ask for your ___.",
+              "w": [
+                "PIN",
+                "hello",
+                "time"
+              ],
+              "a": "PIN"
+            },
+            {
+              "k": "m",
+              "q": "Match the item to its meaning",
+              "p": [
+                [
+                  "🚨 Scam",
+                  "A trick to steal money"
+                ],
+                [
+                  "📞 Hang up",
+                  "Stop the call"
+                ],
+                [
+                  "💳 Number on card",
+                  "Safe number to call"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "d2",
+          "i": "💬",
+          "t": "Getting help",
+          "s": [
+            {
+              "k": "t",
+              "e": "💬",
+              "h": "Ask in the app",
+              "a": "Use Help in the app to chat or call. No question is silly.",
+              "b": "Like going to the help desk."
+            },
+            {
+              "k": "t",
+              "e": "📍",
+              "h": "Find a branch",
+              "a": "Use the branch finder to see opening times and your nearest branch.",
+              "b": "Like asking where the nearest branch is."
+            },
+            {
+              "k": "t",
+              "e": "🧑‍🤝‍🧑",
+              "h": "Bring someone",
+              "a": "You can ask a trusted person to come with you.",
+              "b": "Staff are used to helping people who are new."
+            },
+            {
+              "k": "c",
+              "q": "Where can you ask for help?",
+              "o": [
+                "The Help section in the app",
+                "Nowhere",
+                "Only by post"
+              ],
+              "a": 0
+            },
+            {
+              "k": "m",
+              "q": "Match the way to get help",
+              "p": [
+                [
+                  "💬 Chat",
+                  "Type your question"
+                ],
+                [
+                  "📞 Call",
+                  "Speak to someone"
+                ],
+                [
+                  "📍 Branch",
+                  "Talk face to face"
+                ]
+              ]
+            },
+            {
+              "k": "f",
+              "q": "Fill in the gap",
+              "s": "You can ___ for help at any time.",
+              "w": [
+                "ask",
+                "hide",
+                "wait"
+              ],
+              "a": "ask"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "placement": [
+    [
+      "Which two numbers do you share so someone can pay money into your UK account?",
+      [
+        "Sort code and account number",
+        "Passport and phone number",
+        "Card PIN and password",
+        "🤷 I’m not sure"
+      ],
+      0
+    ],
+    [
+      "Where do you usually see your balance in a banking app?",
+      [
+        "Only in a letter",
+        "On the home screen after you log in",
+        "You have to call",
+        "🤷 I’m not sure"
+      ],
+      1
+    ],
+    [
+      "Online banking on a computer is…",
+      [
+        "A different account",
+        "A shop",
+        "The same account, on the NatWest website",
+        "🤷 I’m not sure"
+      ],
+      2
+    ],
+    [
+      "Someone rings saying they are your bank and asks you to move money to a “safe account”. You…",
+      [
+        "Do what they say",
+        "Give them your PIN",
+        "Hang up and call your bank on a number you trust",
+        "🤷 I’m not sure"
+      ],
+      2
+    ]
+  ],
+  "guides": [
+    {
+      "sum": "A UK current account is where your money lives day to day. You get a debit card, a sort code and an account number. Your savings are protected, up to a limit.",
+      "pts": [
+        "Your pay goes into your current account. Your bills and shopping come out of it.",
+        "You pay with a debit card, your phone or a bank transfer. Cheques are rare now.",
+        "Your sort code (6 numbers) and account number (8 numbers) are how people pay you.",
+        "Never share your PIN or your full password. Not with anyone.",
+        "UK banks follow strict rules. Savings are protected by a scheme called the FSCS, up to a limit.",
+        "In a branch you talk to a person. In the app you do the same jobs yourself, at any time."
+      ],
+      "words": [
+        [
+          "Current account",
+          "The account you use every day"
+        ],
+        [
+          "Debit card",
+          "A card that takes money from your account"
+        ],
+        [
+          "Sort code",
+          "6 numbers that show your bank"
+        ],
+        [
+          "Account number",
+          "8 numbers for your account"
+        ],
+        [
+          "PIN",
+          "Your secret 4 numbers. Never share"
+        ],
+        [
+          "FSCS",
+          "A scheme that protects savings, up to a limit"
+        ]
+      ],
+      "rem": "If you are not sure, stop and ask. A real bank never minds questions."
+    },
+    {
+      "sum": "The NatWest app is a bank branch on your phone. You can check your balance, pay people and get help at any time.",
+      "pts": [
+        "Download it only from your phone’s official app store. Check that it says NatWest.",
+        "Log in, then set Face ID, a fingerprint or a passcode so it is quick next time.",
+        "Your balance is at the top. Below it is a list of money in and money out.",
+        "To pay someone, you need their name, sort code and account number. Check every number.",
+        "Turn on alerts. You get a message when money comes in or goes out.",
+        "If something looks wrong, use Help in the app."
+      ],
+      "words": [
+        [
+          "App store",
+          "Where you safely download apps"
+        ],
+        [
+          "Balance",
+          "How much money you have now"
+        ],
+        [
+          "Payment",
+          "Money going out"
+        ],
+        [
+          "Alert",
+          "A message about your money"
+        ],
+        [
+          "Confirm",
+          "Press to say yes, go ahead"
+        ]
+      ],
+      "rem": "Take your time. You can always stop before you press Confirm."
+    },
+    {
+      "sum": "Online banking is the same account as the app, on a bigger screen. Always check the address says natwest.com.",
+      "pts": [
+        "Type natwest.com into your browser. Do not click links in texts or emails.",
+        "Look for the padlock and natwest.com in the address bar.",
+        "You may get a code by text. This is normal. The code is only for you.",
+        "Open Statements to read or download your monthly statements.",
+        "Open Settings to change your phone number or address.",
+        "Log out when you finish, especially on a shared computer."
+      ],
+      "words": [
+        [
+          "Browser",
+          "The program you use to open websites"
+        ],
+        [
+          "Padlock",
+          "A sign the connection is safe"
+        ],
+        [
+          "Statement",
+          "A record of your money in and out"
+        ],
+        [
+          "Log out",
+          "Close your account when you finish"
+        ]
+      ],
+      "rem": "Only you should ever use your codes."
+    },
+    {
+      "sum": "Scammers pretend to be your bank. Your bank will never ask for your PIN, or ask you to move money to a “safe account”.",
+      "pts": [
+        "Scammers can call, text or email. They sound kind, and in a hurry.",
+        "Your bank will never ask for your PIN or your full password.",
+        "Your bank will never ask you to move money to a “safe account”.",
+        "If you are unsure, hang up. Call the number on the back of your card.",
+        "Never read out a code from a text to someone who rang you.",
+        "You can walk into a branch, or use Help in the app, at any time."
+      ],
+      "words": [
+        [
+          "Scam",
+          "A trick to steal your money"
+        ],
+        [
+          "Phishing",
+          "A fake text or email that looks real"
+        ],
+        [
+          "Safe account",
+          "A lie scammers use. There is no such thing"
+        ],
+        [
+          "Hang up",
+          "End the call. You are allowed to"
+        ]
+      ],
+      "rem": "Real banks never rush you. If you feel rushed, stop."
+    }
+  ],
+  "source": {
+    "url": "https://github.com/ayaannasim9/Commonscents/blob/OverviewOfApp/Overview/app.js",
+    "blob": "fa1d4ef5602d21a3d1f9bfb69a398ed92062b284"
+  }
+}
