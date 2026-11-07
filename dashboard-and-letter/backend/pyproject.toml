@@ -1,0 +1,27 @@
+[project]
+name = "counterpart"
+version = "0.1.0"
+description = "Counterpart backend: deterministic maths, guardrailed writing, human approval."
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "pydantic>=2.7",
+  "anthropic>=0.40",
+  "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+# WeasyPrint needs pango; install separately once the B7 spike has run.
+pdf = ["weasyprint>=62"]
+dev = ["pytest>=8", "httpx>=0.27"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["counterpart*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
