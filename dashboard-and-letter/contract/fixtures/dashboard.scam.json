@@ -69,10 +69,7 @@
         "spare": 348
       }
     ],
-    "suggestion": {
-      "text_hint": "put a little aside for the TV licence",
-      "amount": 20
-    },
+    "suggestion": null,
     "flags": [
       {
         "id": "flag_0001",
@@ -83,7 +80,7 @@
         "plain_name": "Payment to a new person",
         "reasons": [
           "First time you have paid this person",
-          "About 15 times your usual payment",
+          "About 62 times your usual payment",
           "Made late in the evening"
         ]
       }
@@ -111,12 +108,6 @@
       "id": "forecast",
       "title": "The next three months",
       "text": "December looks comfortable, with about £990 spare because you get two pension payments. January looks tight, with about £15 spare, mainly because your TV licence of £175 is due. February looks fine, with about £348 spare."
-    },
-    {
-      "id": "idea",
-      "title": "One idea",
-      "text": "If you put £20 aside in December, January will feel easier. This is only an idea, and it is your choice. Free, independent help is available from MoneyHelper and Citizens Advice.",
-      "optional": true
     },
     {
       "id": "scam_watch",
